@@ -19,6 +19,8 @@
 - `npm run dev` (porta 5173), `npm run build`, `npm run planta` (gera layout.json), `npm run otimizar` (GLB bruto -> web).
 - `catalogo.html` (só em dev): miniaturas das peças; `tools/*-glb.mjs`: inspeção de GLB.
 - Repositório: `Creed-s-Fear/boate` no GitHub (privado), ramo `main`. `blender/export/` e `dist/` ficam fora do git.
+- Link para jogar: `https://creed-s-fear.github.io/lotus-lounge/` (repositório público `Creed-s-Fear/lotus-lounge`, só o build).
+  Atualizar com `npm run publicar`.
 - Blender 5.2 + MCP oficial; trava `blender_mcp_guard.py` liberada para `c:/boate/` em 2026-11-15 a pedido do Pedro.
 
 ## Em andamento
@@ -34,4 +36,4 @@
 - Toque não foi testado em celular de verdade.
 
 ## Última sessão
-- `sessions/2026-11-15-1525-github.md` (antes: `1455-jacuzzi-e-shaders`, `1330-base-e-montagem`)
+- `sessions/2026-11-15-1545-link-jogavel.md` (antes: `1525-github`, `1455-jacuzzi-e-shaders`, `1330-base-e-montagem`)

@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "planta": "node tools/make-layout.mjs",
-    "otimizar": "node tools/optimize-glb.mjs blender/export/boate_raw.glb public/models/boate.glb"
+    "otimizar": "node tools/optimize-glb.mjs blender/export/boate_raw.glb public/models/boate.glb",
+    "publicar": "node tools/publish-pages.mjs"
   },
   "dependencies": {
     "three": "^0.187.0",
