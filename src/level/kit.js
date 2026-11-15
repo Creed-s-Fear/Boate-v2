@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { mergeMeshes } from '../engine/merge.js';
 import { applyFx } from './shaderFx.js';
 
 // Regras para o cenário exportado do Blender com as peças KIT_* e JAC_*.
@@ -77,9 +77,14 @@ function convertMaterial(src) {
 
 // ---------- colisão ----------
 // 'mesh' usa os triângulos da peça; 'box' uma caixa do tamanho dela; 'cyl' um cilindro.
+// Paredes inteiras, pisos e colunas são placas retas: a caixa colide igual e poupa 2/3 dos
+// triângulos da colisão (menos memória e montagem mais rápida). Ficam com os triângulos
+// só as peças com vão ou degrau: portal, parede com a porta recortada, bar, palco, sofá.
 const RULES = [
-  [/^(KIT_Parede_|KIT_Piso_|KIT_Coluna|KIT_Portal|KIT_Balcao_Bar|KIT_Estante_Bar|KIT_Palco_|KIT_Sofa_Curvo)/, 'mesh'],
-  [/^(JAC_02_|JAC_31_|JAC_32_|JAC_33_|JAC_34_)/, 'mesh'],
+  [/^(KIT_Parede_|KIT_Piso_|KIT_Coluna)/, 'box'],
+  [/^(JAC_31_|JAC_32_|JAC_34_)/, 'box'],
+  [/^(KIT_Portal|KIT_Balcao_Bar|KIT_Estante_Bar|KIT_Palco_|KIT_Sofa_Curvo)/, 'mesh'],
+  [/^(JAC_02_|JAC_33_)/, 'mesh'],
   // banheira: perfil em degraus de 15 cm (sobe na borda por fora, desce para a água por dentro)
   [/^JAC_01_Jacuzzi/, 'lathe', { profile: [[0, 0.15], [0.55, 0.15], [0.55, 0.3], [0.8, 0.3], [0.8, 0.45], [1.05, 0.45], [1.05, 0.6], [1.3, 0.6], [1.3, 0.75], [1.62, 0.75], [1.62, 0.6], [1.92, 0.6], [1.92, 0]] }],
   [/^KIT_Cabine_Cortina/, 'cyl', { r: 1.5, h: 0.13 }],
@@ -204,37 +209,24 @@ export function batchStatic(container, skip) {
   container.updateWorldMatrix(true, true);
   const inv = container.matrixWorld.clone().invert();
   const buckets = new Map();
-  const sources = [];
+  let merged = 0;
   container.traverse((o) => {
     if (!o.isMesh || !o.visible || o.isInstancedMesh || skip(o)) return;
     const layer = o.layers.mask;
     const key = o.material.uuid + '|' + layer;
-    if (!buckets.has(key)) buckets.set(key, { material: o.material, layer, geos: [], wet: false });
+    if (!buckets.has(key)) buckets.set(key, { material: o.material, layer, meshes: [], wet: false });
     const b = buckets.get(key);
-    const g = new THREE.BufferGeometry();
-    g.setIndex(o.geometry.index ? o.geometry.index.clone() : null);
-    g.setAttribute('position', o.geometry.attributes.position.clone());
-    if (o.geometry.attributes.normal) g.setAttribute('normal', o.geometry.attributes.normal.clone());
-    g.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inv, o.matrixWorld));
-    b.geos.push(g);
+    b.meshes.push(o);
     if (o.userData.wet) b.wet = true;
-    sources.push(o);
+    merged++;
   });
-  let created = 0;
   for (const b of buckets.values()) {
-    const indexed = b.geos.every((g) => g.index);
-    const geos = indexed ? b.geos : b.geos.map((g) => (g.index ? g.toNonIndexed() : g));
-    const merged = mergeGeometries(geos, false);
-    if (!merged) continue;
-    const mesh = new THREE.Mesh(merged, b.material);
+    const mesh = new THREE.Mesh(mergeMeshes(b.meshes, { inverse: inv }), b.material);
     mesh.name = 'BATCH_' + b.material.name;
     mesh.layers.mask = b.layer;
     if (b.wet) mesh.userData.wet = true;
     container.add(mesh);
-    created++;
   }
-  for (const o of sources) {
-    o.removeFromParent();
-  }
-  return { merged: sources.length, batches: created };
+  for (const b of buckets.values()) for (const o of b.meshes) o.removeFromParent();
+  return { merged, batches: buckets.size };
 }

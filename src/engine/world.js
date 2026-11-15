@@ -58,7 +58,15 @@ export class World {
     root.updateMatrixWorld(true);
 
     // cenário feito com as peças KIT_/JAC_: materiais e colisores saem do nome das peças
+    const ms = {}; // tempo de cada etapa, em ms (aparece em stats.build)
+    let mark = performance.now();
+    const lap = (name) => {
+      const now = performance.now();
+      ms[name] = Math.round(now - mark);
+      mark = now;
+    };
     this.kit = isKitLevel(root) ? prepareKit(root) : null;
+    lap('materiais');
     this.spinners = this.kit ? this.kit.spinners : [];
     root.updateMatrixWorld(true);
 
@@ -83,6 +91,7 @@ export class World {
       root.updateMatrixWorld(true);
     }
 
+    lap('efeitos');
     const colliders = [];
     const hideAfter = [];
     const doorNodes = [];
@@ -142,8 +151,10 @@ export class World {
       }
     });
 
+    lap('varredura');
     // colisão estática
     this.collision.setStatic(colliders);
+    lap('colisao');
     hideAfter.forEach((o) => (o.visible = false));
 
     // salas
@@ -188,6 +199,7 @@ export class World {
       this.steams.push(steam);
     }
 
+    lap('salasEAgua');
     // junta as malhas estáticas por material: centenas de peças viram poucos draw calls
     let batches = 0;
     if (this.kit) {
@@ -198,8 +210,9 @@ export class World {
       batches += batchStatic(root, (o) => dynamic(o) || ancestor(o, isRoom)).batches;
     }
 
+    lap('juntar');
     this.camera.layers.enable(1);
-    this.stats = { meshes, batches, colliders: colliders.length, triangles: this.collision.triangles || 0 };
+    this.stats = { meshes, batches, colliders: colliders.length, triangles: this.collision.triangles || 0, build: ms };
     this.updateRooms(this.spawn.position, true);
   }
 
@@ -277,7 +290,14 @@ export class World {
       if (d.open <= 0.002) continue;
       for (const r of this.rooms) if (!d.rooms.length || d.rooms.includes(r.name)) r.show = true;
     }
-    for (const r of this.rooms) r.node.visible = r.show;
+    this._show();
+  }
+
+  // Liga e desliga as salas: as marcadas em updateRooms ou, no preparo, uma lista dada.
+  _show(list = null) {
+    for (const r of this.rooms) r.node.visible = list ? list.includes(r) : r.show;
+    // o reflexo do piso volta a aparecer (o preparo o esconde ao capturar o ambiente)
+    if (this.wet) this.wet.mesh.visible = this.wet.scale > 0;
   }
 
   // Jacuzzi ao alcance: o jogador está perto da borda (nos degraus de cima da plataforma
@@ -350,35 +370,159 @@ export class World {
     }
   }
 
-  // Captura um mapa de ambiente por sala (uma vez, no carregamento): dá o brilho
-  // rosado nos metais, vidros e veludos sem custo por quadro.
-  bakeEnvironments() {
-    const pmrem = new THREE.PMREMGenerator(this.renderer);
-    const wetVisible = this.wet ? this.wet.mesh.visible : false;
-    if (this.wet) this.wet.mesh.visible = false;
-    this.scene.environment = null;
-    for (const room of this.rooms) {
-      for (const r of this.rooms) r.node.visible = r === room;
+  // Prepara tudo que depende da placa de vídeo sem travar a página.
+  //
+  // Cada combinação de salas visíveis tem um número de luzes diferente e, por isso, shaders
+  // próprios. Em vez de compilar um a um no primeiro desenho (o que travava a página por
+  // mais de um segundo), os shaders são pedidos todos de uma vez e o navegador compila em
+  // paralelo, fora da linha principal.
+  //
+  // Antes de liberar o botão "Entrar" fica só o que a sala inicial precisa: shaders dela,
+  // mapa de ambiente dela (o brilho rosado nos metais, vidros e veludos) e o primeiro
+  // quadro. O resto (outras salas, portas abertas) termina em segundo plano, em pedaços
+  // curtos, enquanto o jogador lê o menu: bem antes de alguém chegar à porta.
+  async prepare(gfx, onProgress = () => {}) {
+    const renderer = this.renderer;
+    const scene = this.scene;
+    const programs = renderer.info.programs;
+    const here = this.current || this.rooms[0] || null;
+    const others = this.rooms.filter((r) => r !== here);
+    const ms = {}; // tempo de cada etapa, em ms (aparece em stats.prepare)
+    let mark = performance.now();
+    const lap = (name) => {
+      const now = performance.now();
+      ms[name] = Math.round(now - mark);
+      mark = now;
+    };
+
+    // Ambiente provisório, preto, do mesmo tipo e tamanho do definitivo: o tipo do mapa de
+    // ambiente faz parte do shader, então o que for compilado agora é exatamente o que o
+    // jogo usa depois (e a captura do ambiente não precisa de um conjunto só dela).
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const blank = pmrem.fromScene(new THREE.Scene(), 0, 0.1, 10, { size: 128 });
+
+    // O cenário é desenhado num alvo fora da tela (os efeitos vêm depois). Compilar e
+    // aquecer têm de acontecer com um alvo desse tipo ativo, senão o shader sai diferente.
+    const offscreen = (fn) => {
+      const previous = renderer.getRenderTarget();
+      renderer.setRenderTarget(gfx.composer.renderTarget1);
+      fn();
+      renderer.setRenderTarget(previous);
+    };
+    const restore = () => {
+      this._show();
+      scene.environment = (this.current && this.current.env) || null;
+    };
+
+    // Pede os shaders de uma combinação. As salas de fora saem da cena por um instante,
+    // para que os materiais delas não sejam compilados com as luzes das outras.
+    const homes = this.rooms.map((r) => r.node.parent);
+    const request = (combo) => {
+      this.rooms.forEach((r, i) => (combo.includes(r) ? homes[i].add(r.node) : r.node.removeFromParent()));
+      for (const r of combo) r.node.visible = true;
+      scene.environment = blank.texture;
+      offscreen(() => renderer.compile(scene, this.camera));
+      this.rooms.forEach((r, i) => homes[i].add(r.node));
+      restore();
+    };
+    // Passes de tela cheia: desenhados fora da cena, sem luzes. A geometria imita a deles
+    // (posição e uv, sem normais): os atributos da malha também fazem parte do shader.
+    const requestPasses = () => {
+      const quad = new THREE.BufferGeometry();
+      quad.setAttribute('position', new THREE.Float32BufferAttribute([-1, 3, 0, -1, -1, 0, 3, -1, 0], 3));
+      quad.setAttribute('uv', new THREE.Float32BufferAttribute([0, 2, 0, 0, 2, 0], 2));
+      const holder = (materials) => {
+        const s = new THREE.Scene();
+        for (const m of materials) s.add(new THREE.Mesh(quad, m));
+        return s;
+      };
+      const passes = gfx.passMaterials();
+      offscreen(() => renderer.compile(holder(passes.offscreen), this.camera));
+      renderer.compile(holder(passes.screen), this.camera); // o último passe desenha na tela
+      quad.dispose();
+    };
+    // Espera os primeiros `count` shaders sem bloquear. Sem a extensão de compilação
+    // paralela, isReady() já responde verdadeiro e eles compilam no primeiro uso, como antes.
+    const compiled = async (count, report) => {
+      const started = performance.now();
+      for (;;) {
+        const n = Math.min(count, programs.length);
+        let ready = 0;
+        for (let i = 0; i < n; i++) if (programs[i].isReady()) ready++;
+        if (report) report(n ? ready / n : 1);
+        if (ready >= n || performance.now() - started > 20000) return;
+        await new Promise((r) => setTimeout(r, 12));
+      }
+    };
+    // Mapa de ambiente de uma sala, capturado do meio dela, sem o reflexo do piso.
+    const bake = (room) => {
+      this._show([room]);
+      if (this.wet) this.wet.mesh.visible = false;
+      scene.environment = blank.texture;
       const c = room.box.getCenter(new THREE.Vector3());
       c.y = room.box.min.y + 1.7;
       if (room.node.userData.envPos) c.fromArray(room.node.userData.envPos);
-      room.env = pmrem.fromScene(this.scene, 0.03, 0.05, 80, { size: 128, position: c }).texture;
-    }
-    pmrem.dispose();
-    if (this.wet) this.wet.mesh.visible = wetVisible;
-    this.updateRooms(this.spawn.position, true);
-  }
+      room.env = pmrem.fromScene(scene, 0.03, 0.05, 80, { size: 128, position: c }).texture;
+      restore();
+    };
+    // Desenha uma combinação fora da tela, de longe e enxergando tudo: primeiro uso de cada
+    // shader e subida das geometrias para a placa. Sem isso o jogo engasga na primeira vez
+    // que cada coisa entra no campo de visão.
+    const far = new THREE.PerspectiveCamera(90, 1, 0.1, 600);
+    far.layers.mask = this.camera.layers.mask;
+    const sphere = new THREE.Sphere();
+    const warm = (combo) => {
+      _box.makeEmpty();
+      for (const r of combo) _box.union(r.box);
+      _box.getBoundingSphere(sphere);
+      far.position.copy(sphere.center);
+      far.position.z += sphere.radius * 1.5;
+      far.lookAt(sphere.center);
+      far.updateMatrixWorld(true);
+      this._show(combo);
+      scene.environment = combo[0].env || blank.texture;
+      offscreen(() => renderer.render(scene, far));
+      restore();
+    };
 
-  // Renderiza cada combinação de salas visíveis uma vez, para compilar os shaders
-  // durante o carregamento e não travar ao abrir a porta.
-  prewarm(renderFrame) {
-    const combos = this.rooms.map((r) => [r]);
-    combos.push(this.rooms.slice());
-    for (const combo of combos) {
-      for (const r of this.rooms) r.node.visible = combo.includes(r);
-      if (combo.length === 1 && combo[0].env) this.scene.environment = combo[0].env;
-      renderFrame();
-    }
-    this.updateRooms(this.spawn.position, true);
+    // ----- antes do botão "Entrar": só a sala inicial -----
+    request(here ? [here] : []);
+    requestPasses();
+    lap('pedir');
+    await compiled(programs.length, onProgress);
+    lap('compilar');
+    if (here) bake(here);
+    lap('ambiente');
+    gfx.render(0, 0, false);
+    lap('primeiroQuadro');
+    this.stats.prepare = ms;
+    this.stats.programs = programs.length;
+
+    // ----- em segundo plano: o resto, em pedaços curtos -----
+    const pause = () => new Promise((r) => setTimeout(r, 30));
+    const rest = async () => {
+      const started = performance.now();
+      await pause();
+      // pede já os shaders das outras combinações: compilam enquanto o resto acontece
+      for (const room of others) request([room]);
+      if (others.length) request(this.rooms);
+      await pause();
+      if (here) warm([here]);
+      for (const room of others) {
+        await pause();
+        await compiled(programs.length);
+        bake(room);
+        await pause();
+        warm([room]);
+      }
+      if (others.length) {
+        await pause();
+        warm(this.rooms);
+      }
+      blank.dispose();
+      pmrem.dispose();
+      ms.segundoPlano = Math.round(performance.now() - started);
+    };
+    this.ready = rest().catch((err) => console.warn('Preparo em segundo plano falhou:', err));
   }
 }

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { MeshBVH, StaticGeometryGenerator } from 'three-mesh-bvh';
+import { MeshBVH } from 'three-mesh-bvh';
+import { mergeMeshes } from './merge.js';
 
 const _box = new THREE.Box3();
 const _triPoint = new THREE.Vector3();
@@ -15,11 +16,10 @@ export class Collision {
 
   setStatic(meshes) {
     if (!meshes.length) return;
-    const gen = new StaticGeometryGenerator(meshes);
-    gen.attributes = ['position'];
-    const geo = gen.generate();
+    for (const m of meshes) m.updateWorldMatrix(true, false);
+    const geo = mergeMeshes(meshes, { normals: false }); // em mundo, só posições
     this.bvh = new MeshBVH(geo);
-    this.triangles = geo.index ? geo.index.count / 3 : geo.attributes.position.count / 3;
+    this.triangles = geo.index.count / 3;
   }
 
   // Caixa alinhada aos eixos, em mundo, que pode ser desligada (porta aberta).
