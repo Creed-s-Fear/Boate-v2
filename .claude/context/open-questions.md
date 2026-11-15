@@ -7,7 +7,7 @@
 - [ ] (2026-11-15) Validar as cores dos 5 materiais que vieram brancos (parede, piso e mármore da jacuzzi, mármore do bar, piso molhado) — Pedro
 - [ ] (2026-11-15) Acrescentar a Boate na tabela "Projetos com o esquema" do CLAUDE.md global — OK do Pedro
 - [ ] (2026-11-15) Fechar a janela do Blender comum (cena vazia) aberta no início da sessão, se ainda estiver aberta — Pedro
-- [ ] (2026-11-15) Transformar a pasta em repositório git para ter backup — Pedro decide
+- [ ] (2026-11-15) Confirmar a visibilidade do repositório: ficou privado porque não vi o anexo citado na resposta — Pedro
 
 ## Ideias sem data
 - [ ] Efeito de mergulho (câmera abaixo da superfície) se o Pedro quiser a jacuzzi ainda mais funda.

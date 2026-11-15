@@ -18,6 +18,7 @@
 ## Ferramentas
 - `npm run dev` (porta 5173), `npm run build`, `npm run planta` (gera layout.json), `npm run otimizar` (GLB bruto -> web).
 - `catalogo.html` (só em dev): miniaturas das peças; `tools/*-glb.mjs`: inspeção de GLB.
+- Repositório: `Creed-s-Fear/boate` no GitHub (privado), ramo `main`. `blender/export/` e `dist/` ficam fora do git.
 - Blender 5.2 + MCP oficial; trava `blender_mcp_guard.py` liberada para `c:/boate/` em 2026-11-15 a pedido do Pedro.
 
 ## Em andamento
@@ -29,9 +30,8 @@
 3. Ajuste fino de luz e composição comparando com as duas imagens de referência.
 
 ## Riscos
-- Pasta não é repositório git: sem backup nem histórico.
 - Cores de 5 materiais foram escolhidas pela referência (vieram brancos no GLB): Pedro precisa validar.
 - Toque não foi testado em celular de verdade.
 
 ## Última sessão
-- `sessions/2026-11-15-1455-jacuzzi-e-shaders.md` (antes: `2026-11-15-1330-base-e-montagem.md`)
+- `sessions/2026-11-15-1525-github.md` (antes: `1455-jacuzzi-e-shaders`, `1330-base-e-montagem`)

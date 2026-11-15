@@ -34,3 +34,5 @@
 ## Processo
 - 2026-11-15 — Trava do Blender MCP passou a aceitar `c:/boate/` (e protege `c:/boate/.git`), editada a pedido do Pedro — projeto novo.
 - 2026-11-15 — Memória do projeto no mesmo esquema do Underclock, com `/retomar-boate` e `/salvar-boate` — padrão do Pedro.
+- 2026-11-15 — Código no GitHub em `Creed-s-Fear/boate`, privado — Pedro indicou a organização; privado é o padrão seguro e dá para abrir depois.
+- 2026-11-15 — `blender/export/` (GLB bruto) fora do git; o GLB otimizado e o .blend vão — o jogo roda só com o clone, o bruto se regenera.
