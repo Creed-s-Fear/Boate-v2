@@ -142,13 +142,14 @@ const WET_R = /* glsl */ `
 const VELVET_C = /* glsl */ `
   float fxGrain = fxNoise(vFxWorld.xz * 160.0 + vFxWorld.y * 97.0);
   float fxNap = fxNoise3(vFxWorld * 5.5);
-  diffuseColor.rgb *= (0.84 + 0.32 * fxNap) * (0.93 + 0.14 * fxGrain);
+  diffuseColor.rgb *= (0.74 + 0.36 * fxNap) * (0.92 + 0.16 * fxGrain);
 `;
 const VELVET_R = /* glsl */ `
   roughnessFactor = clamp(roughnessFactor - 0.25 * fxNap, 0.3, 1.0);
 `;
 const VELVET = /* glsl */ `
-  totalEmissiveRadiance += diffuseColor.rgb * pow(1.0 - fxFacing(), 3.0) * (0.35 + 0.5 * fxNap);
+  // brilho de borda discreto: forte demais apaga o sombreado e o sofá fica "chapado"
+  totalEmissiveRadiance += diffuseColor.rgb * pow(1.0 - fxFacing(), 3.0) * (0.16 + 0.26 * fxNap);
 `;
 // cortinas de tecido: balanço leve e abertura em volta do jogador (as salas ficam na
 // origem, então a posição do lote já é a posição no mundo)

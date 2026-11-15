@@ -97,22 +97,20 @@ const BX = -4.1;
   add('club', 'KIT_Cabine_Cortina', BX, 0, bz, yaw);
   let [x, z] = at(0, -0.72);
   add('club', 'KIT_Sofa_Curvo', x, 0.13, z, yaw);
-  [x, z] = at(0, 0.32);
+  // mesa um pouco à frente do assento (espaço para as pernas)
+  [x, z] = at(0, 0.46);
   add('club', 'KIT_Mesa_Lounge', x, 0.13, z, yaw);
   const top = 0.13 + 0.75;
-  [x, z] = at(0.02, 0.3);
+  [x, z] = at(0.02, 0.44);
   add('club', i === 1 ? 'KIT_Narguile' : 'KIT_Balde_Gelo', x, top, z, 30);
-  [x, z] = at(-0.29, 0.44);
+  [x, z] = at(-0.29, 0.58);
   add('club', i === 1 ? 'KIT_Copo_Whisky' : 'KIT_Taca_Champanhe', x, top, z, 0);
-  [x, z] = at(0.29, 0.18);
+  [x, z] = at(0.29, 0.32);
   add('club', i === 1 ? 'KIT_Copo_Whisky' : 'KIT_Taca_Champanhe', x, top, z, 0);
-  [x, z] = at(0.2, 0.52);
+  [x, z] = at(0.2, 0.66);
   add('club', 'KIT_Luminaria_Cubo', x, top, z, 15);
-  [x, z] = at(-0.78, -0.42);
-  add('club', 'KIT_Almofada', x, 0.13 + 0.47, z, yaw + 25);
-  [x, z] = at(0.8, -0.4);
-  add('club', 'KIT_Almofada', x, 0.13 + 0.47, z, yaw - 20);
-  light('club', '#ff2bd6', 14, 6.5, [BX + 0.3, 2.1, bz]);
+  // (o sofá curvo já vem com almofadas modeladas: não colocar outras por cima)
+  light('club', '#ff2bd6', 10, 6.5, [BX + 0.3, 2.1, bz]);
 });
 // entre as cabines: biombos treliçados, planta e arandelas
 for (const z of [3.4, -2.6]) {
@@ -187,6 +185,9 @@ add('club', 'KIT_Garrafa_Whisky', -4.05, 0.75, -9.45, 20);
 add('club', 'KIT_Copo_Whisky', -3.82, 0.75, -9.62, 0);
 add('club', 'KIT_Copo_Whisky', -4.2, 0.75, -9.68, 0);
 add('club', 'KIT_Cinzeiro', -3.9, 0.75, -9.3, 30);
+// almofadões no tapete (as almofadas avulsas do kit ficam aqui, não nos sofás)
+add('club', 'KIT_Almofada', -3.45, 0.025, -10.05, 20);
+add('club', 'KIT_Almofada', -4.75, 0.025, -8.5, -15);
 // canto do fundo à direita: gaiola de dança e mesa alta
 add('club', 'KIT_Gaiola_Danca', 4.55, 0, -10.3, 0);
 add('club', 'KIT_Mesa_Alta', 2.5, 0, -8.6, 0);
@@ -290,8 +291,9 @@ spaLight('#2ff5e6', 2.5, 5, 0, 1.5, 0);
 // fundo: sofás, almofadas, mesinhas com luminária, plantas em vasos
 for (const sx of [-2.6, 2.6]) {
   spa('JAC_05_Sofa', sx, 0, -4.3, 0);
-  spa('JAC_07_Almofada', sx - 0.78, 0.44, -4.38, 14);
-  spa('JAC_07_Almofada', sx + 0.8, 0.44, -4.38, -12);
+  // almofadas em pé sobre o assento (topo em 0,51 m), encostadas no encosto (face em z -0,25 do sofá)
+  spa('JAC_07_Almofada', sx - 0.78, 0.52, -4.43, 10, { rx: -12 });
+  spa('JAC_07_Almofada', sx + 0.8, 0.52, -4.43, -8, { rx: -12 });
   spa('JAC_17_Luminaria_Piso', sx + Math.sign(sx) * 1.6, 0, -3.72, 0);
 }
 for (const sx of [-1.02, 1.02]) {

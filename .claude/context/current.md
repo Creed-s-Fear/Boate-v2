@@ -37,4 +37,4 @@
 - Toque não foi testado em celular de verdade.
 
 ## Última sessão
-- `sessions/2026-11-15-1620-correcoes-e-detalhe.md` (antes: `1545-link-jogavel`, `1525-github`, `1455-jacuzzi-e-shaders`)
+- `sessions/2026-11-15-1650-sofas.md` (antes: `1620-correcoes-e-detalhe`, `1545-link-jogavel`, `1525-github`)

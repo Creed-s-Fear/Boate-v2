@@ -33,6 +33,9 @@
 - Rugosidade abaixo de 0,1 com luz pontual gera ponto de reflexo de 10x o branco: o bloom transforma em clarão.
 - Risco de reflexo por normal em vidro plano vira clarão quando a câmera gira: restringir às partes curvas.
 
+- `KIT_Sofa_Curvo` e `KIT_Cama_Redonda` já trazem almofadas modeladas; `JAC_05_Sofa` vem sem. Medir com `profile-glb.mjs` antes.
+- O link público só muda com `npm run publicar` e a página fica em cache: recarregar com `?v=N` para ver a versão nova.
+
 ## Painel do navegador
 - Aba em segundo plano não apresenta quadros (captura preta) e limita o requestAnimationFrame; usar `__game.sim()` e trazer a aba para frente.
 - Editar código recarrega todas as abas do jogo, inclusive a que o Pedro está usando.
