@@ -23,15 +23,16 @@
 - `catalogo.html` (só em dev): miniaturas das peças; `tools/*-glb.mjs`: inspeção de GLB.
 - Repositório: `Creed-s-Fear/boate` no GitHub (público), ramo `main`. `blender/export/` e `dist/` ficam fora do `main`.
 - Link para jogar: `https://creed-s-fear.github.io/boate/` (ramo `gh-pages` do mesmo repositório). Atualizar com `npm run publicar`.
-- Sobram o arquivo privado do histórico antigo e o `lotus-lounge` (link antigo, parado).
+- Sobram `boate-arquivo-privado` (histórico antigo, privado) e `lotus-lounge` (link antigo, parado): Pedro mandou apagar os dois.
+- Os outros repositórios da organização não são deste projeto e não se mexe neles.
 - Blender 5.2 + MCP oficial; trava `blender_mcp_guard.py` liberada para `c:/boate/` em 2026-11-15 a pedido do Pedro.
 
 ## Em andamento
-- Otimização para navegador e correção da cortina de fios (tremia com o jogador parado) prontas e testadas só na máquina local.
-- Ainda sem commit e sem publicar: o link público está na versão anterior.
+- Otimização para navegador e correção da cortina de fios publicadas em 15/11: no `main` e no link público.
+- Falta apagar os dois repositórios que sobraram: o `gh` desta máquina não tem a permissão `delete_repo`.
 
 ## Próximos 3 passos
-1. Com o OK do Pedro: `npm run publicar` e commit da otimização e da correção da cortina.
+1. Apagar `boate-arquivo-privado` e `lotus-lounge` quando o Pedro liberar a permissão (ou ele apaga pelo site).
 2. Medir em placa integrada e em celular (o ajuste automático só foi testado com taxas simuladas).
 3. Decidir se entram personagens (`Assets_Personagens.zip` ainda não baixado) e som ambiente.
 
@@ -41,4 +42,4 @@
 - Colisão de paredes e pisos agora é por caixa: conferida por caminhada automática, não por alguém jogando.
 
 ## Última sessão
-- `sessions/2026-11-15-1810-cortina-parado.md` (antes: `1745-otimizacao-navegador`, `1715-repositorio-publico`, `1650-sofas`)
+- `sessions/2026-11-15-1830-publicacao.md` (antes: `1810-cortina-parado`, `1745-otimizacao-navegador`, `1715-repositorio-publico`)

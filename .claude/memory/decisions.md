@@ -54,5 +54,5 @@
 - 2026-11-15 — Jogável no ramo `gh-pages` do próprio `boate`, servido pelo GitHub Pages — Pedro quis o jogável no mesmo repositório.
 - 2026-11-15 — Todo commit deste projeto usa o e-mail noreply do GitHub (configuração local do repositório) — o pessoal não pode aparecer.
 - 2026-11-15 — Repositório aberto como novo, com histórico regravado; o privado antigo virou arquivo — sobrescrever deixaria commits antigos alcançáveis.
-- 2026-11-15 — `Creed-s-Fear/lotus-lounge` (link antigo) mantido por enquanto, sem atualização — escolha do Pedro.
+- 2026-11-15 — `boate` é o único repositório do projeto; o arquivo do histórico antigo e o `lotus-lounge` são para apagar — Pedro: "é o único que importa".
 - 2026-11-15 — `blender/export/` (GLB bruto) fora do git; o GLB otimizado e o .blend vão — o jogo roda só com o clone, o bruto se regenera.

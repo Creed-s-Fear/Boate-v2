@@ -32,7 +32,7 @@
 - Risco de reflexo por normal em vidro plano vira clarão quando a câmera gira: restringir às partes curvas.
 - `KIT_Sofa_Curvo` e `KIT_Cama_Redonda` já trazem almofadas modeladas; `JAC_05_Sofa` vem sem. Medir com `profile-glb.mjs` antes.
 - O link público só muda com `npm run publicar` e a página fica em cache: recarregar com `?v=N` para ver a versão nova.
-- Antes de abrir um repositório, ver o e-mail dos commits (`git log --format=%ae`): o do git global é pessoal.
+- Antes de abrir um repositório, ver o e-mail dos commits (`git log --format=%ae`); depois de renomear ou criar, conferir a visibilidade pela API.
 - Sobrescrever histórico não basta para esconder dado em repositório que vai ficar público: publicar como repositório novo.
 - Contato que troca a velocidade por um empurrão fixo quica para sempre com o jogador parado: tirar só a parte que entra no corpo.
 
