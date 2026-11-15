@@ -1,0 +1,9958 @@
+{
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_01_Jacuzzi.glb": {
+  "size": [
+   3.24,
+   0.76,
+   3.24
+  ],
+  "min": [
+   -1.62,
+   0,
+   -1.62
+  ],
+  "max": [
+   1.62,
+   0.76,
+   1.62
+  ],
+  "tris": 13088,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_01_Jacuzzi"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_warm",
+    "color": [
+     1,
+     0.6,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.55,
+     0.2
+    ],
+    "emissiveStrength": 8,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_j_water",
+    "color": [
+     0.02,
+     0.55,
+     0.55,
+     0.82
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": [
+     0.02,
+     0.64,
+     0.6
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_foam",
+    "color": [
+     0.92,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": [
+     0.36,
+     0.6,
+     0.6
+    ],
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 319
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_02_Plataforma_Degraus.glb": {
+  "size": [
+   5.84,
+   0.46,
+   5.84
+  ],
+  "min": [
+   -2.92,
+   0,
+   -2.92
+  ],
+  "max": [
+   2.92,
+   0.46,
+   2.92
+  ],
+  "tris": 13824,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_02_Plataforma_Degraus"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 361
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_03_Anel_Luminoso.glb": {
+  "size": [
+   5.84,
+   1.06,
+   5.83
+  ],
+  "min": [
+   -2.92,
+   -0.02,
+   -2.92
+  ],
+  "max": [
+   2.92,
+   1.04,
+   2.92
+  ],
+  "tris": 8664,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_03_Anel_Luminoso"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_warm",
+    "color": [
+     1,
+     0.6,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.55,
+     0.2
+    ],
+    "emissiveStrength": 8,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 249
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_04_Cortina.glb": {
+  "size": [
+   1.6,
+   2.9,
+   0.24
+  ],
+  "min": [
+   -0.8,
+   0,
+   -0.17
+  ],
+  "max": [
+   0.8,
+   2.9,
+   0.07
+  ],
+  "tris": 7944,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_04_Cortina"
+  ],
+  "mats": [
+   {
+    "name": "KIT_curtain",
+    "color": [
+     1,
+     0.22,
+     0.6,
+     0.34
+    ],
+    "metal": 0,
+    "rough": 0.699999988079071,
+    "emissive": [
+     0.12,
+     0.01,
+     0.06
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 168
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_05_Sofa.glb": {
+  "size": [
+   2.64,
+   0.79,
+   1
+  ],
+  "min": [
+   -1.32,
+   0,
+   -0.5
+  ],
+  "max": [
+   1.32,
+   0.79,
+   0.5
+  ],
+  "tris": 5630,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_05_Sofa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_velvet",
+    "color": [
+     0.21,
+     0,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 124
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_06_Chaise.glb": {
+  "size": [
+   0.76,
+   1.14,
+   2.09
+  ],
+  "min": [
+   -0.38,
+   0,
+   -1.14
+  ],
+  "max": [
+   0.38,
+   1.14,
+   0.95
+  ],
+  "tris": 4912,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_06_Chaise"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_velvet",
+    "color": [
+     0.21,
+     0,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength",
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 109
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_07_Almofada.glb": {
+  "size": [
+   0.52,
+   0.52,
+   0.19
+  ],
+  "min": [
+   -0.26,
+   -0.01,
+   -0.09
+  ],
+  "max": [
+   0.26,
+   0.51,
+   0.09
+  ],
+  "tris": 1344,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_07_Almofada"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_velvet",
+    "color": [
+     0.21,
+     0,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 33
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_08_Mesa_Pedestal.glb": {
+  "size": [
+   0.84,
+   0.58,
+   0.84
+  ],
+  "min": [
+   -0.42,
+   0,
+   -0.42
+  ],
+  "max": [
+   0.42,
+   0.58,
+   0.42
+  ],
+  "tris": 2416,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_08_Mesa_Pedestal"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 62
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_09_Mesa_Sofa.glb": {
+  "size": [
+   0.48,
+   0.73,
+   0.48
+  ],
+  "min": [
+   -0.24,
+   0,
+   -0.24
+  ],
+  "max": [
+   0.24,
+   0.73,
+   0.24
+  ],
+  "tris": 1696,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_09_Mesa_Sofa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 38
+ },
+ "Jacuzzi/01_jacuzzi_e_moveis/JAC_10_Aparador.glb": {
+  "size": [
+   1.81,
+   0.81,
+   0.46
+  ],
+  "min": [
+   -0.91,
+   0,
+   -0.22
+  ],
+  "max": [
+   0.91,
+   0.81,
+   0.25
+  ],
+  "tris": 6384,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_10_Aparador"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_wood",
+    "color": [
+     0.1,
+     0.03,
+     0.02,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 208
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_11_Planta_Folha_Larga.glb": {
+  "size": [
+   1.4,
+   2.2,
+   1.37
+  ],
+  "min": [
+   -0.7,
+   -0.03,
+   -0.67
+  ],
+  "max": [
+   0.7,
+   2.17,
+   0.7
+  ],
+  "tris": 4664,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_11_Planta_Folha_Larga"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_root",
+    "color": [
+     0.2,
+     0.09,
+     0.04,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8999999761581421,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_stem",
+    "color": [
+     0.25,
+     0.4,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf",
+    "color": [
+     0.03,
+     0.17,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.3799999952316284,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf_pink",
+    "color": [
+     0.42,
+     0.03,
+     0.2,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.4000000059604645,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 132
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_12_Palmeira.glb": {
+  "size": [
+   2.29,
+   2.28,
+   2.18
+  ],
+  "min": [
+   -1.14,
+   -0.03,
+   -1.12
+  ],
+  "max": [
+   1.16,
+   2.25,
+   1.06
+  ],
+  "tris": 7496,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_12_Palmeira"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_root",
+    "color": [
+     0.2,
+     0.09,
+     0.04,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8999999761581421,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_stem",
+    "color": [
+     0.25,
+     0.4,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_palm",
+    "color": [
+     0.13,
+     0.33,
+     0.04,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.44999998807907104,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf_pink",
+    "color": [
+     0.42,
+     0.03,
+     0.2,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.4000000059604645,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 241
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_13_Vaso_Alto.glb": {
+  "size": [
+   0.6,
+   0.75,
+   0.6
+  ],
+  "min": [
+   -0.3,
+   0,
+   -0.3
+  ],
+  "max": [
+   0.3,
+   0.75,
+   0.3
+  ],
+  "tris": 1344,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_13_Vaso_Alto"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 29
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_14_Orquidea.glb": {
+  "size": [
+   1.08,
+   0.9,
+   0.76
+  ],
+  "min": [
+   -0.54,
+   -0.02,
+   -0.39
+  ],
+  "max": [
+   0.54,
+   0.88,
+   0.37
+  ],
+  "tris": 6156,
+  "prims": 7,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_14_Orquidea"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_root",
+    "color": [
+     0.2,
+     0.09,
+     0.04,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8999999761581421,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf",
+    "color": [
+     0.03,
+     0.17,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.3799999952316284,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf_pink",
+    "color": [
+     0.42,
+     0.03,
+     0.2,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.4000000059604645,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_stem",
+    "color": [
+     0.25,
+     0.4,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_orchid",
+    "color": [
+     0.85,
+     0.06,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_orchid_dark",
+    "color": [
+     0.55,
+     0.02,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_yellow",
+    "color": [
+     0.95,
+     0.7,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 209
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_15_Vaso_Orquidea.glb": {
+  "size": [
+   0.32,
+   0.27,
+   0.32
+  ],
+  "min": [
+   -0.16,
+   0,
+   -0.16
+  ],
+  "max": [
+   0.16,
+   0.27,
+   0.16
+  ],
+  "tris": 1536,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_15_Vaso_Orquidea"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 35
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_16_Lanterna.glb": {
+  "size": [
+   0.23,
+   0.67,
+   0.23
+  ],
+  "min": [
+   -0.12,
+   0,
+   -0.12
+  ],
+  "max": [
+   0.12,
+   0.67,
+   0.12
+  ],
+  "tris": 684,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_16_Lanterna"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_wax",
+    "color": [
+     0.93,
+     0.82,
+     0.6,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": [
+     0.25,
+     0.19,
+     0.1
+    ],
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_label_dark",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_flame",
+    "color": [
+     1,
+     0.75,
+     0.3,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.65,
+     0.2
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 28
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_17_Luminaria_Piso.glb": {
+  "size": [
+   0.24,
+   0.62,
+   0.24
+  ],
+  "min": [
+   -0.12,
+   0,
+   -0.12
+  ],
+  "max": [
+   0.12,
+   0.62,
+   0.12
+  ],
+  "tris": 1064,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_17_Luminaria_Piso"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 33
+ },
+ "Jacuzzi/02_plantas_e_luzes/JAC_18_Luminaria_Mesa.glb": {
+  "size": [
+   0.1,
+   0.23,
+   0.1
+  ],
+  "min": [
+   -0.05,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.05,
+   0.23,
+   0.05
+  ],
+  "tris": 704,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_18_Luminaria_Mesa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_j_crystal",
+    "color": [
+     1,
+     0.88,
+     0.92,
+     0.26
+    ],
+    "metal": 0,
+    "rough": 0.019999999552965164,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 21
+ },
+ "Jacuzzi/03_acessorios/JAC_19_Toalha_Enrolada.glb": {
+  "size": [
+   0.2,
+   0.2,
+   0.48
+  ],
+  "min": [
+   -0.1,
+   0,
+   -0.24
+  ],
+  "max": [
+   0.1,
+   0.2,
+   0.24
+  ],
+  "tris": 2516,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_19_Toalha_Enrolada"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_towel",
+    "color": [
+     0.84,
+     0.76,
+     0.64,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.949999988079071,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 76
+ },
+ "Jacuzzi/03_acessorios/JAC_20_Toalha_Dobrada.glb": {
+  "size": [
+   0.34,
+   0.1,
+   0.5
+  ],
+  "min": [
+   -0.17,
+   0,
+   -0.25
+  ],
+  "max": [
+   0.17,
+   0.1,
+   0.25
+  ],
+  "tris": 124,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_20_Toalha_Dobrada"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_towel",
+    "color": [
+     0.84,
+     0.76,
+     0.64,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.949999988079071,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 5
+ },
+ "Jacuzzi/03_acessorios/JAC_21_Garrafa_Cristal.glb": {
+  "size": [
+   0.1,
+   0.28,
+   0.1
+  ],
+  "min": [
+   -0.05,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.05,
+   0.28,
+   0.05
+  ],
+  "tris": 5168,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_21_Garrafa_Cristal"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_crystal",
+    "color": [
+     1,
+     0.88,
+     0.92,
+     0.26
+    ],
+    "metal": 0,
+    "rough": 0.019999999552965164,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_amber",
+    "color": [
+     0.75,
+     0.28,
+     0.03,
+     0.82
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 113
+ },
+ "Jacuzzi/03_acessorios/JAC_22_Copo_Baixo.glb": {
+  "size": [
+   0.08,
+   0.09,
+   0.08
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.09,
+   0.04
+  ],
+  "tris": 4176,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_22_Copo_Baixo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_crystal",
+    "color": [
+     1,
+     0.88,
+     0.92,
+     0.26
+    ],
+    "metal": 0,
+    "rough": 0.019999999552965164,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_amber",
+    "color": [
+     0.75,
+     0.28,
+     0.03,
+     0.82
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 86
+ },
+ "Jacuzzi/03_acessorios/JAC_23_Taca_Coupe.glb": {
+  "size": [
+   0.11,
+   0.16,
+   0.11
+  ],
+  "min": [
+   -0.06,
+   0,
+   -0.06
+  ],
+  "max": [
+   0.06,
+   0.16,
+   0.06
+  ],
+  "tris": 1360,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_23_Taca_Coupe"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_crystal",
+    "color": [
+     1,
+     0.88,
+     0.92,
+     0.26
+    ],
+    "metal": 0,
+    "rough": 0.019999999552965164,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_champ",
+    "color": [
+     0.95,
+     0.78,
+     0.35,
+     0.6
+    ],
+    "metal": 0,
+    "rough": 0.03999999910593033,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 32
+ },
+ "Jacuzzi/03_acessorios/JAC_24_Bandeja.glb": {
+  "size": [
+   0.44,
+   0.02,
+   0.44
+  ],
+  "min": [
+   -0.22,
+   0,
+   -0.22
+  ],
+  "max": [
+   0.22,
+   0.02,
+   0.22
+  ],
+  "tris": 640,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_24_Bandeja"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 18
+ },
+ "Jacuzzi/03_acessorios/JAC_25_Tigela_Frutas.glb": {
+  "size": [
+   0.24,
+   0.1,
+   0.24
+  ],
+  "min": [
+   -0.12,
+   0,
+   -0.12
+  ],
+  "max": [
+   0.12,
+   0.1,
+   0.12
+  ],
+  "tris": 3920,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_25_Tigela_Frutas"
+  ],
+  "mats": [
+   {
+    "name": "KIT_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.07999999821186066,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_berry",
+    "color": [
+     0.33,
+     0.01,
+     0.03,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.2199999988079071,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 81
+ },
+ "Jacuzzi/03_acessorios/JAC_26_Portavela.glb": {
+  "size": [
+   0.11,
+   0.1,
+   0.11
+  ],
+  "min": [
+   -0.05,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.05,
+   0.1,
+   0.05
+  ],
+  "tris": 2804,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_26_Portavela"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_amber",
+    "color": [
+     0.9,
+     0.42,
+     0.04,
+     0.6
+    ],
+    "metal": 0,
+    "rough": 0.03999999910593033,
+    "emissive": [
+     0.25,
+     0.11,
+     0.01
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_wax",
+    "color": [
+     0.93,
+     0.82,
+     0.6,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": [
+     0.25,
+     0.19,
+     0.1
+    ],
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_label_dark",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_flame",
+    "color": [
+     1,
+     0.75,
+     0.3,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.65,
+     0.2
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 58
+ },
+ "Jacuzzi/03_acessorios/JAC_27_Difusor.glb": {
+  "size": [
+   0.1,
+   0.32,
+   0.1
+  ],
+  "min": [
+   -0.05,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.05,
+   0.32,
+   0.05
+  ],
+  "tris": 1244,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_27_Difusor"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_amber",
+    "color": [
+     0.9,
+     0.42,
+     0.04,
+     0.6
+    ],
+    "metal": 0,
+    "rough": 0.03999999910593033,
+    "emissive": [
+     0.25,
+     0.11,
+     0.01
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_reed",
+    "color": [
+     0.8,
+     0.6,
+     0.35,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.699999988079071,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 33
+ },
+ "Jacuzzi/03_acessorios/JAC_28_Frasco_Spa.glb": {
+  "size": [
+   0.07,
+   0.15,
+   0.07
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.15,
+   0.04
+  ],
+  "tris": 512,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_28_Frasco_Spa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_cream",
+    "color": [
+     0.92,
+     0.87,
+     0.78,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.30000001192092896,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 14
+ },
+ "Jacuzzi/03_acessorios/JAC_29_Vela_Pilar.glb": {
+  "size": [
+   0.08,
+   0.21,
+   0.08
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.21,
+   0.04
+  ],
+  "tris": 204,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_29_Vela_Pilar"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_wax",
+    "color": [
+     0.93,
+     0.82,
+     0.6,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": [
+     0.25,
+     0.19,
+     0.1
+    ],
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_label_dark",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_flame",
+    "color": [
+     1,
+     0.75,
+     0.3,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.65,
+     0.2
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 9
+ },
+ "Jacuzzi/03_acessorios/JAC_30_Flor_Orquidea.glb": {
+  "size": [
+   0.16,
+   0.19,
+   0.04
+  ],
+  "min": [
+   -0.08,
+   0,
+   -0.02
+  ],
+  "max": [
+   0.08,
+   0.19,
+   0.03
+  ],
+  "tris": 154,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_30_Flor_Orquidea"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_orchid_light",
+    "color": [
+     0.95,
+     0.62,
+     0.8,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_orchid_dark",
+    "color": [
+     0.55,
+     0.02,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_yellow",
+    "color": [
+     0.95,
+     0.7,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_stem",
+    "color": [
+     0.25,
+     0.4,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 10
+ },
+ "Jacuzzi/04_arquitetura/JAC_31_Piso.glb": {
+  "size": [
+   5,
+   0.13,
+   5
+  ],
+  "min": [
+   -2.5,
+   -0.13,
+   -2.5
+  ],
+  "max": [
+   2.5,
+   0,
+   2.5
+  ],
+  "tris": 2712,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_31_Piso"
+  ],
+  "mats": [
+   {
+    "name": "KIT_floor_base",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_floor",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.07000000029802322,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 89
+ },
+ "Jacuzzi/04_arquitetura/JAC_32_Parede_Fundo.glb": {
+  "size": [
+   10,
+   3.2,
+   0.28
+  ],
+  "min": [
+   -5,
+   0,
+   -0.2
+  ],
+  "max": [
+   5,
+   3.2,
+   0.08
+  ],
+  "tris": 16244,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_32_Parede_Fundo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_wall",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.30000001192092896,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glow_pink_soft",
+    "color": [
+     0.45,
+     0.03,
+     0.22,
+     0.9
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.7,
+     0.03,
+     0.31
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_lattice",
+    "color": [
+     0.1,
+     0.01,
+     0.04,
+     1
+    ],
+    "metal": 0.30000001192092896,
+    "rough": 0.3499999940395355,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 785
+ },
+ "Jacuzzi/04_arquitetura/JAC_33_Parede_Esquerda.glb": {
+  "size": [
+   10,
+   3.2,
+   0.36
+  ],
+  "min": [
+   -5,
+   0,
+   -0.2
+  ],
+  "max": [
+   5,
+   3.2,
+   0.16
+  ],
+  "tris": 12680,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_33_Parede_Esquerda"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_wall",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.30000001192092896,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glow_pink_soft",
+    "color": [
+     0.45,
+     0.03,
+     0.22,
+     0.9
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.7,
+     0.03,
+     0.31
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_lattice",
+    "color": [
+     0.1,
+     0.01,
+     0.04,
+     1
+    ],
+    "metal": 0.30000001192092896,
+    "rough": 0.3499999940395355,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 598
+ },
+ "Jacuzzi/04_arquitetura/JAC_34_Parede_Direita.glb": {
+  "size": [
+   10,
+   3.2,
+   0.28
+  ],
+  "min": [
+   -5,
+   0,
+   -0.2
+  ],
+  "max": [
+   5,
+   3.2,
+   0.08
+  ],
+  "tris": 13916,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_34_Parede_Direita"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_wall",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.30000001192092896,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glow_pink_soft",
+    "color": [
+     0.45,
+     0.03,
+     0.22,
+     0.9
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.7,
+     0.03,
+     0.31
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_lattice",
+    "color": [
+     0.1,
+     0.01,
+     0.04,
+     1
+    ],
+    "metal": 0.30000001192092896,
+    "rough": 0.3499999940395355,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 674
+ },
+ "Jacuzzi/04_arquitetura/JAC_35_Teto.glb": {
+  "size": [
+   10,
+   0.34,
+   10
+  ],
+  "min": [
+   -5,
+   -0.22,
+   -5
+  ],
+  "max": [
+   5,
+   0.12,
+   5
+  ],
+  "tris": 1344,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_35_Teto"
+  ],
+  "mats": [
+   {
+    "name": "KIT_j_wall",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.30000001192092896,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 55
+ },
+ "Jacuzzi/04_arquitetura/JAC_36_Tubulacao.glb": {
+  "size": [
+   9.2,
+   0.4,
+   8.32
+  ],
+  "min": [
+   -4.6,
+   -0.1,
+   -4.16
+  ],
+  "max": [
+   4.6,
+   0.3,
+   4.16
+  ],
+  "tris": 7392,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_36_Tubulacao"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 217
+ },
+ "Jacuzzi/04_arquitetura/JAC_37_Painel_Trelica.glb": {
+  "size": [
+   0.9,
+   2.4,
+   0.06
+  ],
+  "min": [
+   -0.45,
+   0,
+   -0.03
+  ],
+  "max": [
+   0.45,
+   2.4,
+   0.03
+  ],
+  "tris": 2460,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_37_Painel_Trelica"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink_soft",
+    "color": [
+     0.45,
+     0.03,
+     0.22,
+     0.9
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.7,
+     0.03,
+     0.31
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_lattice",
+    "color": [
+     0.1,
+     0.01,
+     0.04,
+     1
+    ],
+    "metal": 0.30000001192092896,
+    "rough": 0.3499999940395355,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 124
+ },
+ "Jacuzzi/04_arquitetura/JAC_38_Porta.glb": {
+  "size": [
+   1.06,
+   2.23,
+   0.17
+  ],
+  "min": [
+   -0.53,
+   0,
+   -0.09
+  ],
+  "max": [
+   0.53,
+   2.23,
+   0.09
+  ],
+  "tris": 960,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "JAC_38_Porta"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_j_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.09000000357627869,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 33
+ },
+ "Kit_Bordel/arq/KIT_Biombo_Trelica.glb": {
+  "size": [
+   1.3,
+   2.5,
+   0.12
+  ],
+  "min": [
+   -0.65,
+   0,
+   -0.06
+  ],
+  "max": [
+   0.65,
+   2.5,
+   0.06
+  ],
+  "tris": 720,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Biombo_Trelica"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink_soft",
+    "color": [
+     0.45,
+     0.03,
+     0.22,
+     0.9
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.7,
+     0.03,
+     0.31
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 29
+ },
+ "Kit_Bordel/arq/KIT_Coluna.glb": {
+  "size": [
+   0.5,
+   3,
+   0.5
+  ],
+  "min": [
+   -0.25,
+   0,
+   -0.25
+  ],
+  "max": [
+   0.25,
+   3,
+   0.25
+  ],
+  "tris": 760,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Coluna"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 26
+ },
+ "Kit_Bordel/arq/KIT_Divisoria_Vidro.glb": {
+  "size": [
+   1.5,
+   2.2,
+   0.1
+  ],
+  "min": [
+   -0.75,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.75,
+   2.2,
+   0.05
+  ],
+  "tris": 464,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Divisoria_Vidro"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 16
+ },
+ "Kit_Bordel/arq/KIT_Parede_Lisa.glb": {
+  "size": [
+   2.4,
+   3,
+   0.25
+  ],
+  "min": [
+   -1.2,
+   0,
+   -0.12
+  ],
+  "max": [
+   1.2,
+   3,
+   0.13
+  ],
+  "tris": 1500,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Parede_Lisa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 56
+ },
+ "Kit_Bordel/arq/KIT_Parede_Painel.glb": {
+  "size": [
+   2.4,
+   3,
+   0.26
+  ],
+  "min": [
+   -1.2,
+   0,
+   -0.12
+  ],
+  "max": [
+   1.2,
+   3,
+   0.14
+  ],
+  "tris": 3236,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Parede_Painel"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 108
+ },
+ "Kit_Bordel/arq/KIT_Porta_Portal.glb": {
+  "size": [
+   1.28,
+   2.29,
+   0.1
+  ],
+  "min": [
+   -0.64,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.64,
+   2.29,
+   0.05
+  ],
+  "tris": 1036,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Porta_Portal"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glass_smoke",
+    "color": [
+     0.03,
+     0.02,
+     0.04,
+     0.55
+    ],
+    "metal": 0,
+    "rough": 0.03999999910593033,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 36
+ },
+ "Kit_Bordel/arq/KIT_Portal.glb": {
+  "size": [
+   2.06,
+   2.62,
+   0.54
+  ],
+  "min": [
+   -1.03,
+   0,
+   -0.27
+  ],
+  "max": [
+   1.03,
+   2.62,
+   0.27
+  ],
+  "tris": 2184,
+  "prims": 7,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Portal"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_screen_cyan",
+    "color": [
+     0,
+     0.8,
+     0.9,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.8,
+     1
+    ],
+    "emissiveStrength": 4,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 78
+ },
+ "Kit_Bordel/bar/KIT_Balcao_Bar.glb": {
+  "size": [
+   2.51,
+   1.12,
+   0.99
+  ],
+  "min": [
+   -1.26,
+   0,
+   -0.85
+  ],
+  "max": [
+   1.26,
+   1.12,
+   0.15
+  ],
+  "tris": 9532,
+  "prims": 8,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Balcao_Bar"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_flute_pink",
+    "color": [
+     0.6,
+     0.03,
+     0.3,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.45
+    ],
+    "emissiveStrength": 1.2999999523162842,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.07999999821186066,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 271
+ },
+ "Kit_Bordel/bar/KIT_Estante_Bar.glb": {
+  "size": [
+   1.86,
+   2.43,
+   0.51
+  ],
+  "min": [
+   -0.93,
+   0,
+   -0.25
+  ],
+  "max": [
+   0.93,
+   2.43,
+   0.26
+  ],
+  "tris": 1864,
+  "prims": 8,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Estante_Bar"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glass_smoke",
+    "color": [
+     0.03,
+     0.02,
+     0.04,
+     0.55
+    ],
+    "metal": 0,
+    "rough": 0.03999999910593033,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_marble",
+    "color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.07999999821186066,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 63
+ },
+ "Kit_Bordel/bebidas/KIT_Balde_Gelo.glb": {
+  "size": [
+   0.25,
+   0.32,
+   0.24
+  ],
+  "min": [
+   -0.13,
+   0,
+   -0.12
+  ],
+  "max": [
+   0.13,
+   0.32,
+   0.12
+  ],
+  "tris": 3152,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Balde_Gelo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_ice",
+    "color": [
+     0.9,
+     0.96,
+     1,
+     0.45
+    ],
+    "metal": 0,
+    "rough": 0.11999999731779099,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 89
+ },
+ "Kit_Bordel/bebidas/KIT_Bandeja.glb": {
+  "size": [
+   0.44,
+   0.03,
+   0.44
+  ],
+  "min": [
+   -0.22,
+   0,
+   -0.22
+  ],
+  "max": [
+   0.22,
+   0.03,
+   0.22
+  ],
+  "tris": 672,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Bandeja"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glass_dark",
+    "color": [
+     0.03,
+     0,
+     0.03,
+     1
+    ],
+    "metal": 0.4000000059604645,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 20
+ },
+ "Kit_Bordel/bebidas/KIT_Cinzeiro.glb": {
+  "size": [
+   0.17,
+   0.05,
+   0.16
+  ],
+  "min": [
+   -0.08,
+   0,
+   -0.08
+  ],
+  "max": [
+   0.09,
+   0.05,
+   0.08
+  ],
+  "tris": 556,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Cinzeiro"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_soil",
+    "color": [
+     0.03,
+     0.02,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.949999988079071,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_warm",
+    "color": [
+     1,
+     0.6,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.55,
+     0.2
+    ],
+    "emissiveStrength": 8,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 18
+ },
+ "Kit_Bordel/bebidas/KIT_Copo_Highball.glb": {
+  "size": [
+   0.07,
+   0.21,
+   0.07
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.21,
+   0.04
+  ],
+  "tris": 864,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Copo_Highball"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_pink",
+    "color": [
+     1,
+     0.12,
+     0.5,
+     0.78
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_ice",
+    "color": [
+     0.9,
+     0.96,
+     1,
+     0.45
+    ],
+    "metal": 0,
+    "rough": 0.11999999731779099,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_lime",
+    "color": [
+     0.35,
+     0.62,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 29
+ },
+ "Kit_Bordel/bebidas/KIT_Copo_Shot.glb": {
+  "size": [
+   0.05,
+   0.06,
+   0.05
+  ],
+  "min": [
+   -0.03,
+   0,
+   -0.03
+  ],
+  "max": [
+   0.03,
+   0.06,
+   0.03
+  ],
+  "tris": 240,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Copo_Shot"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 8
+ },
+ "Kit_Bordel/bebidas/KIT_Copo_Whisky.glb": {
+  "size": [
+   0.08,
+   0.09,
+   0.08
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.09,
+   0.04
+  ],
+  "tris": 664,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Copo_Whisky"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_amber",
+    "color": [
+     0.75,
+     0.28,
+     0.03,
+     0.82
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_ice",
+    "color": [
+     0.9,
+     0.96,
+     1,
+     0.45
+    ],
+    "metal": 0,
+    "rough": 0.11999999731779099,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 21
+ },
+ "Kit_Bordel/bebidas/KIT_Coqueteleira.glb": {
+  "size": [
+   0.09,
+   0.25,
+   0.09
+  ],
+  "min": [
+   -0.05,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.05,
+   0.25,
+   0.05
+  ],
+  "tris": 512,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Coqueteleira"
+  ],
+  "mats": [
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 12
+ },
+ "Kit_Bordel/bebidas/KIT_Garrafa_Azul.glb": {
+  "size": [
+   0.14,
+   0.21,
+   0.08
+  ],
+  "min": [
+   -0.07,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.07,
+   0.21,
+   0.04
+  ],
+  "tris": 1888,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Garrafa_Azul"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_blue",
+    "color": [
+     0.04,
+     0.2,
+     1,
+     0.8
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 41
+ },
+ "Kit_Bordel/bebidas/KIT_Garrafa_Neon.glb": {
+  "size": [
+   0.08,
+   0.27,
+   0.08
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.27,
+   0.04
+  ],
+  "tris": 484,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Garrafa_Neon"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass_frost_cyan",
+    "color": [
+     0.3,
+     1,
+     0.95,
+     0.86
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.1,
+     1,
+     0.9
+    ],
+    "emissiveStrength": 1.600000023841858,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_label_dark",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 16
+ },
+ "Kit_Bordel/bebidas/KIT_Garrafa_Rosa.glb": {
+  "size": [
+   0.07,
+   0.32,
+   0.07
+  ],
+  "min": [
+   -0.03,
+   0,
+   -0.03
+  ],
+  "max": [
+   0.03,
+   0.32,
+   0.03
+  ],
+  "tris": 680,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Garrafa_Rosa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_pink",
+    "color": [
+     1,
+     0.12,
+     0.5,
+     0.78
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_paper",
+    "color": [
+     0.82,
+     0.78,
+     0.7,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 21
+ },
+ "Kit_Bordel/bebidas/KIT_Garrafa_Vinho.glb": {
+  "size": [
+   0.08,
+   0.31,
+   0.08
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.31,
+   0.04
+  ],
+  "tris": 484,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Garrafa_Vinho"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass_wine",
+    "color": [
+     0.01,
+     0.03,
+     0.01,
+     0.93
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_foil_red",
+    "color": [
+     0.35,
+     0.01,
+     0.04,
+     1
+    ],
+    "metal": 0.800000011920929,
+    "rough": 0.3499999940395355,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_paper",
+    "color": [
+     0.82,
+     0.78,
+     0.7,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 14
+ },
+ "Kit_Bordel/bebidas/KIT_Garrafa_Whisky.glb": {
+  "size": [
+   0.11,
+   0.25,
+   0.11
+  ],
+  "min": [
+   -0.05,
+   0,
+   -0.05
+  ],
+  "max": [
+   0.05,
+   0.25,
+   0.05
+  ],
+  "tris": 624,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Garrafa_Whisky"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_amber",
+    "color": [
+     0.75,
+     0.28,
+     0.03,
+     0.82
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_label_dark",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 20
+ },
+ "Kit_Bordel/bebidas/KIT_Narguile.glb": {
+  "size": [
+   0.32,
+   0.68,
+   0.33
+  ],
+  "min": [
+   -0.12,
+   0,
+   -0.24
+  ],
+  "max": [
+   0.2,
+   0.68,
+   0.09
+  ],
+  "tris": 1952,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Narguile"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_pink",
+    "color": [
+     1,
+     0.12,
+     0.5,
+     0.78
+    ],
+    "metal": 0,
+    "rough": 0.05000000074505806,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_warm",
+    "color": [
+     1,
+     0.6,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.55,
+     0.2
+    ],
+    "emissiveStrength": 8,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength",
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 56
+ },
+ "Kit_Bordel/bebidas/KIT_Taca_Champanhe.glb": {
+  "size": [
+   0.07,
+   0.22,
+   0.07
+  ],
+  "min": [
+   -0.03,
+   0,
+   -0.03
+  ],
+  "max": [
+   0.03,
+   0.22,
+   0.03
+  ],
+  "tris": 952,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Taca_Champanhe"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_champ",
+    "color": [
+     0.95,
+     0.78,
+     0.35,
+     0.6
+    ],
+    "metal": 0,
+    "rough": 0.03999999910593033,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 24
+ },
+ "Kit_Bordel/bebidas/KIT_Taca_Martini.glb": {
+  "size": [
+   0.12,
+   0.18,
+   0.12
+  ],
+  "min": [
+   -0.06,
+   0,
+   -0.06
+  ],
+  "max": [
+   0.06,
+   0.18,
+   0.06
+  ],
+  "tris": 820,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Taca_Martini"
+  ],
+  "mats": [
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_liq_clear",
+    "color": [
+     0.9,
+     0.95,
+     0.9,
+     0.3
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_olive",
+    "color": [
+     0.25,
+     0.33,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.4000000059604645,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 24
+ },
+ "Kit_Bordel/cortinas/KIT_Cabine_Cortina.glb": {
+  "size": [
+   3.08,
+   2.72,
+   3.08
+  ],
+  "min": [
+   -1.54,
+   0,
+   -1.54
+  ],
+  "max": [
+   1.54,
+   2.72,
+   1.54
+  ],
+  "tris": 26836,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Cabine_Cortina"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glass_dark",
+    "color": [
+     0.03,
+     0,
+     0.03,
+     1
+    ],
+    "metal": 0.4000000059604645,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_curtain",
+    "color": [
+     1,
+     0.22,
+     0.6,
+     0.34
+    ],
+    "metal": 0,
+    "rough": 0.699999988079071,
+    "emissive": [
+     0.12,
+     0.01,
+     0.06
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength",
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 601
+ },
+ "Kit_Bordel/cortinas/KIT_Cortina_Fios_Neon.glb": {
+  "size": [
+   1.5,
+   2.49,
+   0.04
+  ],
+  "min": [
+   -0.75,
+   0.13,
+   -0.02
+  ],
+  "max": [
+   0.75,
+   2.62,
+   0.02
+  ],
+  "tris": 12328,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Cortina_Fios_Neon"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_violet",
+    "color": [
+     0.55,
+     0.15,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.5,
+     0.12,
+     1
+    ],
+    "emissiveStrength": 10,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 481
+ },
+ "Kit_Bordel/cortinas/KIT_Cortina_Reta.glb": {
+  "size": [
+   1.78,
+   2.68,
+   0.12
+  ],
+  "min": [
+   -0.89,
+   0,
+   -0.06
+  ],
+  "max": [
+   0.89,
+   2.68,
+   0.06
+  ],
+  "tris": 4796,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Cortina_Reta"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_curtain",
+    "color": [
+     1,
+     0.22,
+     0.6,
+     0.34
+    ],
+    "metal": 0,
+    "rough": 0.699999988079071,
+    "emissive": [
+     0.12,
+     0.01,
+     0.06
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 107
+ },
+ "Kit_Bordel/cortinas/KIT_Cortina_Reta_Violeta.glb": {
+  "size": [
+   1.78,
+   2.68,
+   0.12
+  ],
+  "min": [
+   -0.89,
+   0,
+   -0.06
+  ],
+  "max": [
+   0.89,
+   2.68,
+   0.06
+  ],
+  "tris": 4796,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Cortina_Reta_Violeta"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_curtain_violet",
+    "color": [
+     0.6,
+     0.25,
+     1,
+     0.3
+    ],
+    "metal": 0,
+    "rough": 0.699999988079071,
+    "emissive": [
+     0.05,
+     0.01,
+     0.1
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 107
+ },
+ "Kit_Bordel/cortinas/KIT_Palco_PoleDance.glb": {
+  "size": [
+   2.56,
+   3.03,
+   2.94
+  ],
+  "min": [
+   -1.28,
+   0,
+   -1.28
+  ],
+  "max": [
+   1.28,
+   3.03,
+   1.66
+  ],
+  "tris": 6352,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Palco_PoleDance"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glass_dark",
+    "color": [
+     0.03,
+     0,
+     0.03,
+     1
+    ],
+    "metal": 0.4000000059604645,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 154
+ },
+ "Kit_Bordel/cortinas/KIT_Planta_Vaso.glb": {
+  "size": [
+   1.08,
+   1.12,
+   1.05
+  ],
+  "min": [
+   -0.52,
+   0,
+   -0.5
+  ],
+  "max": [
+   0.56,
+   1.12,
+   0.56
+  ],
+  "tris": 2976,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Planta_Vaso"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_soil",
+    "color": [
+     0.03,
+     0.02,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.949999988079071,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf",
+    "color": [
+     0.03,
+     0.17,
+     0.05,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.3799999952316284,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_leaf_pink",
+    "color": [
+     0.42,
+     0.03,
+     0.2,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.4000000059604645,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 74
+ },
+ "Kit_Bordel/extras/KIT_Almofada.glb": {
+  "size": [
+   0.45,
+   0.17,
+   0.45
+  ],
+  "min": [
+   -0.22,
+   0,
+   -0.22
+  ],
+  "max": [
+   0.22,
+   0.17,
+   0.22
+  ],
+  "tris": 400,
+  "prims": 1,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Almofada"
+  ],
+  "mats": [
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 9
+ },
+ "Kit_Bordel/extras/KIT_Arandela.glb": {
+  "size": [
+   0.1,
+   0.26,
+   0.13
+  ],
+  "min": [
+   -0.05,
+   -0.13,
+   -0.01
+  ],
+  "max": [
+   0.05,
+   0.13,
+   0.12
+  ],
+  "tris": 456,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Arandela"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 15
+ },
+ "Kit_Bordel/extras/KIT_Caixa_Som.glb": {
+  "size": [
+   0.5,
+   1.33,
+   0.43
+  ],
+  "min": [
+   -0.25,
+   0,
+   -0.21
+  ],
+  "max": [
+   0.25,
+   1.33,
+   0.22
+  ],
+  "tris": 2148,
+  "prims": 5,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Caixa_Som"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_rubber",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.75,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 63
+ },
+ "Kit_Bordel/extras/KIT_Camera_Seguranca.glb": {
+  "size": [
+   0.1,
+   0.21,
+   0.3
+  ],
+  "min": [
+   -0.05,
+   -0.16,
+   -0.01
+  ],
+  "max": [
+   0.05,
+   0.05,
+   0.29
+  ],
+  "tris": 396,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Camera_Seguranca"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 15
+ },
+ "Kit_Bordel/extras/KIT_Corda_VIP.glb": {
+  "size": [
+   1.83,
+   1,
+   0.33
+  ],
+  "min": [
+   -0.92,
+   0,
+   -0.17
+  ],
+  "max": [
+   0.92,
+   1,
+   0.17
+  ],
+  "tris": 2032,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Corda_VIP"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 45
+ },
+ "Kit_Bordel/extras/KIT_Espelho_Neon.glb": {
+  "size": [
+   0.98,
+   1.5,
+   0.04
+  ],
+  "min": [
+   -0.49,
+   -0.75,
+   -0.02
+  ],
+  "max": [
+   0.49,
+   0.75,
+   0.02
+  ],
+  "tris": 1536,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Espelho_Neon"
+  ],
+  "mats": [
+   {
+    "name": "KIT_mirror",
+    "color": [
+     0.92,
+     0.92,
+     0.95,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.009999999776482582,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 48
+ },
+ "Kit_Bordel/extras/KIT_Gaiola_Danca.glb": {
+  "size": [
+   1.7,
+   2.7,
+   1.7
+  ],
+  "min": [
+   -0.85,
+   0,
+   -0.85
+  ],
+  "max": [
+   0.85,
+   2.7,
+   0.85
+  ],
+  "tris": 4260,
+  "prims": 7,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Gaiola_Danca"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glass_dark",
+    "color": [
+     0.03,
+     0,
+     0.03,
+     1
+    ],
+    "metal": 0.4000000059604645,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 121
+ },
+ "Kit_Bordel/extras/KIT_Globo_Espelhado.glb": {
+  "size": [
+   0.5,
+   0.91,
+   0.5
+  ],
+  "min": [
+   -0.25,
+   -0.25,
+   -0.25
+  ],
+  "max": [
+   0.25,
+   0.66,
+   0.25
+  ],
+  "tris": 676,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Globo_Espelhado"
+  ],
+  "mats": [
+   {
+    "name": "KIT_mirror",
+    "color": [
+     0.92,
+     0.92,
+     0.95,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.009999999776482582,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_chrome",
+    "color": [
+     0.9,
+     0.9,
+     0.92,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.05999999865889549,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 16
+ },
+ "Kit_Bordel/extras/KIT_Holo_Projetor.glb": {
+  "size": [
+   0.84,
+   1.55,
+   0.84
+  ],
+  "min": [
+   -0.42,
+   0,
+   -0.42
+  ],
+  "max": [
+   0.42,
+   1.55,
+   0.42
+  ],
+  "tris": 3816,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Holo_Projetor"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_screen_cyan",
+    "color": [
+     0,
+     0.8,
+     0.9,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.8,
+     1
+    ],
+    "emissiveStrength": 4,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_holo",
+    "color": [
+     0.1,
+     0.9,
+     1,
+     0.14
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.05,
+     0.8,
+     1
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_holo_pink",
+    "color": [
+     1,
+     0.2,
+     0.7,
+     0.18
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.1,
+     0.6
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 112
+ },
+ "Kit_Bordel/extras/KIT_Tapete.glb": {
+  "size": [
+   2.4,
+   0.01,
+   2.4
+  ],
+  "min": [
+   -1.2,
+   0,
+   -1.2
+  ],
+  "max": [
+   1.2,
+   0.01,
+   1.2
+  ],
+  "tris": 1280,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Tapete"
+  ],
+  "mats": [
+   {
+    "name": "KIT_velvet_dark",
+    "color": [
+     0.16,
+     0,
+     0.06,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 40
+ },
+ "Kit_Bordel/extras/KIT_Terminal.glb": {
+  "size": [
+   0.4,
+   1.3,
+   0.26
+  ],
+  "min": [
+   -0.2,
+   0,
+   -0.13
+  ],
+  "max": [
+   0.2,
+   1.3,
+   0.13
+  ],
+  "tris": 400,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Terminal"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_screen_cyan",
+    "color": [
+     0,
+     0.8,
+     0.9,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.8,
+     1
+    ],
+    "emissiveStrength": 4,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 18
+ },
+ "Kit_Bordel/luz/KIT_Lanterna_Chao.glb": {
+  "size": [
+   0.36,
+   1.02,
+   0.36
+  ],
+  "min": [
+   -0.18,
+   0,
+   -0.18
+  ],
+  "max": [
+   0.18,
+   1.02,
+   0.18
+  ],
+  "tris": 3416,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Lanterna_Chao"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 102
+ },
+ "Kit_Bordel/luz/KIT_Pendente.glb": {
+  "size": [
+   0.14,
+   0.87,
+   0.14
+  ],
+  "min": [
+   -0.07,
+   -0.87,
+   -0.07
+  ],
+  "max": [
+   0.07,
+   0,
+   0.07
+  ],
+  "tris": 1244,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Pendente"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 39
+ },
+ "Kit_Bordel/luz/KIT_Placa_Coracao.glb": {
+  "size": [
+   0.66,
+   0.6,
+   0.05
+  ],
+  "min": [
+   -0.33,
+   -0.35,
+   -0.04
+  ],
+  "max": [
+   0.33,
+   0.25,
+   0.01
+  ],
+  "tris": 1608,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Placa_Coracao"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_violet",
+    "color": [
+     0.55,
+     0.15,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.5,
+     0.12,
+     1
+    ],
+    "emissiveStrength": 10,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 49
+ },
+ "Kit_Bordel/luz/KIT_Placa_Drink.glb": {
+  "size": [
+   0.46,
+   0.65,
+   0.05
+  ],
+  "min": [
+   -0.23,
+   -0.28,
+   -0.04
+  ],
+  "max": [
+   0.23,
+   0.37,
+   0.01
+  ],
+  "tris": 472,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Placa_Drink"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 20
+ },
+ "Kit_Bordel/luz/KIT_Placa_Glifos.glb": {
+  "size": [
+   0.58,
+   1.06,
+   0.14
+  ],
+  "min": [
+   -0.4,
+   -0.53,
+   -0.07
+  ],
+  "max": [
+   0.18,
+   0.53,
+   0.07
+  ],
+  "tris": 1156,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Placa_Glifos"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_holo_pink",
+    "color": [
+     1,
+     0.2,
+     0.7,
+     0.18
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.1,
+     0.6
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 42
+ },
+ "Kit_Bordel/luz/KIT_Placa_Lotus.glb": {
+  "size": [
+   1.22,
+   0.6,
+   0.14
+  ],
+  "min": [
+   -0.72,
+   -0.28,
+   -0.07
+  ],
+  "max": [
+   0.5,
+   0.32,
+   0.07
+  ],
+  "tris": 2452,
+  "prims": 7,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Placa_Lotus"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_holo",
+    "color": [
+     0.1,
+     0.9,
+     1,
+     0.14
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0.05,
+     0.8,
+     1
+    ],
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_rubber",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.75,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 79
+ },
+ "Kit_Bordel/moveis/KIT_Banqueta_Bar.glb": {
+  "size": [
+   0.42,
+   0.86,
+   0.42
+  ],
+  "min": [
+   -0.21,
+   0,
+   -0.21
+  ],
+  "max": [
+   0.21,
+   0.86,
+   0.21
+  ],
+  "tris": 2980,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Banqueta_Bar"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength",
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 81
+ },
+ "Kit_Bordel/moveis/KIT_Cama_Redonda.glb": {
+  "size": [
+   2.42,
+   1.2,
+   2.57
+  ],
+  "min": [
+   -1.21,
+   0,
+   -1.36
+  ],
+  "max": [
+   1.21,
+   1.2,
+   1.21
+  ],
+  "tris": 13836,
+  "prims": 6,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Cama_Redonda"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_velvet_dark",
+    "color": [
+     0.16,
+     0,
+     0.06,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_satin",
+    "color": [
+     0.45,
+     0.02,
+     0.22,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.3499999940395355,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength",
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 319
+ },
+ "Kit_Bordel/moveis/KIT_Luminaria_Cubo.glb": {
+  "size": [
+   0.09,
+   0.12,
+   0.09
+  ],
+  "min": [
+   -0.04,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.04,
+   0.12,
+   0.04
+  ],
+  "tris": 348,
+  "prims": 2,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Luminaria_Cubo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glow_pink",
+    "color": [
+     1,
+     0.08,
+     0.5,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.06,
+     0.5
+    ],
+    "emissiveStrength": 3.5,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 12
+ },
+ "Kit_Bordel/moveis/KIT_Mesa_Alta.glb": {
+  "size": [
+   0.6,
+   1.08,
+   0.6
+  ],
+  "min": [
+   -0.3,
+   0,
+   -0.3
+  ],
+  "max": [
+   0.3,
+   1.08,
+   0.3
+  ],
+  "tris": 2672,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Mesa_Alta"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glass_dark",
+    "color": [
+     0.03,
+     0,
+     0.03,
+     1
+    ],
+    "metal": 0.4000000059604645,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 70
+ },
+ "Kit_Bordel/moveis/KIT_Mesa_Lounge.glb": {
+  "size": [
+   0.8,
+   0.75,
+   0.8
+  ],
+  "min": [
+   -0.4,
+   0,
+   -0.4
+  ],
+  "max": [
+   0.4,
+   0.75,
+   0.4
+  ],
+  "tris": 2672,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Mesa_Lounge"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_glass_dark",
+    "color": [
+     0.03,
+     0,
+     0.03,
+     1
+    ],
+    "metal": 0.4000000059604645,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_clearcoat"
+    ]
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_clearcoat",
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 70
+ },
+ "Kit_Bordel/moveis/KIT_Poltrona.glb": {
+  "size": [
+   1,
+   0.76,
+   0.96
+  ],
+  "min": [
+   -0.5,
+   0,
+   -0.5
+  ],
+  "max": [
+   0.5,
+   0.76,
+   0.46
+  ],
+  "tris": 7740,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Poltrona"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_velvet_dark",
+    "color": [
+     0.16,
+     0,
+     0.06,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 155
+ },
+ "Kit_Bordel/moveis/KIT_Puff.glb": {
+  "size": [
+   0.72,
+   0.45,
+   0.72
+  ],
+  "min": [
+   -0.36,
+   0,
+   -0.36
+  ],
+  "max": [
+   0.36,
+   0.45,
+   0.36
+  ],
+  "tris": 2256,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Puff"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength",
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 55
+ },
+ "Kit_Bordel/moveis/KIT_Sofa_Curvo.glb": {
+  "size": [
+   2.64,
+   0.95,
+   1.19
+  ],
+  "min": [
+   -1.32,
+   0,
+   -0.31
+  ],
+  "max": [
+   1.32,
+   0.95,
+   0.88
+  ],
+  "tris": 13376,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Sofa_Curvo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_velvet",
+    "color": [
+     0.3,
+     0.01,
+     0.1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   },
+   {
+    "name": "KIT_velvet_dark",
+    "color": [
+     0.16,
+     0,
+     0.06,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.8500000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_sheen"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_sheen"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 271
+ },
+ "Kit_Bordel/neon/KIT_Neon_Anel_Ciano.glb": {
+  "size": [
+   0.62,
+   0.62,
+   0.05
+  ],
+  "min": [
+   -0.31,
+   -0.31,
+   -0.04
+  ],
+  "max": [
+   0.31,
+   0.31,
+   0.01
+  ],
+  "tris": 1872,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Anel_Ciano"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 45
+ },
+ "Kit_Bordel/neon/KIT_Neon_Anel_Rosa.glb": {
+  "size": [
+   0.62,
+   0.62,
+   0.05
+  ],
+  "min": [
+   -0.31,
+   -0.31,
+   -0.04
+  ],
+  "max": [
+   0.31,
+   0.31,
+   0.01
+  ],
+  "tris": 1872,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Anel_Rosa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 45
+ },
+ "Kit_Bordel/neon/KIT_Neon_Canto_Ciano.glb": {
+  "size": [
+   0.55,
+   0.55,
+   0.06
+  ],
+  "min": [
+   -0.52,
+   -0.03,
+   -0.04
+  ],
+  "max": [
+   0.03,
+   0.52,
+   0.01
+  ],
+  "tris": 744,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Canto_Ciano"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 22
+ },
+ "Kit_Bordel/neon/KIT_Neon_Canto_Rosa.glb": {
+  "size": [
+   0.55,
+   0.55,
+   0.06
+  ],
+  "min": [
+   -0.52,
+   -0.03,
+   -0.04
+  ],
+  "max": [
+   0.03,
+   0.52,
+   0.01
+  ],
+  "tris": 744,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Canto_Rosa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 22
+ },
+ "Kit_Bordel/neon/KIT_Neon_Curva_Ciano.glb": {
+  "size": [
+   0.51,
+   0.51,
+   0.05
+  ],
+  "min": [
+   0,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.51,
+   0.51,
+   0.01
+  ],
+  "tris": 832,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Curva_Ciano"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 23
+ },
+ "Kit_Bordel/neon/KIT_Neon_Curva_Rosa.glb": {
+  "size": [
+   0.51,
+   0.51,
+   0.05
+  ],
+  "min": [
+   0,
+   0,
+   -0.04
+  ],
+  "max": [
+   0.51,
+   0.51,
+   0.01
+  ],
+  "tris": 832,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Curva_Rosa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 23
+ },
+ "Kit_Bordel/neon/KIT_Neon_Reto_Ciano.glb": {
+  "size": [
+   1.05,
+   0.06,
+   0.06
+  ],
+  "min": [
+   -0.52,
+   -0.03,
+   -0.04
+  ],
+  "max": [
+   0.52,
+   0.03,
+   0.01
+  ],
+  "tris": 564,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Reto_Ciano"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_cyan",
+    "color": [
+     0,
+     0.9,
+     1,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     0,
+     0.85,
+     1
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 19
+ },
+ "Kit_Bordel/neon/KIT_Neon_Reto_Rosa.glb": {
+  "size": [
+   1.05,
+   0.06,
+   0.06
+  ],
+  "min": [
+   -0.52,
+   -0.03,
+   -0.04
+  ],
+  "max": [
+   0.52,
+   0.03,
+   0.01
+  ],
+  "tris": 564,
+  "prims": 3,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Neon_Reto_Rosa"
+  ],
+  "mats": [
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 19
+ },
+ "Kit_Bordel/piso/KIT_Piso_Modulo.glb": {
+  "size": [
+   4,
+   0.13,
+   4
+  ],
+  "min": [
+   -2,
+   -0.13,
+   -2
+  ],
+  "max": [
+   2,
+   0,
+   2
+  ],
+  "tris": 1680,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Piso_Modulo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_floor_base",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_floor_wet",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0.25,
+    "rough": 1,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 80
+ },
+ "Kit_Bordel/piso/KIT_Piso_Neon.glb": {
+  "size": [
+   2,
+   0.13,
+   2
+  ],
+  "min": [
+   -1,
+   -0.13,
+   -1
+  ],
+  "max": [
+   1,
+   0,
+   1
+  ],
+  "tris": 492,
+  "prims": 4,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Piso_Neon"
+  ],
+  "mats": [
+   {
+    "name": "KIT_floor_base",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.6000000238418579,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_floor_wet",
+    "color": [
+     0.02,
+     0.02,
+     0.03,
+     1
+    ],
+    "metal": 0.25,
+    "rough": 1,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_pink",
+    "color": [
+     1,
+     0.05,
+     0.55,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.05,
+     0.55
+    ],
+    "emissiveStrength": 12,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   },
+   {
+    "name": "KIT_glass",
+    "color": [
+     0.92,
+     0.96,
+     1,
+     0.2
+    ],
+    "metal": 0,
+    "rough": 0.029999999329447746,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "BLEND",
+    "tex": false,
+    "ext": []
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 18
+ },
+ "Kit_Bordel/piso/KIT_Teto_Modulo.glb": {
+  "size": [
+   4.03,
+   0.6,
+   4
+  ],
+  "min": [
+   -2.02,
+   -0.48,
+   -2
+  ],
+  "max": [
+   2.02,
+   0.12,
+   2
+  ],
+  "tris": 3488,
+  "prims": 7,
+  "nodes": 1,
+  "nodeNames": [
+   "KIT_Teto_Modulo"
+  ],
+  "mats": [
+   {
+    "name": "KIT_metal_black",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0.699999988079071,
+    "rough": 0.3199999928474426,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_dark",
+    "color": [
+     0.04,
+     0.04,
+     0.05,
+     1
+    ],
+    "metal": 0.8999999761581421,
+    "rough": 0.41999998688697815,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_metal_gal",
+    "color": [
+     0.22,
+     0.23,
+     0.25,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.5,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_copper_dark",
+    "color": [
+     0.22,
+     0.11,
+     0.08,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.47999998927116394,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_brass",
+    "color": [
+     0.83,
+     0.56,
+     0.24,
+     1
+    ],
+    "metal": 1,
+    "rough": 0.25999999046325684,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_rubber",
+    "color": [
+     0.01,
+     0.01,
+     0.01,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.75,
+    "emissive": null,
+    "emissiveStrength": null,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": []
+   },
+   {
+    "name": "KIT_neon_warm",
+    "color": [
+     1,
+     0.6,
+     0.25,
+     1
+    ],
+    "metal": 0,
+    "rough": 0.5,
+    "emissive": [
+     1,
+     0.55,
+     0.2
+    ],
+    "emissiveStrength": 8,
+    "alpha": "OPAQUE",
+    "tex": false,
+    "ext": [
+     "KHR_materials_emissive_strength"
+    ]
+   }
+  ],
+  "images": 0,
+  "animations": 0,
+  "skins": 0,
+  "extensions": [
+   "KHR_materials_emissive_strength"
+  ],
+  "generator": "Khronos glTF Blender I/O v5.2.41",
+  "kb": 116
+ }
+}

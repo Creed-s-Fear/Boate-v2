@@ -1,0 +1,4086 @@
+{
+ "nota": "Gerado por tools/make-layout.mjs. Metros, eixos do glTF (Y para cima), yaw em graus em torno de Y.",
+ "assetsBase": "assets/drive/Objetos/",
+ "paths": {
+  "JAC_01_Jacuzzi": "Jacuzzi/01_jacuzzi_e_moveis/JAC_01_Jacuzzi.glb",
+  "JAC_02_Plataforma_Degraus": "Jacuzzi/01_jacuzzi_e_moveis/JAC_02_Plataforma_Degraus.glb",
+  "JAC_03_Anel_Luminoso": "Jacuzzi/01_jacuzzi_e_moveis/JAC_03_Anel_Luminoso.glb",
+  "JAC_04_Cortina": "Jacuzzi/01_jacuzzi_e_moveis/JAC_04_Cortina.glb",
+  "JAC_05_Sofa": "Jacuzzi/01_jacuzzi_e_moveis/JAC_05_Sofa.glb",
+  "JAC_06_Chaise": "Jacuzzi/01_jacuzzi_e_moveis/JAC_06_Chaise.glb",
+  "JAC_07_Almofada": "Jacuzzi/01_jacuzzi_e_moveis/JAC_07_Almofada.glb",
+  "JAC_08_Mesa_Pedestal": "Jacuzzi/01_jacuzzi_e_moveis/JAC_08_Mesa_Pedestal.glb",
+  "JAC_09_Mesa_Sofa": "Jacuzzi/01_jacuzzi_e_moveis/JAC_09_Mesa_Sofa.glb",
+  "JAC_10_Aparador": "Jacuzzi/01_jacuzzi_e_moveis/JAC_10_Aparador.glb",
+  "JAC_11_Planta_Folha_Larga": "Jacuzzi/02_plantas_e_luzes/JAC_11_Planta_Folha_Larga.glb",
+  "JAC_12_Palmeira": "Jacuzzi/02_plantas_e_luzes/JAC_12_Palmeira.glb",
+  "JAC_13_Vaso_Alto": "Jacuzzi/02_plantas_e_luzes/JAC_13_Vaso_Alto.glb",
+  "JAC_14_Orquidea": "Jacuzzi/02_plantas_e_luzes/JAC_14_Orquidea.glb",
+  "JAC_15_Vaso_Orquidea": "Jacuzzi/02_plantas_e_luzes/JAC_15_Vaso_Orquidea.glb",
+  "JAC_16_Lanterna": "Jacuzzi/02_plantas_e_luzes/JAC_16_Lanterna.glb",
+  "JAC_17_Luminaria_Piso": "Jacuzzi/02_plantas_e_luzes/JAC_17_Luminaria_Piso.glb",
+  "JAC_18_Luminaria_Mesa": "Jacuzzi/02_plantas_e_luzes/JAC_18_Luminaria_Mesa.glb",
+  "JAC_19_Toalha_Enrolada": "Jacuzzi/03_acessorios/JAC_19_Toalha_Enrolada.glb",
+  "JAC_20_Toalha_Dobrada": "Jacuzzi/03_acessorios/JAC_20_Toalha_Dobrada.glb",
+  "JAC_21_Garrafa_Cristal": "Jacuzzi/03_acessorios/JAC_21_Garrafa_Cristal.glb",
+  "JAC_22_Copo_Baixo": "Jacuzzi/03_acessorios/JAC_22_Copo_Baixo.glb",
+  "JAC_23_Taca_Coupe": "Jacuzzi/03_acessorios/JAC_23_Taca_Coupe.glb",
+  "JAC_24_Bandeja": "Jacuzzi/03_acessorios/JAC_24_Bandeja.glb",
+  "JAC_25_Tigela_Frutas": "Jacuzzi/03_acessorios/JAC_25_Tigela_Frutas.glb",
+  "JAC_26_Portavela": "Jacuzzi/03_acessorios/JAC_26_Portavela.glb",
+  "JAC_27_Difusor": "Jacuzzi/03_acessorios/JAC_27_Difusor.glb",
+  "JAC_28_Frasco_Spa": "Jacuzzi/03_acessorios/JAC_28_Frasco_Spa.glb",
+  "JAC_29_Vela_Pilar": "Jacuzzi/03_acessorios/JAC_29_Vela_Pilar.glb",
+  "JAC_30_Flor_Orquidea": "Jacuzzi/03_acessorios/JAC_30_Flor_Orquidea.glb",
+  "JAC_31_Piso": "Jacuzzi/04_arquitetura/JAC_31_Piso.glb",
+  "JAC_32_Parede_Fundo": "Jacuzzi/04_arquitetura/JAC_32_Parede_Fundo.glb",
+  "JAC_33_Parede_Esquerda": "Jacuzzi/04_arquitetura/JAC_33_Parede_Esquerda.glb",
+  "JAC_34_Parede_Direita": "Jacuzzi/04_arquitetura/JAC_34_Parede_Direita.glb",
+  "JAC_35_Teto": "Jacuzzi/04_arquitetura/JAC_35_Teto.glb",
+  "JAC_36_Tubulacao": "Jacuzzi/04_arquitetura/JAC_36_Tubulacao.glb",
+  "JAC_37_Painel_Trelica": "Jacuzzi/04_arquitetura/JAC_37_Painel_Trelica.glb",
+  "JAC_38_Porta": "Jacuzzi/04_arquitetura/JAC_38_Porta.glb",
+  "KIT_Biombo_Trelica": "Kit_Bordel/arq/KIT_Biombo_Trelica.glb",
+  "KIT_Coluna": "Kit_Bordel/arq/KIT_Coluna.glb",
+  "KIT_Divisoria_Vidro": "Kit_Bordel/arq/KIT_Divisoria_Vidro.glb",
+  "KIT_Parede_Lisa": "Kit_Bordel/arq/KIT_Parede_Lisa.glb",
+  "KIT_Parede_Painel": "Kit_Bordel/arq/KIT_Parede_Painel.glb",
+  "KIT_Porta_Portal": "Kit_Bordel/arq/KIT_Porta_Portal.glb",
+  "KIT_Portal": "Kit_Bordel/arq/KIT_Portal.glb",
+  "KIT_Balcao_Bar": "Kit_Bordel/bar/KIT_Balcao_Bar.glb",
+  "KIT_Estante_Bar": "Kit_Bordel/bar/KIT_Estante_Bar.glb",
+  "KIT_Balde_Gelo": "Kit_Bordel/bebidas/KIT_Balde_Gelo.glb",
+  "KIT_Bandeja": "Kit_Bordel/bebidas/KIT_Bandeja.glb",
+  "KIT_Cinzeiro": "Kit_Bordel/bebidas/KIT_Cinzeiro.glb",
+  "KIT_Copo_Highball": "Kit_Bordel/bebidas/KIT_Copo_Highball.glb",
+  "KIT_Copo_Shot": "Kit_Bordel/bebidas/KIT_Copo_Shot.glb",
+  "KIT_Copo_Whisky": "Kit_Bordel/bebidas/KIT_Copo_Whisky.glb",
+  "KIT_Coqueteleira": "Kit_Bordel/bebidas/KIT_Coqueteleira.glb",
+  "KIT_Garrafa_Azul": "Kit_Bordel/bebidas/KIT_Garrafa_Azul.glb",
+  "KIT_Garrafa_Neon": "Kit_Bordel/bebidas/KIT_Garrafa_Neon.glb",
+  "KIT_Garrafa_Rosa": "Kit_Bordel/bebidas/KIT_Garrafa_Rosa.glb",
+  "KIT_Garrafa_Vinho": "Kit_Bordel/bebidas/KIT_Garrafa_Vinho.glb",
+  "KIT_Garrafa_Whisky": "Kit_Bordel/bebidas/KIT_Garrafa_Whisky.glb",
+  "KIT_Narguile": "Kit_Bordel/bebidas/KIT_Narguile.glb",
+  "KIT_Taca_Champanhe": "Kit_Bordel/bebidas/KIT_Taca_Champanhe.glb",
+  "KIT_Taca_Martini": "Kit_Bordel/bebidas/KIT_Taca_Martini.glb",
+  "KIT_Cabine_Cortina": "Kit_Bordel/cortinas/KIT_Cabine_Cortina.glb",
+  "KIT_Cortina_Fios_Neon": "Kit_Bordel/cortinas/KIT_Cortina_Fios_Neon.glb",
+  "KIT_Cortina_Reta": "Kit_Bordel/cortinas/KIT_Cortina_Reta.glb",
+  "KIT_Cortina_Reta_Violeta": "Kit_Bordel/cortinas/KIT_Cortina_Reta_Violeta.glb",
+  "KIT_Palco_PoleDance": "Kit_Bordel/cortinas/KIT_Palco_PoleDance.glb",
+  "KIT_Planta_Vaso": "Kit_Bordel/cortinas/KIT_Planta_Vaso.glb",
+  "KIT_Almofada": "Kit_Bordel/extras/KIT_Almofada.glb",
+  "KIT_Arandela": "Kit_Bordel/extras/KIT_Arandela.glb",
+  "KIT_Caixa_Som": "Kit_Bordel/extras/KIT_Caixa_Som.glb",
+  "KIT_Camera_Seguranca": "Kit_Bordel/extras/KIT_Camera_Seguranca.glb",
+  "KIT_Corda_VIP": "Kit_Bordel/extras/KIT_Corda_VIP.glb",
+  "KIT_Espelho_Neon": "Kit_Bordel/extras/KIT_Espelho_Neon.glb",
+  "KIT_Gaiola_Danca": "Kit_Bordel/extras/KIT_Gaiola_Danca.glb",
+  "KIT_Globo_Espelhado": "Kit_Bordel/extras/KIT_Globo_Espelhado.glb",
+  "KIT_Holo_Projetor": "Kit_Bordel/extras/KIT_Holo_Projetor.glb",
+  "KIT_Tapete": "Kit_Bordel/extras/KIT_Tapete.glb",
+  "KIT_Terminal": "Kit_Bordel/extras/KIT_Terminal.glb",
+  "KIT_Lanterna_Chao": "Kit_Bordel/luz/KIT_Lanterna_Chao.glb",
+  "KIT_Pendente": "Kit_Bordel/luz/KIT_Pendente.glb",
+  "KIT_Placa_Coracao": "Kit_Bordel/luz/KIT_Placa_Coracao.glb",
+  "KIT_Placa_Drink": "Kit_Bordel/luz/KIT_Placa_Drink.glb",
+  "KIT_Placa_Glifos": "Kit_Bordel/luz/KIT_Placa_Glifos.glb",
+  "KIT_Placa_Lotus": "Kit_Bordel/luz/KIT_Placa_Lotus.glb",
+  "KIT_Banqueta_Bar": "Kit_Bordel/moveis/KIT_Banqueta_Bar.glb",
+  "KIT_Cama_Redonda": "Kit_Bordel/moveis/KIT_Cama_Redonda.glb",
+  "KIT_Luminaria_Cubo": "Kit_Bordel/moveis/KIT_Luminaria_Cubo.glb",
+  "KIT_Mesa_Alta": "Kit_Bordel/moveis/KIT_Mesa_Alta.glb",
+  "KIT_Mesa_Lounge": "Kit_Bordel/moveis/KIT_Mesa_Lounge.glb",
+  "KIT_Poltrona": "Kit_Bordel/moveis/KIT_Poltrona.glb",
+  "KIT_Puff": "Kit_Bordel/moveis/KIT_Puff.glb",
+  "KIT_Sofa_Curvo": "Kit_Bordel/moveis/KIT_Sofa_Curvo.glb",
+  "KIT_Neon_Anel_Ciano": "Kit_Bordel/neon/KIT_Neon_Anel_Ciano.glb",
+  "KIT_Neon_Anel_Rosa": "Kit_Bordel/neon/KIT_Neon_Anel_Rosa.glb",
+  "KIT_Neon_Canto_Ciano": "Kit_Bordel/neon/KIT_Neon_Canto_Ciano.glb",
+  "KIT_Neon_Canto_Rosa": "Kit_Bordel/neon/KIT_Neon_Canto_Rosa.glb",
+  "KIT_Neon_Curva_Ciano": "Kit_Bordel/neon/KIT_Neon_Curva_Ciano.glb",
+  "KIT_Neon_Curva_Rosa": "Kit_Bordel/neon/KIT_Neon_Curva_Rosa.glb",
+  "KIT_Neon_Reto_Ciano": "Kit_Bordel/neon/KIT_Neon_Reto_Ciano.glb",
+  "KIT_Neon_Reto_Rosa": "Kit_Bordel/neon/KIT_Neon_Reto_Rosa.glb",
+  "KIT_Piso_Modulo": "Kit_Bordel/piso/KIT_Piso_Modulo.glb",
+  "KIT_Piso_Neon": "Kit_Bordel/piso/KIT_Piso_Neon.glb",
+  "KIT_Teto_Modulo": "Kit_Bordel/piso/KIT_Teto_Modulo.glb"
+ },
+ "rooms": {
+  "club": {
+   "label": "Lounge",
+   "items": [
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -4.8,
+      0,
+      -12.13
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -2.4,
+      0,
+      -12.13
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      2.4,
+      0,
+      -12.13
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      4.8,
+      0,
+      -12.13
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -4.8,
+      0,
+      12.13
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -2.4,
+      0,
+      12.13
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      2.4,
+      0,
+      12.13
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      4.8,
+      0,
+      12.13
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -6.13,
+      0,
+      -10.8
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      6.13,
+      0,
+      -10.8
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -6.13,
+      0,
+      -8.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      6.13,
+      0,
+      -8.4
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -6.13,
+      0,
+      -6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      6.13,
+      0,
+      -6
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -6.13,
+      0,
+      -3.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      6.13,
+      0,
+      -3.6
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -6.13,
+      0,
+      -1.2
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      6.13,
+      0,
+      -1.2
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -6.13,
+      0,
+      1.2
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      6.13,
+      0,
+      1.2
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -6.13,
+      0,
+      3.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      6.13,
+      0,
+      3.6
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -6.13,
+      0,
+      6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      6.13,
+      0,
+      6
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      -6.13,
+      0,
+      8.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      6.13,
+      0,
+      8.4
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -6.13,
+      0,
+      10.8
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Parede_Painel",
+     "p": [
+      6.13,
+      0,
+      10.8
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Portal",
+     "p": [
+      0,
+      0,
+      -12.13
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Portal",
+     "p": [
+      0,
+      0,
+      12.13
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Porta_Portal",
+     "p": [
+      0,
+      0,
+      12.13
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Coluna",
+     "p": [
+      -5.73,
+      0,
+      -11.73
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Coluna",
+     "p": [
+      -5.73,
+      0,
+      11.73
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Coluna",
+     "p": [
+      5.73,
+      0,
+      -11.73
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Coluna",
+     "p": [
+      5.73,
+      0,
+      11.73
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      -4,
+      0,
+      -10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      -4,
+      3.5,
+      -10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      -4,
+      0,
+      -6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      -4,
+      3.5,
+      -6
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      -4,
+      0,
+      -2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      -4,
+      3.5,
+      -2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      -4,
+      0,
+      2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      -4,
+      3.5,
+      2
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      -4,
+      0,
+      6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      -4,
+      3.5,
+      6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      -4,
+      0,
+      10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      -4,
+      3.5,
+      10
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      -1,
+      0,
+      -11
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      -1,
+      0,
+      -9
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      1,
+      0,
+      -11
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      1,
+      0,
+      -9
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      0,
+      3.5,
+      -10
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      0,
+      0,
+      -6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      0,
+      3.5,
+      -6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      -1,
+      0,
+      -3
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      -1,
+      0,
+      -1
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      1,
+      0,
+      -3
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      1,
+      0,
+      -1
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      0,
+      3.5,
+      -2
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      0,
+      0,
+      2
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      0,
+      3.5,
+      2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      -1,
+      0,
+      5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      -1,
+      0,
+      7
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      1,
+      0,
+      5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      1,
+      0,
+      7
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      0,
+      3.5,
+      6
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      0,
+      0,
+      10
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      0,
+      3.5,
+      10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      4,
+      0,
+      -10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      4,
+      3.5,
+      -10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      4,
+      0,
+      -6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      4,
+      3.5,
+      -6
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      4,
+      0,
+      -2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      4,
+      3.5,
+      -2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      4,
+      0,
+      2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      4,
+      3.5,
+      2
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      4,
+      0,
+      6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      4,
+      3.5,
+      6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Piso_Modulo",
+     "p": [
+      4,
+      0,
+      10
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Teto_Modulo",
+     "p": [
+      4,
+      3.5,
+      10
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Cabine_Cortina",
+     "p": [
+      -4.1,
+      0,
+      6.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Sofa_Curvo",
+     "p": [
+      -4.82,
+      0.13,
+      6.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Mesa_Lounge",
+     "p": [
+      -3.78,
+      0.13,
+      6.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Balde_Gelo",
+     "p": [
+      -3.8,
+      0.88,
+      6.38
+     ],
+     "r": 30
+    },
+    {
+     "a": "KIT_Taca_Champanhe",
+     "p": [
+      -3.68,
+      0.88,
+      6.64
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Taca_Champanhe",
+     "p": [
+      -3.9,
+      0.88,
+      6.15
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Luminaria_Cubo",
+     "p": [
+      -3.58,
+      0.88,
+      6.2
+     ],
+     "r": 15
+    },
+    {
+     "a": "KIT_Almofada",
+     "p": [
+      -4.52,
+      0.6,
+      7.18
+     ],
+     "r": 115
+    },
+    {
+     "a": "KIT_Almofada",
+     "p": [
+      -4.5,
+      0.6,
+      5.6
+     ],
+     "r": 70
+    },
+    {
+     "a": "KIT_Cabine_Cortina",
+     "p": [
+      -4.1,
+      0,
+      0.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Sofa_Curvo",
+     "p": [
+      -4.82,
+      0.13,
+      0.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Mesa_Lounge",
+     "p": [
+      -3.78,
+      0.13,
+      0.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Narguile",
+     "p": [
+      -3.8,
+      0.88,
+      0.38
+     ],
+     "r": 30
+    },
+    {
+     "a": "KIT_Copo_Whisky",
+     "p": [
+      -3.68,
+      0.88,
+      0.64
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Whisky",
+     "p": [
+      -3.9,
+      0.88,
+      0.15
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Luminaria_Cubo",
+     "p": [
+      -3.58,
+      0.88,
+      0.2
+     ],
+     "r": 15
+    },
+    {
+     "a": "KIT_Almofada",
+     "p": [
+      -4.52,
+      0.6,
+      1.18
+     ],
+     "r": 115
+    },
+    {
+     "a": "KIT_Almofada",
+     "p": [
+      -4.5,
+      0.6,
+      -0.4
+     ],
+     "r": 70
+    },
+    {
+     "a": "KIT_Cabine_Cortina",
+     "p": [
+      -4.1,
+      0,
+      -5.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Sofa_Curvo",
+     "p": [
+      -4.82,
+      0.13,
+      -5.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Mesa_Lounge",
+     "p": [
+      -3.78,
+      0.13,
+      -5.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Balde_Gelo",
+     "p": [
+      -3.8,
+      0.88,
+      -5.62
+     ],
+     "r": 30
+    },
+    {
+     "a": "KIT_Taca_Champanhe",
+     "p": [
+      -3.68,
+      0.88,
+      -5.36
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Taca_Champanhe",
+     "p": [
+      -3.9,
+      0.88,
+      -5.85
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Luminaria_Cubo",
+     "p": [
+      -3.58,
+      0.88,
+      -5.8
+     ],
+     "r": 15
+    },
+    {
+     "a": "KIT_Almofada",
+     "p": [
+      -4.52,
+      0.6,
+      -4.82
+     ],
+     "r": 115
+    },
+    {
+     "a": "KIT_Almofada",
+     "p": [
+      -4.5,
+      0.6,
+      -6.4
+     ],
+     "r": 70
+    },
+    {
+     "a": "KIT_Biombo_Trelica",
+     "p": [
+      -5.2,
+      0,
+      3.4
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Biombo_Trelica",
+     "p": [
+      -3.86,
+      0,
+      3.4
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Planta_Vaso",
+     "p": [
+      -2.95,
+      0,
+      3.4
+     ],
+     "r": 40
+    },
+    {
+     "a": "KIT_Biombo_Trelica",
+     "p": [
+      -5.2,
+      0,
+      -2.6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Biombo_Trelica",
+     "p": [
+      -3.86,
+      0,
+      -2.6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Planta_Vaso",
+     "p": [
+      -2.95,
+      0,
+      -2.6
+     ],
+     "r": 40
+    },
+    {
+     "a": "KIT_Arandela",
+     "p": [
+      -5.86,
+      2.05,
+      9.02
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Arandela",
+     "p": [
+      -5.86,
+      2.05,
+      4.02
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Arandela",
+     "p": [
+      -5.86,
+      2.05,
+      -1.98
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Arandela",
+     "p": [
+      -5.86,
+      2.05,
+      -7.78
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Balcao_Bar",
+     "p": [
+      3.45,
+      0,
+      -3.765
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Coqueteleira",
+     "p": [
+      3.825,
+      1.12,
+      -4.585
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      3.673,
+      1.12,
+      -4.065
+     ],
+     "r": 47
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      3.67,
+      1.12,
+      -3.485
+     ],
+     "r": 94
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      3.816,
+      1.12,
+      -2.965
+     ],
+     "r": 141
+    },
+    {
+     "a": "KIT_Balcao_Bar",
+     "p": [
+      3.45,
+      0,
+      -1.255
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Bandeja",
+     "p": [
+      3.825,
+      1.12,
+      -2.075
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      3.725,
+      1.145,
+      -2.075
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      3.905,
+      1.145,
+      -1.995
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      3.885,
+      1.145,
+      -2.175
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      3.673,
+      1.12,
+      -1.555
+     ],
+     "r": 47
+    },
+    {
+     "a": "KIT_Copo_Whisky",
+     "p": [
+      3.67,
+      1.12,
+      -0.975
+     ],
+     "r": 94
+    },
+    {
+     "a": "KIT_Cinzeiro",
+     "p": [
+      3.816,
+      1.12,
+      -0.455
+     ],
+     "r": 141
+    },
+    {
+     "a": "KIT_Balcao_Bar",
+     "p": [
+      3.45,
+      0,
+      1.255
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      3.825,
+      1.12,
+      0.435
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Balde_Gelo",
+     "p": [
+      3.673,
+      1.12,
+      0.955
+     ],
+     "r": 47
+    },
+    {
+     "a": "KIT_Taca_Champanhe",
+     "p": [
+      3.67,
+      1.12,
+      1.535
+     ],
+     "r": 94
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      3.816,
+      1.12,
+      2.055
+     ],
+     "r": 141
+    },
+    {
+     "a": "KIT_Balcao_Bar",
+     "p": [
+      3.45,
+      0,
+      3.765
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      3.825,
+      1.12,
+      2.945
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Whisky",
+     "p": [
+      3.673,
+      1.12,
+      3.465
+     ],
+     "r": 47
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      3.67,
+      1.12,
+      4.045
+     ],
+     "r": 94
+    },
+    {
+     "a": "KIT_Luminaria_Cubo",
+     "p": [
+      3.816,
+      1.12,
+      4.565
+     ],
+     "r": 141
+    },
+    {
+     "a": "KIT_Estante_Bar",
+     "p": [
+      5.6,
+      0,
+      -3.72
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.035,
+      -4.26
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.035,
+      -3.99
+     ],
+     "r": 111
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.035,
+      -3.72
+     ],
+     "r": 222
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.035,
+      -3.45
+     ],
+     "r": 333
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.035,
+      -3.18
+     ],
+     "r": 444
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.435,
+      -4.26
+     ],
+     "r": 37
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.435,
+      -3.99
+     ],
+     "r": 148
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.435,
+      -3.72
+     ],
+     "r": 259
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.435,
+      -3.45
+     ],
+     "r": 370
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.435,
+      -3.18
+     ],
+     "r": 481
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.835,
+      -4
+     ],
+     "r": 74
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.835,
+      -3.72
+     ],
+     "r": 185
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.835,
+      -3.44
+     ],
+     "r": 296
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      5.55,
+      0.63,
+      -4.27
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      5.55,
+      0.63,
+      -4.12
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      5.55,
+      0.63,
+      -3.27
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Coqueteleira",
+     "p": [
+      5.55,
+      0.63,
+      -3.12
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Estante_Bar",
+     "p": [
+      5.6,
+      0,
+      -1.86
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.035,
+      -2.4
+     ],
+     "r": 37
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.035,
+      -2.13
+     ],
+     "r": 148
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.035,
+      -1.86
+     ],
+     "r": 259
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.035,
+      -1.59
+     ],
+     "r": 370
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.035,
+      -1.32
+     ],
+     "r": 481
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.435,
+      -2.4
+     ],
+     "r": 74
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.435,
+      -2.13
+     ],
+     "r": 185
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.435,
+      -1.86
+     ],
+     "r": 296
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.435,
+      -1.59
+     ],
+     "r": 407
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.435,
+      -1.32
+     ],
+     "r": 518
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.835,
+      -2.14
+     ],
+     "r": 111
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.835,
+      -1.86
+     ],
+     "r": 222
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.835,
+      -1.58
+     ],
+     "r": 333
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      5.55,
+      0.63,
+      -2.33
+     ],
+     "r": 60
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      5.55,
+      0.63,
+      -2.18
+     ],
+     "r": 60
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      5.55,
+      0.63,
+      -1.33
+     ],
+     "r": 60
+    },
+    {
+     "a": "KIT_Coqueteleira",
+     "p": [
+      5.55,
+      0.63,
+      -1.18
+     ],
+     "r": 60
+    },
+    {
+     "a": "KIT_Estante_Bar",
+     "p": [
+      5.6,
+      0,
+      0
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.035,
+      -0.54
+     ],
+     "r": 74
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.035,
+      -0.27
+     ],
+     "r": 185
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.035,
+      0
+     ],
+     "r": 296
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.035,
+      0.27
+     ],
+     "r": 407
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.035,
+      0.54
+     ],
+     "r": 518
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.435,
+      -0.54
+     ],
+     "r": 111
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.435,
+      -0.27
+     ],
+     "r": 222
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.435,
+      0
+     ],
+     "r": 333
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.435,
+      0.27
+     ],
+     "r": 444
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.435,
+      0.54
+     ],
+     "r": 555
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.835,
+      -0.28
+     ],
+     "r": 148
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.835,
+      0
+     ],
+     "r": 259
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.835,
+      0.28
+     ],
+     "r": 370
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      5.55,
+      0.63,
+      -0.55
+     ],
+     "r": 120
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      5.55,
+      0.63,
+      -0.4
+     ],
+     "r": 120
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      5.55,
+      0.63,
+      0.45
+     ],
+     "r": 120
+    },
+    {
+     "a": "KIT_Coqueteleira",
+     "p": [
+      5.55,
+      0.63,
+      0.6
+     ],
+     "r": 120
+    },
+    {
+     "a": "KIT_Estante_Bar",
+     "p": [
+      5.6,
+      0,
+      1.86
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.035,
+      1.32
+     ],
+     "r": 111
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.035,
+      1.59
+     ],
+     "r": 222
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.035,
+      1.86
+     ],
+     "r": 333
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.035,
+      2.13
+     ],
+     "r": 444
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.035,
+      2.4
+     ],
+     "r": 555
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.435,
+      1.32
+     ],
+     "r": 148
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.435,
+      1.59
+     ],
+     "r": 259
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.435,
+      1.86
+     ],
+     "r": 370
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.435,
+      2.13
+     ],
+     "r": 481
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.435,
+      2.4
+     ],
+     "r": 592
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.835,
+      1.58
+     ],
+     "r": 185
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.835,
+      1.86
+     ],
+     "r": 296
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.835,
+      2.14
+     ],
+     "r": 407
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      5.55,
+      0.63,
+      1.39
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      5.55,
+      0.63,
+      1.54
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      5.55,
+      0.63,
+      2.39
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Coqueteleira",
+     "p": [
+      5.55,
+      0.63,
+      2.54
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Estante_Bar",
+     "p": [
+      5.6,
+      0,
+      3.72
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.035,
+      3.18
+     ],
+     "r": 148
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.035,
+      3.45
+     ],
+     "r": 259
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.035,
+      3.72
+     ],
+     "r": 370
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.035,
+      3.99
+     ],
+     "r": 481
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.035,
+      4.26
+     ],
+     "r": 592
+    },
+    {
+     "a": "KIT_Garrafa_Azul",
+     "p": [
+      5.58,
+      1.435,
+      3.18
+     ],
+     "r": 185
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      5.58,
+      1.435,
+      3.45
+     ],
+     "r": 296
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.435,
+      3.72
+     ],
+     "r": 407
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.435,
+      3.99
+     ],
+     "r": 518
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.435,
+      4.26
+     ],
+     "r": 629
+    },
+    {
+     "a": "KIT_Garrafa_Rosa",
+     "p": [
+      5.58,
+      1.835,
+      3.44
+     ],
+     "r": 222
+    },
+    {
+     "a": "KIT_Garrafa_Vinho",
+     "p": [
+      5.58,
+      1.835,
+      3.72
+     ],
+     "r": 333
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      5.58,
+      1.835,
+      4
+     ],
+     "r": 444
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      5.55,
+      0.63,
+      3.17
+     ],
+     "r": 240
+    },
+    {
+     "a": "KIT_Copo_Shot",
+     "p": [
+      5.55,
+      0.63,
+      3.32
+     ],
+     "r": 240
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      5.55,
+      0.63,
+      4.17
+     ],
+     "r": 240
+    },
+    {
+     "a": "KIT_Coqueteleira",
+     "p": [
+      5.55,
+      0.63,
+      4.32
+     ],
+     "r": 240
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.72,
+      0,
+      -4.4
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.94,
+      0,
+      -3.143
+     ],
+     "r": 40
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.72,
+      0,
+      -1.886
+     ],
+     "r": 80
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.94,
+      0,
+      -0.629
+     ],
+     "r": 120
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.72,
+      0,
+      0.629
+     ],
+     "r": 160
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.94,
+      0,
+      1.886
+     ],
+     "r": 200
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.72,
+      0,
+      3.143
+     ],
+     "r": 240
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.94,
+      0,
+      4.4
+     ],
+     "r": 280
+    },
+    {
+     "a": "KIT_Pendente",
+     "p": [
+      3.55,
+      3.03,
+      -4.25
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Pendente",
+     "p": [
+      3.55,
+      3.03,
+      -2.55
+     ],
+     "r": 60
+    },
+    {
+     "a": "KIT_Pendente",
+     "p": [
+      3.55,
+      3.03,
+      -0.85
+     ],
+     "r": 120
+    },
+    {
+     "a": "KIT_Pendente",
+     "p": [
+      3.55,
+      3.03,
+      0.85
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Pendente",
+     "p": [
+      3.55,
+      3.03,
+      2.55
+     ],
+     "r": 240
+    },
+    {
+     "a": "KIT_Pendente",
+     "p": [
+      3.55,
+      3.03,
+      4.25
+     ],
+     "r": 300
+    },
+    {
+     "a": "KIT_Placa_Drink",
+     "p": [
+      5.98,
+      2.15,
+      7.2
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Placa_Coracao",
+     "p": [
+      5.98,
+      2.2,
+      -7.2
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Placa_Lotus",
+     "p": [
+      -2.3,
+      2.45,
+      -11.9
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Placa_Glifos",
+     "p": [
+      2.5,
+      2.25,
+      -11.9
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Corda_VIP",
+     "p": [
+      -2.15,
+      0,
+      -10.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Corda_VIP",
+     "p": [
+      2.15,
+      0,
+      -10.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Lanterna_Chao",
+     "p": [
+      -1.45,
+      0,
+      -11.45
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Lanterna_Chao",
+     "p": [
+      1.45,
+      0,
+      -11.45
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Caixa_Som",
+     "p": [
+      -3.35,
+      0,
+      -11.5
+     ],
+     "r": 12
+    },
+    {
+     "a": "KIT_Caixa_Som",
+     "p": [
+      3.35,
+      0,
+      -11.5
+     ],
+     "r": -12
+    },
+    {
+     "a": "KIT_Tapete",
+     "p": [
+      -4,
+      0.012,
+      -9.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Mesa_Lounge",
+     "p": [
+      -4,
+      0,
+      -9.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Poltrona",
+     "p": [
+      -5.05,
+      0,
+      -9.5
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Poltrona",
+     "p": [
+      -4,
+      0,
+      -10.75
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Puff",
+     "p": [
+      -2.95,
+      0,
+      -9.2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Garrafa_Whisky",
+     "p": [
+      -4.05,
+      0.75,
+      -9.45
+     ],
+     "r": 20
+    },
+    {
+     "a": "KIT_Copo_Whisky",
+     "p": [
+      -3.82,
+      0.75,
+      -9.62
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Whisky",
+     "p": [
+      -4.2,
+      0.75,
+      -9.68
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Cinzeiro",
+     "p": [
+      -3.9,
+      0.75,
+      -9.3
+     ],
+     "r": 30
+    },
+    {
+     "a": "KIT_Gaiola_Danca",
+     "p": [
+      4.55,
+      0,
+      -10.3
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Mesa_Alta",
+     "p": [
+      2.5,
+      0,
+      -8.6
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      1.95,
+      0,
+      -8.35
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Banqueta_Bar",
+     "p": [
+      2.95,
+      0,
+      -9.05
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Taca_Martini",
+     "p": [
+      2.42,
+      1.08,
+      -8.55
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Copo_Highball",
+     "p": [
+      2.62,
+      1.08,
+      -8.68
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Holo_Projetor",
+     "p": [
+      -0.85,
+      0,
+      2.4
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Globo_Espelhado",
+     "p": [
+      0.35,
+      2.36,
+      -3.2
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Palco_PoleDance",
+     "p": [
+      3.95,
+      0,
+      9.55
+     ],
+     "r": -140
+    },
+    {
+     "a": "KIT_Divisoria_Vidro",
+     "p": [
+      2.55,
+      0,
+      6.95
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Divisoria_Vidro",
+     "p": [
+      4.15,
+      0,
+      6.95
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Puff",
+     "p": [
+      1.75,
+      0,
+      8.3
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Puff",
+     "p": [
+      2.1,
+      0,
+      10.7
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Mesa_Alta",
+     "p": [
+      1.3,
+      0,
+      9.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Garrafa_Neon",
+     "p": [
+      1.3,
+      1.08,
+      9.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Cama_Redonda",
+     "p": [
+      -4.3,
+      0,
+      10.2
+     ],
+     "r": 135
+    },
+    {
+     "a": "KIT_Cortina_Reta_Violeta",
+     "p": [
+      -5.05,
+      0,
+      8.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Cortina_Reta_Violeta",
+     "p": [
+      -3.3,
+      0,
+      8.5
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Cortina_Fios_Neon",
+     "p": [
+      -2.45,
+      0,
+      9.35
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Cortina_Fios_Neon",
+     "p": [
+      -2.45,
+      0,
+      10.95
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Luminaria_Cubo",
+     "p": [
+      -5.5,
+      0,
+      9
+     ],
+     "r": 0,
+     "s": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "a": "KIT_Espelho_Neon",
+     "p": [
+      -4.8,
+      1.6,
+      11.97
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Espelho_Neon",
+     "p": [
+      4.8,
+      1.6,
+      11.97
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Terminal",
+     "p": [
+      1.75,
+      0,
+      11.6
+     ],
+     "r": 180
+    },
+    {
+     "a": "KIT_Lanterna_Chao",
+     "p": [
+      -1.45,
+      0,
+      11.45
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Caixa_Som",
+     "p": [
+      -2.4,
+      0,
+      11.45
+     ],
+     "r": 170
+    },
+    {
+     "a": "KIT_Camera_Seguranca",
+     "p": [
+      5.75,
+      2.82,
+      11.75
+     ],
+     "r": -135
+    },
+    {
+     "a": "KIT_Camera_Seguranca",
+     "p": [
+      -5.75,
+      2.82,
+      -11.75
+     ],
+     "r": 45
+    },
+    {
+     "a": "KIT_Neon_Anel_Rosa",
+     "p": [
+      -5.95,
+      1.95,
+      3.25
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Neon_Anel_Ciano",
+     "p": [
+      -5.95,
+      1.75,
+      3.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Neon_Anel_Rosa",
+     "p": [
+      -5.95,
+      1.95,
+      -2.75
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Neon_Anel_Ciano",
+     "p": [
+      -5.95,
+      1.75,
+      -2.4
+     ],
+     "r": 90
+    },
+    {
+     "a": "KIT_Neon_Curva_Rosa",
+     "p": [
+      5.95,
+      1.7,
+      8.9
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Neon_Reto_Ciano",
+     "p": [
+      5.95,
+      1.45,
+      -9
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Neon_Canto_Rosa",
+     "p": [
+      5.95,
+      1.55,
+      -8.3
+     ],
+     "r": -90
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      0,
+      0,
+      -13.25
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -1.13,
+      0,
+      -13.25
+     ],
+     "r": 90,
+     "s": [
+      0.8333333333333334,
+      1,
+      1
+     ]
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      1.13,
+      0,
+      -13.25
+     ],
+     "r": -90,
+     "s": [
+      0.8333333333333334,
+      1,
+      1
+     ]
+    },
+    {
+     "a": "KIT_Piso_Neon",
+     "p": [
+      0,
+      0,
+      -15.25
+     ],
+     "r": 0
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      -1.13,
+      0,
+      -15.25
+     ],
+     "r": 90,
+     "s": [
+      0.8333333333333334,
+      1,
+      1
+     ]
+    },
+    {
+     "a": "KIT_Parede_Lisa",
+     "p": [
+      1.13,
+      0,
+      -15.25
+     ],
+     "r": -90,
+     "s": [
+      0.8333333333333334,
+      1,
+      1
+     ]
+    },
+    {
+     "a": "KIT_Placa_Coracao",
+     "p": [
+      0,
+      2.68,
+      -16.22
+     ],
+     "r": 0
+    },
+    {
+     "a": "JAC_37_Painel_Trelica",
+     "p": [
+      -3.75,
+      0,
+      11.95
+     ],
+     "r": 180
+    },
+    {
+     "a": "JAC_37_Painel_Trelica",
+     "p": [
+      -2.85,
+      0,
+      11.95
+     ],
+     "r": 180
+    }
+   ],
+   "fills": [
+    {
+     "n": "portal_fundo_esq",
+     "size": [
+      0.17,
+      3,
+      0.25
+     ],
+     "p": [
+      -1.115,
+      1.5,
+      -12.125
+     ],
+     "m": "KIT_metal_black",
+     "collide": true
+    },
+    {
+     "n": "portal_fundo_dir",
+     "size": [
+      0.17,
+      3,
+      0.25
+     ],
+     "p": [
+      1.115,
+      1.5,
+      -12.125
+     ],
+     "m": "KIT_metal_black",
+     "collide": true
+    },
+    {
+     "n": "portal_fundo_topo",
+     "size": [
+      2.06,
+      0.38,
+      0.25
+     ],
+     "p": [
+      0,
+      2.81,
+      -12.125
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "portal_entrada_esq",
+     "size": [
+      0.17,
+      3,
+      0.25
+     ],
+     "p": [
+      -1.115,
+      1.5,
+      12.125
+     ],
+     "m": "KIT_metal_black",
+     "collide": true
+    },
+    {
+     "n": "portal_entrada_dir",
+     "size": [
+      0.17,
+      3,
+      0.25
+     ],
+     "p": [
+      1.115,
+      1.5,
+      12.125
+     ],
+     "m": "KIT_metal_black",
+     "collide": true
+    },
+    {
+     "n": "portal_entrada_topo",
+     "size": [
+      2.06,
+      0.38,
+      0.25
+     ],
+     "p": [
+      0,
+      2.81,
+      12.125
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "faixa_fundo",
+     "size": [
+      12.5,
+      0.5,
+      0.25
+     ],
+     "p": [
+      0,
+      3.25,
+      -12.125
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "faixa_frente",
+     "size": [
+      12.5,
+      0.5,
+      0.25
+     ],
+     "p": [
+      0,
+      3.25,
+      12.125
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "faixa_esq",
+     "size": [
+      0.25,
+      0.5,
+      24.5
+     ],
+     "p": [
+      -6.125,
+      3.25,
+      0
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "faixa_dir",
+     "size": [
+      0.25,
+      0.5,
+      24.5
+     ],
+     "p": [
+      6.125,
+      3.25,
+      0
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "sanca_esq",
+     "size": [
+      0.03,
+      0.03,
+      23.4
+     ],
+     "p": [
+      -5.97,
+      3.04,
+      0
+     ],
+     "m": "KIT_neon_pink"
+    },
+    {
+     "n": "sanca_dir",
+     "size": [
+      0.03,
+      0.03,
+      23.4
+     ],
+     "p": [
+      5.97,
+      3.04,
+      0
+     ],
+     "m": "KIT_neon_cyan"
+    },
+    {
+     "n": "corredor_teto",
+     "size": [
+      2.52,
+      0.2,
+      4
+     ],
+     "p": [
+      0,
+      3.1,
+      -14.25
+     ],
+     "m": "KIT_metal_black"
+    },
+    {
+     "n": "corredor_neon0_e",
+     "size": [
+      0.035,
+      2.9,
+      0.035
+     ],
+     "p": [
+      -0.92,
+      1.45,
+      -12.8
+     ],
+     "m": "KIT_neon_cyan"
+    },
+    {
+     "n": "corredor_neon0_d",
+     "size": [
+      0.035,
+      2.9,
+      0.035
+     ],
+     "p": [
+      0.92,
+      1.45,
+      -12.8
+     ],
+     "m": "KIT_neon_cyan"
+    },
+    {
+     "n": "corredor_neon0_t",
+     "size": [
+      1.875,
+      0.035,
+      0.035
+     ],
+     "p": [
+      0,
+      2.9,
+      -12.8
+     ],
+     "m": "KIT_neon_cyan"
+    },
+    {
+     "n": "corredor_neon1_e",
+     "size": [
+      0.035,
+      2.9,
+      0.035
+     ],
+     "p": [
+      -0.92,
+      1.45,
+      -14
+     ],
+     "m": "KIT_neon_pink"
+    },
+    {
+     "n": "corredor_neon1_d",
+     "size": [
+      0.035,
+      2.9,
+      0.035
+     ],
+     "p": [
+      0.92,
+      1.45,
+      -14
+     ],
+     "m": "KIT_neon_pink"
+    },
+    {
+     "n": "corredor_neon1_t",
+     "size": [
+      1.875,
+      0.035,
+      0.035
+     ],
+     "p": [
+      0,
+      2.9,
+      -14
+     ],
+     "m": "KIT_neon_pink"
+    },
+    {
+     "n": "corredor_neon2_e",
+     "size": [
+      0.035,
+      2.9,
+      0.035
+     ],
+     "p": [
+      -0.92,
+      1.45,
+      -15.2
+     ],
+     "m": "KIT_neon_cyan"
+    },
+    {
+     "n": "corredor_neon2_d",
+     "size": [
+      0.035,
+      2.9,
+      0.035
+     ],
+     "p": [
+      0.92,
+      1.45,
+      -15.2
+     ],
+     "m": "KIT_neon_cyan"
+    },
+    {
+     "n": "corredor_neon2_t",
+     "size": [
+      1.875,
+      0.035,
+      0.035
+     ],
+     "p": [
+      0,
+      2.9,
+      -15.2
+     ],
+     "m": "KIT_neon_cyan"
+    }
+   ],
+   "lights": [
+    {
+     "c": "#ff2bd6",
+     "i": 14,
+     "d": 6.5,
+     "p": [
+      -3.8,
+      2.1,
+      6.4
+     ]
+    },
+    {
+     "c": "#ff2bd6",
+     "i": 14,
+     "d": 6.5,
+     "p": [
+      -3.8,
+      2.1,
+      0.4
+     ]
+    },
+    {
+     "c": "#ff2bd6",
+     "i": 14,
+     "d": 6.5,
+     "p": [
+      -3.8,
+      2.1,
+      -5.6
+     ]
+    },
+    {
+     "c": "#19f0e0",
+     "i": 12,
+     "d": 7,
+     "p": [
+      2.9,
+      2.2,
+      -2.6
+     ]
+    },
+    {
+     "c": "#19f0e0",
+     "i": 12,
+     "d": 7,
+     "p": [
+      2.9,
+      2.2,
+      2.6
+     ]
+    },
+    {
+     "c": "#ff4f9a",
+     "i": 12,
+     "d": 7,
+     "p": [
+      0,
+      2.4,
+      -10.2
+     ]
+    },
+    {
+     "c": "#9a4bff",
+     "i": 12,
+     "d": 7,
+     "p": [
+      3.4,
+      2.5,
+      9
+     ]
+    },
+    {
+     "c": "#ff2bd6",
+     "i": 9,
+     "d": 5.5,
+     "p": [
+      -4.2,
+      2.2,
+      10.2
+     ]
+    },
+    {
+     "c": "#ff7ab8",
+     "i": 5,
+     "d": 4.5,
+     "p": [
+      0,
+      2.3,
+      -15.25
+     ]
+    }
+   ]
+  },
+  "spa": {
+   "label": "Jacuzzi",
+   "items": [
+    {
+     "a": "JAC_31_Piso",
+     "p": [
+      -6.6,
+      0,
+      -18.95
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_31_Piso",
+     "p": [
+      -1.6,
+      0,
+      -18.95
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_31_Piso",
+     "p": [
+      -6.6,
+      0,
+      -23.95
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_31_Piso",
+     "p": [
+      -1.6,
+      0,
+      -23.95
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_35_Teto",
+     "p": [
+      -4.1,
+      3.2,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_36_Tubulacao",
+     "p": [
+      -4.1,
+      2.66,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_32_Parede_Fundo",
+     "p": [
+      -9.1,
+      0,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_34_Parede_Direita",
+     "p": [
+      -4.1,
+      0,
+      -26.45
+     ],
+     "r": 0
+    },
+    {
+     "a": "JAC_34_Parede_Direita",
+     "p": [
+      0.9,
+      0,
+      -21.45
+     ],
+     "r": 270
+    },
+    {
+     "a": "JAC_02_Plataforma_Degraus",
+     "p": [
+      -4.1,
+      0,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_01_Jacuzzi",
+     "p": [
+      -4.1,
+      0,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_03_Anel_Luminoso",
+     "p": [
+      -4.1,
+      2.16,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_04_Cortina",
+     "p": [
+      -1.965,
+      0,
+      -23.585
+     ],
+     "r": 135
+    },
+    {
+     "a": "JAC_04_Cortina",
+     "p": [
+      -6.235,
+      0,
+      -23.585
+     ],
+     "r": 225
+    },
+    {
+     "a": "JAC_04_Cortina",
+     "p": [
+      -6.235,
+      0,
+      -19.315
+     ],
+     "r": 315
+    },
+    {
+     "a": "JAC_04_Cortina",
+     "p": [
+      -1.965,
+      0,
+      -19.315
+     ],
+     "r": 405
+    },
+    {
+     "a": "JAC_05_Sofa",
+     "p": [
+      -8.4,
+      0,
+      -18.85
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_07_Almofada",
+     "p": [
+      -8.48,
+      0.44,
+      -18.07
+     ],
+     "r": 104
+    },
+    {
+     "a": "JAC_07_Almofada",
+     "p": [
+      -8.48,
+      0.44,
+      -19.65
+     ],
+     "r": 78
+    },
+    {
+     "a": "JAC_17_Luminaria_Piso",
+     "p": [
+      -7.82,
+      0,
+      -17.25
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_05_Sofa",
+     "p": [
+      -8.4,
+      0,
+      -24.05
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_07_Almofada",
+     "p": [
+      -8.48,
+      0.44,
+      -23.27
+     ],
+     "r": 104
+    },
+    {
+     "a": "JAC_07_Almofada",
+     "p": [
+      -8.48,
+      0.44,
+      -24.85
+     ],
+     "r": 78
+    },
+    {
+     "a": "JAC_17_Luminaria_Piso",
+     "p": [
+      -7.82,
+      0,
+      -25.65
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_09_Mesa_Sofa",
+     "p": [
+      -8.6,
+      0,
+      -20.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_18_Luminaria_Mesa",
+     "p": [
+      -8.6,
+      0.73,
+      -20.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_09_Mesa_Sofa",
+     "p": [
+      -8.6,
+      0,
+      -22.3
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_18_Luminaria_Mesa",
+     "p": [
+      -8.6,
+      0.73,
+      -22.3
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_26_Portavela",
+     "p": [
+      -8.5,
+      0.73,
+      -20.74
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_13_Vaso_Alto",
+     "p": [
+      -8.58,
+      0,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_11_Planta_Folha_Larga",
+     "p": [
+      -8.58,
+      0.5,
+      -21.45
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_13_Vaso_Alto",
+     "p": [
+      -8.52,
+      0,
+      -17.03
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_12_Palmeira",
+     "p": [
+      -8.52,
+      0.5,
+      -17.03
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_13_Vaso_Alto",
+     "p": [
+      -8.52,
+      0,
+      -25.87
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_12_Palmeira",
+     "p": [
+      -8.52,
+      0.5,
+      -25.87
+     ],
+     "r": 180
+    },
+    {
+     "a": "JAC_13_Vaso_Alto",
+     "p": [
+      0.32,
+      0,
+      -25.87
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_11_Planta_Folha_Larga",
+     "p": [
+      0.32,
+      0.5,
+      -25.87
+     ],
+     "r": 210
+    },
+    {
+     "a": "JAC_06_Chaise",
+     "p": [
+      -0.15,
+      0,
+      -22.6
+     ],
+     "r": -74
+    },
+    {
+     "a": "JAC_06_Chaise",
+     "p": [
+      -0.7,
+      0,
+      -24.85
+     ],
+     "r": -45
+    },
+    {
+     "a": "JAC_08_Mesa_Pedestal",
+     "p": [
+      0.25,
+      0,
+      -23.75
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_24_Bandeja",
+     "p": [
+      0.25,
+      0.58,
+      -23.75
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_21_Garrafa_Cristal",
+     "p": [
+      0.3,
+      0.6,
+      -23.68
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_22_Copo_Baixo",
+     "p": [
+      0.33,
+      0.6,
+      -23.88
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_22_Copo_Baixo",
+     "p": [
+      0.13,
+      0.6,
+      -23.8
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_08_Mesa_Pedestal",
+     "p": [
+      -1.75,
+      0,
+      -25.7
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_23_Taca_Coupe",
+     "p": [
+      -1.65,
+      0.58,
+      -25.6
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_23_Taca_Coupe",
+     "p": [
+      -1.7,
+      0.58,
+      -25.83
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_25_Tigela_Frutas",
+     "p": [
+      -1.92,
+      0.58,
+      -25.7
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_26_Portavela",
+     "p": [
+      -1.86,
+      0.58,
+      -25.5
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_10_Aparador",
+     "p": [
+      -3.35,
+      0,
+      -26.17
+     ],
+     "r": 0
+    },
+    {
+     "a": "JAC_19_Toalha_Enrolada",
+     "p": [
+      -3.97,
+      0.81,
+      -26.17
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_19_Toalha_Enrolada",
+     "p": [
+      -3.75,
+      0.81,
+      -26.17
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_19_Toalha_Enrolada",
+     "p": [
+      -3.86,
+      1,
+      -26.17
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_20_Toalha_Dobrada",
+     "p": [
+      -3.33,
+      0.81,
+      -26.17
+     ],
+     "r": 180
+    },
+    {
+     "a": "JAC_20_Toalha_Dobrada",
+     "p": [
+      -3.33,
+      0.91,
+      -26.17
+     ],
+     "r": 180
+    },
+    {
+     "a": "JAC_30_Flor_Orquidea",
+     "p": [
+      -3.33,
+      1.01,
+      -26.15
+     ],
+     "r": 150,
+     "rx": -80
+    },
+    {
+     "a": "JAC_15_Vaso_Orquidea",
+     "p": [
+      -2.77,
+      0.81,
+      -26.17
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_14_Orquidea",
+     "p": [
+      -2.77,
+      1.01,
+      -26.17
+     ],
+     "r": 0
+    },
+    {
+     "a": "JAC_27_Difusor",
+     "p": [
+      -3.05,
+      0.81,
+      -26.22
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_28_Frasco_Spa",
+     "p": [
+      -3.03,
+      0.81,
+      -26.09
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_28_Frasco_Spa",
+     "p": [
+      -3.55,
+      0.81,
+      -26.07
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_29_Vela_Pilar",
+     "p": [
+      -3.55,
+      0.81,
+      -26.25
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_16_Lanterna",
+     "p": [
+      -0.948,
+      0,
+      -22.724
+     ],
+     "r": 112
+    },
+    {
+     "a": "JAC_16_Lanterna",
+     "p": [
+      -7.252,
+      0,
+      -22.724
+     ],
+     "r": 248
+    },
+    {
+     "a": "JAC_16_Lanterna",
+     "p": [
+      -7.252,
+      0,
+      -20.176
+     ],
+     "r": 292
+    },
+    {
+     "a": "JAC_16_Lanterna",
+     "p": [
+      -0.948,
+      0,
+      -20.176
+     ],
+     "r": 428
+    },
+    {
+     "a": "JAC_29_Vela_Pilar",
+     "p": [
+      -3.081,
+      0.15,
+      -23.972
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_29_Vela_Pilar",
+     "p": [
+      -5.119,
+      0.15,
+      -23.972
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_29_Vela_Pilar",
+     "p": [
+      -5.119,
+      0.15,
+      -18.928
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_29_Vela_Pilar",
+     "p": [
+      -3.081,
+      0.15,
+      -18.928
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_26_Portavela",
+     "p": [
+      -4.1,
+      0.15,
+      -24.17
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_26_Portavela",
+     "p": [
+      -4.1,
+      0.15,
+      -18.73
+     ],
+     "r": 90
+    },
+    {
+     "a": "JAC_19_Toalha_Enrolada",
+     "p": [
+      -3.15,
+      0.76,
+      -22.7
+     ],
+     "r": 130
+    },
+    {
+     "a": "JAC_16_Lanterna",
+     "p": [
+      0.52,
+      0,
+      -20.9
+     ],
+     "r": 90
+    }
+   ],
+   "fills": [],
+   "lights": [
+    {
+     "c": "#ff2bd6",
+     "i": 7,
+     "d": 9,
+     "p": [
+      -4.1,
+      2.75,
+      -21.45
+     ]
+    },
+    {
+     "c": "#2ff5e6",
+     "i": 2.5,
+     "d": 5,
+     "p": [
+      -4.1,
+      1.5,
+      -21.45
+     ]
+    },
+    {
+     "c": "#ff4f9a",
+     "i": 4,
+     "d": 6,
+     "p": [
+      -7.7,
+      1.9,
+      -21.45
+     ]
+    },
+    {
+     "c": "#ffb070",
+     "i": 4,
+     "d": 5,
+     "p": [
+      -3.35,
+      1.7,
+      -25.45
+     ]
+    }
+   ]
+  },
+  "shared": {
+   "label": "",
+   "items": [
+    {
+     "a": "JAC_33_Parede_Esquerda",
+     "p": [
+      -4.1,
+      0,
+      -16.45
+     ],
+     "r": 180,
+     "cut": {
+      "x": [
+       -4.63,
+       -3.5699999999999994
+      ],
+      "y": [
+       0,
+       2.23
+      ]
+     },
+     "n": "JAC_33_Parede_Esquerda"
+    }
+   ],
+   "fills": [],
+   "lights": []
+  }
+ },
+ "doors": [
+  {
+   "n": "spa",
+   "a": "JAC_38_Porta",
+   "type": "hinge",
+   "angle": -96,
+   "rooms": "club,spa",
+   "pivot": [
+    0.53,
+    0,
+    -16.35
+   ],
+   "r": 180,
+   "offset": [
+    0.53,
+    0,
+    0
+   ]
+  }
+ ],
+ "spawn": {
+  "p": [
+   0.9,
+   0.02,
+   9.3
+  ],
+  "yaw": 0
+ },
+ "spaCenter": [
+  -4.1,
+  0,
+  -21.45
+ ]
+}

@@ -1,0 +1,14 @@
+# dependências e build
+node_modules/
+dist/
+
+# intermediários que se regeneram
+blender/export/
+*.blend1
+*.blend2
+
+# locais
+.claude/settings.local.json
+*.log
+Thumbs.db
+.DS_Store

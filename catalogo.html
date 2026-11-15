@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de peças</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Segoe UI", system-ui, sans-serif; }
+    body { margin: 0; padding: 12px; background: #0d0710; color: #f4e6f0; }
+    h1 { margin: 0 0 4px; font-size: 18px; font-weight: 600; }
+    p { margin: 0 0 12px; font-size: 12px; opacity: .7; }
+    h2 { margin: 18px 0 8px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #19f0e0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--tile, 170px), 1fr)); gap: 8px; }
+    figure { margin: 0; border: 1px solid #3a1730; border-radius: 8px; overflow: hidden; background: #160a16; }
+    figure img { display: block; width: 100%; aspect-ratio: 1; }
+    figcaption { padding: 6px 8px 8px; font-size: 11px; line-height: 1.35; }
+    figcaption b { display: block; font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
+    figcaption span { opacity: .65; }
+  </style>
+</head>
+<body>
+  <h1>Catálogo de peças</h1>
+  <p id="info">Carregando…</p>
+  <div id="out"></div>
+  <script type="module" src="/src/tools/catalogo.js"></script>
+</body>
+</html>
