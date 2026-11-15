@@ -5,7 +5,7 @@ import { createWaterMaterial, Steam } from './water.js';
 import { batchStatic, isKitLevel, prepareKit } from '../level/kit.js';
 import { FX } from '../level/shaderFx.js';
 import { StringCurtain } from './stringCurtain.js';
-import { createHologram } from './hologram.js';
+import { createHologram, createHoloSign } from './hologram.js';
 
 // Convenções lidas do cenário (vale para o GLB exportado do Blender e para o
 // cenário provisório). Propriedades personalizadas do Blender chegam em userData.
@@ -68,15 +68,17 @@ export class World {
     this.inWater = false;
     if (this.kit) {
       const special = [];
+      const SPECIAL = /^KIT_(Cortina_Fios_Neon|Holo_Projetor|Placa_Lotus|Placa_Glifos)/;
       root.traverse((o) => {
-        if (/^KIT_Cortina_Fios_Neon/.test(o.name) || /^KIT_Holo_Projetor/.test(o.name)) {
-          if (!ancestor(o, (p) => /^KIT_(Cortina_Fios_Neon|Holo_Projetor)/.test(p.name))) special.push(o);
-        }
+        if (SPECIAL.test(o.name) && !ancestor(o, (p) => SPECIAL.test(p.name))) special.push(o);
       });
       for (const piece of special) {
         const room = ancestor(piece, isRoom) || root;
-        if (piece.name.startsWith('KIT_Holo')) this.fx.push(createHologram(piece, room));
-        else this.fx.push(new StringCurtain(piece, room));
+        let fx = null;
+        if (piece.name.startsWith('KIT_Holo')) fx = createHologram(piece, room);
+        else if (piece.name.startsWith('KIT_Placa')) fx = createHoloSign(piece, room);
+        else fx = new StringCurtain(piece, room);
+        if (fx) this.fx.push(fx);
       }
       root.updateMatrixWorld(true);
     }
@@ -278,10 +280,18 @@ export class World {
     for (const r of this.rooms) r.node.visible = r.show;
   }
 
-  // jacuzzi ao alcance: o jogador está na plataforma ou nos degraus em volta dela
-  poolInReach(pos) {
+  // Jacuzzi ao alcance: o jogador está perto da borda (nos degraus de cima da plataforma
+  // ou já dentro da água) E olhando para a banheira. Sem a segunda condição o aviso
+  // aparecia de costas para ela ou junto dos móveis em volta.
+  poolInReach(pos, dir) {
     for (const p of this.pools) {
-      if (pos.y < p.y + 0.5 && Math.hypot(pos.x - p.x, pos.z - p.z) < p.r + 1.75) return p;
+      const dx = p.x - pos.x;
+      const dz = p.z - pos.z;
+      const d = Math.hypot(dx, dz);
+      if (pos.y > p.y + 0.5 || d > p.r + 1.3) continue;
+      // dentro da água qualquer direção serve; fora, tem de estar de frente
+      if (d > p.r && (dx * dir.x + dz * dir.z) / d < 0.6) continue;
+      return p;
     }
     return null;
   }

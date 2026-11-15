@@ -10,7 +10,7 @@ const WetShader = {
     color: { value: null },
     tDiffuse: { value: null },
     textureMatrix: { value: null },
-    uStrength: { value: 0.9 },
+    uStrength: { value: 0.7 },
     uF0: { value: 0.2 },
     uBlur: { value: new THREE.Vector2(0.6, 3.2) },
     uDistort: { value: 0.012 },

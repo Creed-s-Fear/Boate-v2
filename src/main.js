@@ -85,7 +85,11 @@ function action() {
     const verb = reach.target === 1 ? 'Fechar' : 'Abrir';
     return { label: `${verb} porta`, short: verb, run: () => world.toggleDoor(reach, player.position) };
   }
-  if (pool) return { label: 'Entrar na jacuzzi', short: 'Entrar', run: enterPool };
+  if (pool) {
+    // já andando dentro da água, a ação é sentar
+    const label = world.inWater ? 'Sentar na água' : 'Entrar na jacuzzi';
+    return { label, short: world.inWater ? 'Sentar' : 'Entrar', run: enterPool };
+  }
   return null;
 }
 function enterPool() {
@@ -125,7 +129,7 @@ function simulate(dt) {
   // o que está ao alcance da tecla E
   _dir.set(-Math.sin(player.yaw), 0, -Math.cos(player.yaw));
   reach = player.enabled ? world.doorInReach(player.position, _dir) : null;
-  pool = player.enabled ? world.poolInReach(player.position) : null;
+  pool = player.enabled ? world.poolInReach(player.position, _dir) : null;
 }
 
 function frame(now) {

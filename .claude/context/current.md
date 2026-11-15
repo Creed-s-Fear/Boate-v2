@@ -17,6 +17,7 @@
 
 ## Ferramentas
 - `npm run dev` (porta 5173), `npm run build`, `npm run planta` (gera layout.json), `npm run otimizar` (GLB bruto -> web).
+- `npm run conferir` (peças atravessadas ou sem apoio na planta), `npm run publicar` (atualiza o link público).
 - `catalogo.html` (só em dev): miniaturas das peças; `tools/*-glb.mjs`: inspeção de GLB.
 - Repositório: `Creed-s-Fear/boate` no GitHub (privado), ramo `main`. `blender/export/` e `dist/` ficam fora do git.
 - Link para jogar: `https://creed-s-fear.github.io/lotus-lounge/` (repositório público `Creed-s-Fear/lotus-lounge`, só o build).
@@ -36,4 +37,4 @@
 - Toque não foi testado em celular de verdade.
 
 ## Última sessão
-- `sessions/2026-11-15-1545-link-jogavel.md` (antes: `1525-github`, `1455-jacuzzi-e-shaders`, `1330-base-e-montagem`)
+- `sessions/2026-11-15-1620-correcoes-e-detalhe.md` (antes: `1545-link-jogavel`, `1525-github`, `1455-jacuzzi-e-shaders`)

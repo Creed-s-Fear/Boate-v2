@@ -8,11 +8,38 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 // Presets de qualidade. `dpr` é o teto do pixel ratio; `reflection` é a fração da
 // resolução usada no reflexo do piso (0 desliga o passe extra de reflexo).
 export const PRESETS = {
-  baixa: { dpr: 1.0, msaa: 0, reflection: 0.0, bloom: 0.42 },
-  media: { dpr: 1.25, msaa: 2, reflection: 0.4, bloom: 0.45 },
-  alta: { dpr: 1.75, msaa: 4, reflection: 0.6, bloom: 0.48 },
+  baixa: { dpr: 1.0, msaa: 0, reflection: 0.0, bloom: 0.34 },
+  media: { dpr: 1.25, msaa: 2, reflection: 0.4, bloom: 0.37 },
+  alta: { dpr: 1.75, msaa: 4, reflection: 0.6, bloom: 0.4 },
 };
 export const PRESET_ORDER = ['baixa', 'media', 'alta'];
+
+// Antes do bloom: comprime os picos de brilho (reflexo de luz em superfície lisa chega a
+// 10x o branco e vira um clarão que ofusca). Abaixo do joelho nada muda; acima, a curva
+// achata e o pico fica limitado. O neon continua brilhando, só os estouros somem.
+const HighlightShader = {
+  name: 'HighlightShader',
+  uniforms: { tDiffuse: { value: null }, uKnee: { value: 1.7 }, uRange: { value: 1.1 } },
+  vertexShader: /* glsl */ `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }`,
+  fragmentShader: /* glsl */ `
+    uniform sampler2D tDiffuse;
+    uniform float uKnee, uRange;
+    varying vec2 vUv;
+    void main() {
+      vec3 c = max(texture2D(tDiffuse, vUv).rgb, 0.0);
+      float l = max(c.r, max(c.g, c.b));
+      if (l > uKnee) {
+        float x = l - uKnee;
+        c *= (uKnee + uRange * x / (x + uRange)) / l; // tende a joelho + faixa, nunca passa
+      }
+      gl_FragColor = vec4(c, 1.0);
+    }`,
+};
 
 // Passe final barato: vinheta, leve aberração cromática nas bordas e granulação.
 const FinishShader = {
@@ -61,7 +88,7 @@ export class Graphics {
     });
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.0;
+    this.renderer.toneMappingExposure = 0.95;
     this.renderer.info.autoReset = false;
 
     this.quality = 'alta';
@@ -99,6 +126,7 @@ export class Graphics {
     });
     this.composer = new EffectComposer(this.renderer, target);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
+    this.composer.addPass(new ShaderPass(HighlightShader));
     this.bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), p.bloom, 0.5, 1.0);
     this.composer.addPass(this.bloom);
     this.finish = new ShaderPass(FinishShader);

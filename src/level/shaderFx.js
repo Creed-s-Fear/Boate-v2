@@ -69,12 +69,38 @@ function patch(mat, key, { vertex = '', color = '', emissive = '', roughness = '
   mat.customProgramCacheKey = () => 'fx:' + key;
 }
 
-// tubo de neon: miolo quente e claro, borda mais saturada, tremor leve
+// neon e fitas de LED: miolo claro, borda mais saturada, pontinhos de LED ao longo da
+// fita e um pulso de luz que corre por ela
 const NEON = /* glsl */ `
   float fxF = fxFacing();
   diffuseColor.rgb *= 0.62 + 0.38 * fxF;
-  diffuseColor.rgb += vec3(0.5) * pow(fxF, 5.0);
-  diffuseColor.rgb *= 0.95 + 0.05 * sin(uFxTime * 7.0 + vFxWorld.x * 2.7 + vFxWorld.z * 3.1);
+  diffuseColor.rgb += vec3(0.3) * pow(fxF, 5.0);
+  float fxS = vFxWorld.x + vFxWorld.y + vFxWorld.z;
+  diffuseColor.rgb *= 0.86 + 0.14 * cos(fxS * 170.0);
+  diffuseColor.rgb *= 0.9 + 0.28 * pow(0.5 + 0.5 * sin(fxS * 2.4 - uFxTime * 2.0), 10.0);
+`;
+// vidro de copos e garrafas: borda mais opaca e clara (espessura) e riscos de reflexo
+// só nas partes curvas (em vidro plano o risco viraria um clarão)
+const GLASS = /* glsl */ `
+  float fxF = fxFacing();
+  float fxRim = pow(1.0 - fxF, 2.2);
+  diffuseColor.a = clamp(diffuseColor.a + fxRim * 0.6, 0.0, 0.95);
+  diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.84, 0.95), fxRim * 0.45);
+`;
+const GLASS_E = /* glsl */ `
+  float fxStreak = pow(max(0.0, sin(vFxN.x * 9.0 + vFxN.y * 4.0)), 24.0) * smoothstep(0.03, 0.3, 1.0 - fxF);
+  totalEmissiveRadiance += vec3(1.0, 0.78, 0.93) * (fxRim * 0.3 + fxStreak * 0.3);
+`;
+// líquidos: brilham de dentro (bar de neon), borda mais densa e bolhinhas subindo
+const LIQUID = /* glsl */ `
+  float fxF = fxFacing();
+  diffuseColor.a = clamp(diffuseColor.a + pow(1.0 - fxF, 2.0) * 0.3, 0.0, 0.97);
+  vec2 fxB = vec2((vFxWorld.x + vFxWorld.z) * 140.0, vFxWorld.y * 90.0 - uFxTime * 1.6);
+  float fxBub = step(0.93, fxHash(floor(fxB))) * (1.0 - smoothstep(0.1, 0.38, length(fract(fxB) - 0.5)));
+  diffuseColor.rgb += vec3(fxBub * 0.5);
+`;
+const LIQUID_E = /* glsl */ `
+  totalEmissiveRadiance += diffuseColor.rgb * (0.3 + 0.2 * sin(vFxWorld.y * 60.0 + uFxTime * 2.0));
 `;
 // telas: linhas de "dados" correndo
 const SCREEN = /* glsl */ `
@@ -100,19 +126,29 @@ const marble = (vein) => /* glsl */ `
   diffuseColor.rgb = diffuseColor.rgb * (0.7 + 0.6 * fxNoise3(fxP * 0.55 + 4.0)) + vec3(${vein}) * fxVein;
 `;
 const MARBLE_R = /* glsl */ `
-  roughnessFactor = clamp(roughnessFactor + fxVein * 0.25, 0.04, 1.0);
+  roughnessFactor = clamp(roughnessFactor + fxVein * 0.25, 0.11, 1.0);
 `;
 // piso molhado: poças lisas e escuras, resto mais fosco
 const WET = /* glsl */ `
   float fxPud = smoothstep(0.36, 0.6, fxFbm(vFxWorld.xz * 0.45));
   diffuseColor.rgb *= mix(1.25, 0.8, fxPud);
 `;
+// (0.1 de rugosidade mínima: abaixo disso as luzes viram pontos de reflexo que ofuscam)
 const WET_R = /* glsl */ `
-  roughnessFactor = clamp(mix(roughnessFactor * 2.4, roughnessFactor * 0.45, fxPud), 0.04, 1.0);
+  roughnessFactor = clamp(mix(roughnessFactor * 2.4, roughnessFactor * 0.6, fxPud), 0.1, 1.0);
 `;
-// veludo e cetim: brilho de borda, como tecido de pelo
+// veludo e cetim (sofás, pufes, banquetas): grão fino do tecido, manchas de pelo
+// "amassado" que mudam o brilho e a cor, e brilho de borda
+const VELVET_C = /* glsl */ `
+  float fxGrain = fxNoise(vFxWorld.xz * 160.0 + vFxWorld.y * 97.0);
+  float fxNap = fxNoise3(vFxWorld * 5.5);
+  diffuseColor.rgb *= (0.84 + 0.32 * fxNap) * (0.93 + 0.14 * fxGrain);
+`;
+const VELVET_R = /* glsl */ `
+  roughnessFactor = clamp(roughnessFactor - 0.25 * fxNap, 0.3, 1.0);
+`;
 const VELVET = /* glsl */ `
-  totalEmissiveRadiance += diffuseColor.rgb * pow(1.0 - fxFacing(), 3.0) * 0.55;
+  totalEmissiveRadiance += diffuseColor.rgb * pow(1.0 - fxFacing(), 3.0) * (0.35 + 0.5 * fxNap);
 `;
 // cortinas de tecido: balanço leve e abertura em volta do jogador (as salas ficam na
 // origem, então a posição do lote já é a posição no mundo)
@@ -139,7 +175,9 @@ export function applyFx(mat) {
   else if (n === 'KIT_j_marble') patch(mat, 'marble-j', { color: marble('0.42, 0.11, 0.23'), roughness: MARBLE_R });
   else if (n === 'KIT_marble') patch(mat, 'marble-k', { color: marble('0.26, 0.24, 0.28'), roughness: MARBLE_R });
   else if (n === 'KIT_floor_wet' || n === 'KIT_j_floor') patch(mat, 'wet', { color: WET, roughness: WET_R });
-  else if (/velvet|satin/.test(n)) patch(mat, 'velvet', { emissive: VELVET });
+  else if (/velvet|satin/.test(n)) patch(mat, 'velvet', { color: VELVET_C, roughness: VELVET_R, emissive: VELVET });
+  else if (/^KIT_(glass$|glass_smoke|glass_wine|glass_frost|ice|j_crystal)/.test(n)) patch(mat, 'glass', { color: GLASS, emissive: GLASS_E });
+  else if (/^KIT_(liq_|j_amber)/.test(n)) patch(mat, 'liquid', { color: LIQUID, emissive: LIQUID_E });
   else if (/^KIT_curtain/.test(n)) patch(mat, 'curtain', { vertex: CURTAIN_V, color: CURTAIN_C });
   return mat;
 }

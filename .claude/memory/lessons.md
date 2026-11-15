@@ -29,6 +29,10 @@
 - O que a tecla E alcança deve ser calculado no passo de simulação, não no quadro: em aba em segundo plano o quadro não roda.
 - `logging.disable(logging.INFO)` em volta da exportação glTF corta o log gigante do exportador no retorno do MCP.
 
+- Posicionar por ângulo e raio em volta da plataforma colide com móveis: rodar `npm run conferir` depois de mexer na planta.
+- Rugosidade abaixo de 0,1 com luz pontual gera ponto de reflexo de 10x o branco: o bloom transforma em clarão.
+- Risco de reflexo por normal em vidro plano vira clarão quando a câmera gira: restringir às partes curvas.
+
 ## Painel do navegador
 - Aba em segundo plano não apresenta quadros (captura preta) e limita o requestAnimationFrame; usar `__game.sim()` e trazer a aba para frente.
 - Editar código recarrega todas as abas do jogo, inclusive a que o Pedro está usando.

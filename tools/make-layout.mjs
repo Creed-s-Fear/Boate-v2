@@ -102,9 +102,9 @@ const BX = -4.1;
   const top = 0.13 + 0.75;
   [x, z] = at(0.02, 0.3);
   add('club', i === 1 ? 'KIT_Narguile' : 'KIT_Balde_Gelo', x, top, z, 30);
-  [x, z] = at(-0.24, 0.42);
+  [x, z] = at(-0.29, 0.44);
   add('club', i === 1 ? 'KIT_Copo_Whisky' : 'KIT_Taca_Champanhe', x, top, z, 0);
-  [x, z] = at(0.25, 0.2);
+  [x, z] = at(0.29, 0.18);
   add('club', i === 1 ? 'KIT_Copo_Whisky' : 'KIT_Taca_Champanhe', x, top, z, 0);
   [x, z] = at(0.2, 0.52);
   add('club', 'KIT_Luminaria_Cubo', x, top, z, 15);
@@ -118,7 +118,7 @@ const BX = -4.1;
 for (const z of [3.4, -2.6]) {
   add('club', 'KIT_Biombo_Trelica', -5.2, 0, z, 0);
   add('club', 'KIT_Biombo_Trelica', -3.86, 0, z, 0);
-  add('club', 'KIT_Planta_Vaso', -2.95, 0, z, 40);
+  add('club', 'KIT_Planta_Vaso', -2.7, 0, z, 40);
 }
 for (const z of [8.4, 3.4, -2.6, -8.4]) add('club', 'KIT_Arandela', -HW + 0.14, 2.05, z + 0.62, 90);
 
@@ -294,25 +294,25 @@ for (const sx of [-2.6, 2.6]) {
   spa('JAC_07_Almofada', sx + 0.8, 0.44, -4.38, -12);
   spa('JAC_17_Luminaria_Piso', sx + Math.sign(sx) * 1.6, 0, -3.72, 0);
 }
-for (const sx of [-0.85, 0.85]) {
+for (const sx of [-1.02, 1.02]) {
   spa('JAC_09_Mesa_Sofa', sx, 0, -4.5, 0);
   spa('JAC_18_Luminaria_Mesa', sx, 0.73, -4.5, 0);
 }
-spa('JAC_26_Portavela', -0.85 + 0.14, 0.73, -4.4, 0);
+spa('JAC_26_Portavela', -1.02 + 0.13, 0.73, -4.42, 0);
 spa('JAC_13_Vaso_Alto', 0, 0, -4.48, 0);
 spa('JAC_11_Planta_Folha_Larga', 0, 0.5, -4.48, 0);
 for (const sx of [-4.42, 4.42]) {
   spa('JAC_13_Vaso_Alto', sx, 0, -4.42, 0);
   spa('JAC_12_Palmeira', sx, 0.5, -4.42, sx > 0 ? 90 : 0);
 }
-spa('JAC_13_Vaso_Alto', 4.42, 0, 4.42, 0);
-spa('JAC_11_Planta_Folha_Larga', 4.42, 0.5, 4.42, 120);
+spa('JAC_13_Vaso_Alto', 4.5, 0, 4.5, 0);
+spa('JAC_11_Planta_Folha_Larga', 4.5, 0.5, 4.5, 120);
 spaLight('#ff4f9a', 4, 6, 0, 1.9, -3.6);
 
 // espreguiçadeiras (pés virados para a banheira) e mesas pedestal com bebidas
 // A porta fica no canto frente-esquerda (x -5, z 4.1): essa faixa fica livre para entrar.
 spa('JAC_06_Chaise', 1.15, 0, 3.95, -164);
-spa('JAC_06_Chaise', 3.4, 0, 3.4, -135);
+spa('JAC_06_Chaise', 3.12, 0, 3.12, -135); // cabeceira livre do vaso do canto
 const M1 = [2.3, 4.35];
 spa('JAC_08_Mesa_Pedestal', M1[0], 0, M1[1], 0);
 spa('JAC_24_Bandeja', M1[0], 0.58, M1[1], 0);
@@ -330,25 +330,27 @@ spa('JAC_26_Portavela', M2[0] - 0.2, 0.58, M2[1] - 0.11, 0);
 const AP = [4.72, 0.75];
 spa('JAC_10_Aparador', AP[0], 0, AP[1], -90);
 const apTop = 0.81;
-spa('JAC_19_Toalha_Enrolada', AP[0], apTop, AP[1] - 0.62, 0);
-spa('JAC_19_Toalha_Enrolada', AP[0], apTop, AP[1] - 0.4, 0);
-spa('JAC_19_Toalha_Enrolada', AP[0], apTop + 0.19, AP[1] - 0.51, 0);
-spa('JAC_20_Toalha_Dobrada', AP[0], apTop, AP[1] + 0.02, 90);
-spa('JAC_20_Toalha_Dobrada', AP[0], apTop + 0.1, AP[1] + 0.02, 90);
-spa('JAC_30_Flor_Orquidea', AP[0] - 0.02, apTop + 0.2, AP[1] + 0.02, 60, { rx: -80 });
-spa('JAC_15_Vaso_Orquidea', AP[0], apTop, AP[1] + 0.58, 0);
-spa('JAC_14_Orquidea', AP[0], apTop + 0.2, AP[1] + 0.58, -90);
-spa('JAC_27_Difusor', AP[0] + 0.05, apTop, AP[1] + 0.3, 0);
-spa('JAC_28_Frasco_Spa', AP[0] - 0.08, apTop, AP[1] + 0.32, 0);
-spa('JAC_28_Frasco_Spa', AP[0] - 0.1, apTop, AP[1] - 0.2, 0);
-spa('JAC_29_Vela_Pilar', AP[0] + 0.08, apTop, AP[1] - 0.2, 0);
+// da esquerda para a direita do tampo (1,8 m): toalhas enroladas (atravessadas), vela e
+// frasco, toalhas dobradas com flor, difusor e frasco, orquídea no vaso
+spa('JAC_19_Toalha_Enrolada', AP[0], apTop, AP[1] - 0.74, 90);
+spa('JAC_19_Toalha_Enrolada', AP[0], apTop, AP[1] - 0.52, 90);
+spa('JAC_19_Toalha_Enrolada', AP[0], apTop + 0.19, AP[1] - 0.63, 90);
+spa('JAC_29_Vela_Pilar', AP[0] + 0.08, apTop, AP[1] - 0.3, 0);
+spa('JAC_28_Frasco_Spa', AP[0] - 0.08, apTop, AP[1] - 0.22, 0);
+spa('JAC_20_Toalha_Dobrada', AP[0], apTop, AP[1] + 0.08, 90);
+spa('JAC_20_Toalha_Dobrada', AP[0], apTop + 0.1, AP[1] + 0.08, 90);
+spa('JAC_30_Flor_Orquidea', AP[0] - 0.02, apTop + 0.2, AP[1] + 0.08, 60, { rx: -80 });
+spa('JAC_27_Difusor', AP[0] + 0.06, apTop, AP[1] + 0.38, 0);
+spa('JAC_28_Frasco_Spa', AP[0] - 0.09, apTop, AP[1] + 0.44, 0);
+spa('JAC_15_Vaso_Orquidea', AP[0], apTop, AP[1] + 0.68, 0);
+spa('JAC_14_Orquidea', AP[0], apTop + 0.2, AP[1] + 0.68, -90);
 spaLight('#ffb070', 4, 5, 4.0, 1.7, 0.75);
 
 // lanternas e velas em volta da plataforma; painéis treliçados perto da porta
-for (const a of [22, 158, 202, 338]) spa('JAC_16_Lanterna', 3.4 * Math.sin(a * DEG), 0, 3.4 * Math.cos(a * DEG), a);
+// lanternas em volta da plataforma, nos vãos entre os móveis (a de 22° ficava dentro da espreguiçadeira)
+for (const a of [58, 158, 202, 338]) spa('JAC_16_Lanterna', 3.4 * Math.sin(a * DEG), 0, 3.4 * Math.cos(a * DEG), a);
 for (const a of [68, 112, 248, 292]) spa('JAC_29_Vela_Pilar', 2.72 * Math.sin(a * DEG), 0.15, 2.72 * Math.cos(a * DEG), 0);
 for (const a of [90, 270]) spa('JAC_26_Portavela', 2.72 * Math.sin(a * DEG), 0.15, 2.72 * Math.cos(a * DEG), 0);
-spa('JAC_19_Toalha_Enrolada', 1.25, 0.76, 0.95, 40);
 spa('JAC_16_Lanterna', -0.55, 0, 4.62, 0);
 // painéis treliçados avulsos: têm verso liso, então ficam encostados na parede da alcova da cama
 add('club', 'JAC_37_Painel_Trelica', -3.75, 0, HL - 0.05, 180);
