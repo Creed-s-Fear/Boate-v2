@@ -36,6 +36,9 @@
 - `KIT_Sofa_Curvo` e `KIT_Cama_Redonda` já trazem almofadas modeladas; `JAC_05_Sofa` vem sem. Medir com `profile-glb.mjs` antes.
 - O link público só muda com `npm run publicar` e a página fica em cache: recarregar com `?v=N` para ver a versão nova.
 
+- Antes de abrir um repositório, ver o e-mail dos commits (`git log --format=%ae`): o do git global é pessoal.
+- Sobrescrever histórico não basta para esconder dado em repositório que vai ficar público: publicar como repositório novo.
+
 ## Painel do navegador
 - Aba em segundo plano não apresenta quadros (captura preta) e limita o requestAnimationFrame; usar `__game.sim()` e trazer a aba para frente.
 - Editar código recarrega todas as abas do jogo, inclusive a que o Pedro está usando.

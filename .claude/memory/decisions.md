@@ -40,7 +40,9 @@
 ## Processo
 - 2026-11-15 — Trava do Blender MCP passou a aceitar `c:/boate/` (e protege `c:/boate/.git`), editada a pedido do Pedro — projeto novo.
 - 2026-11-15 — Memória do projeto no mesmo esquema do Underclock, com `/retomar-boate` e `/salvar-boate` — padrão do Pedro.
-- 2026-11-15 — Código no GitHub em `Creed-s-Fear/boate`, privado — Pedro indicou a organização e confirmou manter privado.
-- 2026-11-15 — Link para jogar em repositório público separado (`Creed-s-Fear/lotus-lounge`, GitHub Pages) só com o build — código segue privado.
-- 2026-11-15 — Commits do repositório público usam o e-mail noreply do GitHub — o e-mail pessoal não deve aparecer em repositório público.
+- 2026-11-15 — Código no GitHub em `Creed-s-Fear/boate`, público desde a tarde de 15/11 — Pedro pediu "tudo público".
+- 2026-11-15 — Jogável no ramo `gh-pages` do próprio `boate`, servido pelo GitHub Pages — Pedro quis o jogável no mesmo repositório.
+- 2026-11-15 — Todo commit deste projeto usa o e-mail noreply do GitHub (configuração local do repositório) — o pessoal não pode aparecer.
+- 2026-11-15 — Repositório aberto como novo, com histórico regravado; o privado antigo virou arquivo — sobrescrever deixaria commits antigos alcançáveis.
+- 2026-11-15 — `Creed-s-Fear/lotus-lounge` (link antigo) mantido por enquanto, sem atualização — escolha do Pedro.
 - 2026-11-15 — `blender/export/` (GLB bruto) fora do git; o GLB otimizado e o .blend vão — o jogo roda só com o clone, o bruto se regenera.

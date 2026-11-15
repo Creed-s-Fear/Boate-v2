@@ -19,9 +19,9 @@
 - `npm run dev` (porta 5173), `npm run build`, `npm run planta` (gera layout.json), `npm run otimizar` (GLB bruto -> web).
 - `npm run conferir` (peças atravessadas ou sem apoio na planta), `npm run publicar` (atualiza o link público).
 - `catalogo.html` (só em dev): miniaturas das peças; `tools/*-glb.mjs`: inspeção de GLB.
-- Repositório: `Creed-s-Fear/boate` no GitHub (privado), ramo `main`. `blender/export/` e `dist/` ficam fora do git.
-- Link para jogar: `https://creed-s-fear.github.io/lotus-lounge/` (repositório público `Creed-s-Fear/lotus-lounge`, só o build).
-  Atualizar com `npm run publicar`.
+- Repositório: `Creed-s-Fear/boate` no GitHub (público), ramo `main`. `blender/export/` e `dist/` ficam fora do `main`.
+- Link para jogar: `https://creed-s-fear.github.io/boate/` (ramo `gh-pages` do mesmo repositório). Atualizar com `npm run publicar`.
+- Sobram o arquivo privado do histórico antigo e o `lotus-lounge` (link antigo, parado).
 - Blender 5.2 + MCP oficial; trava `blender_mcp_guard.py` liberada para `c:/boate/` em 2026-11-15 a pedido do Pedro.
 
 ## Em andamento
@@ -37,4 +37,4 @@
 - Toque não foi testado em celular de verdade.
 
 ## Última sessão
-- `sessions/2026-11-15-1650-sofas.md` (antes: `1620-correcoes-e-detalhe`, `1545-link-jogavel`, `1525-github`)
+- `sessions/2026-11-15-1715-repositorio-publico.md` (antes: `1650-sofas`, `1620-correcoes-e-detalhe`, `1545-link-jogavel`)

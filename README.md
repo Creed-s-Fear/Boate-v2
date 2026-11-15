@@ -3,7 +3,9 @@
 Ambiente 3D jogável no navegador: uma boate ligada por um corredor de neon e uma porta à sala da jacuzzi.
 Feito com three.js + Vite; o cenário é montado no Blender a partir das peças em `assets/drive`.
 
-Jogar no navegador: https://creed-s-fear.github.io/lotus-lounge/ (atualizar o link com `npm run publicar`).
+**Jogar no navegador:** https://creed-s-fear.github.io/boate/
+
+O jogo compilado fica no ramo `gh-pages` deste repositório; `npm run publicar` gera o build e atualiza esse ramo.
 
 ## Rodar
 
