@@ -6,14 +6,16 @@
 - Referências: duas imagens enviadas pelo Pedro (lounge neon e sala da jacuzzi). Nome provisório na tela: "Lótus Lounge".
 
 ## O que existe
-- Jogo em three.js + Vite: primeira pessoa (WASD, mouse, Shift, E abre porta, G troca qualidade), toque básico.
-- Cenário montado no Blender pelo MCP a partir de `blender/layout.json` (382 peças, 22 preenchimentos, 13 luzes).
+- Jogo em three.js + Vite: primeira pessoa (WASD, mouse, Shift, E interage, G troca qualidade), toque básico.
+- Cenário montado no Blender pelo MCP a partir de `blender/layout.json` (377 peças, 22 preenchimentos, 13 luzes).
 - 100 dos 104 modelos da pasta "3D Assets" do Drive em uso (kit da boate + conjunto da jacuzzi).
 - Porta com dobradiça entre corredor e jacuzzi; vão recortado na parede JAC_33.
-- Efeitos: bloom, reflexo de piso molhado, cortina de fios com física, holograma procedural (lótus).
-- Jacuzzi interativa: tecla E entra e sai (jogador sentado, olhos perto da água), água translúcida com espuma dos jatos, vapor em fiapos.
-- Shaders enxertados nos materiais do mapa todo: veios no mármore, poças, veludo, neon, telas, cortinas de tecido que reagem ao jogador.
-- Build de produção em `dist/`: cerca de 4 MB (modelo 2,6 MB; JS 0,9 MB).
+- Efeitos: bloom, reflexo de piso molhado, cortina de fios com física, holograma e placas holográficas procedurais.
+- Jacuzzi interativa: tecla E entra e sai (jogador sentado, olhos perto da água), água translúcida, vapor em fiapos.
+- Shaders enxertados nos materiais do mapa todo: mármore, poças, veludo, neon, telas, bebidas, cortinas que reagem ao jogador.
+- Carga otimizada: shaders compilados em paralelo, sala inicial primeiro e o resto em segundo plano, GLB em pré-carga.
+- Qualidade: nível inicial pela placa de vídeo, guardado no navegador, com queda automática conferida.
+- Build de produção em `dist/`: modelo 2,7 MB (~1 MB na rede com gzip) e JS 0,96 MB (0,25 MB com gzip).
 
 ## Ferramentas
 - `npm run dev` (porta 5173), `npm run build`, `npm run planta` (gera layout.json), `npm run otimizar` (GLB bruto -> web).
@@ -25,16 +27,18 @@
 - Blender 5.2 + MCP oficial; trava `blender_mcp_guard.py` liberada para `c:/boate/` em 2026-11-15 a pedido do Pedro.
 
 ## Em andamento
-- Pedro está testando o jogo no painel do navegador e dando retorno ao vivo.
+- Otimização para navegador e correção da cortina de fios (tremia com o jogador parado) prontas e testadas só na máquina local.
+- Ainda sem commit e sem publicar: o link público está na versão anterior.
 
 ## Próximos 3 passos
-1. Ouvir o retorno do Pedro sobre a jacuzzi nova (tecla E, água, vapor) e os shaders do mapa.
-2. Decidir se entram personagens (`Assets_Personagens.zip` ainda não baixado).
-3. Ajuste fino de luz e composição comparando com as duas imagens de referência.
+1. Com o OK do Pedro: `npm run publicar` e commit da otimização e da correção da cortina.
+2. Medir em placa integrada e em celular (o ajuste automático só foi testado com taxas simuladas).
+3. Decidir se entram personagens (`Assets_Personagens.zip` ainda não baixado) e som ambiente.
 
 ## Riscos
 - Cores de 5 materiais foram escolhidas pela referência (vieram brancos no GLB): Pedro precisa validar.
 - Toque não foi testado em celular de verdade.
+- Colisão de paredes e pisos agora é por caixa: conferida por caminhada automática, não por alguém jogando.
 
 ## Última sessão
-- `sessions/2026-11-15-1715-repositorio-publico.md` (antes: `1650-sofas`, `1620-correcoes-e-detalhe`, `1545-link-jogavel`)
+- `sessions/2026-11-15-1810-cortina-parado.md` (antes: `1745-otimizacao-navegador`, `1715-repositorio-publico`, `1650-sofas`)

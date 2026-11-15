@@ -4,9 +4,16 @@ import * as THREE from 'three';
 // jogador empurra os fios (eles contornam o corpo e são arrastados junto); ao soltar,
 // balançam e param sozinhos. A simulação roda em JS (uns 30 fios por cortina) e o
 // resultado vai para o shader por uma textura de 1 linha: 1 draw call por cortina.
+//
+// Contato com o corpo: o fio fica na superfície dele e perde só a velocidade que o faria
+// entrar (sem quique), então com o jogador parado ele assenta em vez de tremer. A parte
+// da velocidade que corre em volta do corpo é mantida: é ela que deixa o fio contornar o
+// jogador quando o lugar de repouso ficou do outro lado.
 
 const BODY_RADIUS = 0.4;
 const BODY_HEIGHT = 1.05; // altura em que o corpo toca o fio
+const SLIDE = 5; // m/s²: empurrão em volta do corpo para o fio que precisa contorná-lo
+const FRICTION = 4; // 1/s: atrito do fio escorregando no corpo (sem ele o fio fica indo e voltando)
 const _p = new THREE.Vector3();
 const _local = new THREE.Vector3();
 
@@ -111,10 +118,16 @@ export class StringCurtain {
     this.v = new Float32Array(n * 2);
     this.w2 = new Float32Array(n); // frequência do pêndulo (g / comprimento), com leve variação
     this.damp = new Float32Array(n);
+    // Lado de cada fio (alternado) e quanto ele se afasta do trilho enquanto encosta no
+    // corpo: os fios se abrem em leque em volta do jogador em vez de empilhar num ponto só.
+    this.side = new Float32Array(n);
+    this.latX = alongX ? 0 : 1; // direção perpendicular ao trilho
+    this.latZ = alongX ? 1 : 0;
     for (let s = 0; s < n; s++) {
       const r = Math.abs(Math.sin(s * 12.9898) * 43758.5453) % 1;
       this.w2[s] = (9.8 / length) * (0.9 + 0.25 * r);
       this.damp[s] = 0.75 + 0.5 * r;
+      this.side[s] = (s % 2 ? 1 : -1) * (0.03 + 0.05 * r);
     }
     this.hcBody = THREE.MathUtils.clamp((top - BODY_HEIGHT) / length, 0.3, 1);
     this.data = new Float32Array(n * 4);
@@ -162,14 +175,20 @@ export class StringCurtain {
 
     const touching = near && _local.y < this.top && _local.y + 1.75 > this.bottom;
     const h = Math.min(dt, 0.033);
-    const { p, v, rest, data } = this;
+    const { p, v, rest, data, side } = this;
     const maxD = this.length * 0.85;
     let energy = 0;
     for (let s = 0; s < this.n; s++) {
       let px = p[s * 2], pz = p[s * 2 + 1], vx = v[s * 2], vz = v[s * 2 + 1];
+      // Para onde o pêndulo puxa: o repouso. Com o corpo em cima do repouso, um pouco para o
+      // lado do fio (decidido pelo repouso, que não muda, para não ficar ligando e desligando).
+      const covered = touching && Math.hypot(rest[s * 2] - _local.x, rest[s * 2 + 1] - _local.z) < BODY_RADIUS;
+      const bias = covered ? side[s] : 0;
+      const bx = this.latX * bias;
+      const bz = this.latZ * bias;
       // pêndulo amortecido + uma brisa mínima para a cortina nunca ficar "congelada"
-      vx += (-this.w2[s] * px - this.damp[s] * vx) * h;
-      vz += (-this.w2[s] * pz - this.damp[s] * vz) * h;
+      vx += (-this.w2[s] * (px - bx) - this.damp[s] * vx) * h;
+      vz += (-this.w2[s] * (pz - bz) - this.damp[s] * vz) * h;
       vx += Math.sin(time * 1.1 + s * 1.7) * 0.012 * h;
       vz += Math.cos(time * 0.9 + s * 2.3) * 0.012 * h;
       px += vx * h;
@@ -181,17 +200,34 @@ export class StringCurtain {
         const cz = rest[s * 2 + 1] + pz - _local.z;
         const d = Math.hypot(cx, cz);
         if (d < BODY_RADIUS) {
-          // o fio encosta no corpo: fica na superfície dele e ganha a velocidade do jogador
-          let nx = 1, nz = 0;
+          // direção corpo -> fio; bem no centro do corpo o fio sai pelo lado dele
+          let nx = this.latX * Math.sign(side[s]);
+          let nz = this.latZ * Math.sign(side[s]);
           if (d > 1e-4) { nx = cx / d; nz = cz / d; }
-          else if (playerVel.x * playerVel.x + playerVel.z * playerVel.z > 1e-6) {
-            const l = Math.hypot(playerVel.x, playerVel.z);
-            nx = playerVel.x / l; nz = playerVel.z / l;
-          }
+          // fica na superfície do corpo...
           px = _local.x + nx * BODY_RADIUS - rest[s * 2];
           pz = _local.z + nz * BODY_RADIUS - rest[s * 2 + 1];
-          vx = playerVel.x * 0.9 + nx * 0.3;
-          vz = playerVel.z * 0.9 + nz * 0.3;
+          // ...e perde só a velocidade que o faria entrar nele (medida em relação ao corpo:
+          // o jogador andando empurra o fio; parado, o fio assenta sem quicar)
+          const vn = (vx - playerVel.x) * nx + (vz - playerVel.z) * nz;
+          if (vn < 0) { vx -= nx * vn; vz -= nz * vn; }
+          // atrito do fio escorregando em volta do corpo
+          const tx = -nz;
+          const tz = nx;
+          const vt = (vx - playerVel.x) * tx + (vz - playerVel.z) * tz;
+          const lost = vt * (1 - Math.exp(-FRICTION * h));
+          vx -= tx * lost;
+          vz -= tz * lost;
+          // Repouso do outro lado do corpo: o fio escorrega em volta dele pelo caminho mais
+          // curto (empatado, cada fio vai para o seu lado) até poder voltar ao lugar.
+          const rx = rest[s * 2] + bx - _local.x;
+          const rz = rest[s * 2 + 1] + bz - _local.z;
+          if (rx * nx + rz * nz < 0) {
+            const along = rx * tx + rz * tz; // quanto o repouso está para o lado da tangente
+            const dir = Math.abs(along) > 0.02 ? Math.sign(along) : Math.sign(side[s]);
+            vx += tx * dir * SLIDE * h;
+            vz += tz * dir * SLIDE * h;
+          }
           hcTarget = this.hcBody;
         }
       }

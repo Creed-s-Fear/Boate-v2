@@ -2,6 +2,7 @@
 > Só itens abertos. Resolvido sai daqui e vira "Resolvido:" na sessão do dia.
 
 ## Aguardando o Pedro
+- [ ] (2026-11-15) Publicar a otimização para navegador e a correção da cortina de fios (`npm run publicar`) e fazer o commit — OK do Pedro
 - [ ] (2026-11-15) Validar a jacuzzi nova (tecla E, profundidade, água, vapor) e os shaders espalhados pelo mapa — Pedro
 - [ ] (2026-11-15) Personagens: usar `Assets_Personagens.zip` do Drive? Ainda não baixado — Pedro
 - [ ] (2026-11-15) Validar as cores dos 5 materiais que vieram brancos (parede, piso e mármore da jacuzzi, mármore do bar, piso molhado) — Pedro

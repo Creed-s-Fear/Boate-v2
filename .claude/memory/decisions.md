@@ -21,6 +21,7 @@
 - 2026-11-15 — Cortina de fios: um pêndulo por fio simulado em JS, deslocamento no shader por textura — física real com 1 draw call.
 - 2026-11-15 — Holograma refeito em shader (lótus, anéis, faixas, partículas); só a base da peça original fica — a peça era lisa demais.
 - 2026-11-15 — Banheira atravessável com degraus invisíveis e passo lento na água — Pedro quis entrar na jacuzzi.
+- 2026-11-15 — Fio encostado no corpo perde só a velocidade de entrada, escorrega com atrito e contorna o corpo — parado, tremia e ficava preso.
 
 ## Jacuzzi e shaders
 - 2026-11-15 — Tecla E é contextual (sair da jacuzzi > porta > entrar na jacuzzi) — pedido do Pedro: uma tecla só para interagir.
@@ -36,6 +37,15 @@
 - 2026-11-15 — Aviso da jacuzzi exige estar perto da borda e de frente para ela — aparecia junto dos móveis e de costas.
 - 2026-11-15 — Placas holográficas da parede usam um quad com paralaxe em camadas, mais flor 3D na do lótus — mesmo nível do projetor.
 - 2026-11-15 — Picos de brilho são comprimidos antes do bloom (joelho 1,7) e superfícies lisas têm rugosidade mínima 0,1 — ofuscava.
+
+## Desempenho
+- 2026-11-15 — Shaders são pedidos todos na carga e compilados em paralelo pelo navegador — compilar no primeiro desenho travava a página.
+- 2026-11-15 — Antes do botão "Entrar" só a sala inicial fica pronta; o resto termina em segundo plano — o jogador leva segundos até a porta.
+- 2026-11-15 — Paredes inteiras, pisos e colunas colidem como caixas; triângulos só onde há vão ou degrau — mesma colisão, bem menos triângulos.
+- 2026-11-15 — O endereço do GLB é resolvido no build e vai no index.html como pré-carga, com resumo do conteúdo — baixa junto e não pega cache velho.
+- 2026-11-15 — Qualidade inicial pela placa de vídeo e guardada no navegador; a tecla G continua mandando — cada visitante começa num nível que roda.
+- 2026-11-15 — Redução automática de resolução ou nível só vale se a taxa de quadros melhorar; senão é desfeita — taxa travada por fora rebaixava à toa.
+- 2026-11-15 — Com o menu na frente o jogo desenha poucas vezes por segundo — a cena fica desfocada atrás do cartão e a placa descansa.
 
 ## Processo
 - 2026-11-15 — Trava do Blender MCP passou a aceitar `c:/boate/` (e protege `c:/boate/.git`), editada a pedido do Pedro — projeto novo.
