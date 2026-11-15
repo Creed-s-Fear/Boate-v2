@@ -8,6 +8,8 @@
 - [ ] (2026-11-15) Acrescentar a Boate na tabela "Projetos com o esquema" do CLAUDE.md global — OK do Pedro
 - [ ] (2026-11-15) Fechar a janela do Blender comum (cena vazia) aberta no início da sessão, se ainda estiver aberta — Pedro
 
+- [ ] (2026-11-15) Apagar `boate-arquivo-privado` (histórico antigo) e `lotus-lounge` (link antigo, parado) quando não precisar — Pedro
+
 ## Ideias sem data
 - [ ] Efeito de mergulho (câmera abaixo da superfície) se o Pedro quiser a jacuzzi ainda mais funda.
 - [ ] 4 peças do kit sem uso: Cortina_Reta, Neon_Canto_Ciano, Neon_Curva_Ciano, Neon_Reto_Rosa.
