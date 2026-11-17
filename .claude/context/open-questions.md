@@ -15,3 +15,10 @@
 - [ ] 4 peças do kit sem uso: Cortina_Reta, Neon_Canto_Ciano, Neon_Curva_Ciano, Neon_Reto_Rosa.
 - [ ] Testar controles de toque em celular e medir desempenho em placa integrada.
 - [ ] Som ambiente e música (nada de áudio ainda).
+
+## Branch peekhole-gameplay (2026-11-16)
+- [ ] Commitar a branch e decidir se vai para a main / link público (precisa do OK do dono do repositório).
+- [ ] Expandir o mapa (recepção, vestiário, salas privativas) — hoje tudo cabe no terminal da entrada e na suíte.
+- [ ] Personagens 3D de verdade (Assets_Personagens.zip) no lugar dos bonecos de blocos.
+- [ ] Testar NPCs e 3ª pessoa em placa integrada e no celular (controle de toque não testado com o jogo).
+- [ ] Validar a posição das dançarinas (Nyx na gaiola, Kiara no palco) e do segurança.

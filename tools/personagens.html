@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Personagens — inspeção</title>
+  <style>
+    body { margin: 0; background: #2a2a30; color: #fff; font: 12px sans-serif; }
+    canvas { display: block; }
+    #s { position: fixed; top: 6px; left: 8px; }
+  </style>
+</head>
+<body>
+  <div id="s">carregando…</div>
+  <!-- Inspeção dos personagens com esqueleto (só desenvolvimento, não entra no build):
+       /tools/personagens.html?pose=walk&t=0.4&yaw=0&zoom=1
+       window.__at(pose, t, yaw, zoom, alvo) reposiciona sem recarregar. -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+    import { SkinnedCharacter } from '/src/game/skinnedCharacter.ts';
+
+    const MODELS = [
+      ['cyber_a', true], ['cyber_b', false], ['cyber_c', true], ['cyber_d', true], ['tropical', true],
+    ];
+    const r = new THREE.WebGLRenderer({ antialias: true });
+    r.setPixelRatio(devicePixelRatio);
+    r.setSize(innerWidth, innerHeight);
+    r.toneMapping = THREE.ACESFilmicToneMapping;
+    document.body.append(r.domElement);
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x3a3a42);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x555555, 2.4));
+    const sun = new THREE.DirectionalLight(0xffffff, 2.2);
+    sun.position.set(2, 4, 5);
+    scene.add(sun);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 4), new THREE.MeshStandardMaterial({ color: 0x55555f, roughness: 0.9 }));
+    floor.rotation.x = -Math.PI / 2;
+    scene.add(floor);
+    const cam = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.05, 100);
+    cam.layers.enable(1);
+
+    const loader = new GLTFLoader();
+    loader.setMeshoptDecoder(MeshoptDecoder);
+    const chars = [];
+    for (const [i, [file, armsUp]] of MODELS.entries()) {
+      const g = await loader.loadAsync(`/models/personagens/${file}.glb`);
+      const c = new SkinnedCharacter(g, { armsUp });
+      c.root.position.x = (i - 2) * 0.9;
+      scene.add(c.root);
+      chars.push({ file, c });
+    }
+
+    // ?fonte=Cyber_C_ondulado.glb põe o original (sem redução) à esquerda, para comparar
+    const fonte = new URLSearchParams(location.search).get('fonte');
+    if (fonte) {
+      const g = await loader.loadAsync(`/assets/personagens/fonte/${fonte}`);
+      g.scene.traverse((o) => { if (o.isMesh) o.position.set(0, 0, 0); });
+      g.scene.position.x = -3 * 0.9;
+      scene.add(g.scene);
+    }
+
+    // estado determinístico: recria a pose avançando passos fixos a partir de t = 0
+    window.__at = (pose = 'idle', t = 0, yaw = 0, zoom = 1, target = -99) => {
+      for (const { c } of chars) {
+        c.t = 0;
+        c.weight.idle = pose === 'idle' ? 1 : 0;
+        c.weight.walk = pose === 'walk' ? 1 : 0;
+        c.weight.dance = pose === 'dance' ? 1 : 0;
+        c.update(t, pose);
+      }
+      const cx = target > -50 ? (target - 2) * 0.9 : 0;
+      const d = 9 / zoom;
+      const cy = zoom > 2 ? 1.05 : 0.9;
+      cam.position.set(cx + Math.sin(yaw) * d, cy, Math.cos(yaw) * d);
+      cam.lookAt(cx, cy, 0);
+      r.render(scene, cam);
+      document.getElementById('s').textContent = `${pose} t=${t} yaw=${yaw} zoom=${zoom}  |  ${chars.map((x) => x.file).join('  ')}`;
+      return 'ok';
+    };
+    const q = new URLSearchParams(location.search);
+    window.__at(q.get('pose') || 'idle', Number(q.get('t') || 0), Number(q.get('yaw') || 0), Number(q.get('zoom') || 1), Number(q.get('alvo') ?? -99));
+    window.__ready = true;
+  </script>
+</body>
+</html>

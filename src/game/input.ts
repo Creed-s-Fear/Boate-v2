@@ -1,0 +1,67 @@
+/**
+ * Teclado + mouse (pointer lock). Estado lido por frame; `endFrame()` zera os deltas.
+ * Nenhum dado de input sai do cliente — quando houver multiplayer, o servidor
+ * deve receber apenas intenções (ex.: "mover para frente") e validar tudo.
+ */
+const MAX_MOUSE_DELTA = 200; // descarta picos de movementX/Y (bug conhecido de alguns browsers)
+
+export class Input {
+  private readonly down = new Set<string>();
+  private readonly pressed = new Set<string>();
+  mouseDX = 0;
+  mouseDY = 0;
+  wheel = 0;
+  locked = false;
+
+  constructor(private readonly canvas: HTMLCanvasElement) {
+    window.addEventListener('keydown', (e) => {
+      if (e.target instanceof HTMLInputElement) return;
+      if (!e.repeat) this.pressed.add(e.code);
+      this.down.add(e.code);
+      if (['Space', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.code)) e.preventDefault();
+    });
+    window.addEventListener('keyup', (e) => this.down.delete(e.code));
+    window.addEventListener('blur', () => this.down.clear());
+    document.addEventListener('mousemove', (e) => {
+      if (!this.locked) return;
+      this.mouseDX += clampDelta(e.movementX);
+      this.mouseDY += clampDelta(e.movementY);
+    });
+    window.addEventListener('wheel', (e) => { this.wheel += Math.sign(e.deltaY); }, { passive: true });
+    document.addEventListener('pointerlockchange', () => {
+      this.locked = document.pointerLockElement === this.canvas;
+      if (!this.locked) this.down.clear();
+    });
+  }
+
+  lock(): void {
+    try {
+      void Promise.resolve(this.canvas.requestPointerLock()).catch(() => undefined);
+    } catch {
+      /* pointer lock exige gesto do usuário; o overlay de pausa cobre a falha */
+    }
+  }
+
+  unlock(): void {
+    if (document.pointerLockElement) document.exitPointerLock();
+  }
+
+  isDown(code: string): boolean {
+    return this.down.has(code);
+  }
+
+  wasPressed(code: string): boolean {
+    return this.pressed.has(code);
+  }
+
+  endFrame(): void {
+    this.pressed.clear();
+    this.mouseDX = 0;
+    this.mouseDY = 0;
+    this.wheel = 0;
+  }
+}
+
+function clampDelta(v: number): number {
+  return Math.max(-MAX_MOUSE_DELTA, Math.min(MAX_MOUSE_DELTA, v));
+}

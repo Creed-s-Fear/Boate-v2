@@ -40,7 +40,8 @@ const levelPreload = {
 export default defineConfig({
   base: './',
   plugins: [levelPreload],
-  server: { port: 5173, strictPort: true, host: '127.0.0.1' },
+  // A API (server/) roda à parte; o proxy deixa jogo e API na mesma origem (cookie SameSite=Strict).
+  server: { port: 5173, strictPort: true, host: '127.0.0.1', proxy: { '/api': 'http://127.0.0.1:8787' } },
   build: {
     target: 'es2022',
     chunkSizeWarningLimit: 1200,

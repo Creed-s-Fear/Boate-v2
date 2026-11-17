@@ -12,3 +12,12 @@ blender/export/
 *.log
 Thumbs.db
 .DS_Store
+
+# servidor: segredos e estado local
+server/node_modules/
+.env
+.env.*
+!.env.example
+
+# fontes pesadas dos personagens (regeneram public/models/personagens com npm run personagens)
+assets/personagens/fonte/

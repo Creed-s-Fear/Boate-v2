@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: boate
+      POSTGRES_DB: boate
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?rode npm run env:init}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - boate-db:/var/lib/postgresql/data
+
+volumes:
+  boate-db:

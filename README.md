@@ -23,10 +23,27 @@ Abra `http://localhost:5173`. Para gerar a versão de produção: `npm run build
 | W A S D | andar |
 | Mouse | olhar |
 | Shift | correr |
-| E | interagir (abrir porta, entrar e sair da jacuzzi) |
-| G | trocar a qualidade (baixa, média, alta) |
+| E | interagir (terminal, bar, anfitriãs, sentar/levantar, porta, jacuzzi) |
+| V | alternar 1ª / 3ª pessoa (roda do mouse = zoom) |
+| C | agachar / levantar |
+| G | dançar |
+| Q | trocar a qualidade (baixa, média, alta) |
+| H / M | ajuda · som |
 
 `?stats` na URL mostra fps, draw calls e triângulos.
+
+## Jogo (regras vindas do PeekHole)
+
+Terminal da entrada (Lívia): pulseira de consumo, passe VIP, reserva da Suíte Jacuzzi, caixa
+eletrônico e armário (roupa). A pulseira libera o bar e as anfitriãs; o segurança (Bruno) só
+deixa passar pelo corredor quem tem VIP ou a suíte reservada. Anfitriãs (todas adultas, conteúdo
+não explícito) ganham interesse com conversa, drinks, gorjeta e dança; com ♥ 3/5 aceitam o
+convite para a suíte, onde há cenas (dança privada, champagne, conversa). Dançar na pista enche a
+vibe; bebidas sobem o buzz. Dinheiro, nome, roupa e VIP ficam salvos no navegador.
+
+Código do jogo em `src/game/` (TypeScript: regras, NPCs, personagens, cenas, câmera 3ª pessoa)
+e `src/ui/` (HUD, menu, minimapa, verificação de idade). Pontos de interação, assentos e rotas
+ficam em `src/game/venue.ts`. `npm run typecheck` confere os tipos.
 
 ## Como o cenário é feito
 

@@ -1,5 +1,10 @@
 # Estado atual — Boate (Lótus Lounge)
-> Retrato reescrito a cada /compress. Última atualização: 2026-11-15.
+> Retrato reescrito a cada /compress. Última atualização: 2026-11-16.
+
+## Branch `peekhole-gameplay` (2026-11-16, local, sem push)
+- Regras de jogo do PeekHole rodando sobre este cenário: terminal (pulseira, VIP, reserva da Suíte Jacuzzi, caixa, armário), segurança no corredor, bar, anfitriãs com interesse e convite para a suíte, cenas, NPCs, assentos, dança, 3ª pessoa (V), HUD com minimapa, áudio procedural, verificação de idade, save no navegador.
+- Código em `src/game/` e `src/ui/` (TypeScript); motor em `src/engine/` intocado, exceto a tecla de qualidade (G → Q).
+- Nada commitado ainda; `main` e o link público seguem como estavam. Sessão: `sessions/2026-11-16-1820-jogo-peekhole.md`.
 
 ## Projeto
 - Ambiente 3D jogável no navegador: boate (lounge) ligada por corredor e porta ao quarto da jacuzzi.

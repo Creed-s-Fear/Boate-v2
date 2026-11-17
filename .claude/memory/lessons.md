@@ -48,3 +48,8 @@
 - Aba em segundo plano não apresenta quadros (captura preta) e limita o requestAnimationFrame; usar `__game.sim()` e trazer a aba para frente.
 - Editar código recarrega todas as abas do jogo, inclusive a que o Pedro está usando.
 - O ajuste automático de resolução não pode contar pausas longas como "lento" (aba oculta derrubava a resolução).
+- 2026-11-16 — Dois ouvintes de keydown no window: o do Player (registrado antes) abria o menu com E e o do main fechava no mesmo evento (E fecha menu). O do main agora é de captura e para a propagação quando o menu consome a tecla. Testar menus com tecla de verdade, não chamando a ação por script.
+
+## Modelos gerados por IA (2026-11-16)
+- Vêm com mão fundida no quadril, animações vazias e contorno claro na textura da roupa: inspecionar com luz neutra e comparar com o original antes de culpar o pipeline.
+- Cortar influência de membro por raio cria costura se o raio for justo; usar transição suave e regra específica para cabelo.

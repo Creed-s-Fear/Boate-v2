@@ -6,6 +6,10 @@ const EYE = 1.62;
 const WALK = 2.5;
 const RUN = 4.4;
 const GRAVITY = -22;
+// agachado: cápsula mais baixa (passa sob coisas baixas), olhos mais baixos, passo lento
+const CROUCH_HEIGHT = 1.12;
+const CROUCH_EYE = 1.0;
+const CROUCH_SPEED = 1.15;
 
 const _seg = new THREE.Line3();
 const _move = new THREE.Vector3();
@@ -32,13 +36,37 @@ export class Player {
     this.eyeOffset = EYE; // altura dos olhos acima dos pés (baixa dentro da água)
     this.wading = false; // andando dentro da água
     this.seat = null; // transição ou permanência sentado (jacuzzi)
+    this.crouching = false;
+    this.height = HEIGHT; // altura atual da cápsula (anima entre em pé e agachado)
     this.onInteract = null;
     this.onQuality = null;
+    this.onBlockedStand = null; // avisado quando não há espaço para levantar
     this._bind();
+  }
+
+  // Agacha ou levanta. Levantar só se a cápsula em pé couber (nada logo acima da cabeça).
+  setCrouch(on) {
+    if (on === this.crouching) return true;
+    if (!on && !this._fits(HEIGHT)) {
+      if (this.onBlockedStand) this.onBlockedStand();
+      return false;
+    }
+    this.crouching = on;
+    return true;
+  }
+
+  _fits(height) {
+    _seg.start.set(this.position.x, this.position.y + RADIUS + 0.02, this.position.z);
+    _seg.end.set(this.position.x, this.position.y + height - RADIUS, this.position.z);
+    const sx = _seg.start.x, sy = _seg.start.y, sz = _seg.start.z;
+    this.collision.resolveCapsule(_seg, RADIUS * 0.95);
+    return Math.abs(_seg.start.x - sx) + Math.abs(_seg.start.y - sy) + Math.abs(_seg.start.z - sz) < 0.01;
   }
 
   // Leva o jogador até `to` (pés) e o deixa sentado com os olhos em `eye` acima dos pés.
   sit(to, eye, yawTo) {
+    this.crouching = false;
+    this.height = HEIGHT;
     this.seat = {
       from: this.position.clone(), to: to.clone(), t: 0, dur: 1.2, arc: 0.5,
       eyeFrom: this.eyeOffset, eyeTo: eye, yawFrom: this.yaw, yawTo, leaving: false,
@@ -96,7 +124,9 @@ export class Player {
       this.keys.add(e.code);
       if (!this.enabled) return;
       if (e.code === 'KeyE' && this.onInteract) this.onInteract();
-      if (e.code === 'KeyG' && this.onQuality) this.onQuality();
+      if (e.code === 'KeyQ' && this.onQuality) this.onQuality(); // G ficou para dançar
+      // C alterna agachar (Ctrl seria o comum, mas Ctrl+W fecha a aba do navegador)
+      if (e.code === 'KeyC' && !this.seat) this.setCrouch(!this.crouching);
     });
     addEventListener('keyup', (e) => this.keys.delete(e.code));
     addEventListener('blur', () => this.keys.clear());
@@ -122,8 +152,10 @@ export class Player {
       this._applyCamera(dt);
       return;
     }
-    // dentro da água o jogador afunda um pouco: olhos mais perto da superfície
-    this.eyeOffset += ((this.wading ? 1.22 : EYE) - this.eyeOffset) * (1 - Math.exp(-dt * 4));
+    // dentro da água o jogador afunda um pouco: olhos mais perto da superfície; agachado, mais baixo
+    const eyeTarget = this.crouching ? CROUCH_EYE : this.wading ? 1.22 : EYE;
+    this.eyeOffset += (eyeTarget - this.eyeOffset) * (1 - Math.exp(-dt * (this.crouching ? 10 : 6)));
+    this.height += ((this.crouching ? CROUCH_HEIGHT : HEIGHT) - this.height) * (1 - Math.exp(-dt * 12));
     const k = this.keys;
     let fwd = (k.has('KeyW') || k.has('ArrowUp') ? 1 : 0) - (k.has('KeyS') || k.has('ArrowDown') ? 1 : 0);
     let side = (k.has('KeyD') || k.has('ArrowRight') ? 1 : 0) - (k.has('KeyA') || k.has('ArrowLeft') ? 1 : 0);
@@ -134,7 +166,8 @@ export class Player {
       fwd /= len;
       side /= len;
     }
-    const speed = (k.has('ShiftLeft') || k.has('ShiftRight') ? RUN : WALK) * (this.speedScale ?? 1);
+    const run = k.has('ShiftLeft') || k.has('ShiftRight');
+    const speed = (this.crouching ? CROUCH_SPEED : run ? RUN : WALK) * (this.speedScale ?? 1);
     const sin = Math.sin(this.yaw);
     const cos = Math.cos(this.yaw);
     // frente = -Z quando yaw = 0
@@ -156,7 +189,7 @@ export class Player {
     for (let i = 0; i < steps; i++) {
       this.position.addScaledVector(this.velocity, h);
       _seg.start.set(this.position.x, this.position.y + RADIUS, this.position.z);
-      _seg.end.set(this.position.x, this.position.y + HEIGHT - RADIUS, this.position.z);
+      _seg.end.set(this.position.x, this.position.y + this.height - RADIUS, this.position.z);
       this.collision.resolveCapsule(_seg, RADIUS);
       _new.set(_seg.start.x, _seg.start.y - RADIUS, _seg.start.z);
       _delta.subVectors(_new, this.position);
