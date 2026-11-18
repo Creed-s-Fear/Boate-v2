@@ -49,6 +49,7 @@ export class World {
     this.water = createWaterMaterial();
     this.current = null;
     this.onRoomChange = null;
+    this._outside = false;
     this.stats = {};
   }
 
@@ -293,8 +294,15 @@ export class World {
     this._show();
   }
 
+  setOutside(on) {
+    this._outside = on;
+    if (this.root) this.root.visible = !on;
+    if (!on) this.updateRooms(this.spawn.position, true);
+  }
+
   // Liga e desliga as salas: as marcadas em updateRooms ou, no preparo, uma lista dada.
   _show(list = null) {
+    if (this._outside) return;
     for (const r of this.rooms) r.node.visible = list ? list.includes(r) : r.show;
     // o reflexo do piso volta a aparecer (o preparo o esconde ao capturar o ambiente)
     if (this.wet) this.wet.mesh.visible = this.wet.scale > 0;

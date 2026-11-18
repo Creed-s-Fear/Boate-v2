@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "preview", "--", "--port", "4173", "--strictPort", "--host", "127.0.0.1"],
       "port": 4173
+    },
+    {
+      "name": "boate-estatico",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4174", "--bind", "127.0.0.1", "--directory", "dist"],
+      "port": 4174
     }
   ]
 }

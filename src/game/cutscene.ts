@@ -78,6 +78,10 @@ export type SceneBuilder = (ctx: SceneContext) => SceneStep[];
 export interface PlayOpts {
   onPose?: (target: 'hostess' | 'player', pose: Pose) => void;
   onEnd?: (lastChoice: string | null) => void;
+  /** Chamado a cada quadro com o tempo desde o início (cenas dirigidas por tempo, como a abertura). */
+  onUpdate?: (dt: number, time: number) => void;
+  /** Texto do aviso de pular (padrão: segurar Esc). */
+  skipLabel?: string;
 }
 
 // ================================================================ Easing
@@ -108,6 +112,8 @@ export class CutsceneEngine {
   private lastChoice: string | null = null;
   private onPose: PlayOpts['onPose'];
   private onEnd: PlayOpts['onEnd'];
+  private onUpdate: PlayOpts['onUpdate'];
+  private time = 0;
 
   // Camera lerp (sem alocação por frame)
   private readonly camFrom: CamTarget = { pos: { x: 0, y: 2, z: 0 }, lookAt: { x: 0, y: 1, z: -1 }, fov: 70 };
@@ -154,6 +160,10 @@ export class CutsceneEngine {
     this.lastChoice = null;
     this.onPose = opts.onPose;
     this.onEnd = opts.onEnd;
+    this.onUpdate = opts.onUpdate;
+    this.time = 0;
+    const label = this.skipEl.querySelector('span');
+    if (label) label.textContent = opts.skipLabel ?? 'Segure [Esc] para pular';
 
     this.saveCamFrom();
     this.fadeFrom = 0;
@@ -178,6 +188,9 @@ export class CutsceneEngine {
     const skipPct = Math.min(this.skipHeld / SKIP_HOLD, 1);
     this.skipBar.style.width = `${skipPct * 100}%`;
     if (skipPct >= 1) { this.finish(); return; }
+
+    this.time += dt;
+    this.onUpdate?.(dt, this.time);
 
     // --- Step atual ---
     const step = this.steps[this.idx];
@@ -312,6 +325,7 @@ export class CutsceneEngine {
     const choice = this.lastChoice;
     this.onEnd = undefined;
     this.onPose = undefined;
+    this.onUpdate = undefined;
     cb?.(choice);
   }
 

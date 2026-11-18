@@ -4,6 +4,7 @@ dist/
 
 # intermediários que se regeneram
 blender/export/
+blender/entrada/previa/
 *.blend1
 *.blend2
 

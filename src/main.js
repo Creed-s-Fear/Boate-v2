@@ -183,7 +183,11 @@ function enter() {
     state.emit();
     $('profile').hidden = true;
     audio.start();
-    game.welcome();
+    if (game.hasIntro) {
+      game.playIntro(() => game.welcome());
+    } else {
+      game.welcome();
+    }
   }
   if (coarse) {
     player.enabled = true;
@@ -351,8 +355,13 @@ async function boot() {
   await breathe();
   mark = performance.now();
 
-  await world.prepare(gfx, (f) => setProgress(0.7 + 0.25 * f));
+  await world.prepare(gfx, (f) => setProgress(0.7 + 0.22 * f));
   lap('prepararVideo');
+  setProgress(0.95, 'Preparando entrada…');
+  const rt = new THREE.WebGLRenderTarget(1, 1);
+  await game.prepareIntro(gfx.renderer, rt);
+  rt.dispose();
+  lap('entrada');
   timings.total = Math.round(performance.now());
   setProgress(1, level.source === 'provisório' ? 'Cenário provisório' : 'Pronto');
 

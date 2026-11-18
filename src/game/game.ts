@@ -19,6 +19,8 @@ import type { Menu, MenuItem } from '../ui/menu';
 import type { MapMarker, Minimap } from '../ui/minimap';
 import { Character, type Look, type Pose } from './character';
 import { CutsceneEngine, type SceneContext } from './cutscene';
+import { Entrance } from './entrance';
+import { INTRO_SECONDS, IntroDirector } from './intro';
 import { Interactions } from './interaction';
 import { Npc } from './npc';
 import { hasPersonality } from './dialogue';
@@ -58,6 +60,9 @@ export interface BoateWorld {
   rooms: BoateRoom[];
   collision: { bvh: BvhLike | null };
   inWater: boolean;
+  spawn: { position: THREE.Vector3; yaw: number };
+  /** Cena de entrada: esconde o cenário inteiro enquanto o jogador está do lado de fora. */
+  setOutside(on: boolean): void;
   doorInReach(pos: THREE.Vector3, dir: THREE.Vector3): BoateDoor | null;
   toggleDoor(door: BoateDoor, pos: THREE.Vector3): boolean;
   poolInReach(pos: THREE.Vector3, dir: THREE.Vector3): BoatePool | null;
@@ -206,6 +211,10 @@ export class Game {
   private readonly collision = new CollisionWorld();
   private readonly cutscene: CutsceneEngine;
   private cutscenePose: Pose = 'idle';
+  private entrance: Entrance | null = null;
+  private intro: IntroDirector | null = null;
+  /** Toque segurado na tela (celular): vale como pular a abertura. */
+  introSkipHeld = false;
   private readonly interactions = new Interactions();
   private readonly npcs: Npc[] = [];
   private barNpc: Npc | null = null;
@@ -235,7 +244,7 @@ export class Game {
 
   constructor(
     private readonly scene: THREE.Scene,
-    camera: THREE.PerspectiveCamera,
+    private readonly camera: THREE.PerspectiveCamera,
     private readonly world: BoateWorld,
     private readonly player: BoatePlayer,
     private readonly state: GameState,
@@ -310,7 +319,8 @@ export class Game {
     this.state.elapsed += dt;
 
     if (this.cutscene.playing) {
-      const escDown = this.input.isDown('Escape');
+      // na abertura o mouse fica preso: Espaço pula sem soltar o mouse (Esc também vale)
+      const escDown = this.input.isDown('Escape') || (this.intro !== null && (this.input.isDown('Space') || this.introSkipHeld));
       const advance = this.input.wasPressed('KeyE') || this.input.wasPressed('Space');
       this.cutscene.update(dt, escDown, advance);
       this.updateCharacter(dt, this.cutscenePose);
@@ -393,7 +403,8 @@ export class Game {
     };
     for (const n of this.npcs) n.char.root.visible = show(n.pos.x, n.pos.z);
     if (this.bartender) this.bartender.root.visible = show(BARTENDER_SPOT.x, BARTENDER_SPOT.z);
-    if (this.char.root.visible) this.char.root.visible = show(this.player.position.x, this.player.position.z);
+    // (na abertura o boneco está na rua, fora de qualquer sala)
+    if (this.char.root.visible && !this.intro) this.char.root.visible = show(this.player.position.x, this.player.position.z);
   }
 
   /**
@@ -1279,6 +1290,125 @@ export class Game {
         this.char.root.visible = this.view.mode === 'third';
       },
     });
+  }
+
+  // =================================================================== abertura
+  get hasIntro(): boolean { return this.entrance !== null; }
+
+  /**
+   * Monta a entrada (escondida) e já pede os shaders dela, com as luzes da rua. Assim a cena
+   * de abertura começa sem engasgo.  é o alvo fora da tela em que o cenário é desenhado.
+   */
+  async prepareIntro(renderer: THREE.WebGLRenderer, target: THREE.WebGLRenderTarget): Promise<void> {
+    if (this.entrance) return;
+    const wallZ = this.clubRoom ? new THREE.Box3().setFromObject(this.clubRoom).max.z : 12.45;
+    const e = new Entrance(this.world.spawn.position.x, wallZ);
+    await e.ready;
+    this.scene.add(e.group, e.lights);
+    this.entrance = e;
+
+    this.world.setOutside(true);
+    e.setVisible(true);
+    const previous = renderer.getRenderTarget();
+    renderer.setRenderTarget(target);
+    // só as malhas da entrada e o boneco: as luzes vêm da cena (grupo separado, sem repetir)
+    renderer.compile(e.group, this.camera, this.scene);
+    renderer.compile(this.char.root, this.camera, this.scene);
+    renderer.setRenderTarget(previous);
+    e.setVisible(false);
+    this.world.setOutside(false);
+  }
+
+  /** Toca a abertura;  é chamado quando o jogador já está no salão (ou pulou). */
+  playIntro(onDone: () => void): void {
+    const e = this.entrance;
+    if (!e) {
+      onDone();
+      return;
+    }
+    const p = this.player;
+    const spawn = this.world.spawn;
+    // quanto dá para recuar atrás do ponto inicial sem encostar na parede da frente
+    let back = 2;
+    const bvh = this.world.collision.bvh;
+    if (bvh) {
+      _down.origin.set(spawn.position.x, spawn.position.y + p.eyeOffset, spawn.position.z);
+      _down.direction.set(0, 0, 1);
+      const hit = bvh.raycastFirst(_down, THREE.DoubleSide);
+      if (hit) back = Math.max(0, Math.min(back, hit.distance - 0.5));
+      _down.direction.set(0, -1, 0);
+    }
+    const director = new IntroDirector(e, spawn.position, p.eyeOffset, back);
+    this.intro = director;
+    const fade = document.getElementById('cs-fade');
+    const cam = this.camera;
+    let inside = false;
+    let mix = '';
+
+    const goInside = (): void => {
+      if (inside) return;
+      inside = true;
+      this.world.setOutside(false);
+      e.setVisible(false);
+      this.char.root.visible = false;
+      this.cutscenePose = 'idle';
+      p.position.copy(spawn.position);
+      p.velocity.set(0, 0, 0);
+    };
+
+    this.world.setOutside(true);
+    e.setVisible(true);
+    e.setDoor(0);
+    this.hud.setVisible(false);
+    this.hud.setPrompt(null);
+    this.char.root.visible = true;
+
+    this.cutscene.play([{ type: 'wait', duration: INTRO_SECONDS }], {
+      skipLabel: 'Segure [Espaço] para pular',
+      onUpdate: (_dt, t) => {
+        const f = director.sample(t);
+        if (f.inside) {
+          goInside();
+          p.yaw = spawn.yaw; // o mouse não mexe na direção durante a cena
+          p.pitch = 0;
+        } else {
+          p.position.set(f.x, 0, f.z);
+          p.yaw = f.yaw;
+          this.cutscenePose = f.pose;
+          e.setDoor(f.door);
+        }
+        cam.position.set(f.cam.x, f.cam.y, f.cam.z);
+        cam.lookAt(f.look.x, f.look.y, f.look.z);
+        if (Math.abs(cam.fov - f.fov) > 0.05) {
+          cam.fov = f.fov;
+          cam.updateProjectionMatrix();
+        }
+        if (fade) fade.style.opacity = f.fade.toFixed(3);
+        // o som só é reajustado quando muda de patamar (não a cada quadro)
+        const key = `${(f.volume * 10) | 0}:${(f.cutoff / 100) | 0}`;
+        if (key !== mix) {
+          mix = key;
+          this.audio.setMix(f.volume, f.cutoff);
+        }
+      },
+      onEnd: () => {
+        goInside();
+        this.intro = null;
+        p.yaw = spawn.yaw;
+        p.pitch = 0;
+        if (p.crouching) p.setCrouch(false);
+        if (cam.fov !== 70) {
+          cam.fov = 70;
+          cam.updateProjectionMatrix();
+        }
+        e.dispose();
+        this.entrance = null;
+        this.hud.setVisible(true);
+        this.char.root.visible = this.view.mode === 'third';
+        onDone();
+      },
+    });
+    if (fade) fade.style.opacity = '1';
   }
 
   private separateNpcs(): void {
