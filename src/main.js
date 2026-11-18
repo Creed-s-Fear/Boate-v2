@@ -28,18 +28,18 @@ scene.environmentIntensity = 0.85;
 const camera = new THREE.PerspectiveCamera(70, 1, 0.05, 90);
 const gfx = new Graphics(canvas);
 
-// ---------- qualidade inicial ----------
-// Ordem: endereço (?q=), o que ficou guardado da última visita, palpite pela placa de vídeo.
+// ---------- initial quality ----------
+// Priority: URL (?q=), saved from last visit, GPU heuristic.
 const QUALITY_KEY = 'boate.qualidade';
 function savedQuality() {
   try {
     return localStorage.getItem(QUALITY_KEY);
   } catch {
-    return null; // navegação privada ou armazenamento bloqueado
+    return null; // private browsing or storage blocked
   }
 }
 function guessQuality() {
-  if (coarse) return 'media'; // celular e tablet
+  if (coarse) return 'medium'; // phone and tablet
   let gpu = '';
   try {
     const gl = gfx.renderer.getContext();
@@ -48,14 +48,14 @@ function guessQuality() {
   } catch {
     gpu = '';
   }
-  // desenho por software (sem placa de vídeo): o mínimo
-  if (/swiftshader|llvmpipe|software|basic render/i.test(gpu)) return 'baixa';
-  // vídeo integrado ao processador: começa no meio (a tecla Q sobe se a máquina aguentar)
+  // software renderer (no GPU): minimum
+  if (/swiftshader|llvmpipe|software|basic render/i.test(gpu)) return 'low';
+  // integrated GPU: start at medium (Q key raises if the machine can handle it)
   const integrated =
     (/intel/i.test(gpu) && !/\barc\b/i.test(gpu)) || /radeon\(tm\) graphics|radeon (r\d|hd)|vega|mali|adreno|powervr/i.test(gpu);
-  if (integrated) return 'media';
-  // placa dedicada ou desconhecida: começa no alto; se não segurar, o ajuste automático desce
-  return 'alta';
+  if (integrated) return 'medium';
+  // dedicated or unknown GPU: start high; auto-quality drops if it can't keep up
+  return 'high';
 }
 const pick = [params.get('q'), savedQuality()].find((q) => PRESETS[q]);
 gfx.quality = pick || guessQuality();
@@ -65,7 +65,7 @@ const world = new World(scene, gfx.renderer, camera);
 const player = new Player(camera, canvas, world.collision);
 let started = false;
 
-// ---------- jogo (regras do PeekHole) ----------
+// ---------- game (PeekHole rules) ----------
 const state = new GameState();
 state.load();
 const input = new Input(canvas);
@@ -74,7 +74,7 @@ const menu = new Menu();
 const audio = new ClubAudio();
 const minimap = new Minimap($('minimap'));
 const chat = new ChatUI();
-let game = null; // criado depois que o cenário carrega
+let game = null; // created after the scene loads
 
 gfx.onResize = (w, h, preset) => {
   if (world.wet) world.wet.resize(w, h, preset.reflection);
@@ -86,21 +86,21 @@ function setProgress(f, text) {
 }
 
 function showQuality() {
-  $('quality').textContent = 'qualidade: ' + gfx.quality.replace('media', 'média');
+  $('quality').textContent = 'quality: ' + gfx.quality;
 }
-// Muda pelo jogador (tecla Q) ou sozinha, quando a máquina não segura: fica guardada.
+// Changed by the player (Q key) or automatically when the machine can't keep up: saved.
 gfx.onQuality = (name) => {
   showQuality();
   try {
     localStorage.setItem(QUALITY_KEY, name);
   } catch {
-    // sem armazenamento: vale só nesta visita
+    // no storage: applies only this visit
   }
 };
 
-// ---------- perfil (nome e roupa) ----------
+// ---------- profile (name and outfit) ----------
 const nameInput = $('name-input');
-nameInput.value = state.name === 'Visitante' ? '' : state.name;
+nameInput.value = state.name === 'Guest' ? '' : state.name;
 let selectedShirt = state.shirt;
 for (const o of OUTFITS) {
   const b = document.createElement('button');
@@ -120,13 +120,13 @@ nameInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && !$('start').hidden) enter();
 });
 
-// ---------- conta (opcional; só aparece se a API estiver no ar) ----------
+// ---------- account (optional; only shows if the API is online) ----------
 function applyAccount(me) {
   state.setAccount(me.username, me.balance, me.vip);
   nameInput.value = me.username;
   nameInput.disabled = true;
   $('account-form').hidden = true;
-  $('account-who').textContent = `Conta ${me.username} • saldo $${me.balance}`;
+  $('account-who').textContent = `Account ${me.username} • balance $${me.balance}`;
   $('account-status').hidden = false;
 }
 
@@ -152,13 +152,13 @@ async function initAccount() {
   try {
     await api.health();
   } catch {
-    return; // sem servidor (ex.: GitHub Pages): só modo visitante
+    return; // no server (e.g. GitHub Pages): guest mode only
   }
   $('account').hidden = false;
   try {
     applyAccount(await api.me());
   } catch {
-    // sem sessão: mostra o formulário
+    // no session: show the form
   }
 }
 $('acc-login').addEventListener('click', () => submitAccount('login'));
@@ -172,7 +172,7 @@ $('acc-logout').addEventListener('click', async () => {
 });
 initAccount();
 
-// ---------- entrar / pausar ----------
+// ---------- enter / pause ----------
 function enter() {
   if (!game) return;
   if (!started) {
@@ -200,7 +200,7 @@ function enter() {
   if (lock && lock.catch) lock.catch(() => dragFallback());
 }
 
-// Sem pointer lock (iframe, navegador embutido): olhar arrastando o mouse.
+// No pointer lock (iframe, embedded browser): look by dragging the mouse.
 function dragFallback() {
   if (player.enabled) return;
   player.enabled = true;
@@ -214,7 +214,7 @@ function dragFallback() {
   });
 }
 
-// Menu, chat e cenas liberam o mouse de propósito: nesses casos não mostra a tela de pausa.
+// Menu, chat and scenes release the mouse on purpose: don't show the pause screen in those cases.
 const busy = () => menu.isOpen || chat.isOpen || (game && game.isCutscenePlaying);
 document.addEventListener('pointerlockchange', () => {
   const locked = document.pointerLockElement === canvas;
@@ -222,7 +222,7 @@ document.addEventListener('pointerlockchange', () => {
   if (!locked && started && busy()) return;
   $('overlay').classList.toggle('out', locked);
   $('hud').hidden = !locked;
-  if (!locked && started) $('start').textContent = 'Continuar';
+  if (!locked && started) $('start').textContent = 'Resume';
 });
 document.addEventListener('pointerlockerror', dragFallback);
 $('start').addEventListener('click', enter);
@@ -233,7 +233,7 @@ const relockAfterUI = () => {
 };
 menu.onClose = relockAfterUI;
 
-// A tecla E (e o botão de toque) faz o que o jogo disser: levantar, porta, jacuzzi, menus...
+// The E key (and the touch button) does whatever the game says: stand, door, jacuzzi, menus...
 function interact() {
   const a = game && player.enabled && !menu.isOpen && !chat.isOpen && !game.isCutscenePlaying ? game.action() : null;
   if (a) a.run();
@@ -242,14 +242,14 @@ player.onInteract = interact;
 player.onQuality = () => gfx.cycleQuality();
 $('act').addEventListener('click', interact);
 
-// Fase de captura: roda ANTES do teclado do Player (registrado antes, na fase normal).
-// Sem isso, o mesmo E que abria o menu pelo Player chegava aqui com o menu já aberto e o
-// fechava na hora (E também fecha menu) — o terminal "não abria" e não dava para comprar.
-// Tecla consumida pelo menu não segue para o Player.
+// Capture phase: runs BEFORE the Player's keydown (registered earlier, in the normal phase).
+// Without this, the same E that opened the menu via Player arrived here with the menu already
+// open and closed it immediately (E also closes menu) — the terminal "wouldn't open".
+// Keys consumed by the menu don't reach the Player.
 addEventListener('keydown', (e) => {
   if (!started || !game || e.repeat) return;
   if (game.isCutscenePlaying) {
-    // (sem parar a propagação: a cena também lê E, Espaço e Esc segurado pelo Input)
+    // (don't stop propagation: the scene also reads E, Space and held Esc via Input)
     if (game.handleCutsceneKey(e.code)) e.preventDefault();
     return;
   }
@@ -264,12 +264,12 @@ addEventListener('keydown', (e) => {
     return;
   }
   if (e.code === 'KeyH') hud.toggleHelp();
-  if (e.code === 'KeyM') hud.notify(audio.toggleMute() ? 'Som desligado.' : 'Som ligado.');
+  if (e.code === 'KeyM') hud.notify(audio.toggleMute() ? 'Sound off.' : 'Sound on.');
 }, { capture: true });
 
-// ---------- laço principal ----------
+// ---------- main loop ----------
 const actEl = $('act');
-let shownShort = null; // texto do botão de toque (a página só é tocada quando ele muda)
+let shownShort = null; // touch button text (the DOM is only touched when it changes)
 let statsAcc = 0;
 let last = 0;
 let time = 0;
@@ -286,9 +286,9 @@ function simulate(dt) {
 }
 
 function frame(now) {
-  // Com o menu de entrada na frente a cena aparece desfocada atrás do cartão: basta
-  // redesenhar umas 12 vezes por segundo e a placa de vídeo descansa. Menus do jogo e
-  // cenas continuam animando normalmente.
+  // With the entry menu in front, the scene is blurred behind the card: just
+  // redrawing ~12 fps is enough and the GPU rests. Game menus and
+  // scenes keep animating normally.
   const idle = !player.enabled && !busy();
   if (idle && now - last < 80) return;
   const dt = Math.min(Math.max((now - last) / 1000, 0), 0.05);
@@ -320,12 +320,12 @@ function frame(now) {
   }
 }
 
-// ---------- carga ----------
-// deixa a página desenhar (barra de progresso) antes de um trecho pesado
+// ---------- loading ----------
+// let the page draw (progress bar) before a heavy section
 const breathe = () => new Promise((r) => setTimeout(r));
 
 async function boot() {
-  // tempos de cada fase da carga, em ms (aparecem em __game.timings)
+  // timing for each load phase, in ms (exposed via __game.timings)
   const timings = {};
   let mark = performance.now();
   const lap = (name) => {
@@ -334,36 +334,36 @@ async function boot() {
     mark = now;
   };
 
-  // verificação de idade antes de tudo; o cenário baixa enquanto o visitante lê
+  // age verification first; the scene downloads while the visitor reads
   const verified = new Promise((resolve) => new AgeGate().show(resolve));
 
-  setProgress(0.08, 'Carregando cenário…');
+  setProgress(0.08, 'Loading scene…');
   const level = await loadLevel((f) => setProgress(0.08 + 0.47 * f));
-  lap('baixarEAbrir');
-  setProgress(0.58, 'Montando…');
+  lap('downloadAndOpen');
+  setProgress(0.58, 'Assembling…');
   await breathe();
   mark = performance.now();
 
-  // obstáculos dos NPCs: lidos antes da junção das malhas (que apaga as peças)
+  // NPC obstacles: read before mesh merging (which erases the pieces)
   const obstacles = collectObstacles(level.root);
   world.build(level.root);
   gfx.resize();
   player.spawn(world.spawn.position, world.spawn.yaw);
   game = new Game(scene, camera, world, player, state, hud, menu, chat, audio, input, minimap, obstacles);
-  lap('montar');
-  setProgress(0.7, 'Preparando luzes e materiais…');
+  lap('assemble');
+  setProgress(0.7, 'Preparing lights and materials…');
   await breathe();
   mark = performance.now();
 
   await world.prepare(gfx, (f) => setProgress(0.7 + 0.22 * f));
-  lap('prepararVideo');
-  setProgress(0.95, 'Preparando entrada…');
+  lap('prepareGPU');
+  setProgress(0.95, 'Preparing entrance…');
   const rt = new THREE.WebGLRenderTarget(1, 1);
   await game.prepareIntro(gfx.renderer, rt);
   rt.dispose();
-  lap('entrada');
+  lap('entrance');
   timings.total = Math.round(performance.now());
-  setProgress(1, level.source === 'provisório' ? 'Cenário provisório' : 'Pronto');
+  setProgress(1, level.source === 'provisional' ? 'Provisional scene' : 'Ready');
 
   bindTouch(player, canvas, $('stick'), $('knob'));
   showQuality();
@@ -372,13 +372,13 @@ async function boot() {
   $('start').hidden = false;
   gfx.renderer.setAnimationLoop(frame);
 
-  // personagens com esqueleto (~8 MB) baixam depois: até chegarem, ficam os bonecos provisórios
+  // skinned characters (~8 MB) download after: until they arrive, provisional figures stay
   game
     .loadCharacters()
     .then(() => gfx.renderer.compileAsync(scene, camera))
-    .catch((err) => console.warn('Personagens não carregaram; seguem os provisórios.', err));
+    .catch((err) => console.warn('Characters failed to load; keeping provisional figures.', err));
 
-  // acesso para depuração e testes automáticos; sim() avança o jogo em passos fixos
+  // debug and automated testing access; sim() advances the game in fixed steps
   window.__game = {
     THREE, scene, camera, gfx, world, player, level, game, state, interact, timings,
     sim(seconds, hz = 60) {
@@ -390,5 +390,5 @@ async function boot() {
 
 boot().catch((err) => {
   console.error(err);
-  $('loadtext').textContent = 'Erro ao carregar: ' + err.message;
+  $('loadtext').textContent = 'Error loading: ' + err.message;
 });

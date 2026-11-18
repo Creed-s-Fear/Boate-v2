@@ -1,5 +1,5 @@
-// Caixa de cada material de um GLB (lendo os vértices), com filtro opcional de região.
-// Uso: node tools/prims-glb.mjs <arquivo.glb> [xmin xmax zmin zmax]
+// Bounding box of each material in a GLB (reading vertices), with optional region filter.
+// Usage: node tools/prims-glb.mjs <file.glb> [xmin xmax zmin zmax]
 import { readFileSync } from 'node:fs';
 
 const file = process.argv[2];
@@ -34,7 +34,7 @@ for (const mesh of g.meshes) {
       min[k] = Math.min(min[k], v[k]);
       max[k] = Math.max(max[k], v[k]);
     }
-    // níveis de altura mais comuns (ajuda a achar tampos, degraus, bases)
+    // most common height levels (helps find table tops, steps, bases)
     const ys = {};
     for (const [, y] of pts) ys[y.toFixed(2)] = (ys[y.toFixed(2)] || 0) + 1;
     const top = Object.entries(ys).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([y]) => y).sort((a, b) => a - b).join(' ');

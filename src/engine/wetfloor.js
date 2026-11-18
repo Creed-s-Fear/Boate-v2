@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 
-// Reflexo planar somado por cima do piso (blending aditivo). O piso continua com o
-// material e a textura dele; esta camada só acrescenta o espelhado de chão molhado.
-// O alvo do reflexo usa mipmaps: poças refletem nítido, o resto reflete borrado.
+// Planar reflection added on top of the floor (additive blending). The floor keeps its
+// own material and texture; this layer only adds the wet floor mirror effect.
+// The reflection target uses mipmaps: puddles reflect sharp, the rest reflects blurred.
 const WetShader = {
   name: 'WetFloor',
   uniforms: {
@@ -65,7 +65,7 @@ const WetShader = {
 };
 
 export class WetFloor {
-  // rect: { minX, maxX, minZ, maxZ }, y: altura do piso
+  // rect: { minX, maxX, minZ, maxZ }, y: floor height
   constructor(rect, y, tint = 0xffffff) {
     const w = rect.maxX - rect.minX;
     const d = rect.maxZ - rect.minZ;
@@ -83,7 +83,7 @@ export class WetFloor {
     mesh.material.transparent = true;
     mesh.material.blending = THREE.AdditiveBlending;
     mesh.material.depthWrite = false;
-    mesh.renderOrder = -10; // antes das cortinas e outros transparentes
+    mesh.renderOrder = -10; // before curtains and other transparents
     const rt = mesh.getRenderTarget();
     rt.texture.generateMipmaps = true;
     rt.texture.minFilter = THREE.LinearMipmapLinearFilter;
@@ -92,7 +92,7 @@ export class WetFloor {
     this.scale = 0.5;
   }
 
-  // w, h em pixels do buffer; scale = fração usada no reflexo (0 desliga)
+  // w, h in buffer pixels; scale = fraction used for reflection (0 disables)
   resize(w, h, scale) {
     this.scale = scale;
     this.mesh.visible = scale > 0;

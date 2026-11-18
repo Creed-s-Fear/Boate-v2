@@ -7,18 +7,18 @@ import { FX } from '../level/shaderFx.js';
 import { StringCurtain } from './stringCurtain.js';
 import { createHologram, createHoloSign } from './hologram.js';
 
-// Convenções lidas do cenário (vale para o GLB exportado do Blender e para o
-// cenário provisório). Propriedades personalizadas do Blender chegam em userData.
+// Conventions read from the scene (applies to the GLB exported from Blender and to the
+// provisional scene). Blender custom properties arrive in userData.
 //
-//   SPAWN*            vazio: posição e direção inicial do jogador
-//   ROOM_<nome>       pai de tudo que pertence a uma sala (liga/desliga a sala inteira)
-//   DOOR_<nome>       porta; userData.door = 'slide' | 'hinge', userData.rooms = 'a,b'
-//                     filhos com userData.slide = [x,y,z] deslizam esse tanto ao abrir
-//   COL_*             malha invisível só de colisão
-//   userData.collide  malha visível que também colide
-//   userData.wet      piso que recebe o reflexo de chão molhado
-//   WATER* / userData.water   superfície de água (jacuzzi)
-//   userData.noReflect        não entra no passe de reflexo (objetos pequenos)
+//   SPAWN*            empty: player's initial position and direction
+//   ROOM_<name>       parent of everything belonging to a room (toggles the whole room)
+//   DOOR_<name>       door; userData.door = 'slide' | 'hinge', userData.rooms = 'a,b'
+//                     children with userData.slide = [x,y,z] slide by that amount on open
+//   COL_*             invisible collision-only mesh
+//   userData.collide  visible mesh that also collides
+//   userData.wet      floor that receives the wet floor reflection
+//   WATER* / userData.water   water surface (jacuzzi)
+//   userData.noReflect        excluded from the reflection pass (small objects)
 
 const DEG = Math.PI / 180;
 const UP = new THREE.Vector3(0, 1, 0);
@@ -58,8 +58,8 @@ export class World {
     this.scene.add(root);
     root.updateMatrixWorld(true);
 
-    // cenário feito com as peças KIT_/JAC_: materiais e colisores saem do nome das peças
-    const ms = {}; // tempo de cada etapa, em ms (aparece em stats.build)
+    // scene built with KIT_/JAC_ pieces: materials and colliders come from piece names
+    const ms = {}; // time per step, in ms (shown in stats.build)
     let mark = performance.now();
     const lap = (name) => {
       const now = performance.now();
@@ -67,11 +67,11 @@ export class World {
       mark = now;
     };
     this.kit = isKitLevel(root) ? prepareKit(root) : null;
-    lap('materiais');
+    lap('materials');
     this.spinners = this.kit ? this.kit.spinners : [];
     root.updateMatrixWorld(true);
 
-    // peças com vida própria: cortina de fios (física) e holograma (shader)
+    // pieces with their own behavior: string curtain (physics) and hologram (shader)
     this.fx = [];
     this.pools = [];
     this.inWater = false;
@@ -92,7 +92,7 @@ export class World {
       root.updateMatrixWorld(true);
     }
 
-    lap('efeitos');
+    lap('effects');
     const colliders = [];
     const hideAfter = [];
     const doorNodes = [];
@@ -108,7 +108,7 @@ export class World {
 
       if (name.startsWith('SPAWN')) {
         o.getWorldPosition(this.spawn.position);
-        // o jogador olha para o +Z local do vazio (no Blender: o -Y local do vazio)
+        // the player looks along the empty's local +Z (in Blender: the empty's local -Y)
         o.getWorldDirection(_v);
         this.spawn.yaw = Math.atan2(-_v.x, -_v.z);
         if (ud.yaw !== undefined) this.spawn.yaw = ud.yaw * DEG;
@@ -144,7 +144,7 @@ export class World {
       }
       if (ud.noReflect) o.layers.set(1);
       else if (!ud.wet && !ud.collide) {
-        // objetos pequenos não aparecem no reflexo: menos draw calls no passe extra
+        // small objects are excluded from the reflection: fewer draw calls in the extra pass
         if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere();
         o.getWorldScale(_size);
         const r = o.geometry.boundingSphere.radius * Math.max(_size.x, _size.y, _size.z);
@@ -152,26 +152,26 @@ export class World {
       }
     });
 
-    lap('varredura');
-    // colisão estática
+    lap('traverse');
+    // static collision
     this.collision.setStatic(colliders);
-    lap('colisao');
+    lap('collision');
     hideAfter.forEach((o) => (o.visible = false));
 
-    // salas
+    // rooms
     for (const room of this.rooms) room.box.setFromObject(room.node).expandByScalar(0.05);
 
-    // portas
+    // doors
     for (const node of doorNodes) this._addDoor(node);
 
-    // reflexo do piso
+    // floor reflection
     if (wetCount) {
       this.wet = new WetFloor(wetRect, wetY, 0xffffff);
       this.scene.add(this.wet.mesh);
     }
 
-    // água: a malha original dá lugar a um disco com o shader de água; vapor por cima.
-    // A espuma modelada sai: o shader desenha a espuma dos jatos.
+    // water: the original mesh is replaced by a disc with the water shader; steam on top.
+    // The modeled foam is removed: the shader draws the jet foam.
     const foam = [];
     root.traverse((o) => {
       if (o.isMesh && o.material && o.material.name === 'KIT_j_foam') foam.push(o);
@@ -195,13 +195,13 @@ export class World {
       this.water.uniforms.uRadius.value = radius;
       this.pools.push({ x: c.x, z: c.z, r: radius, y: level });
       const steam = new Steam(new THREE.Vector3(c.x, level, c.z), radius * 0.85);
-      steam.room = room; // o vapor fica em mundo e some junto com a sala
+      steam.room = room; // steam lives in world space and hides with the room
       this.scene.add(steam.object);
       this.steams.push(steam);
     }
 
-    lap('salasEAgua');
-    // junta as malhas estáticas por material: centenas de peças viram poucos draw calls
+    lap('roomsAndWater');
+    // batches static meshes by material: hundreds of pieces become few draw calls
     let batches = 0;
     if (this.kit) {
       hideAfter.forEach((o) => o.removeFromParent());
@@ -211,7 +211,7 @@ export class World {
       batches += batchStatic(root, (o) => dynamic(o) || ancestor(o, isRoom)).batches;
     }
 
-    lap('juntar');
+    lap('batch');
     this.camera.layers.enable(1);
     this.stats = { meshes, batches, colliders: colliders.length, triangles: this.collision.triangles || 0, build: ms };
     this.updateRooms(this.spawn.position, true);
@@ -251,7 +251,7 @@ export class World {
     this.doors.push(door);
   }
 
-  // porta mais próxima que o jogador consegue acionar
+  // nearest door the player can reach
   doorInReach(pos, dir) {
     let best = null;
     let bestD = 2.7;
@@ -269,7 +269,7 @@ export class World {
   toggleDoor(door, pos) {
     const closing = door.target === 1;
     if (closing) {
-      // não fecha em cima do jogador
+      // don't close on top of the player
       _v.set(door.center.x - pos.x, 0, door.center.z - pos.z);
       if (_v.length() < 0.9) return false;
     }
@@ -300,32 +300,32 @@ export class World {
     if (!on) this.updateRooms(this.spawn.position, true);
   }
 
-  // Liga e desliga as salas: as marcadas em updateRooms ou, no preparo, uma lista dada.
+  // Shows and hides rooms: those marked in updateRooms or, during preparation, a given list.
   _show(list = null) {
     if (this._outside) return;
     for (const r of this.rooms) r.node.visible = list ? list.includes(r) : r.show;
-    // o reflexo do piso volta a aparecer (o preparo o esconde ao capturar o ambiente)
+    // floor reflection reappears (preparation hides it when capturing the environment)
     if (this.wet) this.wet.mesh.visible = this.wet.scale > 0;
   }
 
-  // Jacuzzi ao alcance: o jogador está perto da borda (nos degraus de cima da plataforma
-  // ou já dentro da água) E olhando para a banheira. Sem a segunda condição o aviso
-  // aparecia de costas para ela ou junto dos móveis em volta.
+  // Jacuzzi in reach: the player is near the edge (on the top steps of the platform or
+  // already in the water) AND looking toward the tub. Without the second condition the
+  // prompt appeared with their back to it or near the surrounding furniture.
   poolInReach(pos, dir) {
     for (const p of this.pools) {
       const dx = p.x - pos.x;
       const dz = p.z - pos.z;
       const d = Math.hypot(dx, dz);
       if (pos.y > p.y + 0.5 || d > p.r + 1.3) continue;
-      // dentro da água qualquer direção serve; fora, tem de estar de frente
+      // inside the water any direction works; outside, must be facing it
       if (d > p.r && (dx * dir.x + dz * dir.z) / d < 0.6) continue;
       return p;
     }
     return null;
   }
 
-  // Onde sentar dentro da água (pés), altura dos olhos, para onde olhar e por onde sair.
-  // O jogador entra pelo lado em que está e fica de frente para o centro.
+  // Where to sit in the water (feet), eye height, where to look and where to exit.
+  // The player enters from the side they are on and faces the center.
   seatFor(pool, pos) {
     let dx = pos.x - pool.x;
     let dz = pos.z - pool.z;
@@ -337,10 +337,10 @@ export class World {
       dx /= l;
       dz /= l;
     }
-    const floor = pool.y - 0.47; // fundo da banheira
+    const floor = pool.y - 0.47; // tub floor
     return {
       to: new THREE.Vector3(pool.x + dx * pool.r * 0.5, floor, pool.z + dz * pool.r * 0.5),
-      eye: pool.y + 0.36 - floor, // olhos uns 36 cm acima da água
+      eye: pool.y + 0.36 - floor, // eyes about 36 cm above the water
       yaw: Math.atan2(dx, dz),
       exit: new THREE.Vector3(pool.x + dx * pool.r * 1.84, pool.y - 0.31, pool.z + dz * pool.r * 1.84),
     };
@@ -348,7 +348,7 @@ export class World {
 
   update(dt, time, pos, vel = _zero) {
     for (const f of this.fx) f.update(dt, time, pos, vel, this.renderer);
-    // dentro da água da jacuzzi (o jogador anda mais devagar e a água reage a ele)
+    // inside the jacuzzi water (the player walks slower and the water reacts to them)
     this.inWater = this.pools.some((p) => pos.y < p.y - 0.12 && Math.hypot(pos.x - p.x, pos.z - p.z) < p.r);
     const wp = this.water.uniforms.uPlayer.value;
     wp.x = pos.x;
@@ -378,24 +378,24 @@ export class World {
     }
   }
 
-  // Prepara tudo que depende da placa de vídeo sem travar a página.
+  // Prepares everything that depends on the GPU without blocking the page.
   //
-  // Cada combinação de salas visíveis tem um número de luzes diferente e, por isso, shaders
-  // próprios. Em vez de compilar um a um no primeiro desenho (o que travava a página por
-  // mais de um segundo), os shaders são pedidos todos de uma vez e o navegador compila em
-  // paralelo, fora da linha principal.
+  // Each combination of visible rooms has a different number of lights and, therefore,
+  // its own shaders. Instead of compiling one by one on first draw (which blocked the page
+  // for over a second), all shaders are requested at once and the browser compiles them
+  // in parallel, off the main thread.
   //
-  // Antes de liberar o botão "Entrar" fica só o que a sala inicial precisa: shaders dela,
-  // mapa de ambiente dela (o brilho rosado nos metais, vidros e veludos) e o primeiro
-  // quadro. O resto (outras salas, portas abertas) termina em segundo plano, em pedaços
-  // curtos, enquanto o jogador lê o menu: bem antes de alguém chegar à porta.
+  // Before enabling the "Enter" button only what the initial room needs is ready: its
+  // shaders, its environment map (the pinkish sheen on metals, glass and velvet) and the
+  // first frame. The rest (other rooms, open doors) finishes in the background, in short
+  // chunks, while the player reads the menu: well before anyone reaches the door.
   async prepare(gfx, onProgress = () => {}) {
     const renderer = this.renderer;
     const scene = this.scene;
     const programs = renderer.info.programs;
     const here = this.current || this.rooms[0] || null;
     const others = this.rooms.filter((r) => r !== here);
-    const ms = {}; // tempo de cada etapa, em ms (aparece em stats.prepare)
+    const ms = {}; // time per step, in ms (shown in stats.prepare)
     let mark = performance.now();
     const lap = (name) => {
       const now = performance.now();
@@ -403,14 +403,14 @@ export class World {
       mark = now;
     };
 
-    // Ambiente provisório, preto, do mesmo tipo e tamanho do definitivo: o tipo do mapa de
-    // ambiente faz parte do shader, então o que for compilado agora é exatamente o que o
-    // jogo usa depois (e a captura do ambiente não precisa de um conjunto só dela).
+    // Provisional black environment, same type and size as the final one: the environment
+    // map type is part of the shader, so what is compiled now is exactly what the game
+    // uses later (and the environment capture doesn't need a separate set).
     const pmrem = new THREE.PMREMGenerator(renderer);
     const blank = pmrem.fromScene(new THREE.Scene(), 0, 0.1, 10, { size: 128 });
 
-    // O cenário é desenhado num alvo fora da tela (os efeitos vêm depois). Compilar e
-    // aquecer têm de acontecer com um alvo desse tipo ativo, senão o shader sai diferente.
+    // The scene is drawn to an offscreen target (effects come after). Compile and warm-up
+    // must happen with this type of target active, otherwise the shader comes out different.
     const offscreen = (fn) => {
       const previous = renderer.getRenderTarget();
       renderer.setRenderTarget(gfx.composer.renderTarget1);
@@ -422,8 +422,8 @@ export class World {
       scene.environment = (this.current && this.current.env) || null;
     };
 
-    // Pede os shaders de uma combinação. As salas de fora saem da cena por um instante,
-    // para que os materiais delas não sejam compilados com as luzes das outras.
+    // Requests shaders for a combination. Outside rooms are removed from the scene briefly,
+    // so their materials aren't compiled with the lights from other rooms.
     const homes = this.rooms.map((r) => r.node.parent);
     const request = (combo) => {
       this.rooms.forEach((r, i) => (combo.includes(r) ? homes[i].add(r.node) : r.node.removeFromParent()));
@@ -433,8 +433,8 @@ export class World {
       this.rooms.forEach((r, i) => homes[i].add(r.node));
       restore();
     };
-    // Passes de tela cheia: desenhados fora da cena, sem luzes. A geometria imita a deles
-    // (posição e uv, sem normais): os atributos da malha também fazem parte do shader.
+    // Full-screen passes: drawn outside the scene, no lights. The geometry mimics theirs
+    // (position and uv, no normals): mesh attributes are also part of the shader.
     const requestPasses = () => {
       const quad = new THREE.BufferGeometry();
       quad.setAttribute('position', new THREE.Float32BufferAttribute([-1, 3, 0, -1, -1, 0, 3, -1, 0], 3));
@@ -446,11 +446,11 @@ export class World {
       };
       const passes = gfx.passMaterials();
       offscreen(() => renderer.compile(holder(passes.offscreen), this.camera));
-      renderer.compile(holder(passes.screen), this.camera); // o último passe desenha na tela
+      renderer.compile(holder(passes.screen), this.camera); // the last pass draws to the screen
       quad.dispose();
     };
-    // Espera os primeiros `count` shaders sem bloquear. Sem a extensão de compilação
-    // paralela, isReady() já responde verdadeiro e eles compilam no primeiro uso, como antes.
+    // Waits for the first `count` shaders without blocking. Without the parallel compilation
+    // extension, isReady() already returns true and they compile on first use, as before.
     const compiled = async (count, report) => {
       const started = performance.now();
       for (;;) {
@@ -462,7 +462,7 @@ export class World {
         await new Promise((r) => setTimeout(r, 12));
       }
     };
-    // Mapa de ambiente de uma sala, capturado do meio dela, sem o reflexo do piso.
+    // Environment map of a room, captured from its center, without the floor reflection.
     const bake = (room) => {
       this._show([room]);
       if (this.wet) this.wet.mesh.visible = false;
@@ -473,9 +473,9 @@ export class World {
       room.env = pmrem.fromScene(scene, 0.03, 0.05, 80, { size: 128, position: c }).texture;
       restore();
     };
-    // Desenha uma combinação fora da tela, de longe e enxergando tudo: primeiro uso de cada
-    // shader e subida das geometrias para a placa. Sem isso o jogo engasga na primeira vez
-    // que cada coisa entra no campo de visão.
+    // Draws a combination offscreen, from afar and seeing everything: first use of each
+    // shader and geometry upload to the GPU. Without this the game stutters the first time
+    // each thing enters the field of view.
     const far = new THREE.PerspectiveCamera(90, 1, 0.1, 600);
     far.layers.mask = this.camera.layers.mask;
     const sphere = new THREE.Sphere();
@@ -493,25 +493,25 @@ export class World {
       restore();
     };
 
-    // ----- antes do botão "Entrar": só a sala inicial -----
+    // ----- before the "Enter" button: only the initial room -----
     request(here ? [here] : []);
     requestPasses();
-    lap('pedir');
+    lap('request');
     await compiled(programs.length, onProgress);
-    lap('compilar');
+    lap('compile');
     if (here) bake(here);
-    lap('ambiente');
+    lap('environment');
     gfx.render(0, 0, false);
-    lap('primeiroQuadro');
+    lap('firstFrame');
     this.stats.prepare = ms;
     this.stats.programs = programs.length;
 
-    // ----- em segundo plano: o resto, em pedaços curtos -----
+    // ----- background: the rest, in short chunks -----
     const pause = () => new Promise((r) => setTimeout(r, 30));
     const rest = async () => {
       const started = performance.now();
       await pause();
-      // pede já os shaders das outras combinações: compilam enquanto o resto acontece
+      // request shaders for other combinations now: they compile while the rest happens
       for (const room of others) request([room]);
       if (others.length) request(this.rooms);
       await pause();
@@ -529,8 +529,8 @@ export class World {
       }
       blank.dispose();
       pmrem.dispose();
-      ms.segundoPlano = Math.round(performance.now() - started);
+      ms.background = Math.round(performance.now() - started);
     };
-    this.ready = rest().catch((err) => console.warn('Preparo em segundo plano falhou:', err));
+    this.ready = rest().catch((err) => console.warn('Background preparation failed:', err));
   }
 }

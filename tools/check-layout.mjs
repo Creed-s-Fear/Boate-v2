@@ -1,17 +1,17 @@
-// Confere a planta (blender/layout.json): peças atravessando outras e peças sem apoio.
-// Usa as caixas medidas em assets/inventario.json. É uma checagem aproximada (caixa
-// orientada no plano + faixa de altura), boa para pegar erro de posicionamento.
+// Checks the layout (blender/layout.json): pieces overlapping others and unsupported pieces.
+// Uses bounding boxes from assets/inventario.json. An approximate check (oriented bounding
+// box on the plane + height range), good for catching positioning errors.
 //
-// Uso: node tools/check-layout.mjs   (ou npm run conferir)
+// Usage: node tools/check-layout.mjs   (or npm run conferir)
 import { readFileSync } from 'node:fs';
 
 const layout = JSON.parse(readFileSync('blender/layout.json', 'utf8'));
 const inventory = JSON.parse(readFileSync('assets/inventario.json', 'utf8'));
 const DEG = Math.PI / 180;
 
-// arquitetura e peças que servem de "recipiente" ou de apoio para outras: não entram no teste de atravessar
+// architecture and pieces that serve as "container" or support for others: excluded from overlap test
 const SKIP = /Parede|Piso|Teto|Tubulacao|Portal|Coluna|Anel_Luminoso|Plataforma|Tapete|Cabine_Cortina|Cortina|Neon_|Placa_|Arandela|Camera|Espelho|Pendente|Globo/;
-// pares que se encostam de propósito
+// pairs that touch on purpose
 const ALLOWED = [
   [/Almofada/, /Sofa|Cama/],
   [/Planta|Palmeira|Orquidea/, /Vaso/],
@@ -34,12 +34,12 @@ function footprint(it) {
   ].map(([x, z]) => {
     x *= s[0];
     z *= s[2];
-    return [it.p[0] + x * c + z * sn, it.p[2] - x * sn + z * c]; // rotação em torno de Y, como no jogo
+    return [it.p[0] + x * c + z * sn, it.p[2] - x * sn + z * c]; // rotation around Y, same as in game
   });
   return { name: it.a, corners, y0: it.p[1] + info.min[1] * s[1], y1: it.p[1] + info.max[1] * s[1], p: it.p };
 }
 
-// teste de eixos separadores para dois retângulos no plano; devolve a penetração mínima
+// separating axis test for two rectangles on the plane; returns the minimum penetration
 function overlap(a, b) {
   let min = Infinity;
   for (const poly of [a.corners, b.corners]) {
@@ -60,7 +60,7 @@ function overlap(a, b) {
   return min;
 }
 const inside = (f, x, z) => {
-  // ponto dentro do retângulo (produto vetorial com sinal constante)
+  // point inside rectangle (cross product with constant sign)
   let sign = 0;
   for (let i = 0; i < 4; i++) {
     const [x1, z1] = f.corners[i];
@@ -78,7 +78,7 @@ for (const [rname, room] of Object.entries(layout.rooms)) {
   const all = room.items.map(footprint);
   const solid = all.filter((f) => !SKIP.test(f.name));
 
-  // 1) atravessando: caixas se cruzam no plano e na altura
+  // 1) overlapping: boxes intersect on the plane and in height
   for (let i = 0; i < solid.length; i++) {
     for (let j = i + 1; j < solid.length; j++) {
       const a = solid[i];
@@ -89,22 +89,22 @@ for (const [rname, room] of Object.entries(layout.rooms)) {
       const d = overlap(a, b);
       if (d > 0.04) {
         problems++;
-        console.log(`[${rname}] ATRAVESSA  ${a.name} (${a.p.join(', ')})  x  ${b.name} (${b.p.join(', ')})  ~${(d * 100).toFixed(0)} cm`);
+        console.log(`[${rname}] OVERLAPS  ${a.name} (${a.p.join(', ')})  x  ${b.name} (${b.p.join(', ')})  ~${(d * 100).toFixed(0)} cm`);
       }
     }
   }
 
-  // 2) sem apoio: base acima do piso sem nada logo abaixo (topo de outra peça até 4 cm)
+  // 2) unsupported: base above floor with nothing just below (top of another piece within 4 cm)
   for (const f of all) {
     if (SKIP.test(f.name) || f.y0 < 0.06) continue;
     const [x, , z] = f.p;
     const supported = all.some((o) => o !== f && Math.abs(o.y1 - f.y0) < 0.04 && inside(o, x, z));
-    // prateleiras, tampos intermediários e degraus não são o topo da caixa: aceita se o centro está dentro de um apoio conhecido
+    // shelves, intermediate tops and steps are not the box top: accept if center is inside a known support
     const onKnown = all.some((o) => o !== f && /Estante_Bar|Plataforma|Jacuzzi|Cabine_Cortina|Vaso|Toalha|Sofa|Cama/.test(o.name) && inside(o, x, z) && o.y1 >= f.y0 - 0.04);
     if (!supported && !onKnown) {
       problems++;
-      console.log(`[${rname}] SEM APOIO  ${f.name} (${f.p.join(', ')})  base em y=${f.y0.toFixed(2)}`);
+      console.log(`[${rname}] UNSUPPORTED  ${f.name} (${f.p.join(', ')})  base at y=${f.y0.toFixed(2)}`);
     }
   }
 }
-console.log(problems ? `\n${problems} problema(s) para olhar.` : 'planta sem peças atravessadas nem flutuando.');
+console.log(problems ? `\n${problems} problem(s) to review.` : 'layout clean: no overlapping or floating pieces.');

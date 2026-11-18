@@ -1,7 +1,7 @@
 /**
- * Move o SOL dos endereços de depósito para TREASURY_ADDRESS.
- * Sem --yes só lista o que seria movido. A saída é ignorada pelo detector de depósitos
- * (variação negativa), então não credita nada de novo.
+ * Moves SOL from deposit addresses to TREASURY_ADDRESS.
+ * Without --yes it only lists what would be moved. The output is ignored by the deposit
+ * scanner (negative delta), so it doesn't credit anything new.
  */
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from '@solana/web3.js';
 import { config } from '../src/config';
@@ -10,7 +10,7 @@ import { connection } from '../src/deposits';
 import { depositKeypair } from '../src/hd';
 
 const send = process.argv.includes('--yes');
-if (!config.treasury) throw new Error('Defina TREASURY_ADDRESS no .env');
+if (!config.treasury) throw new Error('Set TREASURY_ADDRESS in .env');
 const treasury = new PublicKey(config.treasury);
 
 const rows = (await pool.query('select user_id, address from deposit_addresses order by user_id')).rows as { user_id: string; address: string }[];
@@ -22,7 +22,7 @@ for (let i = 0; i < rows.length; i += 100) {
     const lamports = infos[j]?.lamports ?? 0;
     if (lamports === 0) continue;
     const kp = depositKeypair(config.masterSeed, Number(chunk[j].user_id));
-    if (kp.publicKey.toBase58() !== chunk[j].address) throw new Error(`Endereço não bate com a semente (conta ${chunk[j].user_id})`);
+    if (kp.publicKey.toBase58() !== chunk[j].address) throw new Error(`Address does not match the seed (account ${chunk[j].user_id})`);
 
     const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
     const build = (amount: number) =>
@@ -33,12 +33,12 @@ for (let i = 0; i < rows.length; i += 100) {
     const amount = lamports - fee;
     if (amount <= 0) continue;
     total += amount;
-    console.log(`conta ${chunk[j].user_id}: ${amount / LAMPORTS_PER_SOL} SOL`);
+    console.log(`account ${chunk[j].user_id}: ${amount / LAMPORTS_PER_SOL} SOL`);
     if (send) {
       const sig = await sendAndConfirmTransaction(connection, build(amount), [kp], { commitment: 'confirmed' });
-      console.log(`  enviado: ${sig}`);
+      console.log(`  sent: ${sig}`);
     }
   }
 }
-console.log(`${send ? 'Movido' : 'Seria movido (use --yes)'}: ${total / LAMPORTS_PER_SOL} SOL para ${treasury.toBase58()}`);
+console.log(`${send ? 'Moved' : 'Would move (use --yes)'}: ${total / LAMPORTS_PER_SOL} SOL to ${treasury.toBase58()}`);
 await pool.end();

@@ -1,9 +1,9 @@
 /**
- * Teclado + mouse (pointer lock). Estado lido por frame; `endFrame()` zera os deltas.
- * Nenhum dado de input sai do cliente — quando houver multiplayer, o servidor
- * deve receber apenas intenções (ex.: "mover para frente") e validar tudo.
+ * Keyboard + mouse (pointer lock). State read per frame; `endFrame()` resets deltas.
+ * No input data leaves the client — when multiplayer is added, the server should
+ * receive only intents (e.g. "move forward") and validate everything.
  */
-const MAX_MOUSE_DELTA = 200; // descarta picos de movementX/Y (bug conhecido de alguns browsers)
+const MAX_MOUSE_DELTA = 200; // discard spikes in movementX/Y (known bug in some browsers)
 
 export class Input {
   private readonly down = new Set<string>();
@@ -38,7 +38,7 @@ export class Input {
     try {
       void Promise.resolve(this.canvas.requestPointerLock()).catch(() => undefined);
     } catch {
-      /* pointer lock exige gesto do usuário; o overlay de pausa cobre a falha */
+      /* pointer lock requires user gesture; the pause overlay covers the failure */
     }
   }
 

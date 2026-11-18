@@ -5,7 +5,7 @@ export class AgeGate {
 
   constructor() {
     const el = document.getElementById('age-gate');
-    if (!el) throw new Error('#age-gate ausente');
+    if (!el) throw new Error('#age-gate missing');
     this.root = el;
   }
 
@@ -26,7 +26,7 @@ export class AgeGate {
     this.root.hidden = false;
 
     document.getElementById('age-confirm')!.addEventListener('click', () => {
-      try { localStorage.setItem(STORAGE_KEY, '1'); } catch { /* storage indisponível */ }
+      try { localStorage.setItem(STORAGE_KEY, '1'); } catch { /* storage unavailable */ }
       this.root.hidden = true;
       onVerified();
     }, { once: true });
@@ -34,7 +34,7 @@ export class AgeGate {
     document.getElementById('age-deny')!.addEventListener('click', () => {
       const msg = document.createElement('div');
       msg.className = 'age-denied';
-      msg.textContent = 'Este conteúdo é restrito para maiores de 18 anos.';
+      msg.textContent = 'This content is restricted to adults aged 18 and over.';
       this.root.replaceChildren(msg);
     }, { once: true });
   }

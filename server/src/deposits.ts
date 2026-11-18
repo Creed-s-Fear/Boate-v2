@@ -1,7 +1,7 @@
 /**
- * Detecta depósitos nos endereços das contas e credita fichas uma única vez por
- * assinatura (chave primária em `deposits`). Só lê transações `finalized`: depois disso
- * não há reorganização que desfaça o depósito.
+ * Detects deposits to account addresses and credits tokens once per
+ * signature (primary key in `deposits`). Only reads `finalized` transactions: after that
+ * there is no reorganization that would undo the deposit.
  */
 import { Connection, PublicKey, type ConfirmedSignatureInfo } from '@solana/web3.js';
 import { config } from './config';
@@ -24,7 +24,7 @@ interface WatchedAddress {
   last_signature: string | null;
 }
 
-/** Credita a transação, se ela aumentou o saldo do endereço. Retorna as fichas creditadas, ou null se ainda não deu para ler. */
+/** Credits the transaction if it increased the address balance. Returns credited tokens, or null if not yet readable. */
 async function processSignature(userId: number, pub: PublicKey, signature: string): Promise<number | null> {
   const t = await connection.getParsedTransaction(signature, { commitment: 'finalized', maxSupportedTransactionVersion: 0 });
   if (!t) return null;
@@ -32,7 +32,7 @@ async function processSignature(userId: number, pub: PublicKey, signature: strin
   const idx = t.transaction.message.accountKeys.findIndex((k) => k.pubkey.equals(pub));
   if (idx < 0) return 0;
   const delta = BigInt(t.meta.postBalances[idx]) - BigInt(t.meta.preBalances[idx]);
-  // saídas (varredura para a tesouraria) e taxas não creditam nada
+  // outflows (sweep to treasury) and fees don't credit anything
   if (delta <= 0n) return 0;
   const fichas = lamportsToFichas(delta);
 
@@ -53,7 +53,7 @@ async function processSignature(userId: number, pub: PublicKey, signature: strin
   });
 }
 
-/** Lê as transações novas do endereço (da mais antiga para a mais nova) e avança o cursor. */
+/** Reads new transactions for the address (oldest to newest) and advances the cursor. */
 export async function scanAddress(row: WatchedAddress): Promise<number> {
   const pub = new PublicKey(row.address);
   const userId = Number(row.user_id);
@@ -69,7 +69,7 @@ export async function scanAddress(row: WatchedAddress): Promise<number> {
   for (const s of fresh.reverse()) {
     if (!s.err) {
       const got = await processSignature(userId, pub, s.signature);
-      // RPC ainda sem a transação: para aqui e tenta de novo na próxima rodada
+      // RPC doesn't have the transaction yet: stop here and retry next round
       if (got === null) break;
       credited += got;
     }
@@ -84,8 +84,8 @@ export async function scanUser(userId: number): Promise<number> {
 }
 
 /**
- * Varre só endereços "observados" (conta abriu a carteira nas últimas horas): o custo em
- * RPC cresce com quem está depositando, não com o total de contas.
+ * Only scans "watched" addresses (account opened the wallet in the last few hours): RPC cost
+ * grows with who is depositing, not with the total number of accounts.
  */
 export function startScanner(log: (msg: string, err?: unknown) => void): () => void {
   let stopped = false;
@@ -100,14 +100,14 @@ export function startScanner(log: (msg: string, err?: unknown) => void): () => v
         if (stopped) return;
         try {
           const n = await scanAddress(row);
-          if (n > 0) log(`depósito creditado: conta ${row.user_id}, ${n} fichas`);
+          if (n > 0) log(`deposit credited: account ${row.user_id}, ${n} tokens`);
         } catch (e) {
-          log(`falha ao varrer conta ${row.user_id}`, e);
+          log(`failed to scan account ${row.user_id}`, e);
         }
       }
       await pool.query('delete from sessions where expires_at < now()');
     } catch (e) {
-      log('falha no ciclo de depósitos', e);
+      log('deposit scan cycle failed', e);
     }
     if (!stopped) timer = setTimeout(loop, config.scanIntervalMs);
   };

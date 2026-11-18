@@ -1,13 +1,13 @@
-// Página de apoio (só em desenvolvimento): miniatura de cada GLB de assets/drive.
-// Eixos na miniatura: vermelho = +X, azul = +Z (frente do glTF), verde = +Y.
+// Support page (dev only): thumbnail of every GLB in assets/drive.
+// Thumbnail axes: red = +X, blue = +Z (glTF front), green = +Y.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const BASE = '/assets/drive/Objetos/';
 const params = new URLSearchParams(location.search);
-const SIZE = Number(params.get('s')) || 320; // resolução de cada miniatura
-const filter = params.get('f'); // trechos do nome separados por vírgula
+const SIZE = Number(params.get('s')) || 320; // thumbnail resolution
+const filter = params.get('f'); // name fragments separated by comma
 const views = (params.get('v') || 'iso').split(','); // iso | frente | costas | topo | lado
 if (params.get('w')) document.documentElement.style.setProperty('--tile', params.get('w') + 'px');
 const DIRS = {
@@ -93,6 +93,6 @@ for (const key of keys) {
     grid.append(fig);
   }
   document.getElementById('info').textContent =
-    `${++done} de ${keys.length} peças · vistas: ${views.join(', ')} · eixos: vermelho +X, verde +Y, azul +Z`;
+    `${++done} of ${keys.length} pieces · views: ${views.join(', ')} · axes: red +X, green +Y, blue +Z`;
 }
 window.__catalogReady = true;

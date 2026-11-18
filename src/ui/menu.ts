@@ -1,12 +1,12 @@
 /**
- * Menu modal (recepção, bar, caixa eletrônico...). Teclas 1–9 escolhem, Esc fecha.
- * O conteúdo é reconstruído após cada ação para refletir o estado atualizado.
+ * Modal menu (reception, bar, ATM...). Keys 1–9 select, Esc closes.
+ * Content is rebuilt after each action to reflect the updated state.
  */
 export interface MenuItem {
   label: string;
   detail?: string;
   disabled?: boolean;
-  /** Retorne 'close' para fechar o menu após a ação (pode ser assíncrona, como um pagamento). */
+  /** Return 'close' to close the menu after the action (can be async, e.g. a payment). */
   action?: () => void | 'close' | Promise<void | 'close'>;
 }
 
@@ -24,7 +24,7 @@ export class Menu {
 
   constructor() {
     const el = document.getElementById('menu');
-    if (!el) throw new Error('#menu ausente');
+    if (!el) throw new Error('#menu missing');
     this.el = el;
   }
 
@@ -46,7 +46,7 @@ export class Menu {
     this.onClose();
   }
 
-  /** Retorna true se consumiu a tecla. */
+  /** Returns true if the key was consumed. */
   handleKey(e: KeyboardEvent): boolean {
     if (!this.isOpen) return false;
     if (e.code === 'Escape' || e.code === 'Backspace' || e.code === 'KeyE') {
@@ -65,7 +65,7 @@ export class Menu {
     if (r instanceof Promise) {
       const builder = this.builder;
       void r.then((v) => {
-        // o jogador pode ter fechado ou trocado de menu enquanto esperava o servidor
+        // the player may have closed or switched menus while waiting for the server
         if (this.builder !== builder) return;
         if (v === 'close') this.close();
         else this.render();
@@ -114,7 +114,7 @@ export class Menu {
     const close = document.createElement('button');
     close.type = 'button';
     close.className = 'menu-close';
-    close.textContent = 'Fechar  [Esc]';
+    close.textContent = 'Close  [Esc]';
     close.addEventListener('click', () => this.close());
     nodes.push(list, close);
     this.el.replaceChildren(...nodes);

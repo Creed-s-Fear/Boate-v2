@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
-// CENÁRIO PROVISÓRIO. Serve para testar o jogo (andar, colisão, porta, reflexo,
-// brilho) enquanto o cenário final não é exportado do Blender. Quando existir
-// public/models/level.json apontando para um GLB, este arquivo deixa de ser usado.
-// A planta abaixo é a mesma que a montagem no Blender deve seguir (metros, Y para cima):
+// PROVISIONAL SCENE. Used to test the game (walking, collision, door, reflection,
+// glow) while the final scene is not yet exported from Blender. When
+// public/models/level.json points to a GLB, this file is no longer used.
+// The layout below is the same the Blender assembly should follow (meters, Y up):
 //
-//   Lounge   x -7..7    z -12..12   pé-direito 4.4   (bar à direita, cabines à esquerda)
-//   Corredor x -1.3..1.3  z -16..-12  pé-direito 3.0 (sai do arco na parede do fundo)
-//   Jacuzzi  x -3..9    z -30..-16  pé-direito 4.4   (porta em x 0, z -16)
+//   Lounge   x -7..7    z -12..12   ceiling 4.4   (bar on the right, booths on the left)
+//   Hallway  x -1.3..1.3  z -16..-12  ceiling 3.0 (exits from the arch in the back wall)
+//   Jacuzzi  x -3..9    z -30..-16  ceiling 4.4   (door at x 0, z -16)
 
 const PINK = 0xff2bd6;
 const HOT = 0xff4f9a;
@@ -53,7 +53,7 @@ function makeMaterials() {
   };
 }
 
-// ---------- texturas procedurais ----------
+// ---------- procedural textures ----------
 function latticeTexture() {
   const s = 256;
   const c = document.createElement('canvas');
@@ -99,7 +99,7 @@ function signTexture(draw, w = 512, h = 512) {
   const g = c.getContext('2d');
   g.lineCap = 'round';
   g.lineJoin = 'round';
-  for (let pass = 0; pass < 2; pass++) draw(g, w, h, pass); // 2 passes: halo + traço
+  for (let pass = 0; pass < 2; pass++) draw(g, w, h, pass); // 2 passes: halo + stroke
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 4;
@@ -139,10 +139,10 @@ function drawWord(g, w, h, pass) {
   g.shadowBlur = pass ? 8 : 36;
   g.lineWidth = pass ? 4 : 10;
   g.strokeStyle = pass ? '#d8fffb' : '#19f0e0';
-  g.strokeText('LÓTUS', w / 2, h * 0.5);
+  g.strokeText('JoH', w / 2, h * 0.5);
 }
 
-// ---------- construtores ----------
+// ---------- constructors ----------
 function put(parent, mesh, name, pos, opt = {}) {
   mesh.name = name;
   mesh.position.set(pos[0], pos[1], pos[2]);
@@ -201,7 +201,7 @@ export function buildBlockout() {
   const lattice = latticeTexture();
   const latticeMat = std(0x1c0810, 0.45, 0.6, { alphaMap: lattice, alphaTest: 0.5, side: THREE.DoubleSide });
   const backlight = neon(PINK, 0.85);
-  // painel treliçado com luz atrás; normal = direção para onde o painel olha
+  // lattice panel with backlight; normal = direction the panel faces
   function latticePanel(parent, name, w, h, center, ry) {
     const g = new THREE.PlaneGeometry(w, h);
     const uv = g.attributes.uv;
@@ -217,7 +217,7 @@ export function buildBlockout() {
     front.name = name + '_trelica';
     front.position.z = 0.09;
     grp.add(back, front);
-    // moldura dourada
+    // gold frame
     const t = 0.05;
     for (const [sx, sy, px, py] of [
       [w + t, t, 0, h / 2],
@@ -245,12 +245,12 @@ export function buildBlockout() {
   box(club, 'club_parede_esq', [0.3, H, 24.6], [-7.15, H / 2, 0], M.wall, { collide: true });
   box(club, 'club_parede_dir', [0.3, H, 24.6], [7.15, H / 2, 0], M.wall, { collide: true });
   box(club, 'club_parede_frente', [14, H, 0.3], [0, H / 2, 12.15], M.wall, { collide: true });
-  // parede do fundo com o arco do corredor (x -1.3..1.3, altura 3.0)
+  // back wall with hallway arch (x -1.3..1.3, height 3.0)
   box(club, 'club_fundo_esq', [5.7, H, 0.3], [-4.15, H / 2, -12.15], M.wall, { collide: true });
   box(club, 'club_fundo_dir', [5.7, H, 0.3], [4.15, H / 2, -12.15], M.wall, { collide: true });
   box(club, 'club_fundo_topo', [2.6, H - 3.0, 0.3], [0, 3.0 + (H - 3.0) / 2, -12.15], M.wall);
 
-  // corredor
+  // hallway
   box(club, 'corredor_piso', [3.2, 0.2, 4], [0, -0.1, -14], M.floor, { collide: true, wet: true });
   box(club, 'corredor_teto', [3.2, 0.2, 3.7], [0, 3.1, -14.15], M.ceil);
   box(club, 'corredor_parede_esq', [0.3, 3.0, 3.7], [-1.45, 1.5, -14.15], M.wallDark, { collide: true });
@@ -261,7 +261,7 @@ export function buildBlockout() {
     box(club, 'corredor_neon', [0.05, 2.94, 0.05], [1.26, 1.47, z], m);
     box(club, 'corredor_neon', [2.57, 0.05, 0.05], [0, 2.95, z], m);
   });
-  // molduras de neon em volta do arco, do lado do lounge
+  // neon frames around the arch, on the lounge side
   for (const [dx, top, m] of [
     [1.42, 3.12, M.teal],
     [1.66, 3.36, M.pink],
@@ -271,7 +271,7 @@ export function buildBlockout() {
     box(club, 'arco_neon', [dx * 2 + 0.06, 0.06, 0.06], [0, top, -11.96], m);
   }
 
-  // letreiros na parede do fundo
+  // signs on the back wall
   const signMat = (tex) =>
     new THREE.MeshBasicMaterial({
       map: tex,
@@ -285,7 +285,7 @@ export function buildBlockout() {
   const word = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 1.2), signMat(signTexture(drawWord, 768, 256)));
   put(club, word, 'letreiro_nome', [4.2, 2.75, -11.97]);
 
-  // cabines circulares (esquerda)
+  // circular booths (left side)
   const boothX = -4.3;
   const curtainBooth = curtainGeo(2.42, 3.66, 142 * DEG, 256 * DEG);
   for (const [i, z] of [7, 1, -5].entries()) {
@@ -296,7 +296,7 @@ export function buildBlockout() {
     ring(club, n + '_neon_teto', 2.58, 0.05, [boothX, H - 0.6, z], M.pink);
     ring(club, n + '_neon_teto2', 2.22, 0.035, [boothX, H - 0.6, z], M.hot);
     put(club, new THREE.Mesh(curtainBooth, M.curtain), n + '_cortina', [boothX, 0.14 + 1.83, z]);
-    // sofá curvo com a abertura virada para o corredor central (+X)
+    // curved sofa with the opening facing the central corridor (+X)
     const seat = new THREE.Mesh(new THREE.TorusGeometry(1.55, 0.36, 10, 28, 200 * DEG), M.velvet);
     seat.rotation.set(Math.PI / 2, 0, 80 * DEG);
     seat.scale.z = 0.8;
@@ -305,7 +305,7 @@ export function buildBlockout() {
     back.rotation.set(Math.PI / 2, 0, 80 * DEG);
     back.scale.z = 1.6;
     put(club, back, n + '_encosto', [boothX, 0.14 + 0.72, z], { collide: true });
-    // mesa
+    // table
     cyl(club, n + '_mesa_pe', 0.06, 0.16, 0.5, [boothX + 0.15, 0.39, z], M.gold);
     cyl(club, n + '_mesa', 0.45, 0.45, 0.05, [boothX + 0.15, 0.665, z], M.gloss);
     cyl(club, n + '_vela', 0.05, 0.05, 0.12, [boothX + 0.15, 0.75, z], M.warm, {}, 10);
@@ -318,7 +318,7 @@ export function buildBlockout() {
   box(club, 'coluna_neon', [0.05, 3.7, 0.05], [-6.96, 2.05, -8], M.violet);
   box(club, 'coluna_neon', [0.05, 3.7, 0.05], [-6.96, 2.05, 10], M.violet);
 
-  // bar (direita)
+  // bar (right side)
   box(club, 'bar_balcao', [0.7, 1.1, 14], [4.25, 0.55, 0], M.wallDark, { collide: true });
   box(club, 'bar_tampo', [0.95, 0.06, 14.2], [4.18, 1.13, 0], M.gloss);
   box(club, 'bar_neon_base', [0.03, 0.04, 14], [3.885, 0.07, 0], M.pink);
@@ -330,7 +330,7 @@ export function buildBlockout() {
     for (let i = 0; i < 20; i++) strips.setMatrixAt(i, m4.makeTranslation(3.893, 0.58, -6.65 + i * 0.7));
     club.add(strips);
   }
-  // banquetas (1 objeto instanciado) + colisores
+  // stools (1 instanced object) + colliders
   {
     const seat = new THREE.CylinderGeometry(0.2, 0.18, 0.07, 20).translate(0, 0.78, 0);
     const post = new THREE.CylinderGeometry(0.028, 0.028, 0.72, 8).translate(0, 0.39, 0);
@@ -346,7 +346,7 @@ export function buildBlockout() {
     }
     club.add(stools);
   }
-  // fundo do bar: bancada, prateleiras iluminadas e garrafas
+  // bar back: counter, lit shelves and bottles
   box(club, 'bar_bancada', [0.5, 0.95, 14], [6.75, 0.475, 0], M.wallDark, { collide: true });
   box(club, 'bar_sanca', [3.1, 0.35, 14.6], [5.45, H - 0.175, 0], M.ceil);
   [1.3, 1.82, 2.34].forEach((y, i) => {
@@ -378,7 +378,7 @@ export function buildBlockout() {
     }
     club.add(bottles);
   }
-  // tubo de neon sinuoso sobre o balcão
+  // sinuous neon tube above the counter
   {
     const curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(4.5, 3.3, 7.2),
@@ -389,7 +389,7 @@ export function buildBlockout() {
     ]);
     put(club, new THREE.Mesh(new THREE.TubeGeometry(curve, 80, 0.035, 8), M.teal), 'bar_neon_teto', [0, 0, 0]);
   }
-  // pendentes (1 objeto instanciado)
+  // pendants (1 instanced object)
   {
     const cord = new THREE.CylinderGeometry(0.008, 0.008, 1.5, 5).translate(0, 3.25, 0);
     const shade = new THREE.CylinderGeometry(0.04, 0.11, 0.22, 16, 1, true).translate(0, 2.42, 0);
@@ -407,7 +407,7 @@ export function buildBlockout() {
   light(club, TEAL, 22, 10, [5.3, 2.7, -3.5]);
   light(club, HOT, 20, 9, [0, 2.7, -9.8]);
 
-  // parede da frente e tubulação
+  // front wall and piping
   latticePanel(club, 'frente_trelica1', 4.2, 3.0, [-3.4, 2.0, 11.99], Math.PI);
   latticePanel(club, 'frente_trelica2', 4.2, 3.0, [3.4, 2.0, 11.99], Math.PI);
   box(club, 'frente_neon', [13.6, 0.05, 0.05], [0, 3.75, 11.96], M.violet);
@@ -421,7 +421,7 @@ export function buildBlockout() {
   }
   for (const z of [-8, -2.5, 3, 8.5]) rod(club, 'tubulacao', [-6.9, H - 0.42, z], [3.9, H - 0.42, z], 0.045, M.metal);
 
-  // ===================== PORTA + PAREDE DA PORTA (sempre visíveis) =====================
+  // ===================== DOOR + DOOR WALL (always visible) =====================
   box(root, 'porta_parede_esq', [2.2, H, 0.3], [-2.2, H / 2, -16.15], M.wall, { collide: true });
   box(root, 'porta_parede_dir', [8.2, H, 0.3], [5.2, H / 2, -16.15], M.wall, { collide: true });
   box(root, 'porta_parede_topo', [2.2, H - 2.8, 0.3], [0, 2.8 + (H - 2.8) / 2, -16.15], M.wall);
@@ -467,7 +467,7 @@ export function buildBlockout() {
   box(spa, 'spa_parede_leste', [0.3, H, 14.3], [9.15, H / 2, cz - 0.15], M.wall, { collide: true });
   box(spa, 'spa_parede_fundo', [12.6, H, 0.3], [cx, H / 2, -30.15], M.wall, { collide: true });
 
-  // plataforma, degraus e banheira
+  // platform, steps and tub
   cyl(spa, 'spa_degrau1', 3.5, 3.5, 0.18, [cx, 0.09, cz], M.platform, { collide: true }, 72);
   cyl(spa, 'spa_degrau2', 3.05, 3.05, 0.18, [cx, 0.27, cz], M.platform, { collide: true }, 72);
   ring(spa, 'spa_neon_degrau1', 3.5, 0.028, [cx, 0.03, cz], M.pink);
@@ -483,7 +483,7 @@ export function buildBlockout() {
     water.rotation.x = -Math.PI / 2;
     put(spa, water, 'WATER_jacuzzi', [cx, 0.6, cz]);
   }
-  // anel luminoso do teto + cortinas
+  // ceiling light ring + curtains
   cyl(spa, 'spa_sanca', 3.75, 3.75, 0.5, [cx, H - 0.25, cz], M.ceil, {}, 72);
   ring(spa, 'spa_anel1', 3.75, 0.065, [cx, H - 0.5, cz], M.pink);
   ring(spa, 'spa_anel2', 3.38, 0.045, [cx, H - 0.5, cz], M.hot);
@@ -495,7 +495,7 @@ export function buildBlockout() {
   light(spa, PINK, 46, 13, [cx, 3.2, cz]);
   light(spa, TEAL, 20, 7, [cx, 1.2, cz]);
 
-  // parede oeste: treliças, sofás, mesinha com luminária
+  // west wall: lattices, sofas, side table with lamp
   for (const [i, z] of [-19.4, -23, -26.6].entries()) latticePanel(spa, 'spa_trelica_o' + i, 3.2, 3.0, [-2.99, 2.0, z], Math.PI / 2);
   for (const [i, z] of [-20.1, -25.9].entries()) {
     box(spa, 'spa_sofa' + i, [0.95, 0.42, 2.7], [-2.3, 0.21, z], M.velvet, { collide: true });
@@ -505,14 +505,14 @@ export function buildBlockout() {
   put(spa, new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), M.pink), 'spa_luminaria_mesa', [-2.4, 0.76, cz]);
   light(spa, HOT, 16, 8, [-1.6, 2.3, cz]);
 
-  // parede do fundo: aparador com toalhas e treliças
+  // back wall: sideboard with towels and lattices
   for (const [i, x] of [-0.6, 3, 6.6].entries()) latticePanel(spa, 'spa_trelica_f' + i, 3.2, 3.0, [x, 2.0, -29.99], 0);
   box(spa, 'spa_aparador', [2.6, 0.82, 0.5], [6.4, 0.41, -29.65], M.wallDark, { collide: true });
   box(spa, 'spa_aparador_tampo', [2.7, 0.04, 0.56], [6.4, 0.84, -29.65], M.gold);
   for (const dx of [-0.9, -0.55, 0.7]) box(spa, 'spa_toalhas', [0.3, 0.16, 0.34], [6.4 + dx, 0.94, -29.65], M.towel);
   light(spa, WARM, 12, 7, [6.4, 1.9, -28.6]);
 
-  // lado leste: espreguiçadeiras viradas para a banheira
+  // east side: chaise lounges facing the tub
   for (const [i, z] of [-20.3, -25.7].entries()) {
     box(spa, 'spa_chaise' + i, [1.95, 0.3, 0.78], [7.0, 0.33, z], M.velvet);
     const back = box(spa, 'spa_chaise_encosto' + i, [0.8, 0.14, 0.78], [7.75, 0.66, z], M.velvet);
@@ -525,13 +525,13 @@ export function buildBlockout() {
   box(spa, 'spa_neon_leste', [0.05, 3.7, 0.05], [8.96, 2.05, cz - 2.6], M.violet);
   box(spa, 'spa_neon_leste', [0.05, 3.7, 0.05], [8.96, 2.05, cz + 2.6], M.violet);
 
-  // velas no piso em volta da plataforma
+  // candles on the floor around the platform
   for (const a of [20, 55, 125, 160, 200, 235, 305, 340]) {
     const x = cx + Math.cos(a * DEG) * 3.95;
     const z = cz + Math.sin(a * DEG) * 3.95;
     cyl(spa, 'spa_vela', 0.05, 0.05, 0.16, [x, 0.08, z], M.warm, {}, 8);
   }
-  // plantas provisórias nos cantos
+  // provisional plants in the corners
   for (const [x, z] of [
     [-2.3, -17.2],
     [-2.3, -29.2],
@@ -541,14 +541,14 @@ export function buildBlockout() {
     cyl(spa, 'spa_vaso', 0.24, 0.16, 0.62, [x, 0.31, z], M.gold, { collide: true }, 16);
     put(spa, new THREE.Mesh(new THREE.IcosahedronGeometry(0.72, 1), M.leaf), 'spa_planta', [x, 1.25, z]).scale.y = 1.35;
   }
-  // moldura de neon em volta da porta, do lado da jacuzzi, e tubulação
+  // neon frame around the door, on the jacuzzi side, and piping
   box(spa, 'spa_porta_neon', [0.05, 3.0, 0.05], [-1.3, 1.5, -16.33], M.pink);
   box(spa, 'spa_porta_neon', [0.05, 3.0, 0.05], [1.3, 1.5, -16.33], M.pink);
   box(spa, 'spa_porta_neon', [2.65, 0.05, 0.05], [0, 3.0, -16.33], M.pink);
   for (const z of [-18.2, -27.6]) rod(spa, 'tubulacao', [-2.9, H - 0.25, z], [8.9, H - 0.25, z], 0.08, M.metal);
   rod(spa, 'tubulacao', [-2.9, H - 0.4, -28.4], [8.9, H - 0.4, -28.4], 0.045, M.metal);
 
-  // ponto inicial
+  // spawn point
   const spawn = new THREE.Object3D();
   spawn.name = 'SPAWN';
   spawn.position.set(0.9, 0.05, 9.6);

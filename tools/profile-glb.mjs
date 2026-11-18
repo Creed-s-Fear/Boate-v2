@@ -1,6 +1,6 @@
-// Perfil de uma peça num corte: para vértices com |x - x0| < tolerância, mostra a altura
-// máxima em cada faixa de z. Serve para achar assento e encosto de sofás.
-// Uso: node tools/profile-glb.mjs <arquivo.glb> <x0> [tolerancia] [material]
+// Cross-section profile of a piece: for vertices with |x - x0| < tolerance, shows the max
+// height in each z band. Useful for finding sofa seat and backrest heights.
+// Usage: node tools/profile-glb.mjs <file.glb> <x0> [tolerance] [material]
 import { readFileSync } from 'node:fs';
 
 const [file, x0s, tols = '0.08', matFilter = ''] = process.argv.slice(2);

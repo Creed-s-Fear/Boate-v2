@@ -18,7 +18,7 @@ export interface NpcOptions {
   area?: AABB;
   paceTo?: { x: number; z: number };
   lines?: string[];
-  /** Sobrescreve o diálogo genérico (ex.: anfitriãs têm menu próprio). */
+  /** Overrides the generic dialogue (e.g. hostesses have their own menu). */
   talkable?: boolean;
 }
 
@@ -64,7 +64,7 @@ export class Npc {
     this.char.root.position.copy(this.pos);
   }
 
-  /** Troca o boneco (ex.: o low-poly provisório pelo modelo com esqueleto, quando ele termina de baixar). */
+  /** Swaps the figure (e.g. the provisional low-poly for the skinned model, when it finishes downloading). */
   setCharacter(view: CharacterView): void {
     const old = this.char.root;
     old.parent?.add(view.root);
@@ -79,7 +79,7 @@ export class Npc {
     return this.mode !== 'static' || this.route.length > 0;
   }
 
-  /** Caminha pelos pontos (sem colisão — rota é planejada) e chama onDone ao chegar. */
+  /** Walks through the points (no collision — route is pre-planned) and calls onDone on arrival. */
   followRoute(points: Array<{ x: number; z: number }>, onDone?: () => void): void {
     this.route = points.map((p) => new THREE.Vector3(p.x, 0, p.z));
     this.onRouteDone = onDone ?? null;
@@ -88,7 +88,7 @@ export class Npc {
     this.pos.y = 0;
   }
 
-  /** Fica parada num ponto com uma pose. */
+  /** Stays still at a point with a pose. */
   settle(yaw: number, pose: Pose = 'idle'): void {
     this.mode = 'static';
     this.yaw = yaw;
@@ -99,7 +99,7 @@ export class Npc {
     this.basePose = pose;
   }
 
-  /** Volta a circular livremente numa área. */
+  /** Resumes wandering freely within an area. */
   resume(mode: 'wander' | 'dance', area: AABB): void {
     this.mode = mode;
     this.area = area;

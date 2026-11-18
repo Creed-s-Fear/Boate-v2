@@ -1,10 +1,10 @@
 /**
- * HUD em DOM. Segurança: todo texto entra via textContent (nunca innerHTML) — o nome do
- * jogador é input do usuário. Performance: só toca no DOM quando o valor muda.
+ * DOM-based HUD. Security: all text goes through textContent (never innerHTML) — the
+ * player name is user input. Performance: only touches the DOM when the value changes.
  */
 const $ = <T extends HTMLElement>(id: string): T => {
   const el = document.getElementById(id);
-  if (!el) throw new Error(`#${id} ausente no HTML`);
+  if (!el) throw new Error(`#${id} missing from HTML`);
   return el as T;
 };
 
@@ -50,7 +50,7 @@ export class Hud {
   setFps(v: string): void { this.set(this.fps, v); }
 
   setMode(first: boolean): void {
-    this.set(this.mode, first ? '1ª pessoa  [V]' : '3ª pessoa  [V]');
+    this.set(this.mode, first ? '1st person  [V]' : '3rd person  [V]');
     this.crosshair.hidden = !first;
   }
 

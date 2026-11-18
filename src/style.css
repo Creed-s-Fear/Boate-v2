@@ -189,7 +189,7 @@ h1 {
   #crosshair { display: none; }
 }
 
-/* ================= Jogo (vindo do PeekHole) ================= */
+/* ================= Game (from PeekHole) ================= */
 :root {
   --gold: #ffcc33;
   --cyan: #19f0e0;
@@ -265,7 +265,7 @@ h1 {
 .menu-detail { color: var(--gold); font-size: 13px; }
 #menu .menu-close { margin-top: 12px; justify-content: center; color: var(--muted); }
 
-/* perfil na tela de entrada */
+/* profile on the entry screen */
 #profile { display: grid; gap: 6px; margin: 4px 0 14px; text-align: left; }
 #profile label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .18em; margin-top: 4px; }
 #name-input {
@@ -276,7 +276,7 @@ h1 {
 #name-input:focus { border-color: var(--pink); }
 #name-input:disabled { opacity: .6; }
 
-/* conta (saldo em fichas, depósito em SOL) */
+/* account (token balance, SOL deposits) */
 #account { display: grid; gap: 6px; margin-top: 8px; }
 #account[hidden], #account-form[hidden], #account-status[hidden] { display: none; }
 #account-form { display: grid; gap: 6px; }
@@ -299,7 +299,7 @@ h1 {
 .swatch { width: 30px; height: 30px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .2); cursor: pointer; }
 .swatch.active { border-color: #fff; box-shadow: 0 0 10px var(--pink); }
 
-/* verificação de idade */
+/* age verification */
 #age-gate {
   position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; z-index: 30;
   background: radial-gradient(60% 50% at 30% 40%, rgba(255, 43, 214, .22), transparent 70%), rgba(10, 2, 8, .96);
@@ -316,7 +316,7 @@ h1 {
 #age-deny { padding: 9px; font: inherit; font-size: 13px; color: var(--muted); background: transparent; border: 1px solid rgba(255, 255, 255, .12); border-radius: 999px; cursor: pointer; }
 .age-denied { color: var(--muted); text-align: center; padding: 60px 20px; font-size: 16px; }
 
-/* cenas */
+/* cutscenes */
 #cutscene { position: fixed; inset: 0; z-index: 15; pointer-events: none; }
 #cs-fade { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; }
 #cs-dialogue, #cs-choices {
@@ -340,7 +340,7 @@ h1 {
 .cs-skip-track { width: 120px; height: 4px; background: rgba(255, 255, 255, .1); border-radius: 2px; overflow: hidden; }
 #cs-skip-bar { height: 100%; width: 0; background: var(--pink); transition: width .1s linear; }
 
-/* ---- Chat (diálogo das anfitriãs) ---- */
+/* ---- Chat (hostess dialogue) ---- */
 #chat {
   position: fixed; inset: 0; z-index: 160;
   display: flex; flex-direction: column;

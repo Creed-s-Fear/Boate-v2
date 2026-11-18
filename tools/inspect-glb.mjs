@@ -1,6 +1,6 @@
-// Lê todos os .glb de uma pasta (sem executar nada deles) e resume cada um:
-// tamanho em metros, triângulos, materiais, texturas, animações.
-// Uso: node tools/inspect-glb.mjs <pasta> [saida.json]
+// Reads all .glb files from a folder (without executing any of them) and summarizes each:
+// size in meters, triangles, materials, textures, animations.
+// Usage: node tools/inspect-glb.mjs <folder> [output.json]
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { Box3, Matrix4, Quaternion, Vector3 } from 'three';
@@ -8,7 +8,7 @@ import { Box3, Matrix4, Quaternion, Vector3 } from 'three';
 const dir = process.argv[2];
 const outFile = process.argv[3];
 if (!dir) {
-  console.error('uso: node tools/inspect-glb.mjs <pasta> [saida.json]');
+  console.error('usage: node tools/inspect-glb.mjs <folder> [output.json]');
   process.exit(1);
 }
 
@@ -23,9 +23,9 @@ function walk(d, list = []) {
 
 function readJson(file) {
   const buf = readFileSync(file);
-  if (buf.readUInt32LE(0) !== 0x46546c67) throw new Error('não é GLB');
+  if (buf.readUInt32LE(0) !== 0x46546c67) throw new Error('not a GLB');
   const len = buf.readUInt32LE(12);
-  if (buf.readUInt32LE(16) !== 0x4e4f534a) throw new Error('chunk JSON ausente');
+  if (buf.readUInt32LE(16) !== 0x4e4f534a) throw new Error('JSON chunk missing');
   return JSON.parse(buf.subarray(20, 20 + len).toString('utf8'));
 }
 
@@ -113,11 +113,11 @@ for (const file of walk(dir).sort()) {
         `${em}em ${info.images}img${info.animations ? ' anim' : ''}`,
     );
   } catch (e) {
-    console.log(`${key}: ERRO ${e.message}`);
+    console.log(`${key}: ERROR ${e.message}`);
   }
 }
-console.log(`\n${Object.keys(out).length} arquivos, ${totalTris} triângulos no total`);
+console.log(`\n${Object.keys(out).length} files, ${totalTris} triangles total`);
 const gens = new Set(Object.values(out).map((o) => o.generator));
 const exts = new Set(Object.values(out).flatMap((o) => o.extensions));
-console.log('gerador:', [...gens].join(' | '), ' extensões:', [...exts].join(', ') || 'nenhuma');
+console.log('generator:', [...gens].join(' | '), ' extensions:', [...exts].join(', ') || 'none');
 if (outFile) writeFileSync(outFile, JSON.stringify(out, null, 1));

@@ -17,11 +17,11 @@ app.decorateRequest('user', null);
 await app.register(cookie);
 await app.register(rateLimit, { global: true, max: 300, timeWindow: '1 minute' });
 
-// CSRF: além do cookie SameSite=Strict, toda requisição que muda estado precisa vir de uma origem conhecida.
+// CSRF: besides the SameSite=Strict cookie, every state-changing request must come from a known origin.
 app.addHook('onRequest', async (req, reply) => {
   if (req.method === 'GET' || req.method === 'HEAD') return;
   const origin = req.headers.origin;
-  if (!origin || !config.allowedOrigins.includes(origin)) return reply.code(403).send({ error: 'Origem não permitida.' });
+  if (!origin || !config.allowedOrigins.includes(origin)) return reply.code(403).send({ error: 'Origin not allowed.' });
 });
 
 app.addHook('onSend', async (_req, reply) => {
@@ -32,8 +32,8 @@ app.addHook('onSend', async (_req, reply) => {
 
 app.setErrorHandler<Error & { statusCode?: number }>((err, req, reply) => {
   const status = err.statusCode ?? 500;
-  if (status >= 500) req.log.error({ err }, 'erro interno');
-  reply.code(status).send({ error: status >= 500 ? 'Erro interno.' : err.message });
+  if (status >= 500) req.log.error({ err }, 'internal error');
+  reply.code(status).send({ error: status >= 500 ? 'Internal error.' : err.message });
 });
 
 app.get('/api/health', async () => {
@@ -47,7 +47,7 @@ await app.register(gameRoutes);
 await migrate();
 const stopScanner = startScanner((msg, err) => (err ? app.log.warn({ err }, msg) : app.log.info(msg)));
 await app.listen({ port: config.port, host: config.host });
-app.log.info(`rede Solana: ${config.cluster}`);
+app.log.info(`Solana network: ${config.cluster}`);
 
 const shutdown = async () => {
   stopScanner();

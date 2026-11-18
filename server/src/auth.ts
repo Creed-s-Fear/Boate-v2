@@ -22,7 +22,7 @@ declare module 'fastify' {
 
 const sha256 = (s: string) => createHash('sha256').update(s).digest();
 
-// Hash de referência: login de usuário inexistente gasta o mesmo tempo que um real.
+// Reference hash: login for nonexistent user takes the same time as a real one.
 let dummyHash = '';
 
 export async function sessionUser(req: FastifyRequest): Promise<SessionUser | null> {
@@ -37,7 +37,7 @@ export async function sessionUser(req: FastifyRequest): Promise<SessionUser | nu
 
 export async function requireUser(req: FastifyRequest, reply: FastifyReply): Promise<void> {
   req.user = await sessionUser(req);
-  if (!req.user) return reply.code(401).send({ error: 'Faça login.' });
+  if (!req.user) return reply.code(401).send({ error: 'Please log in.' });
 }
 
 async function startSession(reply: FastifyReply, userId: number): Promise<void> {
@@ -77,7 +77,7 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
     { schema: credentialsSchema, config: { rateLimit: { max: 5, timeWindow: '1 hour' } } },
     async (req, reply) => {
       const username = req.body.username.toLowerCase();
-      if (!USERNAME.test(username)) return reply.code(400).send({ error: 'Usuário: 3 a 20 letras, números ou _.' });
+      if (!USERNAME.test(username)) return reply.code(400).send({ error: 'Username: 3 to 20 letters, numbers or _.' });
       const passHash = await hash(req.body.password);
       const userId = await tx(async (c) => {
         const r = await c.query(
@@ -93,7 +93,7 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
         }
         return id;
       });
-      if (userId === null) return reply.code(409).send({ error: 'Esse usuário já existe.' });
+      if (userId === null) return reply.code(409).send({ error: 'This username is already taken.' });
       await startSession(reply, userId);
       return { username };
     },
@@ -107,7 +107,7 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
       const r = await pool.query('select id, pass_hash from users where username = $1', [username]);
       const row = r.rows[0] as { id: string; pass_hash: string } | undefined;
       const ok = await verify(row?.pass_hash ?? dummyHash, req.body.password).catch(() => false);
-      if (!row || !ok) return reply.code(401).send({ error: 'Usuário ou senha incorretos.' });
+      if (!row || !ok) return reply.code(401).send({ error: 'Incorrect username or password.' });
       await startSession(reply, Number(row.id));
       return { username };
     },

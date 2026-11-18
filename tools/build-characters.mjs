@@ -1,12 +1,12 @@
-// Gera os personagens do jogo (public/models/personagens/) a partir das fontes em assets/personagens/fonte/.
+// Generates game characters (public/models/personagens/) from sources in assets/personagens/fonte/.
 //   npm run personagens
 //
-// - Cyber A–D vêm sem esqueleto: herdam o esqueleto e as animações da Tropical (mesma base de corpo,
-//   alinhadas a ~2 cm). Cada vértice copia os pesos dos pontos mais próximos da Tropical que olham
-//   para o mesmo lado (assim o braço não puxa peso do tronco).
-// - As malhas de ~590 mil triângulos descem para ~30 mil; textura 4096 vira WebP 2048.
-// - A bartender só tem as texturas reduzidas: malha, morphs, ossos e os extras da física ficam intactos.
-// - Geometria comprimida com meshopt (o jogo já descomprime ao carregar).
+// - Cyber A–D have no skeleton: they inherit the skeleton and animations from Tropical (same body base,
+//   aligned to ~2 cm). Each vertex copies the weights of the nearest Tropical points facing
+//   the same direction (so the arm doesn't pull weight from the torso).
+// - Meshes of ~590k triangles are reduced to ~30k; 4096 texture becomes WebP 2048.
+// - The bartender only has textures reduced: mesh, morphs, bones and physics extras stay intact.
+// - Geometry compressed with meshopt (the game decompresses on load).
 import { mkdirSync, statSync } from 'node:fs';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
@@ -49,13 +49,13 @@ const finish = async (doc, file, extra = []) => {
     meshopt({ encoder: MeshoptEncoder, level: 'medium' }),
   );
   await io.write(OUT + file, doc);
-  console.log(`${file}: ${Math.round(tris(doc) / 1000)} mil triângulos, ${(statSync(OUT + file).size / 1e6).toFixed(1)} MB`);
+  console.log(`${file}: ${Math.round(tris(doc) / 1000)}k triangles, ${(statSync(OUT + file).size / 1e6).toFixed(1)} MB`);
 };
 
 const onlyPrim = (doc) => {
   const node = doc.getRoot().listNodes().find((n) => n.getMesh());
   const prims = node.getMesh().listPrimitives();
-  if (prims.length !== 1) throw new Error(`esperava 1 primitiva, achei ${prims.length}`);
+  if (prims.length !== 1) throw new Error(`expected 1 primitive, found ${prims.length}`);
   return { node, prim: prims[0] };
 };
 
@@ -71,7 +71,7 @@ const read = (acc) => {
   return out;
 };
 
-// ---------------------------------------------------------------- pesos do esqueleto por vizinhança
+// ---------------------------------------------------------------- skeleton weights by neighborhood
 const CELL = 0.03;
 function buildGrid(pos) {
   const g = new Map();
@@ -95,7 +95,7 @@ function nearest(g, pos, nor, x, y, z, nx, ny, nz, K) {
           const b = g.get(`${cx + i},${cy + j},${cz + k}`);
           if (!b) continue;
           for (const q of b) {
-            // normal oposta = outra superfície (braço x tronco, coxa x coxa)
+            // opposite normal = other surface (arm vs torso, thigh vs thigh)
             if (nor[q * 3] * nx + nor[q * 3 + 1] * ny + nor[q * 3 + 2] * nz < 0.2) continue;
             const d = Math.hypot(pos[q * 3] - x, pos[q * 3 + 1] - y, pos[q * 3 + 2] - z);
             if (best.length < K || d < best[best.length - 1].d) {
@@ -110,16 +110,16 @@ function nearest(g, pos, nor, x, y, z, nx, ny, nz, K) {
   return best;
 }
 
-// Raio do membro: um vértice só segue braço/perna se estiver dentro dele. Cabelo comprido encostado
-// no ombro pegava peso do braço e esticava junto com a mão.
-// Só braços: nas pernas a vizinhança simples já deforma bem, e cortar ali criava costuras.
-// (raio justo no braço de cima soltava a pele de dentro do braço: virava aba até as costelas)
+// Limb radius: a vertex only follows the arm/leg if it's inside it. Long hair resting on
+// the shoulder picked up arm weight and stretched with the hand.
+// Arms only: on legs the simple neighborhood already deforms well, and cutting there created seams.
+// (tight radius on upper arm released inner arm skin: it flapped down to the ribs)
 const LIMB_RADIUS = { UpperArm: 0.12, ForeArm: 0.1, Hand: 0.12 };
 const LIMB_FADE = 0.05;
 
 /**
- * Cabelo apoiado no ombro fica acima da junta do ombro e para dentro (lado do pescoço); a pele do
- * braço nunca fica ali. Nessa região o braço de cima perde a influência, com transição de 3 cm.
+ * Hair resting on the shoulder sits above the shoulder joint and inward (neck side); arm skin
+ * never sits there. In this region the upper arm loses influence, with a 3 cm transition.
  */
 function shoulderHairFactor(b, x, y) {
   if (!b.name.startsWith('UpperArm')) return 1;
@@ -142,7 +142,7 @@ function segDist(s, x, y, z) {
   return Math.hypot(ax + vx * t - x, ay + vy * t - y, az + vz * t - z);
 }
 
-/** Segmento de cada osso na pose de repouso (da junta até a junta filha). */
+/** Segment of each bone in the rest pose (from joint to child joint). */
 function boneSegments(doc) {
   const skin = doc.getRoot().listSkins()[0];
   const joints = skin.listJoints();
@@ -157,7 +157,7 @@ function boneSegments(doc) {
     let end;
     if (child) end = head[joints.indexOf(child)];
     else {
-      // ponta (mão, cabeça, dedo): prolonga na direção do pai
+      // tip (hand, head, finger): extends in the parent's direction
       const parent = joints.findIndex((p) => p.listChildren().includes(node));
       const [px, py, pz] = head[parent];
       const len = node.getName() === 'Head' ? 0.25 : 0.1;
@@ -168,13 +168,13 @@ function boneSegments(doc) {
   });
 }
 
-/** Posição da junta a partir da matriz de bind inversa (rotação ortonormal: inversa = transposta). */
+/** Joint position from the inverse bind matrix (orthonormal rotation: inverse = transpose). */
 function invertTranslation(m) {
   const [tx, ty, tz] = [m[12], m[13], m[14]];
   return [-(m[0] * tx + m[1] * ty + m[2] * tz), -(m[4] * tx + m[5] * ty + m[6] * tz), -(m[8] * tx + m[9] * ty + m[10] * tz)];
 }
 
-/** Fora do corpo (cabelo, renda solta): segue o osso de tronco/cabeça mais próximo, sem misturar. */
+/** Off-body geometry (hair, loose lace): follows the nearest torso/head bone, no blending. */
 function torsoBone(bones, x, y, z) {
   let best = -1, bd = Infinity;
   bones.forEach((b, j) => {
@@ -195,7 +195,7 @@ function transferWeights(rig, target) {
     const [x, y, z] = [target.pos[i * 3], target.pos[i * 3 + 1], target.pos[i * 3 + 2]];
     const [nx, ny, nz] = [target.nor[i * 3], target.nor[i * 3 + 1], target.nor[i * 3 + 2]];
     let near = nearest(g, rig.pos, rig.nor, x, y, z, nx, ny, nz, 6);
-    if (near.length === 0) near = nearest(g, rig.pos, rig.nor, x, y, z, 0, 0, 0, 6); // sem filtro de normal
+    if (near.length === 0) near = nearest(g, rig.pos, rig.nor, x, y, z, 0, 0, 0, 6); // without normal filter
     const acc = new Map();
     for (const { q, d } of near) {
       const f = 1 / (d + 0.005) ** 2;
@@ -204,7 +204,7 @@ function transferWeights(rig, target) {
         if (w > 0) acc.set(rig.jnt[q * 4 + k], (acc.get(rig.jnt[q * 4 + k]) ?? 0) + w * f);
       }
     }
-    // braço só puxa o vértice se ele estiver dentro do braço; a influência some aos poucos (sem costura)
+    // arm only pulls the vertex if it's inside the arm; influence fades gradually (no seam)
     for (const [j, w] of [...acc]) {
       const b = rig.bones[j];
       if (b.radius === null) continue;
@@ -214,7 +214,7 @@ function transferWeights(rig, target) {
       else acc.set(j, w * f);
     }
     let top = [...acc].sort((a, b) => b[1] - a[1]);
-    // mão e quadril não se misturam no mesmo vértice (malha grudada na pose A)
+    // hand and hip don't mix on the same vertex (mesh fused in A-pose)
     const leadName = rig.bones[top[0]?.[0]]?.name ?? '';
     const opposite = HAND_SIDE.test(leadName) ? HIP_SIDE : HIP_SIDE.test(leadName) ? HAND_SIDE : null;
     if (opposite) top = top.filter(([j]) => !opposite.test(rig.bones[j].name));
@@ -232,9 +232,9 @@ function transferWeights(rig, target) {
   return { joints, weights, offBody };
 }
 
-// Cada modelo deixa os braços num ângulo próprio; com o braço mais fechado que o da Tropical, a mão
-// caía sobre a coxa da referência e herdava peso de perna. Fecha os braços da referência (só para a
-// busca de vizinhos) no ângulo que melhor encaixa em cada lado.
+// Each model has its own arm angle; with arms more closed than Tropical's, the hand
+// fell on the reference's thigh and inherited leg weight. Closes the reference arms (only for
+// the neighbor search) at the angle that best fits each side.
 const ARM_CHAIN = { L: /^(UpperArm|ForeArm|Hand)\.?L$/, R: /^(UpperArm|ForeArm|Hand)\.?R$/ };
 
 function posedRig(rig, angles) {
@@ -245,7 +245,7 @@ function posedRig(rig, angles) {
     if (!ang) continue;
     const chain = new Set(rig.bones.flatMap((b, j) => (ARM_CHAIN[side].test(b.name) ? [j] : [])));
     const pivot = rig.bones.find((b) => b.name === `UpperArm.${side}` || b.name === `UpperArm${side}`).seg;
-    // braço esquerdo fica em +X: fechar = girar em Z no sentido negativo
+    // left arm sits at +X: closing = rotate in Z negative direction
     const a = side === 'L' ? -ang : ang;
     const c = Math.cos(a), s = Math.sin(a);
     for (let i = 0; i < pos.length / 3; i++) {
@@ -266,7 +266,7 @@ function posedRig(rig, angles) {
 function fitArms(rig, target) {
   const angles = { L: 0, R: 0 };
   for (const side of ['L', 'R']) {
-    // faixa das mãos e antebraços, do lado certo do corpo
+    // hand and forearm band, on the correct side of the body
     const probe = [];
     for (let i = 0; i < target.pos.length / 3; i += 3) {
       const x = target.pos[i * 3], y = target.pos[i * 3 + 1];
@@ -284,8 +284,8 @@ function fitArms(rig, target) {
   return angles;
 }
 
-// Malhas geradas por IA vêm com a mão grudada no quadril (encostadas na pose A). Ao mexer o braço, essa
-// membrana esticava da mão até a coxa. Remove os triângulos que ligam antebraço/mão a coxa/quadril.
+// AI-generated meshes come with the hand fused to the hip (touching in A-pose). When moving the arm,
+// this membrane stretched from hand to thigh. Removes triangles connecting forearm/hand to thigh/hip.
 function cutFusedHands(idx, joints, bones) {
   const lead = (v) => bones[joints[v * 4]].name;
   const out = [];
@@ -307,8 +307,8 @@ function cutFusedHands(idx, joints, bones) {
 }
 
 /**
- * Fecha os buracos que o corte deixa (lateral da coxa e palma da mão): segue a borda aberta ao redor
- * dos triângulos removidos e a preenche com os próprios vértices da borda, que já têm pesos e UV.
+ * Fills the holes left by the cut (side of thigh and palm): follows the open border around
+ * the removed triangles and fills it with the border's own vertices, which already have weights and UV.
  */
 function fillCutHoles(idx, pos, touched) {
   const n = pos.length / 3;
@@ -329,7 +329,7 @@ function fillCutHoles(idx, pos, touched) {
       edges.push([a, b, u]);
     }
   }
-  // borda aberta, percorrida ao contrário: assim o remendo vira para o mesmo lado da pele em volta
+  // open border, traversed in reverse: so the patch faces the same side as the surrounding skin
   const next = new Map();
   const rep = new Map();
   for (const [a, b, u] of edges) {
@@ -357,7 +357,7 @@ function fillCutHoles(idx, pos, touched) {
   return { idx: out, holes };
 }
 
-/** Triangulação de um polígono 3D quase plano (orelhas), mantendo o sentido dos vértices. */
+/** Triangulation of a nearly-planar 3D polygon (ear clipping), preserving vertex winding. */
 function earClip(poly, pos) {
   const P = (i) => [pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]];
   const nrm = [0, 0, 0];
@@ -389,7 +389,7 @@ function earClip(poly, pos) {
     for (let i = 0; i < V.length; i++) {
       const a = V[(i + V.length - 1) % V.length], b = V[i], c = V[(i + 1) % V.length];
       const [pa, pb, pc] = [p2.get(a), p2.get(b), p2.get(c)];
-      if (cross(pa, pb, pc) <= 0) continue; // canto côncavo
+      if (cross(pa, pb, pc) <= 0) continue; // concave corner
       if (V.some((v) => v !== a && v !== b && v !== c && inside(p2.get(v), pa, pb, pc))) continue;
       tris.push(a, b, c);
       V.splice(i, 1);
@@ -398,12 +398,12 @@ function earClip(poly, pos) {
     }
     if (!clipped) break;
   }
-  // sobra (polígono torto): leque simples
+  // remainder (twisted polygon): simple fan
   for (let i = 1; i + 1 < V.length; i++) tris.push(V[0], V[i], V[i + 1]);
   return tris;
 }
 
-/** Pedaços desconectados da malha (vértices na mesma posição contam como ligados, mesmo com UV diferente). */
+/** Disconnected pieces of the mesh (vertices at the same position count as connected, even with different UV). */
 function islands(idx, pos) {
   const n = pos.length / 3;
   const key = (i) => `${Math.round(pos[i * 3] * 1e4)},${Math.round(pos[i * 3 + 1] * 1e4)},${Math.round(pos[i * 3 + 2] * 1e4)}`;
@@ -440,9 +440,9 @@ function islands(idx, pos) {
 }
 
 /**
- * Com a mão fundida no quadril, a mão inteira pode herdar peso de coxa. Depois do corte ela fica
- * como um pedaço solto na altura do quadril: tudo que não é o corpo principal, está ao lado do corpo
- * na altura das mãos e segue coxa/quadril passa a seguir a mão daquele lado.
+ * With the hand fused to the hip, the entire hand can inherit thigh weight. After the cut it becomes
+ * a loose piece at hip height: anything not the main body, beside the body at hand height and
+ * following thigh/hip, switches to follow that side's hand.
  */
 function rescueHands(idx, pos, joints, weights, bones) {
   const hand = { L: bones.findIndex((b) => /^Hand\.?L$/.test(b.name)), R: bones.findIndex((b) => /^Hand\.?R$/.test(b.name)) };
@@ -463,7 +463,7 @@ function rescueHands(idx, pos, joints, weights, bones) {
   return freed;
 }
 
-// ---------------------------------------------------------------- esqueleto de referência
+// ---------------------------------------------------------------- reference skeleton
 const rigDoc = await io.read(SRC + RIG);
 const r = onlyPrim(rigDoc).prim;
 const rig = {
@@ -482,7 +482,7 @@ const renameClips = (doc) => {
   for (const a of doc.getRoot().listAnimations()) if (CLIPS[a.getName()]) a.setName(CLIPS[a.getName()]);
 };
 
-// Tropical: já tem esqueleto; só reduz.
+// Tropical: already has skeleton; just reduce.
 {
   const doc = await io.read(SRC + RIG);
   renameClips(doc);
@@ -490,29 +490,29 @@ const renameClips = (doc) => {
   await finish(doc, 'tropical.glb', [dedup(), prune({ keepLeaves: true })]);
 }
 
-// Cyber: geometria e textura próprias sobre o esqueleto da Tropical.
+// Cyber: own geometry and texture on Tropical's skeleton.
 for (const m of MODELS) {
   const src = await io.read(SRC + m.src);
   const { node: srcNode, prim: sp } = onlyPrim(src);
   const M = srcNode.getWorldMatrix();
   if (Math.abs(M[0] - 1) + Math.abs(M[5] - 1) + Math.abs(M[10] - 1) + Math.abs(M[1]) + Math.abs(M[2]) + Math.abs(M[4]) > 1e-4) {
-    throw new Error(`${m.src}: nó com rotação/escala, não suportado`);
+    throw new Error(`${m.src}: node with rotation/scale, not supported`);
   }
-  srcNode.setTranslation([0, 0, 0]); // vieram exportadas lado a lado (x = 1, 2, 3, 4)
+  srcNode.setTranslation([0, 0, 0]); // they were exported side by side (x = 1, 2, 3, 4)
   await reduce(src);
 
   const target = { pos: read(sp.getAttribute('POSITION')), nor: read(sp.getAttribute('NORMAL')) };
   const uv = read(sp.getAttribute('TEXCOORD_0'));
   const arms = fitArms(rig, target);
-  console.log(`  ${m.src}: braços da referência fechados em L ${arms.L.toFixed(2)} rad, R ${arms.R.toFixed(2)} rad`);
+  console.log(`  ${m.src}: reference arms closed at L ${arms.L.toFixed(2)} rad, R ${arms.R.toFixed(2)} rad`);
   const { joints, weights, offBody } = transferWeights(posedRig(rig, arms), target);
   const srcIdx = sp.getIndices().getArray();
   const freed = rescueHands(cutFusedHands(srcIdx, joints, rig.bones).idx, target.pos, joints, weights, rig.bones);
-  if (freed) console.log(`  ${m.src}: ${freed} vértices de mão que estavam presos à coxa voltaram para a mão`);
-  // corta de novo com os pesos corrigidos: o pulso volta a ligar no antebraço, só a ponte até a coxa sai
+  if (freed) console.log(`  ${m.src}: ${freed} hand vertices that were stuck to the thigh returned to the hand`);
+  // cut again with corrected weights: the wrist reconnects to the forearm, only the bridge to the thigh is removed
   const cutResult = cutFusedHands(srcIdx, joints, rig.bones);
   const { idx, holes } = fillCutHoles(cutResult.idx, target.pos, cutResult.touched);
-  if (cutResult.cut) console.log(`  ${m.src}: ${cutResult.cut} triângulos ligando mão e quadril removidos, ${holes} buracos fechados`);
+  if (cutResult.cut) console.log(`  ${m.src}: ${cutResult.cut} triangles connecting hand and hip removed, ${holes} holes filled`);
 
   const doc = await io.read(SRC + RIG);
   renameClips(doc);
@@ -540,11 +540,11 @@ for (const m of MODELS) {
     .setRoughnessFactor(sm.getRoughnessFactor());
   node.setName(m.out.replace('.glb', ''));
   node.getMesh().setName(m.out.replace('.glb', ''));
-  console.log(`  ${m.src}: ${offBody} de ${target.pos.length / 3} vértices fora do corpo (cabelo etc.) presos ao tronco/cabeça`);
+  console.log(`  ${m.src}: ${offBody} of ${target.pos.length / 3} vertices off-body (hair etc.) locked to torso/head`);
   await finish(doc, m.out, [dedup(), prune({ keepLeaves: true })]);
 }
 
-// Bartender: texturas menores; nada de prune (ossos de colisão do cabelo não deformam a malha e sumiriam).
+// Bartender: smaller textures; no prune (hair collision bones don't deform the mesh and would be removed).
 {
   const doc = await io.read(SRC + 'Bartender_Mulher_v6.glb');
   await doc.transform(

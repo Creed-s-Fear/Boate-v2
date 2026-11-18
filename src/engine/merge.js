@@ -3,8 +3,8 @@ import * as THREE from 'three';
 const _m = new THREE.Matrix4();
 const _n = new THREE.Matrix3();
 
-// Coordenadas de um atributo como Float32Array de trincas. Depois do carregamento os
-// atributos já são assim e o vetor é usado direto; o caminho genérico cobre o resto.
+// Attribute coordinates as a Float32Array of triples. After loading the attributes
+// are already in this format and the array is used directly; the generic path covers the rest.
 function triples(attr) {
   if (attr.array instanceof Float32Array && !attr.isInterleavedBufferAttribute && attr.itemSize === 3) return attr.array;
   const out = new Float32Array(attr.count * 3);
@@ -16,10 +16,10 @@ function triples(attr) {
   return out;
 }
 
-// Junta várias malhas numa geometria só (posição, normal e índice), com a transformação
-// de cada uma já aplicada: a de mundo, ou a relativa a um pai quando `inverse` é a matriz
-// de mundo invertida desse pai. Escreve direto nos vetores finais, o que é várias vezes
-// mais rápido do que clonar cada geometria, transformar e só então juntar.
+// Merges multiple meshes into a single geometry (position, normal, index) with each
+// transform already applied: world, or relative to a parent when `inverse` is that
+// parent's inverted world matrix. Writes directly into the final arrays, which is
+// several times faster than cloning each geometry, transforming, and then merging.
 export function mergeMeshes(meshes, { inverse = null, normals = true } = {}) {
   let vertices = 0;
   let indices = 0;
@@ -33,8 +33,8 @@ export function mergeMeshes(meshes, { inverse = null, normals = true } = {}) {
   const normal = withNormals ? new Float32Array(vertices * 3) : null;
   const index = vertices > 65535 ? new Uint32Array(indices) : new Uint16Array(indices);
 
-  let v = 0; // vértices já escritos
-  let k = 0; // índices já escritos
+  let v = 0; // vertices written so far
+  let k = 0; // indices written so far
   for (const mesh of meshes) {
     const g = mesh.geometry;
     const count = g.attributes.position.count;
@@ -69,7 +69,7 @@ export function mergeMeshes(meshes, { inverse = null, normals = true } = {}) {
       }
     }
 
-    // peça espelhada (escala negativa) inverte a face: troca a ordem de cada triângulo
+    // mirrored piece (negative scale) flips the face: swap each triangle's winding order
     const flip = _m.determinant() < 0;
     const idx = g.index ? g.index.array : null;
     const total = idx ? idx.length : count;

@@ -46,8 +46,8 @@ export async function gameRoutes(app: FastifyInstance): Promise<void> {
         const credited = await scanUser(id);
         return { credited, balance: await balanceOf(id) };
       } catch (e) {
-        req.log.warn({ err: e }, 'refresh falhou');
-        return reply.code(503).send({ error: 'Rede Solana indisponível agora. Tente de novo em instantes.' });
+        req.log.warn({ err: e }, 'refresh failed');
+        return reply.code(503).send({ error: 'Solana network unavailable right now. Try again shortly.' });
       }
     },
   );
@@ -72,9 +72,9 @@ export async function gameRoutes(app: FastifyInstance): Promise<void> {
     async (req, reply) => {
       const id = req.user!.id;
       const price = priceOf(req.body.item);
-      if (price === null) return reply.code(400).send({ error: 'Item desconhecido.' });
+      if (price === null) return reply.code(400).send({ error: 'Unknown item.' });
       try {
-        // o passe VIP é permanente: fica gravado na conta e não pode ser comprado duas vezes
+        // the VIP pass is permanent: stored on the account and cannot be bought twice
         const isVip = req.body.item === 'vipPass';
         const balance = await tx(async (c) => {
           const u = await c.query(
@@ -93,12 +93,12 @@ export async function gameRoutes(app: FastifyInstance): Promise<void> {
         });
         if (balance === null) {
           const v = await pool.query('select vip from users where id = $1', [id]);
-          if (isVip && v.rows[0].vip) return reply.code(409).send({ error: 'Você já tem o passe VIP.', balance: await balanceOf(id) });
-          return reply.code(402).send({ error: 'Saldo insuficiente.', balance: await balanceOf(id) });
+          if (isVip && v.rows[0].vip) return reply.code(409).send({ error: 'You already have the VIP pass.', balance: await balanceOf(id) });
+          return reply.code(402).send({ error: 'Insufficient balance.', balance: await balanceOf(id) });
         }
         return { balance };
       } catch (e) {
-        // mesmo requestId de novo (clique duplo, nova tentativa da rede): já foi cobrado
+        // same requestId again (double click, network retry): already charged
         if ((e as { code?: string }).code === '23505') return { balance: await balanceOf(id), duplicate: true };
         throw e;
       }
@@ -119,7 +119,7 @@ export async function gameRoutes(app: FastifyInstance): Promise<void> {
       await c.query("insert into ledger (user_id, delta, kind, balance_after) values ($1, $2, 'reward', $3)", [id, prize, u.rows[0].balance]);
       return Number(u.rows[0].balance);
     });
-    if (r === null) return reply.code(429).send({ error: `Prêmio de dança só a cada ${REWARD_COOLDOWN_MIN} minutos.` });
+    if (r === null) return reply.code(429).send({ error: `Dance reward only every ${REWARD_COOLDOWN_MIN} minutes.` });
     return { prize, balance: r };
   });
 }

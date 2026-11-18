@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 
-// "Vida" barata para o mapa inteiro: pequenos trechos de shader enxertados nos
-// materiais que já existem (onBeforeCompile). Não cria objetos, texturas nem draw
-// calls: os mesmos lotes de sempre passam a ter veios, poças, brilho de borda,
-// pulsação e cortinas que balançam e se abrem com a passagem do jogador.
+// Cheap "life" for the entire map: small shader snippets grafted onto existing
+// materials (onBeforeCompile). Creates no objects, textures or draw calls: the
+// same batches as before now have veins, puddles, rim glow, pulsation and
+// curtains that sway and part as the player passes.
 
-// uniforms compartilhados por todos os materiais (atualizados uma vez por quadro)
+// uniforms shared by all materials (updated once per frame)
 export const FX = {
   uTime: { value: 0 },
   uPlayer: { value: new THREE.Vector3(0, -100, 0) },
@@ -19,7 +19,7 @@ varying vec3 vFxN;
 varying vec3 vFxV;
 `;
 
-// mesmo ruído do reflexo do piso: as poças do material coincidem com as do reflexo
+// same noise as the floor reflection: material puddles match the reflection puddles
 const NOISE = /* glsl */ `
 float fxHash(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
@@ -69,8 +69,8 @@ function patch(mat, key, { vertex = '', color = '', emissive = '', roughness = '
   mat.customProgramCacheKey = () => 'fx:' + key;
 }
 
-// neon e fitas de LED: miolo claro, borda mais saturada, pontinhos de LED ao longo da
-// fita e um pulso de luz que corre por ela
+// neon and LED strips: bright core, more saturated edge, LED dots along the strip
+// and a pulse of light running through it
 const NEON = /* glsl */ `
   float fxF = fxFacing();
   diffuseColor.rgb *= 0.62 + 0.38 * fxF;
@@ -79,8 +79,8 @@ const NEON = /* glsl */ `
   diffuseColor.rgb *= 0.86 + 0.14 * cos(fxS * 170.0);
   diffuseColor.rgb *= 0.9 + 0.28 * pow(0.5 + 0.5 * sin(fxS * 2.4 - uFxTime * 2.0), 10.0);
 `;
-// vidro de copos e garrafas: borda mais opaca e clara (espessura) e riscos de reflexo
-// só nas partes curvas (em vidro plano o risco viraria um clarão)
+// glass on cups and bottles: opaquer and lighter rim (thickness) and reflection streaks
+// only on curved parts (on flat glass the streak would become a glare)
 const GLASS = /* glsl */ `
   float fxF = fxFacing();
   float fxRim = pow(1.0 - fxF, 2.2);
@@ -91,7 +91,7 @@ const GLASS_E = /* glsl */ `
   float fxStreak = pow(max(0.0, sin(vFxN.x * 9.0 + vFxN.y * 4.0)), 24.0) * smoothstep(0.03, 0.3, 1.0 - fxF);
   totalEmissiveRadiance += vec3(1.0, 0.78, 0.93) * (fxRim * 0.3 + fxStreak * 0.3);
 `;
-// líquidos: brilham de dentro (bar de neon), borda mais densa e bolhinhas subindo
+// liquids: glow from within (neon bar), denser rim and rising bubbles
 const LIQUID = /* glsl */ `
   float fxF = fxFacing();
   diffuseColor.a = clamp(diffuseColor.a + pow(1.0 - fxF, 2.0) * 0.3, 0.0, 0.97);
@@ -102,23 +102,23 @@ const LIQUID = /* glsl */ `
 const LIQUID_E = /* glsl */ `
   totalEmissiveRadiance += diffuseColor.rgb * (0.3 + 0.2 * sin(vFxWorld.y * 60.0 + uFxTime * 2.0));
 `;
-// telas: linhas de "dados" correndo
+// screens: lines of "data" scrolling
 const SCREEN = /* glsl */ `
   float fxRow = floor(vFxWorld.y * 70.0);
   float fxU = (vFxWorld.x + vFxWorld.z) * 80.0 + uFxTime * (1.5 + 3.0 * fxHash(vec2(fxRow, 3.0)));
   float fxOn = step(0.42, fxHash(vec2(floor(fxU), fxRow)));
   diffuseColor.rgb *= 0.3 + fxOn * step(0.2, fract(vFxWorld.y * 70.0));
 `;
-// painéis holográficos das placas: varredura e falha de sinal
+// holographic sign panels: sweep and signal glitch
 const HOLO = /* glsl */ `
   totalEmissiveRadiance *= (0.62 + 0.38 * sin(vFxWorld.y * 190.0 - uFxTime * 5.0))
     * (0.9 + 0.1 * sin(uFxTime * 31.0) * sin(uFxTime * 7.3)) * 1.4;
 `;
-// luz de fundo das treliças, luminárias e frente do bar: respiração lenta
+// lattice backlight, light fixtures and bar front: slow breathing
 const GLOW = /* glsl */ `
   totalEmissiveRadiance *= 0.82 + 0.18 * sin(vFxWorld.y * 3.5 - uFxTime * 0.9 + vFxWorld.x * 1.1 + vFxWorld.z * 0.9);
 `;
-// mármore: manchas largas e veios finos (no espaço do mundo, sem costura entre peças)
+// marble: broad stains and fine veins (in world space, seamless across pieces)
 const marble = (vein) => /* glsl */ `
   vec3 fxP = vFxWorld * 1.6;
   float fxWarp = fxNoise3(fxP * 0.9) * 2.0 + fxNoise3(fxP * 2.3);
@@ -128,17 +128,17 @@ const marble = (vein) => /* glsl */ `
 const MARBLE_R = /* glsl */ `
   roughnessFactor = clamp(roughnessFactor + fxVein * 0.25, 0.11, 1.0);
 `;
-// piso molhado: poças lisas e escuras, resto mais fosco
+// wet floor: smooth dark puddles, rest more matte
 const WET = /* glsl */ `
   float fxPud = smoothstep(0.36, 0.6, fxFbm(vFxWorld.xz * 0.45));
   diffuseColor.rgb *= mix(1.25, 0.8, fxPud);
 `;
-// (0.1 de rugosidade mínima: abaixo disso as luzes viram pontos de reflexo que ofuscam)
+// (0.1 minimum roughness: below that, lights become glaring specular dots)
 const WET_R = /* glsl */ `
   roughnessFactor = clamp(mix(roughnessFactor * 2.4, roughnessFactor * 0.6, fxPud), 0.1, 1.0);
 `;
-// veludo e cetim (sofás, pufes, banquetas): grão fino do tecido, manchas de pelo
-// "amassado" que mudam o brilho e a cor, e brilho de borda
+// velvet and satin (sofas, poufs, stools): fine fabric grain, crushed-nap stains
+// that change gloss and color, and rim glow
 const VELVET_C = /* glsl */ `
   float fxGrain = fxNoise(vFxWorld.xz * 160.0 + vFxWorld.y * 97.0);
   float fxNap = fxNoise3(vFxWorld * 5.5);
@@ -148,11 +148,11 @@ const VELVET_R = /* glsl */ `
   roughnessFactor = clamp(roughnessFactor - 0.25 * fxNap, 0.3, 1.0);
 `;
 const VELVET = /* glsl */ `
-  // brilho de borda discreto: forte demais apaga o sombreado e o sofá fica "chapado"
+  // subtle rim glow: too strong washes out the shading and the sofa looks flat
   totalEmissiveRadiance += diffuseColor.rgb * pow(1.0 - fxFacing(), 3.0) * (0.16 + 0.26 * fxNap);
 `;
-// cortinas de tecido: balanço leve e abertura em volta do jogador (as salas ficam na
-// origem, então a posição do lote já é a posição no mundo)
+// fabric curtains: gentle sway and parting around the player (rooms are at the
+// origin, so the batch position is already the world position)
 const CURTAIN_V = /* glsl */ `
   float fxHang = clamp((2.75 - transformed.y) / 2.5, 0.0, 1.0);
   fxHang *= fxHang;

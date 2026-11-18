@@ -1,6 +1,6 @@
 /**
- * Tabela única de preços, lida pelo jogo e pelo servidor. Com conta, o servidor cobra
- * pelo id do item e nunca aceita um valor vindo do cliente.
+ * Single price table, read by the game and the server. With an account, the server
+ * charges by item id and never accepts a value from the client.
  */
 
 export const PRICES = {
@@ -29,14 +29,14 @@ export const HOSTESS_PRICES = {
 export type HostessName = keyof typeof HOSTESS_PRICES;
 
 export const DRINKS = [
-  { id: 'agua', name: 'Água', price: 5, buzz: -0.25, alcohol: false },
-  { id: 'refri', name: 'Refrigerante', price: 8, buzz: 0, alcohol: false },
-  { id: 'cerveja', name: 'Cerveja', price: 15, buzz: 0.12, alcohol: true },
-  { id: 'olho-magico', name: 'Olho Mágico (drink da casa)', price: 25, buzz: 0.2, alcohol: true },
-  { id: 'tequila', name: 'Dose de tequila', price: 30, buzz: 0.3, alcohol: true },
+  { id: 'agua', name: 'Water', price: 5, buzz: -0.25, alcohol: false },
+  { id: 'refri', name: 'Soda', price: 8, buzz: 0, alcohol: false },
+  { id: 'cerveja', name: 'Beer', price: 15, buzz: 0.12, alcohol: true },
+  { id: 'olho-magico', name: 'Peekhole (house drink)', price: 25, buzz: 0.2, alcohol: true },
+  { id: 'tequila', name: 'Tequila shot', price: 30, buzz: 0.3, alcohol: true },
 ] as const;
 
-/** Item comprável: `wristband`, `drink:cerveja`, `hostess:Luna`, `hostessPremium:Luna`. */
+/** Purchasable item: `wristband`, `drink:cerveja`, `hostess:Luna`, `hostessPremium:Luna`. */
 export type ItemId = string;
 
 export const itemId = {
@@ -48,7 +48,7 @@ export const itemId = {
 
 const has = <T extends object>(o: T, k: string): k is Extract<keyof T, string> => Object.prototype.hasOwnProperty.call(o, k);
 
-/** Preço do item, ou null se o id não existe. */
+/** Price of the item, or null if the id doesn't exist. */
 export function priceOf(id: ItemId): number | null {
   if (typeof id !== 'string' || id.length > 48) return null;
   if (has(PRICES, id)) return PRICES[id];

@@ -1,13 +1,13 @@
 /**
- * Personagem placeholder low-poly (original, sem assets de terceiros), animado proceduralmente.
- * Quando houver um modelo GLTF próprio com rig, troca-se esta classe mantendo a mesma API
+ * Placeholder low-poly character (original, no third-party assets), procedurally animated.
+ * When a custom GLTF model with rig is available, replace this class keeping the same API
  * (root, update(dt, pose), setShirt).
- * Frente do personagem = +Z local.
+ * Character front = local +Z.
  */
 import * as THREE from 'three';
 import { UNIT_BOX } from './materials';
 
-/** Material único de todos os personagens: a cor de cada parte vai nos vértices. */
+/** Single material for all characters: each part's color goes in the vertices. */
 const SKIN_MAT = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.75 });
 
 interface Part { w: number; h: number; d: number; color: number; x: number; y: number; z: number; shirt: boolean }
@@ -20,11 +20,11 @@ export interface Look {
   skin: number;
   hair: number;
   scale?: number;
-  /** 'f' = silhueta feminina (vestido, cabelo longo). Padrão 'm'. */
+  /** 'f' = feminine silhouette (dress, long hair). Default 'm'. */
   build?: 'm' | 'f';
 }
 
-const DANCE_W = (2 * Math.PI * 122) / 60; // sincronizado com o BPM da trilha
+const DANCE_W = (2 * Math.PI * 122) / 60; // synced with the soundtrack BPM
 
 export class Character {
   readonly root = new THREE.Group();
@@ -33,7 +33,7 @@ export class Character {
   private readonly legR = new THREE.Group();
   private readonly armL = new THREE.Group();
   private readonly armR = new THREE.Group();
-  /** trechos do atributo de cor que são roupa (trocados por setShirt) */
+  /** ranges of the color attribute that are clothing (swapped by setShirt) */
   private readonly shirtRanges: Array<{ attr: THREE.BufferAttribute; start: number; count: number }> = [];
   private t = Math.random() * 10;
 
@@ -41,9 +41,9 @@ export class Character {
     this.root.add(this.body);
     if (look.scale) this.body.scale.setScalar(look.scale);
 
-    // As partes são juntadas por grupo animado (corpo, pernas, braços): 5 malhas por personagem
-    // em vez de ~15. No Jack of Hearts, 21 NPCs com uma malha por parte custavam 558 draw calls e
-    // +4,3 ms por quadro (medido com gl.finish).
+    // Parts are merged per animated group (body, legs, arms): 5 meshes per character
+    // instead of ~15. In Jack of Hearts, 21 NPCs with one mesh per part cost 558 draw calls and
+    // +4.3 ms per frame (measured with gl.finish).
     const groups = new Map<THREE.Object3D, Part[]>();
     const part = (w: number, h: number, d: number, color: number, parent: THREE.Object3D, x: number, y: number, z: number, shirt = false): void => {
       let list = groups.get(parent);
@@ -61,7 +61,7 @@ export class Character {
     }
 
     if (f) {
-      // Vestido: tronco + saia na cor principal.
+      // Dress: torso + skirt in the main color.
       part(0.4, 0.66, 0.25, look.shirt, this.body, 0, 1.28, 0, true);
       part(0.44, 0.4, 0.3, look.shirt, this.body, 0, 0.8, 0, true);
     } else {
@@ -71,7 +71,7 @@ export class Character {
     part(f ? 0.22 : 0.24, 0.27, f ? 0.23 : 0.25, look.skin, this.body, 0, 1.8, 0);
     part(0.26, 0.08, 0.27, look.hair, this.body, 0, 1.96, -0.01);
     if (f) {
-      part(0.28, 0.55, 0.08, look.hair, this.body, 0, 1.7, -0.12); // cabelo longo
+      part(0.28, 0.55, 0.08, look.hair, this.body, 0, 1.7, -0.12); // long hair
       part(0.04, 0.4, 0.2, look.hair, this.body, -0.125, 1.76, -0.02);
       part(0.04, 0.4, 0.2, look.hair, this.body, 0.125, 1.76, -0.02);
     } else {
@@ -94,7 +94,7 @@ export class Character {
 
     for (const [parent, parts] of groups) {
       const mesh = new THREE.Mesh(this.mergeParts(parts), SKIN_MAT);
-      // Camada 1: a câmera vê, o reflexo do piso não (refletir personagens dobrava o custo do reflexo).
+      // Layer 1: the camera sees it, the floor reflection does not (reflecting characters doubled the reflection cost).
       mesh.layers.set(1);
       parent.add(mesh);
     }
@@ -191,7 +191,7 @@ export class Character {
         break;
       case 'crouch':
       case 'crouchWalk': {
-        // agachado: quadril baixo, coxas para a frente, tronco inclinado; andando, passo curto
+        // crouched: hips low, thighs forward, torso leaning; walking, short stride
         const s = pose === 'crouchWalk' ? Math.sin(t * 6) : 0;
         b.position.y = -0.48;
         b.rotation.x = 0.28;

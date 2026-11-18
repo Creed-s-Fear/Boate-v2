@@ -1,14 +1,14 @@
 /**
- * Engine de cutscenes genérica — timeline de steps, câmera interpolada, diálogo, fade,
- * escolhas e poses. Conteúdo-agnóstica: o Game monta os steps, a engine os executa.
+ * Generic cutscene engine — step timeline, interpolated camera, dialogue, fade,
+ * choices and poses. Content-agnostic: the Game builds the steps, the engine runs them.
  *
- * Performance: nenhuma alocação por frame (vetores reutilizados).
- * Segurança: texto de diálogo entra via textContent, nunca innerHTML.
+ * Performance: no per-frame allocation (vectors reused).
+ * Security: dialogue text uses textContent, never innerHTML.
  */
 import * as THREE from 'three';
 import type { Pose } from './character';
 
-// ================================================================ Tipos públicos
+// ================================================================ Public types
 
 export interface Vec3 { x: number; y: number; z: number }
 
@@ -37,13 +37,13 @@ export interface StepDialogue {
   type: 'dialogue';
   speaker: string;
   text: string;
-  /** Se definido, avança automaticamente após N segundos. Senão, espera input. */
+  /** If set, advances automatically after N seconds. Otherwise, waits for input. */
   auto?: number;
 }
 
 export interface StepFade {
   type: 'fade';
-  /** 0 = transparente, 1 = sólido. */
+  /** 0 = transparent, 1 = solid. */
   opacity: number;
   duration: number;
   color?: string;
@@ -78,9 +78,9 @@ export type SceneBuilder = (ctx: SceneContext) => SceneStep[];
 export interface PlayOpts {
   onPose?: (target: 'hostess' | 'player', pose: Pose) => void;
   onEnd?: (lastChoice: string | null) => void;
-  /** Chamado a cada quadro com o tempo desde o início (cenas dirigidas por tempo, como a abertura). */
+  /** Called every frame with the time since start (time-driven scenes, like the opening). */
   onUpdate?: (dt: number, time: number) => void;
-  /** Texto do aviso de pular (padrão: segurar Esc). */
+  /** Skip hint text (default: hold Esc). */
   skipLabel?: string;
 }
 
@@ -115,7 +115,7 @@ export class CutsceneEngine {
   private onUpdate: PlayOpts['onUpdate'];
   private time = 0;
 
-  // Camera lerp (sem alocação por frame)
+  // Camera lerp (no per-frame allocation)
   private readonly camFrom: CamTarget = { pos: { x: 0, y: 2, z: 0 }, lookAt: { x: 0, y: 1, z: -1 }, fov: 70 };
 
   // Fade lerp
@@ -135,7 +135,7 @@ export class CutsceneEngine {
   constructor(private readonly camera: THREE.PerspectiveCamera) {
     const $ = (id: string): HTMLElement => {
       const el = document.getElementById(id);
-      if (!el) throw new Error(`#${id} ausente`);
+      if (!el) throw new Error(`#${id} missing`);
       return el;
     };
     this.root = $('cutscene');
@@ -163,7 +163,7 @@ export class CutsceneEngine {
     this.onUpdate = opts.onUpdate;
     this.time = 0;
     const label = this.skipEl.querySelector('span');
-    if (label) label.textContent = opts.skipLabel ?? 'Segure [Esc] para pular';
+    if (label) label.textContent = opts.skipLabel ?? 'Hold [Esc] to skip';
 
     this.saveCamFrom();
     this.fadeFrom = 0;
@@ -175,7 +175,7 @@ export class CutsceneEngine {
     this.skipEl.hidden = false;
   }
 
-  /** Chamado uma vez por frame pelo Game. */
+  /** Called once per frame by Game. */
   update(dt: number, escDown: boolean, advancePressed: boolean): void {
     if (!this.playing) return;
 
@@ -192,7 +192,7 @@ export class CutsceneEngine {
     this.time += dt;
     this.onUpdate?.(dt, this.time);
 
-    // --- Step atual ---
+    // --- Current step ---
     const step = this.steps[this.idx];
     if (!step) { this.finish(); return; }
 
@@ -239,7 +239,7 @@ export class CutsceneEngine {
     }
   }
 
-  /** Consome tecla durante cutscene. Retorna true se consumiu. */
+  /** Consumes a key during cutscene. Returns true if consumed. */
   handleKey(code: string): boolean {
     if (!this.playing) return false;
     const step = this.steps[this.idx];
@@ -254,7 +254,7 @@ export class CutsceneEngine {
     return true;
   }
 
-  // ================================================================ Internos
+  // ================================================================ Internal
 
   private enter(step: SceneStep): void {
     this.dlg.hidden = true;
@@ -271,7 +271,7 @@ export class CutsceneEngine {
         this.dlg.hidden = false;
         this.speaker.textContent = step.speaker;
         this.text.textContent = step.text;
-        this.hint.textContent = step.auto ? '' : '[E] continuar';
+        this.hint.textContent = step.auto ? '' : '[E] continue';
         break;
       case 'choice': {
         this.choices.hidden = false;

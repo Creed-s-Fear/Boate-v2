@@ -1,8 +1,8 @@
-// Publica o build atual no link do jogo (GitHub Pages).
-// O jogo compilado fica no ramo `gh-pages` deste mesmo repositório; o GitHub Pages serve
-// esse ramo. O ramo `main` continua só com o código-fonte.
+// Publishes the current build to the game link (GitHub Pages).
+// The compiled game lives on the `gh-pages` branch of this same repository; GitHub Pages
+// serves that branch. The `main` branch stays source-only.
 //
-// Uso: npm run publicar   (precisa do git com acesso ao repositório)
+// Usage: npm run publicar   (requires git with repository access)
 import { execSync } from 'node:child_process';
 import { cpSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -13,14 +13,14 @@ const BRANCH = 'gh-pages';
 const URL = 'https://creed-s-fear.github.io/boate/';
 const run = (cmd, cwd = process.cwd()) => execSync(cmd, { cwd, stdio: ['ignore', 'pipe', 'pipe'] }).toString().trim();
 
-console.log('gerando o build...');
+console.log('generating the build...');
 run('npm run build');
 
 const dir = mkdtempSync(join(tmpdir(), 'joh-pages-'));
 try {
   run(`git clone --depth 1 --branch ${BRANCH} ${REPO} "${dir}"`);
 } catch {
-  // primeira publicação: o ramo ainda não existe
+  // first publish: branch doesn't exist yet
   run(`git init -b ${BRANCH} "${dir}"`);
   run(`git remote add origin ${REPO}`, dir);
 }
@@ -32,13 +32,13 @@ writeFileSync(join(dir, '.nojekyll'), '');
 run('git add -A', dir);
 
 if (!run('git status --porcelain', dir)) {
-  console.log('nada mudou desde a última publicação.');
+  console.log('nothing changed since last publish.');
 } else {
-  // mesmo autor do repositório (e-mail "noreply" do GitHub, para o pessoal não aparecer)
+  // same repo author (GitHub noreply email, so personal emails don't show)
   const name = run('git config user.name');
   const email = run('git config user.email');
-  run(`git -c user.name="${name}" -c user.email="${email}" commit -m "Atualiza a versao jogavel"`, dir);
+  run(`git -c user.name="${name}" -c user.email="${email}" commit -m "Update playable version"`, dir);
   run(`git push origin HEAD:${BRANCH}`, dir);
-  console.log(`publicado: ${URL} (o GitHub leva cerca de 1 minuto para atualizar)`);
+  console.log(`published: ${URL} (GitHub takes about 1 minute to update)`);
 }
 rmSync(dir, { recursive: true, force: true });

@@ -13,9 +13,9 @@ const NOISE = /* glsl */ `
                mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
   }`;
 
-// Água da jacuzzi. Translúcida: o fundo da banheira aparece através dela, e as cáusticas
-// são desenhadas deslocadas pela refração (parecem estar no fundo, não na superfície).
-// Ondulação, espuma dos jatos, reflexo do anel e anéis em volta do jogador. 1 draw call.
+// Jacuzzi water. Translucent: the tub floor shows through, and caustics are drawn
+// offset by refraction (appearing on the bottom, not the surface).
+// Ripples, jet foam, ring reflection and rings around the player. 1 draw call.
 export function createWaterMaterial() {
   return new THREE.ShaderMaterial({
     name: 'Water',
@@ -25,7 +25,7 @@ export function createWaterMaterial() {
       uTime: { value: 0 },
       uCenter: { value: new THREE.Vector2() },
       uRadius: { value: 1.28 },
-      uPlayer: { value: new THREE.Vector3() }, // x, z, força (0 fora da água, 1 dentro)
+      uPlayer: { value: new THREE.Vector3() }, // x, z, strength (0 outside water, 1 inside)
       uShallow: { value: new THREE.Color(0x4ff2e4) },
       uDeep: { value: new THREE.Color(0x05495c) },
       uGlow: { value: new THREE.Color(0x9bfff4) },
@@ -63,7 +63,7 @@ export function createWaterMaterial() {
         float t = uTime;
         vec3 V = normalize(cameraPosition - vWorld);
 
-        // ondulação: ondas somadas + turbulência + anéis saindo do jogador
+        // ripple: summed waves + turbulence + rings emanating from the player
         vec2 q = vWorld.xz * 6.0;
         vec2 n = 0.05 * vec2(cos(q.x * 1.3 + t * 1.7), sin(q.y * 1.1 - t * 1.3));
         n += 0.035 * vec2(sin(q.y * 2.1 + q.x * 0.7 + t * 2.3), cos(q.x * 1.9 - q.y * 0.5 - t * 2.0));
@@ -76,18 +76,18 @@ export function createWaterMaterial() {
         float cosT = clamp(dot(N, V), 0.0, 1.0);
         float fres = 0.03 + 0.97 * pow(1.0 - cosT, 5.0);
 
-        // fundo visto por refração; mais raso no banco junto à parede
+        // bottom seen through refraction; shallower at the bench along the wall
         float depth = mix(0.5, 0.2, smoothstep(0.55, 0.95, r));
         float vy = max(V.y, 0.3);
         vec2 bp = vWorld.xz - V.xz / vy * depth * 0.7 + n * 0.5;
         float c = caustic(mod(bp * 2.6, 6.28318) - 250.0, t * 0.5 + 23.0);
         float path = depth / vy;
         vec3 body = mix(uShallow, uDeep, clamp(path * 0.7, 0.0, 1.0));
-        // luz vinda de baixo (iluminação submersa): mais clara no centro
+        // light from below (underwater lighting): brighter in the center
         float under = 0.55 + 0.45 * (1.0 - r * r);
         vec3 col = body * (0.62 + 0.5 * under) + uGlow * c * (1.5 - 0.6 * clamp(path, 0.0, 1.0));
 
-        // espuma em bolhas finas: 6 jatos na parede, linha da borda e em volta do jogador
+        // fine bubble foam: 6 jets on the wall, edge line and around the player
         float ang = atan(p.y, p.x);
         float lobes = pow(0.5 + 0.5 * cos(ang * 6.0 + 0.5), 4.0);
         float band = smoothstep(0.3, 0.8, r) * (1.0 - smoothstep(0.88, 0.99, r));
@@ -96,10 +96,10 @@ export function createWaterMaterial() {
         float foam = smoothstep(0.14, 0.4, jet * (0.2 + 3.4 * fine));
         foam = max(foam, smoothstep(0.972, 1.0, r) * (0.3 + 2.4 * fine));
         foam = max(foam, (1.0 - smoothstep(0.3, 0.52, dp)) * uPlayer.z * smoothstep(0.12, 0.34, fine));
-        col += uGlow * jet * 0.22; // água agitada pelos jatos fica mais clara
+        col += uGlow * jet * 0.22; // water churned by jets appears brighter
         col = mix(col, vec3(0.9, 1.0, 1.0), clamp(foam, 0.0, 1.0) * 0.6);
 
-        // reflexo rosado do anel (discreto) e brilhos especulares
+        // pinkish ring reflection (subtle) and specular highlights
         vec3 R = reflect(-V, N);
         float spec = pow(clamp(dot(R, normalize(vec3(0.45, 0.8, 0.3))), 0.0, 1.0), 70.0)
                    + pow(clamp(dot(R, normalize(vec3(-0.55, 0.75, -0.35))), 0.0, 1.0), 70.0);
@@ -111,9 +111,9 @@ export function createWaterMaterial() {
   });
 }
 
-// Vapor: fiapos de névoa (quadros virados para a câmera, forma dada por ruído) subindo
-// e se abrindo, mais um lençol de névoa rente à água. Tudo animado no shader: nenhum
-// cálculo por quadro em JS e 2 draw calls.
+// Steam: wisps of mist (billboards facing the camera, shape from noise) rising and
+// spreading, plus a sheet of fog close to the water. All animated in shader: no
+// per-frame JS computation and 2 draw calls.
 export class Steam {
   constructor(center, radius, count = 22) {
     this.object = new THREE.Group();
@@ -160,7 +160,7 @@ export class Steam {
             c.z += cos(uTime * 0.27 + aSeed.x * 3.0) * 0.14 * life;
             float size = (0.5 + 1.25 * life) * (0.75 + 0.5 * aSeed.w);
             vec4 mv = viewMatrix * vec4(c, 1.0);
-            mv.xy += position.xy * size; // sempre de frente para a câmera
+            mv.xy += position.xy * size; // always facing the camera
             gl_Position = projectionMatrix * mv;
             vUv = uv;
             vLife = life;
@@ -188,7 +188,7 @@ export class Steam {
     );
     wisps.name = 'SteamWisps';
     wisps.renderOrder = 6;
-    wisps.layers.set(1); // fora do passe de reflexo
+    wisps.layers.set(1); // excluded from the reflection pass
 
     const mist = new THREE.Mesh(
       new THREE.CircleGeometry(radius * 1.3, 40).rotateX(-Math.PI / 2),

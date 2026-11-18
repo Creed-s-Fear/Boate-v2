@@ -2,23 +2,23 @@ import { Float32BufferAttribute } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
-// O endereço do GLB vem do <link id="level" rel="preload"> que o vite.config.js põe no
-// index.html a partir de public/models/level.json ({ "glb": "boate.glb" }). O navegador
-// começa a baixar o modelo junto com o código, sem esperar o jogo pedir, e o endereço leva
-// um resumo do conteúdo: modelo novo nunca é confundido com o antigo que ficou em cache.
-// Sem esse link (não há GLB), entra o cenário provisório.
+// The GLB URL comes from the <link id="level" rel="preload"> that vite.config.js injects
+// into index.html from public/models/level.json ({ "glb": "boate.glb" }). The browser
+// starts downloading the model alongside the code, without waiting for the game to ask,
+// and the URL carries a content hash: a new model is never confused with a cached old one.
+// Without this link (no GLB), the provisional scene is used.
 export async function loadLevel(onProgress) {
   const link = document.getElementById('level');
   if (!link) {
     const { buildBlockout } = await import('./blockout.js');
     onProgress(1);
-    return { root: buildBlockout(), source: 'provisório' };
+    return { root: buildBlockout(), source: 'provisional' };
   }
 
   const loader = new GLTFLoader();
   loader.setMeshoptDecoder(MeshoptDecoder);
   const gltf = await loader.loadAsync(link.href, (e) => {
-    // com compressão no servidor o total informado é menor que o recebido: limita em 1
+    // with server compression the reported total is smaller than actual: clamp to 1
     onProgress(e.total ? Math.min(e.loaded / e.total, 1) : 0.5);
   });
   gltf.scene.name = 'Level';
@@ -26,9 +26,9 @@ export async function loadLevel(onProgress) {
   return { root: gltf.scene, source: link.getAttribute('href') };
 }
 
-// O GLB otimizado guarda posições e normais como inteiros compactados. A colisão e a
-// junção de malhas trabalham em metros, então voltamos esses atributos para float uma
-// vez no carregamento (cada geometria compartilhada é convertida uma só vez).
+// The optimized GLB stores positions and normals as packed integers. Collision and
+// mesh merging work in metres, so we convert these attributes back to float once
+// at load time (each shared geometry is converted only once).
 function dequantize(root) {
   const done = new Set();
   root.traverse((o) => {
@@ -44,8 +44,8 @@ function dequantize(root) {
   });
 }
 
-// Lê as três coordenadas direto do vetor de origem (intercalado ou não). Inteiros
-// "normalizados" guardam frações: divide pelo máximo do tipo, como o three.js faz.
+// Reads three coordinates from the source buffer (interleaved or not). "Normalized"
+// integers store fractions: divide by the type's max, as three.js does.
 function toFloat(a) {
   const mixed = a.isInterleavedBufferAttribute;
   const src = mixed ? a.data.array : a.array;

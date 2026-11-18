@@ -1,5 +1,5 @@
-// Lista os nós com malha de um GLB e a caixa de cada um (em metros, eixos do glTF).
-// Uso: node tools/nodes-glb.mjs <arquivo.glb> [filtro]
+// Lists mesh nodes from a GLB and each one's bounding box (in meters, glTF axes).
+// Usage: node tools/nodes-glb.mjs <file.glb> [filter]
 import { readFileSync } from 'node:fs';
 import { Box3, Matrix4, Quaternion, Vector3 } from 'three';
 
@@ -30,12 +30,12 @@ function visit(i, parent, depth) {
       mats.add(g.materials[p.material]?.name || '?');
       tris += (p.indices !== undefined ? g.accessors[p.indices].count : a.count) / 3;
     }
-    const name = n.name || '(sem nome)';
+    const name = n.name || '(unnamed)';
     if (!filter || name.toLowerCase().includes(filter) || [...mats].join(' ').toLowerCase().includes(filter)) {
       console.log(`${' '.repeat(depth)}${name.padEnd(30 - depth)} min ${f(box.min)}  max ${f(box.max)}  ${String(tris).padStart(5)}t  ${[...mats].join(',')}`);
     }
   } else if (!filter) {
-    console.log(`${' '.repeat(depth)}${n.name || '(sem nome)'} [vazio]`);
+    console.log(`${' '.repeat(depth)}${n.name || '(unnamed)'} [empty]`);
   }
   for (const c of n.children || []) visit(c, world, depth + 1);
 }

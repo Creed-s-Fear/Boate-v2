@@ -1,6 +1,6 @@
 /**
- * Minimapa 2D. O layout estático é desenhado uma vez num canvas fora da tela;
- * por quadro só se copia a imagem e desenha os marcadores (barato).
+ * 2D minimap. The static layout is drawn once on an off-screen canvas;
+ * per frame only the image is copied and the markers are drawn (cheap).
  */
 import type { AABB } from '../game/collision2d';
 import { MAP_BOUNDS as B, RECTS, WALLS, ZONES } from '../game/venue';
@@ -54,7 +54,7 @@ export class Minimap {
     c.globalAlpha = 1;
   }
 
-  /** camYaw: yaw da câmera (olhando para -Z com yaw 0). */
+  /** camYaw: camera yaw (looking at -Z with yaw 0). */
   draw(px: number, pz: number, camYaw: number, markers: MapMarker[]): void {
     const c = this.ctx;
     c.drawImage(this.base, 0, 0);

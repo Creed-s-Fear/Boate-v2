@@ -2,13 +2,13 @@ import * as THREE from 'three';
 import { mergeMeshes } from '../engine/merge.js';
 import { applyFx } from './shaderFx.js';
 
-// Regras para o cenário exportado do Blender com as peças KIT_* e JAC_*.
-// Tudo aqui é decidido pelo NOME da peça ou do material, então o Blender não precisa
-// de marcações extras: basta manter os nomes das peças.
+// Rules for the Blender-exported scene with KIT_* and JAC_* pieces.
+// Everything here is decided by the piece or material NAME, so Blender doesn't need
+// extra tags: just keep the piece names.
 
-// ---------- materiais ----------
-// Brilho final de cada material emissivo (o original usa força 8 a 12, que estoura o bloom)
-// e se vira um material sem iluminação (mais barato; tubos de neon não precisam de luz).
+// ---------- materials ----------
+// Final emissive strength for each material (the original uses intensity 8–12, which blows out the bloom)
+// and whether it becomes an unlit material (cheaper; neon tubes don't need lighting).
 const EMISSIVE = {
   KIT_neon_pink: [2.6, true],
   KIT_neon_cyan: [2.0, true],
@@ -54,7 +54,7 @@ function convertMaterial(src) {
   if (em && em[1]) {
     return applyFx(new THREE.MeshBasicMaterial({ name, color: src.emissive.clone().multiplyScalar(em[0]) }));
   }
-  // Sem clearcoat/sheen: MeshStandardMaterial compila um shader bem mais leve.
+  // No clearcoat/sheen: MeshStandardMaterial compiles a much lighter shader.
   const m = new THREE.MeshStandardMaterial({
     name,
     color: src.color.clone(),
@@ -75,17 +75,17 @@ function convertMaterial(src) {
   return applyFx(m);
 }
 
-// ---------- colisão ----------
-// 'mesh' usa os triângulos da peça; 'box' uma caixa do tamanho dela; 'cyl' um cilindro.
-// Paredes inteiras, pisos e colunas são placas retas: a caixa colide igual e poupa 2/3 dos
-// triângulos da colisão (menos memória e montagem mais rápida). Ficam com os triângulos
-// só as peças com vão ou degrau: portal, parede com a porta recortada, bar, palco, sofá.
+// ---------- collision ----------
+// 'mesh' uses the piece's triangles; 'box' a box of its size; 'cyl' a cylinder.
+// Full walls, floors and columns are flat slabs: the box collides the same and saves 2/3 of
+// collision triangles (less memory and faster setup). Only pieces with gaps or steps keep
+// their triangles: portal, wall with door cutout, bar, stage, sofa.
 const RULES = [
   [/^(KIT_Parede_|KIT_Piso_|KIT_Coluna)/, 'box'],
   [/^(JAC_31_|JAC_32_|JAC_34_)/, 'box'],
   [/^(KIT_Portal|KIT_Balcao_Bar|KIT_Estante_Bar|KIT_Palco_|KIT_Sofa_Curvo)/, 'mesh'],
   [/^(JAC_02_|JAC_33_)/, 'mesh'],
-  // banheira: perfil em degraus de 15 cm (sobe na borda por fora, desce para a água por dentro)
+  // bathtub: 15 cm step profile (climbs the rim on the outside, descends into the water on the inside)
   [/^JAC_01_Jacuzzi/, 'lathe', { profile: [[0, 0.15], [0.55, 0.15], [0.55, 0.3], [0.8, 0.3], [0.8, 0.45], [1.05, 0.45], [1.05, 0.6], [1.3, 0.6], [1.3, 0.75], [1.62, 0.75], [1.62, 0.6], [1.92, 0.6], [1.92, 0]] }],
   [/^KIT_Cabine_Cortina/, 'cyl', { r: 1.5, h: 0.13 }],
   [/^KIT_Cama_Redonda/, 'cyl', { r: 1.2, h: 0.6 }],
@@ -104,7 +104,7 @@ const RULES = [
   [/^(KIT_Porta_Portal|KIT_Divisoria_Vidro|KIT_Biombo_Trelica|KIT_Caixa_Som|KIT_Terminal|KIT_Corda_VIP)/, 'box'],
   [/^(JAC_05_Sofa|JAC_06_Chaise|JAC_10_Aparador|JAC_37_Painel_Trelica)/, 'box'],
 ];
-// peças que giram devagar (ficam fora da junção de malhas)
+// pieces that spin slowly (kept outside mesh merging)
 const SPIN = [[/^KIT_Globo_Espelhado/, 0.35]];
 
 const PIECE = /^(KIT_|JAC_|FILL_)/;
@@ -122,7 +122,7 @@ export function isKitLevel(root) {
   return found;
 }
 
-// Converte materiais, marca piso molhado/água e cria os colisores simples (COL_*).
+// Converts materials, marks wet floor/water and creates simple colliders (COL_*).
 export function prepareKit(root) {
   const cache = new Map();
   const colMat = new THREE.MeshBasicMaterial();
@@ -165,8 +165,8 @@ export function prepareKit(root) {
     }
     let col;
     if (type === 'cyl' || type === 'lathe') {
-      // Em coordenadas de mundo (o GLB otimizado embute escala nos nós das peças):
-      // sólido de revolução no eixo vertical que passa pelo centro da peça, apoiado na base dela.
+      // In world coordinates (the optimized GLB embeds scale in piece nodes):
+      // solid of revolution on the vertical axis through the piece center, resting on its base.
       piece.updateWorldMatrix(true, true);
       _box.setFromObject(piece);
       _box.getCenter(_center);
@@ -182,7 +182,7 @@ export function prepareKit(root) {
       root.add(col);
       continue;
     } else {
-      // caixa do tamanho da peça, no referencial dela
+      // box the size of the piece, in its local frame
       _box.makeEmpty();
       piece.updateWorldMatrix(true, true);
       const inv = piece.matrixWorld.clone().invert();
@@ -203,8 +203,8 @@ export function prepareKit(root) {
   return { materials: cache.size, pieces: pieces.length, spinners };
 }
 
-// Junta as malhas estáticas de um grupo em uma malha por material (e por camada):
-// centenas de peças viram poucas dezenas de draw calls.
+// Merges static meshes in a group into one mesh per material (and per layer):
+// hundreds of pieces become a few dozen draw calls.
 export function batchStatic(container, skip) {
   container.updateWorldMatrix(true, true);
   const inv = container.matrixWorld.clone().invert();

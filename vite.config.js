@@ -2,9 +2,9 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { defineConfig } from 'vite';
 
-// Lê public/models/level.json ({ "glb": "boate.glb" }) e devolve o endereço do modelo com
-// um resumo do conteúdo (?v=...). Sem manifesto ou sem o arquivo, devolve null e o jogo
-// usa o cenário provisório.
+// Reads public/models/level.json ({ "glb": "boate.glb" }) and returns the model URL with
+// a content digest (?v=...). Without the manifest or the file, returns null and the game
+// uses the provisional scene.
 function levelUrl() {
   try {
     const { glb } = JSON.parse(readFileSync('public/models/level.json', 'utf8'));
@@ -17,8 +17,8 @@ function levelUrl() {
   }
 }
 
-// Põe no index.html o pedido antecipado do modelo: o navegador baixa o GLB em paralelo
-// com o código, e o jogo lê o endereço desse mesmo link (src/level/loadLevel.js).
+// Injects the model preload into index.html: the browser downloads the GLB in parallel
+// with the code, and the game reads the URL from that same link (src/level/loadLevel.js).
 const levelPreload = {
   name: 'boate-level-preload',
   transformIndexHtml(html, ctx) {
@@ -40,7 +40,7 @@ const levelPreload = {
 export default defineConfig({
   base: './',
   plugins: [levelPreload],
-  // A API (server/) roda à parte; o proxy deixa jogo e API na mesma origem (cookie SameSite=Strict).
+  // The API (server/) runs separately; the proxy keeps game and API on the same origin (cookie SameSite=Strict).
   server: { port: 5173, strictPort: true, host: '127.0.0.1', proxy: { '/api': 'http://127.0.0.1:8787' } },
   build: {
     target: 'es2022',

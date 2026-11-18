@@ -1,7 +1,7 @@
 /**
- * Trilha procedural (WebAudio) — sem arquivos de áudio, sem licenças.
- * Scheduler com lookahead: setInterval agenda notas ~120ms à frente no relógio do AudioContext,
- * o que mantém o ritmo estável mesmo com o main thread ocupado.
+ * Procedural soundtrack (WebAudio) — no audio files, no licenses.
+ * Scheduler with lookahead: setInterval schedules notes ~120ms ahead on the AudioContext clock,
+ * keeping the rhythm stable even when the main thread is busy.
  */
 const BPM = 122;
 const LOOKAHEAD = 0.12;
@@ -40,7 +40,7 @@ export class ClubAudio {
     window.setInterval(() => this.schedule(), 25);
   }
 
-  /** volume 0..1, cutoff em Hz (abafa o som quando o jogador está longe da pista). */
+  /** volume 0..1, cutoff in Hz (muffles the sound when the player is far from the dance floor). */
   setMix(volume: number, cutoff: number): void {
     if (!this.ctx || !this.master || !this.filter) return;
     const t = this.ctx.currentTime;
@@ -57,7 +57,7 @@ export class ClubAudio {
     const ctx = this.ctx;
     if (!ctx || ctx.state !== 'running') return;
     const stepDur = 60 / BPM / 4;
-    // Aba em segundo plano atrasa o timer: pula em vez de disparar uma rajada de notas.
+    // Background tab delays the timer: skip instead of firing a burst of notes.
     if (this.nextTime < ctx.currentTime - 0.2) this.nextTime = ctx.currentTime + 0.05;
     while (this.nextTime < ctx.currentTime + LOOKAHEAD) {
       this.playStep(this.step, this.nextTime);

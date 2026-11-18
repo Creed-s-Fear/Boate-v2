@@ -4,20 +4,20 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 
-// Presets de qualidade. `dpr` é o teto do pixel ratio; `reflection` é a fração da
-// resolução usada no reflexo do piso (0 desliga o passe extra de reflexo).
+// Quality presets. `dpr` caps the pixel ratio; `reflection` is the fraction of the
+// resolution used for floor reflection (0 disables the extra reflection pass).
 export const PRESETS = {
-  baixa: { dpr: 1.0, msaa: 0, reflection: 0.0, bloom: 0.34 },
-  media: { dpr: 1.25, msaa: 2, reflection: 0.4, bloom: 0.37 },
-  // dpr limitado a 1,5: em tela de alta densidade 1,75 com MSAA 4x custa caro e quase não se nota
-  alta: { dpr: 1.5, msaa: 4, reflection: 0.5, bloom: 0.4 },
+  low: { dpr: 1.0, msaa: 0, reflection: 0.0, bloom: 0.34 },
+  medium: { dpr: 1.25, msaa: 2, reflection: 0.4, bloom: 0.37 },
+  // dpr capped at 1.5: on hi-DPI screens, 1.75 with MSAA 4x is costly and barely noticeable
+  high: { dpr: 1.5, msaa: 4, reflection: 0.5, bloom: 0.4 },
 };
-export const PRESET_ORDER = ['baixa', 'media', 'alta'];
-const MIN_SCALE = 0.55; // piso da escala dinâmica de resolução
+export const PRESET_ORDER = ['low', 'medium', 'high'];
+const MIN_SCALE = 0.55; // floor of dynamic resolution scaling
 
-// Antes do bloom: comprime os picos de brilho (reflexo de luz em superfície lisa chega a
-// 10x o branco e vira um clarão que ofusca). Abaixo do joelho nada muda; acima, a curva
-// achata e o pico fica limitado. O neon continua brilhando, só os estouros somem.
+// Pre-bloom: compresses brightness peaks (specular reflections on smooth surfaces reach
+// 10x white and become blinding flares). Below the knee nothing changes; above, the curve
+// flattens and the peak is clamped. Neon keeps glowing, only the blowouts disappear.
 const HighlightShader = {
   name: 'HighlightShader',
   uniforms: { tDiffuse: { value: null }, uKnee: { value: 1.7 }, uRange: { value: 1.1 } },
@@ -36,15 +36,15 @@ const HighlightShader = {
       float l = max(c.r, max(c.g, c.b));
       if (l > uKnee) {
         float x = l - uKnee;
-        c *= (uKnee + uRange * x / (x + uRange)) / l; // tende a joelho + faixa, nunca passa
+        c *= (uKnee + uRange * x / (x + uRange)) / l; // approaches knee + range, never exceeds
       }
       gl_FragColor = vec4(c, 1.0);
     }`,
 };
 
-// Passe final: vinheta, leve aberração cromática nas bordas, granulação e, no mesmo
-// passe, o mapeamento de tons e a conversão de cor para a tela (economiza um passe de
-// tela cheia que antes era separado).
+// Final pass: vignette, subtle chromatic aberration at edges, film grain, and in the same
+// pass, tone mapping and color space conversion for the screen (saves a full-screen pass
+// that was previously separate).
 const FinishShader = {
   name: 'FinishShader',
   uniforms: {
@@ -96,10 +96,10 @@ export class Graphics {
     this.renderer.toneMappingExposure = 0.95;
     this.renderer.info.autoReset = false;
 
-    this.quality = 'alta';
-    this.scale = 1; // escala dinâmica de resolução (0.55 a 1)
-    this.onResize = null; // callback(w, h, preset) em pixels do buffer
-    this.onQuality = null; // callback(nome) quando o nível muda (pelo jogador ou sozinho)
+    this.quality = 'high';
+    this.scale = 1; // dynamic resolution scale (0.55 to 1)
+    this.onResize = null; // callback(w, h, preset) in buffer pixels
+    this.onQuality = null; // callback(name) when the level changes (by player or auto)
     this._acc = 0;
     this._frames = 0;
     this.fps = 60;
@@ -109,12 +109,12 @@ export class Graphics {
   }
 
   _resetAdapt() {
-    this._slow = 0; // segundos seguidos abaixo da meta
-    this._hold = 0; // segundos de espera antes de tentar subir a resolução
-    this._rest = 0; // segundos sem mexer em nada (depois de uma redução inútil)
-    this._futile = 0; // reduções seguidas que não melhoraram a taxa
-    this._probe = null; // redução em observação: { fps de antes, wait, preset }
-    this._undo = null; // como estava antes das reduções ainda não confirmadas
+    this._slow = 0; // consecutive seconds below target
+    this._hold = 0; // seconds to wait before trying to raise resolution
+    this._rest = 0; // seconds doing nothing (after a futile reduction)
+    this._futile = 0; // consecutive reductions that didn't improve the frame rate
+    this._probe = null; // reduction under observation: { previous fps, wait, preset }
+    this._undo = null; // state before unconfirmed reductions
   }
 
   get preset() {
@@ -149,7 +149,7 @@ export class Graphics {
     this.composer.addPass(this.finish);
   }
 
-  // Escolha do jogador: vale na hora e zera o ajuste automático.
+  // Player's choice: takes effect immediately and resets auto-adjustment.
   setQuality(name) {
     if (!PRESETS[name] || name === this.quality) return;
     this._resetAdapt();
@@ -185,12 +185,12 @@ export class Graphics {
     if (this.onResize) this.onResize(Math.round(w * dpr), Math.round(h * dpr), p);
   }
 
-  // Mede a taxa de quadros (tempo real entre quadros) e chama o ajuste uma vez por segundo.
+  // Measures frame rate (real time between frames) and calls the tuner once per second.
   _adapt() {
     const now = performance.now();
     const dt = (now - (this._last || now)) / 1000;
     this._last = now;
-    // pausas longas (aba em segundo plano) não contam
+    // long pauses (background tab) don't count
     if (dt > 0.25 || document.hidden) {
       this._acc = 0;
       this._frames = 0;
@@ -205,10 +205,10 @@ export class Graphics {
     this._tune(this.fps);
   }
 
-  // Segura a taxa de quadros: primeiro baixa a resolução aos poucos; no piso, desce um
-  // nível de qualidade. Cada redução é conferida: se a taxa não melhora, o limite não é a
-  // placa de vídeo (aba em segundo plano, economia de energia, monitor de 30 Hz), então a
-  // redução é desfeita e o ajuste descansa. Subir de nível é com o jogador (tecla G).
+  // Maintains frame rate: first lowers resolution gradually; at the floor, drops a quality
+  // level. Each reduction is verified: if the rate doesn't improve, the bottleneck isn't
+  // the GPU (background tab, power saving, 30 Hz monitor), so the reduction is undone and
+  // the tuner rests. Raising the level is up to the player (Q key).
   _tune(fps) {
     if (this._rest > 0) {
       this._rest--;
@@ -217,7 +217,7 @@ export class Graphics {
     this._hold = Math.max(0, this._hold - 1);
 
     if (this._probe) {
-      if (--this._probe.wait > 0) return; // espera a medida assentar depois da mudança
+      if (--this._probe.wait > 0) return; // wait for the measurement to settle after the change
       const probe = this._probe;
       this._probe = null;
       if (fps > probe.fps * 1.12) {
@@ -247,7 +247,7 @@ export class Graphics {
     if (this.scale > MIN_SCALE) {
       this._undo ||= { quality: this.quality, scale: this.scale };
       this._probe = { fps, wait: 2 };
-      this._hold = 20; // segura a resolução baixa por 20 s antes de tentar subir
+      this._hold = 20; // hold low resolution for 20 s before trying to raise it
       this.scale = Math.max(MIN_SCALE, this.scale - 0.12);
       this.resize();
     } else if (fps < 40) {
@@ -256,12 +256,12 @@ export class Graphics {
       this._undo = { quality: this.quality, scale: this.scale };
       this._probe = { fps, wait: 3, preset: true };
       this._hold = 20;
-      this._apply(PRESET_ORDER[i - 1], MIN_SCALE); // mesma resolução: só o nível fica mais leve
+      this._apply(PRESET_ORDER[i - 1], MIN_SCALE); // same resolution: only the quality level gets lighter
     }
   }
 
-  // Materiais dos passes de tela cheia, para compilar junto com os do cenário na carga.
-  // `screen` são os do último passe, que desenha direto na tela (com mapeamento de tons).
+  // Full-screen pass materials, to compile alongside the scene materials during loading.
+  // `screen` are the final pass's, which draw directly to the screen (with tone mapping).
   passMaterials() {
     const list = (pass) => {
       const out = [];
@@ -278,7 +278,7 @@ export class Graphics {
     };
   }
 
-  // adapt = false quando o jogo está parado no menu (lá a taxa de quadros é baixa de propósito)
+  // adapt = false when the game is paused on the menu (frame rate is intentionally low there)
   render(dt, time, adapt = true) {
     this.renderer.info.reset();
     this.finish.uniforms.uTime.value = time;

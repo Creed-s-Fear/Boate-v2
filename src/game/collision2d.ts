@@ -1,7 +1,7 @@
 /**
- * Colisão 2D (plano XZ): círculos (personagens) contra AABBs (paredes, móveis, portas).
- * O mapa tem ~150 caixas, então varredura linear custa microssegundos por frame.
- * Se o mapa crescer muito (>2k colliders), trocar por grid uniforme — ver memory/decisions.md.
+ * 2D collision (XZ plane): circles (characters) vs AABBs (walls, furniture, doors).
+ * The map has ~150 boxes, so linear sweep costs microseconds per frame.
+ * If the map grows much (>2k colliders), switch to uniform grid — see memory/decisions.md.
  */
 export interface AABB {
   minX: number;
@@ -29,7 +29,7 @@ export class CollisionWorld {
     this.dynamics.push(fn);
   }
 
-  /** Empurra o círculo para fora de qualquer caixa sobreposta. Muta `p`. */
+  /** Pushes the circle out of any overlapping box. Mutates `p`. */
   resolveCircle(p: Point2, r: number): void {
     for (let iter = 0; iter < 3; iter++) {
       let moved = false;
@@ -62,7 +62,7 @@ function pushOut(p: Point2, r: number, b: AABB): boolean {
     p.z += (dz / d) * push;
     return true;
   }
-  // Centro dentro da caixa: sai pelo eixo de menor penetração.
+  // Center inside the box: exits along the axis of least penetration.
   const left = p.x - b.minX;
   const right = b.maxX - p.x;
   const top = p.z - b.minZ;

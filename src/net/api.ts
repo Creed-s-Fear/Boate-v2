@@ -1,4 +1,4 @@
-/** Cliente da API do jogo (mesma origem; o cookie de sessão é httpOnly). */
+/** Game API client (same origin; session cookie is httpOnly). */
 
 export class ApiError extends Error {
   constructor(
@@ -24,11 +24,11 @@ async function call<T>(method: 'GET' | 'POST', path: string, body?: unknown): Pr
       signal: ctrl.signal,
     });
     const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
-    if (!res.ok) throw new ApiError(typeof data.error === 'string' ? data.error : `Erro ${res.status}`, res.status, data);
+    if (!res.ok) throw new ApiError(typeof data.error === 'string' ? data.error : `Error ${res.status}`, res.status, data);
     return data as T;
   } catch (e) {
     if (e instanceof ApiError) throw e;
-    throw new ApiError('Sem conexão com o servidor.', 0);
+    throw new ApiError('No connection to the server.', 0);
   } finally {
     clearTimeout(timer);
   }

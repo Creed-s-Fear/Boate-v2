@@ -1,7 +1,7 @@
 /**
- * UI de conversa com as anfitriãs: balões de chat com opções do jogador.
- * Substitui o menu genérico durante as conversas, dando a sensação de
- * diálogo real com personalidades distintas.
+ * Hostess chat UI: chat bubbles with player options.
+ * Replaces the generic menu during conversations, giving the feeling
+ * of real dialogue with distinct personalities.
  */
 import {
   startDialogue, nextRound, chooseOption, getInviteResponse,
@@ -35,7 +35,7 @@ export class ChatUI {
 
   constructor() {
     const el = document.getElementById('chat');
-    if (!el) throw new Error('#chat ausente');
+    if (!el) throw new Error('#chat missing');
     this.el = el;
     this.messages = el.querySelector('#chat-messages')!;
     this.options = el.querySelector('#chat-options')!;
@@ -197,21 +197,21 @@ export class ChatUI {
     if (!this.state.round || this.roundCount >= 2) {
       if (!this.state.inRoom) {
         if (this.cb?.canBuyDrink()) {
-          this.addOptionBtn('drink', '🍸 Pagar um drink — R$30', idx++);
+          this.addOptionBtn('drink', '🍸 Buy a drink — $30', idx++);
         }
-        this.addOptionBtn('tip', '💰 Dar uma gorjeta — R$50', idx++);
+        this.addOptionBtn('tip', '💰 Tip her — $50', idx++);
         if (this.cb?.canInvite()) {
           const price = this.cb.hostessPrice();
-          this.addOptionBtn('invite', `💜 Convidar para a suíte — R$${price}`, idx++, !this.cb.hasReservation());
+          this.addOptionBtn('invite', `💜 Invite to the suite — $${price}`, idx++, !this.cb.hasReservation());
         }
       }
     }
 
     // continue or leave
     if (!this.state.round) {
-      this.addOptionBtn('continue', '💬 Continuar conversando', idx++);
+      this.addOptionBtn('continue', '💬 Keep chatting', idx++);
     }
-    this.addOptionBtn('close', '👋 Até mais', idx++);
+    this.addOptionBtn('close', '👋 See you later', idx++);
   }
 
   private addOptionBtn(action: string, text: string, idx: number, disabled = false): void {

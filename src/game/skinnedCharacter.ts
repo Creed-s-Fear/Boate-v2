@@ -1,9 +1,9 @@
 /**
- * Personagem com esqueleto (GLB de public/models/personagens/), na mesma API do Character low-poly.
- * As animações dos modelos vieram vazias, então o movimento é procedural nos ossos: cada pose é um
- * conjunto de rotações no espaço do personagem, somadas à pose de repouso e misturadas aos poucos
- * (sem estalo ao trocar de pose). A altura do corpo sai do pé mais baixo, que fica sempre no chão.
- * Frente do personagem = +Z local.
+ * Skinned character (GLB from public/models/personagens/), same API as the low-poly Character.
+ * The model animations came empty, so motion is procedural on the bones: each pose is a
+ * set of rotations in character space, added to the rest pose and blended gradually
+ * (no snap when switching poses). Body height comes from the lowest foot, which always stays on the floor.
+ * Character front = local +Z.
  */
 import * as THREE from 'three';
 import type { GLTF } from 'three/addons/loaders/GLTFLoader.js';
@@ -17,12 +17,12 @@ export interface CharacterView {
 }
 
 export interface SkinnedOptions {
-  /** false: dança com os braços baixos. */
+  /** false: dances with arms down. */
   armsUp: boolean;
 }
 
-const DANCE_W = (2 * Math.PI * 122) / 60; // mesmo BPM do Character low-poly
-/** Passada (rad/s) casada com 1,25 m/s das anfitriãs: com passada mais rápida o pé patinava no chão. */
+const DANCE_W = (2 * Math.PI * 122) / 60; // same BPM as the low-poly Character
+/** Stride rate (rad/s) matched with the hostesses' 1.25 m/s: a faster stride caused foot sliding on the floor. */
 const WALK_W = 5.6;
 const RUN_W = 9;
 const BONE_NAMES = [
@@ -45,7 +45,7 @@ const _q = new THREE.Quaternion();
 const _e = new THREE.Euler();
 const _v = new THREE.Vector3();
 
-/** Pé reto: compensa a soma das rotações de coxa e canela no eixo X. */
+/** Flat foot: compensates the sum of thigh and shin rotations on the X axis. */
 const flatFoot = (thigh: number, shin: number, extra = 0): [number, number, number] => [-(thigh + shin) + extra, 0, 0];
 
 export class SkinnedCharacter implements CharacterView {
@@ -62,14 +62,14 @@ export class SkinnedCharacter implements CharacterView {
     this.model.traverse((o) => {
       const m = o as THREE.SkinnedMesh;
       if (!m.isSkinnedMesh) return;
-      m.frustumCulled = false; // a caixa é a da pose de repouso; os braços saem dela
-      m.layers.set(1); // como os demais personagens: a câmera vê, o reflexo do piso não
+      m.frustumCulled = false; // bounding box is from the rest pose; arms extend beyond it
+      m.layers.set(1); // like other characters: the camera sees it, the floor reflection does not
     });
     this.root.add(this.model);
     this.root.updateMatrixWorld(true);
     for (const name of BONE_NAMES) {
       const bone = this.model.getObjectByName(name) as THREE.Bone | undefined;
-      if (!bone) throw new Error(`osso ausente: ${name}`);
+      if (!bone) throw new Error(`bone missing: ${name}`);
       const world = bone.getWorldQuaternion(new THREE.Quaternion());
       this.bones.set(name, { bone, rest: bone.quaternion.clone(), world, worldInv: world.clone().invert() });
     }
@@ -77,7 +77,7 @@ export class SkinnedCharacter implements CharacterView {
   }
 
   setShirt(): void {
-    // roupa vem na textura
+    // clothing comes from the texture
   }
 
   update(dt: number, pose: Pose): void {
@@ -107,19 +107,19 @@ export class SkinnedCharacter implements CharacterView {
         ref.bone.quaternion.copy(ref.rest);
         continue;
       }
-      // rotação no espaço do personagem, levada para o espaço local do osso na pose de repouso
+      // rotation in character space, converted to the bone's local space in the rest pose
       _q.setFromEuler(_e.set(r[0], r[1], r[2]));
       _q.premultiply(ref.worldInv).multiply(ref.world);
       ref.bone.quaternion.copy(ref.rest).multiply(_q);
     }
 
-    // pé de apoio no chão: o corpo sobe e desce conforme as pernas dobram, sem afundar no piso
+    // support foot on the floor: the body rises and falls as the legs bend, without sinking into the floor
     this.model.position.y = 0;
     this.root.updateMatrixWorld(true);
     this.model.position.y = this.restFootY - Math.min(this.footY('FootL'), this.footY('FootR'));
   }
 
-  /** Altura do osso do pé em relação à base do personagem. */
+  /** Height of the foot bone relative to the character's base. */
   private footY(name: 'FootL' | 'FootR'): number {
     const base = this.root.getWorldPosition(_v).y;
     return this.bones.get(name)!.bone.getWorldPosition(_v).y - base;
@@ -143,7 +143,7 @@ export class SkinnedCharacter implements CharacterView {
     const p = this.t * this.stride;
     const s = Math.sin(p);
     const a = this.stride > WALK_W ? 0.6 : 0.4;
-    // joelho dobra quando a perna sai de trás e vem para a frente
+    // knee bends when the leg swings from back to front
     const kneeL = 0.08 + Math.max(0, Math.sin(p + 0.9)) * 0.65;
     const kneeR = 0.08 + Math.max(0, Math.sin(p + 0.9 + Math.PI)) * 0.65;
     const thighL = s * a;
@@ -155,7 +155,7 @@ export class SkinnedCharacter implements CharacterView {
       ThighR: [thighR, 0, 0],
       ShinL: [kneeL, 0, 0],
       ShinR: [kneeR, 0, 0],
-      // ponta do pé sobe de leve na perna da frente (calcanhar toca primeiro)
+      // toe tip lifts slightly on the front leg (heel strikes first)
       FootL: flatFoot(thighL, kneeL, Math.min(0, s) * 0.25),
       FootR: flatFoot(thighR, kneeR, Math.min(0, -s) * 0.25),
       UpperArmL: [-s * a * 0.7, 0, -0.04],

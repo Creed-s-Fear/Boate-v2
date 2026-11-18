@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
-// Holograma do projetor: mantém a base e os anéis da peça original e troca o cone e a
-// esfera lisos por um holograma procedural: feixe com linhas de varredura, uma flor de
-// lótus de pétalas translúcidas que abre e fecha, anéis orbitando, faixas de "dados"
-// girando e partículas subindo. Tudo em shader, sem textura: 8 draw calls.
+// Projector hologram: keeps the base and rings from the original piece and replaces the
+// smooth cone and sphere with a procedural hologram: beam with scan lines, a translucent
+// petal lotus flower that opens and closes, orbiting rings, spinning "data" bands and
+// rising particles. All in shaders, no textures: 8 draw calls.
 
 const CYAN = new THREE.Color(0.1, 0.95, 1.0);
 const PINK = new THREE.Color(1.0, 0.2, 0.75);
@@ -36,7 +36,7 @@ function beamMaterial(uTime) {
       varying vec3 vN;
       varying vec3 vV;
       void main() {
-        // clamp antes de pow(): base negativa vira NaN e o bloom espalha preto pela tela
+        // clamp before pow(): a negative base becomes NaN and bloom spreads black across the screen
         float fres = pow(clamp(1.0 - abs(dot(normalize(vN), normalize(vV))), 0.0, 1.0), 2.0);
         float h = clamp(vUv.y, 0.0, 1.0);
         float fade = pow(1.0 - h, 1.5);
@@ -49,7 +49,7 @@ function beamMaterial(uTime) {
   });
 }
 
-// faixa cilíndrica com "glifos" de dados correndo
+// cylindrical band with scrolling "data glyphs"
 function bandMaterial(uTime, color, speed) {
   return new THREE.ShaderMaterial({
     ...additive,
@@ -72,9 +72,9 @@ function bandMaterial(uTime, color, speed) {
   });
 }
 
-// ---------- flor de lótus ----------
+// ---------- lotus flower ----------
 function lotusGeometry() {
-  // camadas: [pétalas, comprimento, largura, inclinação em graus, giro inicial]
+  // layers: [petals, length, width, tilt in degrees, initial rotation]
   const layers = [
     [5, 0.2, 0.1, 10, 0.0],
     [7, 0.27, 0.14, 30, 0.3],
@@ -97,15 +97,15 @@ function lotusGeometry() {
       const a = turn + (p / count) * Math.PI * 2;
       for (let j = 0; j <= SV; j++) {
         const v = j / SV;
-        const w = Math.sin(Math.pow(v, 0.72) * Math.PI) * wid; // fina na base e na ponta
+        const w = Math.sin(Math.pow(v, 0.72) * Math.PI) * wid; // thin at base and tip
         for (let i = 0; i <= SU; i++) {
           const u = i / SU - 0.5;
           const x = u * w;
           const y = v * len;
-          // pétala em concha (bordas para dentro) e ponta levemente curvada para fora
+          // cupped petal (edges curving inward) with tip slightly curving outward
           const z = 0.12 * v * v * len + 0.9 * (u * u) * w - 0.012;
           pos.push(x, y, z);
-          nor.push(-1.8 * u, -0.24 * v, 1); // aproximação, normalizada no shader
+          nor.push(-1.8 * u, -0.24 * v, 1); // approximation, normalized in shader
           uv.push(i / SU, v);
           yaw.push(a);
           tilt.push((tiltDeg * Math.PI) / 180);
@@ -153,12 +153,12 @@ function lotusMaterial(uTime) {
       void main() {
         vUv = uv;
         vLayer = aLayer;
-        // a flor "respira": as camadas de fora abrem e fecham mais
+        // the flower "breathes": outer layers open and close more
         float breath = sin(uTime * 0.7 - aLayer * 0.5) * 0.05 * (1.0 + aLayer);
         float spin = uTime * (0.22 - aLayer * 0.035);
         mat3 R = rotY(aYaw + spin) * rotX(aTilt + breath);
         vec3 p = R * (position + vec3(0.0, 0.0, 0.015 + aLayer * 0.006));
-        // falha rápida de sinal de vez em quando
+        // brief signal glitch every now and then
         float g = step(0.985, fract(sin(floor(uTime * 14.0) * 91.7) * 43758.5));
         p.x += g * 0.02 * sin(p.y * 90.0);
         vec4 wp = modelMatrix * vec4(p, 1.0);
@@ -188,7 +188,7 @@ function lotusMaterial(uTime) {
         vec3 col = base * (0.16 + 0.34 * v);
         col += base * (veins * 0.5 + midrib * 0.45);
         col += rim * (fres * 0.55 + edge * 0.6);
-        // pétalas se sobrepõem (blending aditivo): intensidade baixa para não estourar em branco
+        // petals overlap (additive blending): low intensity to avoid blowing out to white
         col *= scan * (1.0 - vLayer * 0.07) * 0.3;
         gl_FragColor = vec4(clamp(col, 0.0, 6.0), 1.0);
       }`,
@@ -225,7 +225,7 @@ function particles(uTime, count = 80) {
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
         vA = sin(t * 3.14159) * (0.5 + 0.5 * sin(uTime * 6.0 + aSeed.x * 9.0));
         vMix = step(0.6, aSeed.w);
-        gl_PointSize = uScale * (0.008 + 0.016 * aSeed.w) / -mv.z; // tamanho em metros -> pixels
+        gl_PointSize = uScale * (0.008 + 0.016 * aSeed.w) / -mv.z; // size in meters -> pixels
         gl_Position = projectionMatrix * mv;
       }`,
     fragmentShader: /* glsl */ `
@@ -241,9 +241,9 @@ function particles(uTime, count = 80) {
   return new THREE.Points(g, m);
 }
 
-// ---------- placas holográficas de parede (lótus e glifos) ----------
-// Fundo com profundidade falsa (paralaxe pela direção do olhar): o conteúdo parece estar
-// atrás do vidro, em camadas. Um quad só, sem textura.
+// ---------- holographic wall signs (lotus and glyphs) ----------
+// Background with fake depth (parallax from viewing direction): the content appears to
+// be behind glass, in layers. A single quad, no texture.
 function signMaterial(uTime, color, accent, w, h, kind, right, up, normal) {
   return new THREE.ShaderMaterial({
     ...additive,
@@ -277,7 +277,7 @@ function signMaterial(uTime, color, accent, w, h, kind, right, up, normal) {
       float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
       float inside(vec2 u) { return step(0.0, u.x) * step(u.x, 1.0) * step(0.0, u.y) * step(u.y, 1.0); }
       float stroke(float d, float t) { return 1.0 - smoothstep(t, t + 0.06, abs(d)); }
-      // glifo inventado: até 7 traços numa grade 3x3, sorteados por célula
+      // invented glyph: up to 7 strokes on a 3x3 grid, randomized per cell
       float glyph(vec2 cell, vec2 f, float seed) {
         vec2 q = (f - 0.5) * 2.6;
         if (abs(q.x) > 1.0 || abs(q.y) > 1.0) return 0.0;
@@ -293,7 +293,7 @@ function signMaterial(uTime, color, accent, w, h, kind, right, up, normal) {
         on = max(on, step(0.72, hash(cell + seed + 7.7)) * stroke((q.x + q.y) * 0.707, t) * lx);
         return on;
       }
-      // colunas de glifos descendo, cada uma na sua velocidade, com rastro
+      // columns of glyphs falling, each at its own speed, with trail
       float rain(vec2 uv, float cols, float seed, float speed) {
         vec2 gp = uv * vec2(cols, cols * uSize.y / uSize.x);
         float col = floor(gp.x);
@@ -315,7 +315,7 @@ function signMaterial(uTime, color, accent, w, h, kind, right, up, normal) {
         float edge = 1.0 - smoothstep(0.0, 0.035, b);
         vec3 col = uColor * (0.05 + edge * 0.5 + sweep * 0.3);
         if (uKind < 0.5) {
-          // lótus: grade ao fundo e anéis que pulsam do centro, em profundidades diferentes
+          // lotus: background grid and rings pulsing from center, at different depths
           vec2 u1 = uv - par * 0.1 / uSize;
           vec2 g = abs(fract(u1 * uSize * 9.0) - 0.5);
           float grid = (1.0 - smoothstep(0.0, 0.035, min(g.x, g.y))) * inside(u1);
@@ -326,7 +326,7 @@ function signMaterial(uTime, color, accent, w, h, kind, right, up, normal) {
           float tu = uv.x * 46.0 + uTime * 2.0;
           col += uColor * step(uv.y, 0.1) * step(0.03, uv.y) * step(0.45, hash(vec2(floor(tu), 9.0))) * step(0.25, fract(tu)) * 0.5;
         } else {
-          // glifos: três camadas de "chuva" em profundidades diferentes
+          // glyphs: three layers of "rain" at different depths
           vec2 u1 = uv - par * 0.03 / uSize;
           vec2 u2 = uv - par * 0.09 / uSize;
           vec2 u3 = uv - par * 0.17 / uSize;
@@ -339,7 +339,7 @@ function signMaterial(uTime, color, accent, w, h, kind, right, up, normal) {
   });
 }
 
-// partículas subindo numa caixa rasa na frente da placa
+// particles rising in a shallow box in front of the sign
 function signDust(uTime, w, h, count = 46) {
   const seed = new Float32Array(count * 4);
   for (let i = 0; i < seed.length; i++) seed[i] = Math.random();
@@ -385,7 +385,7 @@ function signDust(uTime, w, h, count = 46) {
 export function createHoloSign(piece, parent) {
   const isLotus = /Lotus/.test(piece.name);
   piece.updateWorldMatrix(true, true);
-  // o painel translúcido original dá o tamanho e a posição; ele sai e entra o holograma
+  // the original translucent panel gives the size and position; it's removed and the hologram takes its place
   const panels = [];
   piece.traverse((m) => {
     if (m.isMesh && /^KIT_holo/.test(m.material.name)) panels.push(m);
@@ -422,7 +422,7 @@ export function createHoloSign(piece, parent) {
 
   let lotus = null;
   if (isLotus) {
-    // flor em 3D saindo da placa, inclinada para a sala
+    // 3D flower protruding from the sign, tilted toward the room
     lotus = new THREE.Mesh(lotusGeometry(), lotusMaterial(uTime));
     lotus.scale.setScalar(0.5);
     lotus.position.set(0, -h * 0.16, 0.17);
@@ -444,7 +444,7 @@ export function createHoloSign(piece, parent) {
 }
 
 export function createHologram(piece, parent) {
-  // tira o cone, a esfera e os aros rosas originais; ficam a base, o emissor e os anéis ciano
+  // remove the original cone, sphere and pink rings; keep the base, emitter and cyan rings
   piece.updateWorldMatrix(true, true);
   const box = new THREE.Box3().setFromObject(piece);
   const remove = [];
@@ -493,7 +493,7 @@ export function createHologram(piece, parent) {
   bandHigh.position.y = 1.5;
 
   const dust = particles(uTime);
-  dust.layers.set(1); // partículas não entram no reflexo do piso
+  dust.layers.set(1); // particles are excluded from the floor reflection pass
 
   group.add(beam, lotus, core, orbit, bandLow, bandHigh, dust);
   parent.add(group);

@@ -1,18 +1,18 @@
 /**
- * Definições de cenas (cutscenes) para as salas privativas.
- * Cada SceneBuilder recebe o contexto (posições) e retorna um array de steps.
+ * Scene definitions (cutscenes) for private rooms.
+ * Each SceneBuilder receives the context (positions) and returns an array of steps.
  *
- * Cenas são placeholders usando o sistema de poses low-poly existente.
- * Quando os modelos GLTF estiverem prontos, basta trocar os steps de pose
- * por steps de animação GLTF e ajustar as câmeras.
+ * Scenes are placeholders using the existing low-poly pose system.
+ * Once the GLTF models are ready, swap the pose steps for GLTF animation
+ * steps and adjust the cameras.
  */
 import type { SceneBuilder, SceneContext, Vec3 } from './cutscene';
 
-// ================================================================ Helpers de câmera
+// ================================================================ Camera helpers
 //
-// As câmeras são posicionadas em relação ao cômodo: f aponta da anfitriã para o centro
-// do cômodo (para dentro) e r é a lateral. Assim a câmera fica do lado de dentro em
-// qualquer sala, em vez de sempre em +Z (que na suíte do boate caía no corredor).
+// Cameras are positioned relative to the room: f points from the hostess toward the
+// center of the room (inward) and r is the side axis. This keeps the camera inside
+// every room, instead of always at +Z (which in the club's suite fell in the corridor).
 
 type Cam = { pos: Vec3; lookAt: Vec3; fov?: number };
 
@@ -31,9 +31,9 @@ function cams(ctx: SceneContext) {
   };
 }
 
-// ================================================================ Cenas
+// ================================================================ Scenes
 
-/** Dança privada — câmera orbita enquanto ela dança. */
+/** Private dance — camera orbits while she dances. */
 export const privateDance: SceneBuilder = (ctx) => {
   const { behind, side, closeUp } = cams(ctx);
   return [
@@ -42,10 +42,10 @@ export const privateDance: SceneBuilder = (ctx) => {
   { type: 'pose', target: 'hostess', pose: 'idle' },
   { type: 'camera', to: behind(ctx.hostessPos, 3, 1.8), duration: 0.01 },
   { type: 'fade', opacity: 0, duration: 0.6 },
-  { type: 'dialogue', speaker: '♪', text: 'A música muda para algo mais envolvente...', auto: 2.5 },
+  { type: 'dialogue', speaker: '♪', text: 'The music shifts to something more captivating...', auto: 2.5 },
   { type: 'camera', to: side(ctx.hostessPos, 2.5, 1.6), duration: 2 },
   { type: 'pose', target: 'hostess', pose: 'dance' },
-  { type: 'dialogue', speaker: '', text: 'Ela começa a dançar lentamente no ritmo.', auto: 3 },
+  { type: 'dialogue', speaker: '', text: 'She starts dancing slowly to the beat.', auto: 3 },
   { type: 'camera', to: closeUp(ctx.hostessPos, 1.5, 55), duration: 3 },
   { type: 'wait', duration: 3 },
   { type: 'camera', to: behind(ctx.hostessPos, 2.2, 1.4), duration: 2.5 },
@@ -59,7 +59,7 @@ export const privateDance: SceneBuilder = (ctx) => {
   ];
 };
 
-/** Conversa intimista na sala — escolhas e reações. */
+/** Intimate room chat — choices and reactions. */
 export const roomChat: SceneBuilder = (ctx) => {
   const { behind, closeUp, wide } = cams(ctx);
   const mid: Vec3 = {
@@ -69,20 +69,20 @@ export const roomChat: SceneBuilder = (ctx) => {
   };
   return [
     { type: 'camera', to: wide(mid, 2.5, 1.6), duration: 1.2, ease: 'easeOut' },
-    { type: 'dialogue', speaker: '', text: 'Vocês se acomodam e conversam.' },
-    { type: 'choice', prompt: 'Sobre o que conversar?', options: [
-      { label: 'Perguntar sobre ela', value: 'about' },
-      { label: 'Fazer um elogio', value: 'compliment' },
-      { label: 'Ficar em silêncio confortável', value: 'silence' },
+    { type: 'dialogue', speaker: '', text: 'You settle in and start talking.' },
+    { type: 'choice', prompt: 'What to talk about?', options: [
+      { label: 'Ask about her', value: 'about' },
+      { label: 'Pay a compliment', value: 'compliment' },
+      { label: 'Comfortable silence', value: 'silence' },
     ] },
     { type: 'camera', to: closeUp(ctx.hostessPos, 1.5), duration: 1.5 },
-    { type: 'dialogue', speaker: '', text: 'Ela sorri e se inclina um pouco mais perto.', auto: 2.5 },
+    { type: 'dialogue', speaker: '', text: 'She smiles and leans in a little closer.', auto: 2.5 },
     { type: 'camera', to: behind(ctx.playerPos, 2, 1.6), duration: 1.5 },
     { type: 'wait', duration: 1 },
   ];
 };
 
-/** Brinde com champagne — corte cinematográfico. */
+/** Champagne toast — cinematic cut. */
 export const champagne: SceneBuilder = (ctx) => {
   const { closeUp, wide } = cams(ctx);
   const mid: Vec3 = {
@@ -94,9 +94,9 @@ export const champagne: SceneBuilder = (ctx) => {
     { type: 'fade', opacity: 1, duration: 0.3 },
     { type: 'camera', to: wide(mid, 2, 1.4), duration: 0.01 },
     { type: 'fade', opacity: 0, duration: 0.5 },
-    { type: 'dialogue', speaker: '🥂', text: 'O champagne chega. Vocês brindam.', auto: 3 },
+    { type: 'dialogue', speaker: '🥂', text: 'The champagne arrives. You toast.', auto: 3 },
     { type: 'camera', to: closeUp(ctx.hostessPos, 1.5, 50), duration: 2, ease: 'easeInOut' },
-    { type: 'dialogue', speaker: '', text: 'Ela ri, toma um gole e te olha por cima da taça.', auto: 3 },
+    { type: 'dialogue', speaker: '', text: 'She laughs, takes a sip, and looks at you over the rim of the glass.', auto: 3 },
     { type: 'camera', to: wide(mid, 3, 1.7, 65), duration: 2 },
     { type: 'wait', duration: 1.5 },
     { type: 'fade', opacity: 1, duration: 0.4 },
@@ -104,7 +104,7 @@ export const champagne: SceneBuilder = (ctx) => {
   ];
 };
 
-/** Noite especial — cena mais longa com múltiplas fases. */
+/** Special night — longer scene with multiple phases. */
 export const specialNight: SceneBuilder = (ctx) => {
   const { behind, side, closeUp, wide } = cams(ctx);
   return [
@@ -113,16 +113,16 @@ export const specialNight: SceneBuilder = (ctx) => {
   { type: 'pose', target: 'hostess', pose: 'idle' },
   { type: 'camera', to: wide(ctx.roomCenter, 3.5, 2, 60), duration: 0.01 },
   { type: 'fade', opacity: 0, duration: 0.8 },
-  { type: 'dialogue', speaker: '♪', text: 'As luzes escurecem... apenas o brilho do anel neon permanece.', auto: 3.5 },
+  { type: 'dialogue', speaker: '♪', text: 'The lights dim... only the glow of the neon ring remains.', auto: 3.5 },
 
-  // Fase 1: conversa + aproximação
+  // Phase 1: conversation + approach
   { type: 'camera', to: closeUp(ctx.hostessPos, 1.5, 50), duration: 2.5 },
-  { type: 'dialogue', speaker: '', text: 'Ela se aproxima e sussurra algo.', auto: 2.5 },
+  { type: 'dialogue', speaker: '', text: 'She leans in and whispers something.', auto: 2.5 },
   { type: 'camera', to: side(ctx.hostessPos, -1.5, 1.4, 55), duration: 2 },
   { type: 'wait', duration: 1.5 },
 
-  // Fase 2: dança
-  { type: 'dialogue', speaker: '', text: 'Ela se levanta e começa a dançar só pra você.', auto: 2.5 },
+  // Phase 2: dance
+  { type: 'dialogue', speaker: '', text: 'She stands up and starts dancing just for you.', auto: 2.5 },
   { type: 'pose', target: 'hostess', pose: 'dance' },
   { type: 'camera', to: behind(ctx.hostessPos, 2.5, 1.5), duration: 3 },
   { type: 'wait', duration: 4 },
@@ -131,18 +131,18 @@ export const specialNight: SceneBuilder = (ctx) => {
   { type: 'camera', to: side(ctx.hostessPos, 2, 1.2), duration: 2 },
   { type: 'wait', duration: 3 },
 
-  // Fase 3: escolha
+  // Phase 3: choice
   { type: 'camera', to: wide(ctx.roomCenter, 2.5, 1.6), duration: 2 },
   { type: 'pose', target: 'hostess', pose: 'idle' },
-  { type: 'choice', prompt: 'O que fazer agora?', options: [
-    { label: 'Pedir que continue dançando', value: 'dance' },
-    { label: 'Conversar mais de perto', value: 'talk' },
-    { label: 'Encerrar a noite', value: 'end' },
+  { type: 'choice', prompt: 'What now?', options: [
+    { label: 'Ask her to keep dancing', value: 'dance' },
+    { label: 'Talk up close', value: 'talk' },
+    { label: 'Call it a night', value: 'end' },
   ] },
 
-  // Encerramento
+  // Closing
   { type: 'camera', to: wide(ctx.roomCenter, 3, 2, 65), duration: 2 },
-  { type: 'dialogue', speaker: '', text: 'A noite continua, no ritmo de vocês.', auto: 3 },
+  { type: 'dialogue', speaker: '', text: 'The night goes on, at your own pace.', auto: 3 },
   { type: 'fade', opacity: 1, duration: 0.6 },
   { type: 'wait', duration: 0.4 },
   { type: 'pose', target: 'hostess', pose: 'idle' },
@@ -151,7 +151,7 @@ export const specialNight: SceneBuilder = (ctx) => {
   ];
 };
 
-// ================================================================ Registro
+// ================================================================ Registry
 
 export const SCENES: Record<string, SceneBuilder> = {
   privateDance,

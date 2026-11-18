@@ -1,7 +1,7 @@
 /**
- * Sistema de diálogo das anfitriãs. Cada uma tem personalidade própria
- * e ativamente influencia o jogador a gastar (drinks, gorjetas, suíte).
- * Roda inteiramente no cliente (sem servidor, sem IA externa).
+ * Hostess dialogue system. Each one has her own personality
+ * and actively encourages the player to spend (drinks, tips, suite).
+ * Runs entirely on the client (no server, no external AI).
  */
 
 export interface DialogueOption {
@@ -28,463 +28,463 @@ interface PersonalityData {
   roomRounds: DialogueRound[];
 }
 
-// ================================================================ Valentina — Sofisticada, sabe cobrar caro
+// ================================================================ Valentina — Sophisticated, knows her worth
 const VALENTINA: PersonalityData = {
   greetLow: [
-    'Oi. Vai ficar me olhando de longe a noite toda?',
-    'Hm, pelo menos veio falar. A maioria só fica encarando.',
-    'Boa noite. Tô aceitando companhia — se for boa.',
+    'Hi. Are you going to stare at me from across the room all night?',
+    'Hm, at least you came to talk. Most guys just stand there gawking.',
+    'Good evening. I could use some company — if it\'s good company.',
   ],
   greetMid: [
-    'Ah, voltou. Tava quase achando que desistiu de mim.',
-    'Oi de novo. Dessa vez trouxe champagne ou só conversa?',
-    'Ei. Senta aqui que eu tava sem ninguém interessante.',
+    'Oh, you\'re back. I was starting to think you gave up on me.',
+    'Hello again. Did you bring champagne this time, or just conversation?',
+    'Hey. Sit here — I was running out of interesting people.',
   ],
   greetHigh: [
-    'Até que enfim. A noite tava arrastando sem você.',
-    'Vem, já guardei um lugar do meu lado.',
-    'Oi, lindo. Achei que não vinha mais.',
+    'Finally. The night was dragging without you.',
+    'Come, I saved you a spot next to me.',
+    'Hey, handsome. I thought you weren\'t coming.',
   ],
   roundsLow: [
     {
-      line: 'Sabe o que eu gosto num homem? Atitude. Chega aqui e pede um drink pra mim.',
+      line: 'You know what I like in a man? Confidence. Come here and buy me a drink.',
       options: [
-        { text: 'Feito. O que você bebe?', reply: 'Hm, gostei. Pede um Olho Mágico. E pede um pra você também.', aff: 10 },
-        { text: 'Calma, nem te conheço ainda.', reply: 'Pois é, mas se quer conhecer, começa investindo, né?', aff: -2 },
-        { text: 'Pra que drink? Minha companhia não basta?', reply: 'Fofo, mas nessa casa a gente brinda antes de conversar.', aff: 3 },
+        { text: 'Done. What are you having?', reply: 'Hm, I like that. Get me a Peekhole. And get one for yourself too.', aff: 10 },
+        { text: 'Easy, I don\'t even know you yet.', reply: 'True, but if you want to get to know me, start by investing, right?', aff: -2 },
+        { text: 'Why a drink? Isn\'t my company enough?', reply: 'Cute, but in this house we toast before we talk.', aff: 3 },
       ],
     },
     {
-      line: 'Eu sou exigente, já aviso. Mas quem passa do meu filtro não se arrepende.',
+      line: 'I\'m demanding, fair warning. But whoever passes my filter doesn\'t regret it.',
       options: [
-        { text: 'Gosto de desafio.', reply: 'Bom. Então me mostra que você é diferente desses caras aí.', aff: 10 },
-        { text: 'Exigente como? O que te conquista?', reply: 'Generosidade, atenção, e saber a hora certa de calar a boca. Nessa ordem.', aff: 8 },
-        { text: 'Ui, metida.', reply: 'Querido, não é metida. É filtro. Funciona.', aff: -6 },
+        { text: 'I like a challenge.', reply: 'Good. Then show me you\'re different from these other guys.', aff: 10 },
+        { text: 'Demanding how? What wins you over?', reply: 'Generosity, attention, and knowing when to shut up. In that order.', aff: 8 },
+        { text: 'Ooh, full of yourself.', reply: 'Darling, it\'s not vanity. It\'s standards. They work.', aff: -6 },
       ],
     },
     {
-      line: 'Cê viu aquelas cabines ali? Tem gente que reserva só pra ter privacidade comigo.',
+      line: 'See those private rooms over there? Some people book them just for privacy with me.',
       options: [
-        { text: 'E como faz pra reservar?', reply: 'No terminal da Lívia. Mas calma, primeiro me convence que vale meu tempo.', aff: 8 },
-        { text: 'Deve ser caro.', reply: 'É. Mas as coisas boas são. Você parece entender isso.', aff: 6 },
-        { text: 'Hm, interessante. E vale a pena?', reply: 'Se eu tiver afim da pessoa? Vale cada centavo.', aff: 10 },
+        { text: 'How do you book one?', reply: 'At Livia\'s terminal. But first, convince me you\'re worth my time.', aff: 8 },
+        { text: 'Must be expensive.', reply: 'It is. But the good things are. You seem to understand that.', aff: 6 },
+        { text: 'Hm, interesting. Is it worth it?', reply: 'If I\'m into the person? Worth every penny.', aff: 10 },
       ],
     },
   ],
   roundsMid: [
     {
-      line: 'Ei, tô com sede. Me paga mais um drink? A gente conversa melhor assim.',
+      line: 'Hey, I\'m thirsty. Buy me another drink? The conversation flows better that way.',
       options: [
-        { text: 'Claro, vou pedir.', reply: 'Assim que eu gosto. Prático e generoso.', aff: 12 },
-        { text: 'Outro? Já paguei um antes.', reply: 'E? A noite é longa, querido.', aff: -3 },
-        { text: 'Só se vier com uma dança depois.', reply: 'Hm, negociando comigo? Tá, aceito. Mas o drink vem primeiro.', aff: 8 },
+        { text: 'Sure, I\'ll order one.', reply: 'That\'s what I like. Practical and generous.', aff: 12 },
+        { text: 'Another one? I already paid for one.', reply: 'So? The night is long, darling.', aff: -3 },
+        { text: 'Only if it comes with a dance later.', reply: 'Hm, negotiating with me? Fine, deal. But the drink comes first.', aff: 8 },
       ],
     },
     {
-      line: 'Sabe, eu tava pensando... faz tempo que não vou pra suíte com alguém que preste.',
+      line: 'You know, I was thinking... it\'s been a while since I went to the suite with someone worthwhile.',
       options: [
-        { text: 'É uma indireta?', reply: 'Tô só dizendo que se alguém me convidasse... talvez eu aceitasse. Talvez.', aff: 14 },
-        { text: 'Posso mudar isso. Me dá uma chance.', reply: 'Humm. Gostei da confiança. Continua assim.', aff: 12 },
-        { text: 'Tem fila, imagino.', reply: 'Fila tem. Mas eu escolho quem entra. E tô te olhando.', aff: 10 },
+        { text: 'Is that a hint?', reply: 'I\'m just saying that if someone invited me... maybe I\'d say yes. Maybe.', aff: 14 },
+        { text: 'I can change that. Give me a chance.', reply: 'Hmm. I like the confidence. Keep it up.', aff: 12 },
+        { text: 'Must be a long line.', reply: 'There is. But I choose who gets in. And I\'m looking at you.', aff: 10 },
       ],
     },
     {
-      line: 'Vou ser sincera: se me der uma gorjeta boa, conto um segredo.',
+      line: 'I\'ll be honest: give me a good tip and I\'ll tell you a secret.',
       options: [
-        { text: 'Feito. Toma aí.', reply: 'O segredo: eu tô afim de ir pra suíte contigo. Pronto, falei.', aff: 15 },
-        { text: 'Segredo? Que tipo?', reply: 'O tipo que te deixa com vontade de me levar pro andar de cima.', aff: 10 },
-        { text: 'Não pago por segredo.', reply: 'Tá bom, guardarei pra mim. Mas ia gostar de ouvir, hein.', aff: -4 },
+        { text: 'Done. Here you go.', reply: 'The secret: I want to go to the suite with you. There, I said it.', aff: 15 },
+        { text: 'A secret? What kind?', reply: 'The kind that makes you want to take me upstairs.', aff: 10 },
+        { text: 'I don\'t pay for secrets.', reply: 'Fine, I\'ll keep it to myself. But you would\'ve liked hearing it.', aff: -4 },
       ],
     },
   ],
   roundsHigh: [
     {
-      line: 'Chega de enrolação. Reserva a suíte e me leva. Tô pronta.',
+      line: 'Enough stalling. Book the suite and take me there. I\'m ready.',
       options: [
-        { text: 'Vou reservar agora.', reply: 'Boa. Te espero. Não demora.', aff: 15 },
-        { text: 'Calma, vamos curtir mais aqui primeiro.', reply: 'Tá, mas não me faz esperar muito. Minha paciência tem prazo.', aff: 5 },
-        { text: 'Pronta pra quê, exatamente?', reply: 'Pra tudo que você tiver coragem de fazer. Bora?', aff: 12 },
+        { text: 'I\'ll book it now.', reply: 'Good. I\'ll be waiting. Don\'t take long.', aff: 15 },
+        { text: 'Easy, let\'s enjoy ourselves here a bit more.', reply: 'Fine, but don\'t keep me waiting too long. My patience has limits.', aff: 5 },
+        { text: 'Ready for what, exactly?', reply: 'For everything you have the courage to do. Shall we?', aff: 12 },
       ],
     },
     {
-      line: 'Quer saber como é a suíte comigo? Me convida e descobre.',
+      line: 'Want to know what the suite is like with me? Invite me and find out.',
       options: [
-        { text: 'Tô convencido. Bora.', reply: 'Finalmente. Vamos.', aff: 18 },
-        { text: 'Fala mais, tô quase.', reply: 'Dança privada, champagne, jacuzzi... e eu. Precisa de mais?', aff: 12 },
-        { text: 'Deve ser bom mesmo.', reply: 'Querido, "bom" é pouco. Mas só vai saber se for.', aff: 10 },
+        { text: 'I\'m convinced. Let\'s go.', reply: 'Finally. Let\'s go.', aff: 18 },
+        { text: 'Tell me more, I\'m almost there.', reply: 'Private dance, champagne, jacuzzi... and me. Need more?', aff: 12 },
+        { text: 'Must be really good.', reply: 'Darling, "good" is an understatement. But you\'ll only know if you go.', aff: 10 },
       ],
     },
   ],
-  inviteAccept: 'Combinado. Te encontro lá. Leva champagne.',
-  inviteTease: 'Quase. Mas eu preciso de mais atenção antes. Continua tentando.',
+  inviteAccept: 'Deal. I\'ll meet you there. Bring champagne.',
+  inviteTease: 'Almost. But I need more attention first. Keep trying.',
   roomGreet: [
-    'Hm, gostei da suíte. Escolheu bem a luz.',
-    'Finalmente a sós. Tranca a porta.',
-    'Essa jacuzzi tá me chamando. Você vem?',
+    'Hm, nice suite. Good choice on the lighting.',
+    'Finally alone. Lock the door.',
+    'That jacuzzi is calling me. Coming?',
   ],
   roomRounds: [
     {
-      line: 'Relaxa. Aqui é só a gente. Quer pedir uma dança privada?',
+      line: 'Relax. It\'s just us here. Want to order a private dance?',
       options: [
-        { text: 'Quero sim. Dança pra mim.', reply: 'Hm. Pede no painel ali, que eu começo.', aff: 12 },
-        { text: 'Prefiro ficar conversando.', reply: 'Tá bom, mas não perde a chance. Minha dança é especial.', aff: 6 },
-        { text: 'Quero tudo que tiver.', reply: 'Ambicioso. Gosto. Vamos por partes.', aff: 10 },
+        { text: 'Yes. Dance for me.', reply: 'Hm. Use the panel over there, and I\'ll start.', aff: 12 },
+        { text: 'I\'d rather just talk.', reply: 'Fine, but don\'t miss your chance. My dancing is special.', aff: 6 },
+        { text: 'I want everything you\'ve got.', reply: 'Ambitious. I like it. One thing at a time.', aff: 10 },
       ],
     },
     {
-      line: 'Pede o champagne pra gente. A noite fica melhor.',
+      line: 'Order us some champagne. The night gets better with it.',
       options: [
-        { text: 'Já vou pedir.', reply: 'Assim que é bom. Brinda comigo.', aff: 12 },
-        { text: 'De novo? Já bebemos.', reply: 'E? A garrafa não enche sozinha, amor.', aff: -2 },
-        { text: 'Só se for na jacuzzi.', reply: 'Ooh. Adorei a ideia. Bora.', aff: 14 },
+        { text: 'I\'ll order it now.', reply: 'That\'s the way. Toast with me.', aff: 12 },
+        { text: 'Again? We already drank.', reply: 'So? The bottle doesn\'t refill itself, love.', aff: -2 },
+        { text: 'Only in the jacuzzi.', reply: 'Ooh. I love that idea. Let\'s go.', aff: 14 },
       ],
     },
   ],
 };
 
-// ================================================================ Yasmin — Gente boa, sabe envolver na risada
+// ================================================================ Yasmin — Fun-loving, wraps you up in laughter
 const YASMIN: PersonalityData = {
   greetLow: [
-    'Eiii, fala aí! Tava te olhando de lá. Bora conversar?',
-    'Oi oi! Achei que ia ficar de canto a noite toda. Que bom que veio!',
-    'E aí? Curtindo? Essa música tá boa demais, né?',
+    'Heyyy, what\'s up! I was watching you from over there. Wanna chat?',
+    'Hi hi! I thought you were gonna hide in a corner all night. Glad you came!',
+    'Hey! Having fun? This music is sooo good, right?',
   ],
   greetMid: [
-    'Voltou! Haha, eu sabia!',
-    'Ei, aí sim! Achei que tinha fugido de mim.',
-    'Aeee! Meu amigo favorito chegou! Pede um drink aí!',
+    'You\'re back! Haha, I knew it!',
+    'Hey, there you go! I thought you ran away from me.',
+    'Yaaay! My favorite person is here! Get me a drink!',
   ],
   greetHigh: [
-    'AI, oi! Que saudade! Vem vem vem!',
-    'Até que enfim! Tava morrendo de tédio sem você!',
-    'Cheguei toda animada já, pode vir!',
+    'OH, hi! I missed you! Come come come!',
+    'Finally! I was dying of boredom without you!',
+    'I\'m already hyped up, come on over!',
   ],
   roundsLow: [
     {
-      line: 'Ei, me paga um drink? Prometo que fico mais engraçada depois. Brincadeira. Ou não.',
+      line: 'Hey, buy me a drink? I promise I\'m funnier after that. Kidding. Or not.',
       options: [
-        { text: 'Haha, bora! Pede o que quiser.', reply: 'Ebaaa! Pede dois, que beber sozinha é triste! Haha!', aff: 12 },
-        { text: 'Tá querendo me secar, hein?', reply: 'Que isso! É só um drinkzinho! O segundo você decide depois. Hehe.', aff: 5 },
-        { text: 'Não, obrigado.', reply: 'Ah, sem graça. Tá bem, conversa então. Mas saiba que bebo melhor que falo.', aff: -3 },
+        { text: 'Haha, let\'s go! Get whatever you want.', reply: 'Yaaay! Order two, drinking alone is sad! Haha!', aff: 12 },
+        { text: 'Trying to drain my wallet, huh?', reply: 'What! It\'s just one little drink! You can decide about the second one later. Hehe.', aff: 5 },
+        { text: 'No, thanks.', reply: 'Aw, boring. Okay, let\'s just talk then. But know that I drink better than I talk.', aff: -3 },
       ],
     },
     {
-      line: 'Cê dança? Porque quem não dança comigo não me merece. Regra da casa.',
+      line: 'Do you dance? Because if you don\'t dance with me, you don\'t deserve me. House rules.',
       options: [
-        { text: 'Danço mal, mas vou tentar!', reply: 'Isso! Ninguém liga se dança mal, liga se não tenta! Bora!', aff: 14 },
-        { text: 'Dançar? Sou mais de ficar sentado.', reply: 'Ah não, que preguiça! Vou te arrastar. Depois não reclama.', aff: 2 },
-        { text: 'Só danço colado.', reply: 'Hahaha! Calma! Me conquista primeiro, pô!', aff: 8 },
+        { text: 'I\'m a terrible dancer, but I\'ll try!', reply: 'That\'s the spirit! Nobody cares if you dance badly, they care if you don\'t try! Let\'s go!', aff: 14 },
+        { text: 'Dance? I\'d rather sit down.', reply: 'Oh no, how lazy! I\'m gonna drag you out there. Don\'t say I didn\'t warn you.', aff: 2 },
+        { text: 'I only dance up close.', reply: 'Hahaha! Slow down! Win me over first!', aff: 8 },
       ],
     },
     {
-      line: 'Sabia que tem uma suíte lá atrás? Com jacuzzi e tudo. Já foi?',
+      line: 'Did you know there\'s a suite in the back? With a jacuzzi and everything. Been there?',
       options: [
-        { text: 'Ainda não. Me leva?', reply: 'Haha, calma! Primeiro a gente se conhece, depois eu penso. Me paga um drink.', aff: 8 },
-        { text: 'Já ouvi falar. Dizem que é top.', reply: 'É SIM. E comigo lá é melhor ainda, modéstia à parte. Hehe.', aff: 10 },
-        { text: 'Suíte? Tô de boa aqui.', reply: 'Ah, cê que sabe! Mas se mudar de ideia, eu tô aqui, hein.', aff: 3 },
+        { text: 'Not yet. Take me?', reply: 'Haha, hold on! First we get to know each other, then I\'ll think about it. Buy me a drink.', aff: 8 },
+        { text: 'I\'ve heard about it. They say it\'s amazing.', reply: 'It IS. And with me in there it\'s even better, if I do say so myself. Hehe.', aff: 10 },
+        { text: 'Suite? I\'m good here.', reply: 'Suit yourself! But if you change your mind, I\'m right here.', aff: 3 },
       ],
     },
   ],
   roundsMid: [
     {
-      line: 'Ei, tô com sede de novo! Me paga outro? Esse papo tá bom demais pra parar.',
+      line: 'Hey, I\'m thirsty again! Buy me another? This conversation is too good to stop.',
       options: [
-        { text: 'Bora! Mais um pra gente!', reply: 'Yaaay! Cê é gente fina demais! Saúde!', aff: 12 },
-        { text: 'Já paguei um, pô.', reply: 'E tá contando? Haha! Tá bom, bebo água. Brincadeira, paga vai!', aff: 2 },
-        { text: 'Vou pagar, mas me deve uma dança.', reply: 'Feito! Dança + drink = noite perfeita!', aff: 10 },
+        { text: 'Let\'s go! Another round for us!', reply: 'Yaaay! You\'re the best! Cheers!', aff: 12 },
+        { text: 'I already bought one, come on.', reply: 'And you\'re keeping count? Haha! Okay, I\'ll drink water. Kidding, just buy it!', aff: 2 },
+        { text: 'I\'ll pay, but you owe me a dance.', reply: 'Deal! Dance + drink = perfect night!', aff: 10 },
       ],
     },
     {
-      line: 'Cê parece legal de verdade. A maioria dos caras aqui é meio... sei lá. Cê é diferente.',
+      line: 'You seem genuinely cool. Most guys here are kinda... I dunno. You\'re different.',
       options: [
-        { text: 'Obrigado. Você também é especial.', reply: 'Oown! Para! Haha! ...Continua, gostei!', aff: 12 },
-        { text: 'Diferente como?', reply: 'Sei lá, me faz rir de verdade. E isso é raro aqui.', aff: 10 },
-        { text: 'Se eu sou diferente, que tal a gente ir pra suíte?', reply: 'Haha! Direto ao ponto! Olha, se continuar assim... talvez!', aff: 8 },
+        { text: 'Thanks. You\'re special too.', reply: 'Awww! Stop! Haha! ...Keep going, I liked that!', aff: 12 },
+        { text: 'Different how?', reply: 'I dunno, you make me laugh for real. And that\'s rare here.', aff: 10 },
+        { text: 'If I\'m different, how about we hit the suite?', reply: 'Haha! Straight to the point! Look, if you keep this up... maybe!', aff: 8 },
       ],
     },
     {
-      line: 'Olha, eu NUNCA peço isso, mas... me dá uma gorjeta e eu danço só pra você. Hehe.',
+      line: 'Look, I NEVER ask this, but... give me a tip and I\'ll dance just for you. Hehe.',
       options: [
-        { text: 'Haha, toma. Mas capricha na dança!', reply: 'Combinado! Mas vai ter que ir pra suíte pra ver o show completo...', aff: 15 },
-        { text: 'Gorjeta? Haha, negociante.', reply: 'Hehe, aprendi com os melhores! Mas é sério, vai valer a pena!', aff: 8 },
-        { text: 'Não precisa de gorjeta, dança de graça.', reply: 'Ah, espertinho! Tá bom, danço. Mas a suíte é paga, hein!', aff: 4 },
+        { text: 'Haha, here. But make that dance count!', reply: 'Deal! But you\'ll have to come to the suite for the full show...', aff: 15 },
+        { text: 'A tip? Haha, smooth negotiator.', reply: 'Hehe, learned from the best! But seriously, it\'ll be worth it!', aff: 8 },
+        { text: 'You don\'t need a tip, dance for free.', reply: 'Oh, clever! Fine, I\'ll dance. But the suite costs extra!', aff: 4 },
       ],
     },
   ],
   roundsHigh: [
     {
-      line: 'Olha, vou ser sincera: quero ir pra suíte contigo. Lá é onde a noite fica boa de verdade.',
+      line: 'Look, I\'ll be real: I wanna go to the suite with you. That\'s where the night really gets good.',
       options: [
-        { text: 'Vou reservar agora!', reply: 'SIIIM! Vai logo! Te espero dançando!', aff: 18 },
-        { text: 'Haha, ansiosa?', reply: 'MUITO! Haha! Vai logo antes que eu mude de ideia! Brincadeira, não mudo.', aff: 12 },
-        { text: 'O que rola lá?', reply: 'Dança privada, champagne, jacuzzi... e muita risada. Comigo tudo é mais divertido!', aff: 10 },
+        { text: 'I\'ll book it now!', reply: 'YESSS! Hurry! I\'ll be here dancing while I wait!', aff: 18 },
+        { text: 'Haha, eager much?', reply: 'SO much! Haha! Hurry before I change my mind! Kidding, I won\'t.', aff: 12 },
+        { text: 'What goes on there?', reply: 'Private dance, champagne, jacuzzi... and lots of fun. Everything\'s more fun with me!', aff: 10 },
       ],
     },
     {
-      line: 'Ei, já pensou na gente na jacuzzi com champagne? Porque eu já.',
+      line: 'Hey, have you pictured us in the jacuzzi with champagne? Because I have.',
       options: [
-        { text: 'Bora agora. Me convenceu.', reply: 'Ebaaa! Melhor decisão da noite! Vamos!', aff: 18 },
-        { text: 'Hm, pinta um quadro bem bom.', reply: 'Né?! E na real é melhor do que eu tô descrevendo. Vem!', aff: 14 },
-        { text: 'Calma que a noite é longa.', reply: 'Tá bom! Mas não me faz esperar muito, que eu fico inquieta!', aff: 6 },
+        { text: 'Let\'s go now. You convinced me.', reply: 'Yaaay! Best decision of the night! Let\'s go!', aff: 18 },
+        { text: 'Hm, that paints a pretty nice picture.', reply: 'Right?! And honestly it\'s even better than I\'m describing. Come on!', aff: 14 },
+        { text: 'Easy, the night is still young.', reply: 'Okay! But don\'t make me wait too long, I get restless!', aff: 6 },
       ],
     },
   ],
-  inviteAccept: 'BORA! Haha, já tô indo! Não começa a festa sem mim!',
-  inviteTease: 'Haha, quaaase! Me diverte mais um pouco que eu vou!',
+  inviteAccept: 'LET\'S GO! Haha, I\'m already on my way! Don\'t start the party without me!',
+  inviteTease: 'Haha, almooost! Entertain me a little more and I\'m in!',
   roomGreet: [
-    'UAAAU olha essa suíte! A jacuzzi! Bora!',
-    'Haha, finalmente! Bora curtir!',
-    'Ei, fecha a porta! A diversão é só nossa agora! Hehe!',
+    'WOOOW look at this suite! The jacuzzi! Let\'s go!',
+    'Haha, finally! Let\'s have some fun!',
+    'Hey, close the door! The fun is all ours now! Hehe!',
   ],
   roomRounds: [
     {
-      line: 'Mano, pede a dança privada! Juro que cê não vai se arrepender!',
+      line: 'Dude, order the private dance! I swear you won\'t regret it!',
       options: [
-        { text: 'Bora! Pede aí!', reply: 'É no painel! Vai vai vai! Haha!', aff: 12 },
-        { text: 'Calma, vamos curtir o momento.', reply: 'Tá bom, tá bom. Mas não esquece da dança, hein!', aff: 6 },
-        { text: 'Quero ver o show completo.', reply: 'Ooooh! Ambicioso! Gostei! Pede o champagne também!', aff: 14 },
+        { text: 'Let\'s do it! Order it!', reply: 'It\'s on the panel! Go go go! Haha!', aff: 12 },
+        { text: 'Relax, let\'s enjoy the moment.', reply: 'Okay, okay. But don\'t forget about the dance!', aff: 6 },
+        { text: 'I want the full show.', reply: 'Ooooh! Ambitious! Love it! Order the champagne too!', aff: 14 },
       ],
     },
     {
-      line: 'Cadê o champagne? Uma noite dessas sem champagne não é noite!',
+      line: 'Where\'s the champagne? A night like this without champagne isn\'t a night!',
       options: [
-        { text: 'Já pedi! Vem brindar!', reply: 'Yaaay! Saúde pra gente! Essa noite tá incrível!', aff: 12 },
-        { text: 'Calma que já vai.', reply: 'Haha, tô ansiosa! Desculpa!', aff: 4 },
-        { text: 'Não quero beber mais.', reply: 'Ah, sem graça! Brincadeira. Vamos fazer outra coisa então!', aff: 2 },
+        { text: 'Already ordered! Come toast!', reply: 'Yaaay! Cheers to us! This night is incredible!', aff: 12 },
+        { text: 'Relax, it\'s coming.', reply: 'Haha, I\'m so excited! Sorry!', aff: 4 },
+        { text: 'I don\'t want to drink anymore.', reply: 'Aw, boring! Kidding. Let\'s do something else then!', aff: 2 },
       ],
     },
   ],
 };
 
-// ================================================================ Bianca — Fala pouco, cobra caro, intriga
+// ================================================================ Bianca — Few words, high price, intriguing
 const BIANCA: PersonalityData = {
   greetLow: [
-    '...Oi.',
-    'Hm. Você me olhou antes de vir. Reparei.',
-    'Coragem de vir falar. Pode continuar.',
+    '...Hi.',
+    'Hm. You looked at me before coming over. I noticed.',
+    'Brave of you to come talk. Go on.',
   ],
   greetMid: [
-    'Voltou. Achei que ia demorar mais.',
-    'Olha quem é. O curioso.',
-    'Senta. Mas fala pouco.',
+    'You\'re back. I thought it would take longer.',
+    'Look who it is. The curious one.',
+    'Sit. But keep it short.',
   ],
   greetHigh: [
-    'Tava te esperando.',
-    'Hm. Você me deixa inquieta. No bom sentido.',
-    'Chega mais.',
+    'I was waiting for you.',
+    'Hm. You make me restless. In a good way.',
+    'Come closer.',
   ],
   roundsLow: [
     {
-      line: '...Sabe o que eu gosto? Silêncio. Mas se for pra quebrar, que seja com um drink na mão.',
+      line: '...You know what I like? Silence. But if you\'re going to break it, do it with a drink in hand.',
       options: [
-        { text: 'Vou pedir um pra você.', reply: '...Boa. Talvez a gente se entenda.', aff: 12 },
-        { text: 'Prefiro conversa a drink.', reply: '...Conversa sem drink é interrogatório. Pensa nisso.', aff: 2 },
-        { text: 'Tá. Silêncio então.', reply: '...*meio sorriso* Esperto. Poucos fazem isso.', aff: 10 },
+        { text: 'I\'ll get you one.', reply: '...Good. Maybe we\'ll get along.', aff: 12 },
+        { text: 'I prefer conversation over drinks.', reply: '...Conversation without a drink is an interrogation. Think about it.', aff: 2 },
+        { text: 'Fine. Silence it is.', reply: '...*half smile* Smart. Few people do that.', aff: 10 },
       ],
     },
     {
-      line: 'As pessoas aqui falam demais. Dizem tudo, mostram nada.',
+      line: 'People here talk too much. Say everything, show nothing.',
       options: [
-        { text: 'Eu prefiro mostrar. Me dá uma chance.', reply: '...Vou ficar de olho. Mostra então.', aff: 12 },
-        { text: 'E você? Mostra alguma coisa?', reply: '...Só pra quem merece. Veremos.', aff: 8 },
-        { text: 'Ui, durona.', reply: '...Não é durona. É filtro. Funciona melhor do que sorriso.', aff: -5 },
+        { text: 'I prefer to show. Give me a chance.', reply: '...I\'ll be watching. Show me then.', aff: 12 },
+        { text: 'And you? Do you show anything?', reply: '...Only to those who deserve it. We\'ll see.', aff: 8 },
+        { text: 'Ooh, tough girl.', reply: '...Not tough. Selective. Works better than a smile.', aff: -5 },
       ],
     },
     {
-      line: 'Já viu a suíte lá atrás? Poucos merecem ir comigo. Mas existem.',
+      line: 'Ever seen the suite in the back? Few people deserve to go there with me. But they exist.',
       options: [
-        { text: 'O que eu preciso fazer pra merecer?', reply: '...Paciência. Atenção. E uma gorjeta não faz mal.', aff: 10 },
-        { text: 'Suíte? Com você deve ser interessante.', reply: '...Interessante é pouco. Mas calma.', aff: 8 },
-        { text: 'Tá se achando, hein.', reply: '...Não me acho. Me conheço. É diferente.', aff: -6 },
+        { text: 'What do I need to do to deserve it?', reply: '...Patience. Attention. And a tip doesn\'t hurt.', aff: 10 },
+        { text: 'Suite? With you it must be interesting.', reply: '...Interesting is an understatement. But patience.', aff: 8 },
+        { text: 'Think highly of yourself, don\'t you.', reply: '...I don\'t think highly. I know myself. There\'s a difference.', aff: -6 },
       ],
     },
   ],
   roundsMid: [
     {
-      line: '...Me dá uma gorjeta. Não porque eu peça. Porque quero ver se você entende o gesto.',
+      line: '...Give me a tip. Not because I\'m asking. Because I want to see if you understand the gesture.',
       options: [
-        { text: '*dá a gorjeta sem dizer nada*', reply: '...*pega, olha nos seus olhos* ...Entendeu. Poucos entendem.', aff: 18 },
-        { text: 'Pra quê gorjeta?', reply: '...Se precisa perguntar, não entendeu.', aff: -2 },
-        { text: 'Toma. E me conta mais sobre você.', reply: '...Talvez. Vamos ver se merece.', aff: 10 },
+        { text: '*hands the tip without a word*', reply: '...*takes it, looks into your eyes* ...You understood. Few do.', aff: 18 },
+        { text: 'What\'s the tip for?', reply: '...If you have to ask, you don\'t understand.', aff: -2 },
+        { text: 'Here. And tell me more about yourself.', reply: '...Maybe. Let\'s see if you deserve it.', aff: 10 },
       ],
     },
     {
-      line: 'Eu tenho um caderno. Anoto tudo sobre as pessoas. Você já está nele.',
+      line: 'I keep a notebook. I write everything about people. You\'re already in it.',
       options: [
-        { text: 'O que anotou?', reply: '"Não desiste fácil. Ouve. Pode valer a pena." ...Pode.', aff: 14 },
-        { text: 'Assustador. Mas fascinante.', reply: '...Fascínio e medo andam juntos. Aguenta?', aff: 10 },
-        { text: 'Posso ler?', reply: '...Não. Mas posso contar. Se a gente for pra um lugar mais reservado.', aff: 12 },
+        { text: 'What did you write?', reply: '"Doesn\'t give up easily. Listens. Could be worth it." ...Could be.', aff: 14 },
+        { text: 'Creepy. But fascinating.', reply: '...Fascination and fear go hand in hand. Can you handle it?', aff: 10 },
+        { text: 'Can I read it?', reply: '...No. But I could tell you. If we go somewhere more private.', aff: 12 },
       ],
     },
     {
-      line: '...Faz tempo que ninguém me faz querer sair daqui. Mas a suíte me chamou agora.',
+      line: '...It\'s been a while since anyone made me want to leave this spot. But the suite just called.',
       options: [
-        { text: 'Vamos então.', reply: '...Talvez. Mas me convence mais um pouco.', aff: 12 },
-        { text: 'Suíte com você deve ser silenciosamente incrível.', reply: '...*quase sorri* ...Você me pega de jeito.', aff: 15 },
-        { text: 'O que te faria ir?', reply: '...Certeza. E uma reserva. Nessa ordem.', aff: 10 },
+        { text: 'Then let\'s go.', reply: '...Maybe. But convince me a little more.', aff: 12 },
+        { text: 'The suite with you must be quietly incredible.', reply: '...*almost smiles* ...You really get to me.', aff: 15 },
+        { text: 'What would make you go?', reply: '...Certainty. And a reservation. In that order.', aff: 10 },
       ],
     },
   ],
   roundsHigh: [
     {
-      line: '...Reserva a suíte. Agora. Sem perguntar, sem enrolar.',
+      line: '...Book the suite. Now. No questions, no stalling.',
       options: [
-        { text: '*vai ao terminal e reserva*', reply: '...*pega sua mão* Vamos.', aff: 18 },
-        { text: 'Já ia fazer isso.', reply: '...Bom. Vai.', aff: 14 },
-        { text: 'Calma, ainda tô—', reply: '...Calma é pra quem não sabe o que quer. Você sabe.', aff: 8 },
+        { text: '*goes to the terminal and books it*', reply: '...*takes your hand* Let\'s go.', aff: 18 },
+        { text: 'I was just about to.', reply: '...Good. Go.', aff: 14 },
+        { text: 'Hold on, I\'m still—', reply: '...Hesitation is for people who don\'t know what they want. You know.', aff: 8 },
       ],
     },
     {
-      line: '...Quero ficar a sós. Com você. Sem barulho.',
+      line: '...I want to be alone. With you. No noise.',
       options: [
-        { text: 'Vem. A suíte é nossa.', reply: '...*levanta e caminha* Leva.', aff: 18 },
-        { text: 'Eu também quero.', reply: '...Então para de falar e faz.', aff: 12 },
-        { text: 'Achei que nunca ia pedir.', reply: '...Eu não peço. Eu espero. E você passou.', aff: 14 },
+        { text: 'Come. The suite is ours.', reply: '...*stands and walks* Lead the way.', aff: 18 },
+        { text: 'I want that too.', reply: '...Then stop talking and do it.', aff: 12 },
+        { text: 'I thought you\'d never ask.', reply: '...I don\'t ask. I wait. And you passed.', aff: 14 },
       ],
     },
   ],
-  inviteAccept: '...Sim. *caminha em direção à suíte sem dizer mais nada*',
-  inviteTease: '...Ainda não. Continue. Tô quase.',
+  inviteAccept: '...Yes. *walks toward the suite without another word*',
+  inviteTease: '...Not yet. Keep going. I\'m almost there.',
   roomGreet: [
-    '...Silêncio. Finalmente.',
-    'Aqui dá pra ouvir o que importa.',
-    '...Fecha a porta.',
+    '...Silence. Finally.',
+    'Here you can hear what matters.',
+    '...Close the door.',
   ],
   roomRounds: [
     {
-      line: '...A dança privada. Pede. Quero que me veja dançar de verdade.',
+      line: '...The private dance. Order it. I want you to see me really dance.',
       options: [
-        { text: 'Pedi.', reply: '...*começa devagar* Olha pra mim.', aff: 15 },
-        { text: 'Dança?', reply: '...Eu danço diferente quando é só pra uma pessoa. Pede.', aff: 10 },
-        { text: 'Prefiro conversa.', reply: '...As palavras acabam. O corpo fala melhor. Mas tá.', aff: 4 },
+        { text: 'Done.', reply: '...*starts slowly* Look at me.', aff: 15 },
+        { text: 'Dance?', reply: '...I dance differently when it\'s just for one person. Order it.', aff: 10 },
+        { text: 'I\'d rather talk.', reply: '...Words run out. The body speaks better. But fine.', aff: 4 },
       ],
     },
     {
-      line: '...Pede o champagne. Não porque eu peço. Porque combina com a noite.',
+      line: '...Order the champagne. Not because I\'m asking. Because it suits the night.',
       options: [
-        { text: '*pede sem falar*', reply: '...*brinda em silêncio, olhando nos seus olhos*', aff: 16 },
-        { text: 'Tá. Champagne então.', reply: '...Boa escolha.', aff: 10 },
-        { text: 'Não quero beber.', reply: '...Tá. Então vem pra água.', aff: 4 },
+        { text: '*orders without speaking*', reply: '...*toasts in silence, looking into your eyes*', aff: 16 },
+        { text: 'Fine. Champagne then.', reply: '...Good choice.', aff: 10 },
+        { text: 'I don\'t want to drink.', reply: '...Fine. Then come to the water.', aff: 4 },
       ],
     },
   ],
 };
 
-// ================================================================ Luna — Calorosa, puxa pela emoção
+// ================================================================ Luna — Warm, pulls at your emotions
 const LUNA: PersonalityData = {
   greetLow: [
-    'Oi! Que bom que veio falar comigo! Ninguém aqui repara em mim, haha.',
-    'Eii! Você tava na pista, né? Vi você lá!',
-    'Oi oi! Tô feliz hoje. Bora conversar?',
+    'Hi! I\'m so glad you came to talk to me! Nobody notices me here, haha.',
+    'Heey! You were on the dance floor, right? I saw you there!',
+    'Hi hi! I\'m in such a good mood today. Wanna chat?',
   ],
   greetMid: [
-    'Ei, que bom te ver! Tava sentindo sua falta, juro!',
-    'Ah, voltou! Meu dia melhorou!',
-    'Oii! Pede um drink pra gente, vai!',
+    'Hey, so good to see you! I was missing you, I swear!',
+    'Oh, you\'re back! You just made my day!',
+    'Hii! Get us a drink, come on!',
   ],
   greetHigh: [
-    'Amor! Achei que não vinha mais! Vem cá!',
-    'Ai, cheguei toda animada porque sabia que ia te ver!',
-    'Oi lindo! A noite começou agora!',
+    'Babe! I thought you weren\'t coming! Come here!',
+    'Oh, I came in all excited because I knew I\'d see you!',
+    'Hey gorgeous! The night just started!',
   ],
   roundsLow: [
     {
-      line: 'Ei, me paga um drink? É que conversar de boca seca é ruim demais!',
+      line: 'Hey, buy me a drink? Talking with a dry mouth is the worst!',
       options: [
-        { text: 'Claro! O que quer?', reply: 'Ai obrigada! Pede qualquer coisa doce! Você é um anjo!', aff: 12 },
-        { text: 'Tá cedo pra beber, não?', reply: 'Nunca é cedo pra celebrar! Haha! Vai, pede!', aff: 5 },
-        { text: 'Depois. Vamos conversar primeiro.', reply: 'Ah, tá bom. Mas lembra depois, hein? Haha!', aff: 3 },
+        { text: 'Of course! What do you want?', reply: 'Aw thank you! Get something sweet! You\'re an angel!', aff: 12 },
+        { text: 'Isn\'t it a bit early to drink?', reply: 'It\'s never too early to celebrate! Haha! Go on, order!', aff: 5 },
+        { text: 'Later. Let\'s talk first.', reply: 'Okay, fine. But don\'t forget later, okay? Haha!', aff: 3 },
       ],
     },
     {
-      line: 'Eu comecei a dançar com 5 anos, sabia? É minha vida.',
+      line: 'I started dancing when I was 5, did you know? It\'s my life.',
       options: [
-        { text: 'Dá pra ver. Você se move de um jeito lindo.', reply: 'Ai para! Haha! ...Continua, gostei!', aff: 14 },
-        { text: 'Nossa, 5 anos? Que legal.', reply: 'Pois é! Se quiser, danço pra você. Mas não aqui. Na suíte.', aff: 10 },
-        { text: 'Dança é só hobby?', reply: 'Hobby?! Minha VIDA! Haha! Mas tá perdoado, já já te mostro.', aff: 4 },
+        { text: 'You can tell. You move so beautifully.', reply: 'Oh stop! Haha! ...Keep going, I liked that!', aff: 14 },
+        { text: 'Wow, 5 years old? That\'s cool.', reply: 'Right?! If you want, I\'ll dance for you. But not here. In the suite.', aff: 10 },
+        { text: 'Is dancing just a hobby?', reply: 'Hobby?! My LIFE! Haha! But you\'re forgiven, I\'ll show you soon.', aff: 4 },
       ],
     },
     {
-      line: 'Sabe o que eu queria? Que alguém me notasse de verdade. Não só o corpo, sabe?',
+      line: 'You know what I wish? That someone would really notice me. Not just my body, you know?',
       options: [
-        { text: 'Eu noto. Você tem uma energia incrível.', reply: '*olhos brilham* ...Sério? Obrigada. Ninguém fala isso.', aff: 16 },
-        { text: 'Eu reparo no todo.', reply: 'Que bonito. Gostei de você.', aff: 10 },
-        { text: 'Hm, é uma cantada?', reply: 'Haha! Não! Mas se fosse, funcionou? Brincadeira!', aff: 4 },
+        { text: 'I notice. You have incredible energy.', reply: '*eyes light up* ...Really? Thank you. Nobody says that.', aff: 16 },
+        { text: 'I see the whole picture.', reply: 'That\'s beautiful. I like you.', aff: 10 },
+        { text: 'Hm, is that a pickup line?', reply: 'Haha! No! But if it were, did it work? Just kidding!', aff: 4 },
       ],
     },
   ],
   roundsMid: [
     {
-      line: 'Ei, me dá uma gorjeta? Não pelo dinheiro, é que me sinto especial quando fazem isso.',
+      line: 'Hey, give me a tip? Not for the money — it just makes me feel special when people do that.',
       options: [
-        { text: 'Toma. Você é especial mesmo.', reply: '*abraça* Ai obrigada! Que fofo! Preciso te recompensar. Já sei como.', aff: 16 },
-        { text: 'Gorjeta? Hm.', reply: 'É só um gesto, boba. Mas se não quiser, tudo bem...', aff: 2 },
-        { text: 'Toma, mas me deve uma dança.', reply: 'Combinado! Mas a melhor dança é na suíte. Fica a dica!', aff: 12 },
+        { text: 'Here. You really are special.', reply: '*hugs* Aw thank you! That\'s so sweet! I need to make it up to you. I know how.', aff: 16 },
+        { text: 'A tip? Hm.', reply: 'It\'s just a gesture, silly. But if you don\'t want to, it\'s fine...', aff: 2 },
+        { text: 'Here, but you owe me a dance.', reply: 'Deal! But the best dance is in the suite. Just saying!', aff: 12 },
       ],
     },
     {
-      line: 'Já imaginou a gente na suíte? Eu dançando pra você, jacuzzi, sem pressa...',
+      line: 'Have you imagined us in the suite? Me dancing for you, jacuzzi, no rush...',
       options: [
-        { text: 'Tô imaginando. E gostando.', reply: 'Né?! Então faz acontecer! Reserva pra gente!', aff: 14 },
-        { text: 'Haha, pintou um quadro bonito.', reply: 'E olha que a realidade é melhor! Vem!', aff: 10 },
-        { text: 'Calma que a noite é longa.', reply: 'Tá bom, mas não demora! Meu coração tá ansioso! Haha!', aff: 5 },
+        { text: 'I\'m imagining it. And I like it.', reply: 'Right?! Then make it happen! Book it for us!', aff: 14 },
+        { text: 'Haha, you paint a pretty picture.', reply: 'And the reality is even better! Come on!', aff: 10 },
+        { text: 'Easy, the night is still young.', reply: 'Okay, but don\'t take too long! My heart\'s racing! Haha!', aff: 5 },
       ],
     },
     {
-      line: 'Olha, eu gosto de você de verdade. Me leva pra suíte? Vai ser especial, prometo.',
+      line: 'Look, I really like you. Take me to the suite? It\'ll be special, I promise.',
       options: [
-        { text: 'Vou reservar agora.', reply: 'SIM! Obrigada! Vai ser a melhor noite, juro!', aff: 18 },
-        { text: 'Já já. Mais um drink antes.', reply: 'Tá bom, pede! Mas bora logo, tô ansiosa! Haha!', aff: 8 },
-        { text: 'Hm, acho que ainda é cedo.', reply: 'Ah... tá bom. Mas não me esquece, tá?', aff: 0 },
+        { text: 'I\'ll book it now.', reply: 'YES! Thank you! It\'ll be the best night ever, I swear!', aff: 18 },
+        { text: 'In a bit. One more drink first.', reply: 'Okay, order it! But let\'s go soon, I\'m so excited! Haha!', aff: 8 },
+        { text: 'Hm, I think it\'s still early.', reply: 'Oh... okay. But don\'t forget about me, okay?', aff: 0 },
       ],
     },
   ],
   roundsHigh: [
     {
-      line: 'Ei. Me leva. Agora. Não quero perder mais tempo aqui. Quero ficar com você.',
+      line: 'Hey. Take me. Now. I don\'t want to waste any more time here. I want to be with you.',
       options: [
-        { text: 'Vamos. Tô pronto.', reply: '*pega sua mão* Bora! A noite é nossa!', aff: 20 },
-        { text: 'Calma, respira. Haha.', reply: 'Não dá pra ter calma! Haha! Vem logo!', aff: 10 },
-        { text: 'Fala mais do que rola lá.', reply: 'Dança, champagne, jacuzzi, conversa no pé do ouvido... Precisa de mais?', aff: 12 },
+        { text: 'Let\'s go. I\'m ready.', reply: '*takes your hand* Let\'s go! The night is ours!', aff: 20 },
+        { text: 'Easy, breathe. Haha.', reply: 'I can\'t be calm! Haha! Come on, hurry!', aff: 10 },
+        { text: 'Tell me more about what goes on there.', reply: 'Dancing, champagne, jacuzzi, whispering in your ear... Need more?', aff: 12 },
       ],
     },
     {
-      line: 'Se eu fechar os olhos e pedir pra você me levar pra suíte... você leva?',
+      line: 'If I close my eyes and ask you to take me to the suite... will you?',
       options: [
-        { text: 'Fecha. Eu te levo.', reply: '*fecha os olhos e sorri* ...Vamos.', aff: 20 },
-        { text: 'Sim. Sem pensar duas vezes.', reply: 'Ai... obrigada. Vem.', aff: 16 },
-        { text: 'Depende. O que tem lá pra gente?', reply: 'Tudo que você quiser. E eu. Bora.', aff: 12 },
+        { text: 'Close them. I\'ll take you.', reply: '*closes eyes and smiles* ...Let\'s go.', aff: 20 },
+        { text: 'Yes. Without a second thought.', reply: 'Oh... thank you. Come.', aff: 16 },
+        { text: 'Depends. What\'s waiting for us there?', reply: 'Everything you want. And me. Let\'s go.', aff: 12 },
       ],
     },
   ],
-  inviteAccept: 'SIM! Já vou! *sai praticamente dançando*',
-  inviteTease: 'Quaaase! Me faz sentir mais especial e eu vou!',
+  inviteAccept: 'YES! I\'m on my way! *practically dances out*',
+  inviteTease: 'Almooost! Make me feel a little more special and I\'m in!',
   roomGreet: [
-    'Ai que lindo esse lugar! Olha a jacuzzi! Bora!',
-    'Finalmente a sós! Vem cá!',
-    'Fecha a porta! A noite é nossa agora!',
+    'Oh wow this place is beautiful! Look at the jacuzzi! Let\'s go!',
+    'Finally alone! Come here!',
+    'Close the door! The night is ours now!',
   ],
   roomRounds: [
     {
-      line: 'Vem, dança comigo aqui. Sem ninguém olhando. Só a gente.',
+      line: 'Come, dance with me here. No one watching. Just us.',
       options: [
-        { text: '*começa a dançar com ela*', reply: '*encosta em você* ...Perfeito. Não para.', aff: 16 },
-        { text: 'Pede a dança privada no painel.', reply: 'Ooh! Profissional! Tá, pede lá! Vai ser incrível!', aff: 12 },
-        { text: 'Prefiro ficar sentado te olhando.', reply: 'Ah não! Vem! Preciso de você perto!', aff: 6 },
+        { text: '*starts dancing with her*', reply: '*leans into you* ...Perfect. Don\'t stop.', aff: 16 },
+        { text: 'Order the private dance on the panel.', reply: 'Ooh! Professional! Okay, order it! It\'ll be amazing!', aff: 12 },
+        { text: 'I\'d rather sit and watch you.', reply: 'No way! Come here! I need you close!', aff: 6 },
       ],
     },
     {
-      line: 'Pede champagne? Quero brindar a gente. Essa noite merece.',
+      line: 'Order champagne? I want to toast to us. This night deserves it.',
       options: [
-        { text: 'Já pedi. Brinda comigo.', reply: '*brinda* Saúde pra gente! Essa noite tá perfeita!', aff: 14 },
-        { text: 'Vem pra jacuzzi primeiro.', reply: 'Ooh! Sim! Vamos!', aff: 12 },
-        { text: 'Já bebemos bastante.', reply: 'Ah, tá bom. Então vem cá que eu tenho outra ideia.', aff: 4 },
+        { text: 'Already ordered. Toast with me.', reply: '*toasts* Cheers to us! This night is perfect!', aff: 14 },
+        { text: 'Come to the jacuzzi first.', reply: 'Ooh! Yes! Let\'s go!', aff: 12 },
+        { text: 'We\'ve had enough to drink.', reply: 'Okay, fine. Then come here, I\'ve got another idea.', aff: 4 },
       ],
     },
   ],
 };
 
-// ================================================================ Motor de diálogo
+// ================================================================ Dialogue engine
 
 const DATA: Record<string, PersonalityData> = {
   Valentina: VALENTINA,

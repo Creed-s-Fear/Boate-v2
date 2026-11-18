@@ -1,10 +1,10 @@
-// Otimiza o GLB exportado do Blender para a web, sem mexer no .blend:
-//  - solda vértices e simplifica as malhas (erro máximo pequeno: visualmente igual);
-//  - objetos pequenos (copos, garrafas) são simplificados com mais força;
-//  - comprime a geometria com meshopt (o jogo descomprime ao carregar).
-// Nós, nomes, instâncias, luzes e propriedades personalizadas são preservados.
+// Optimizes the Blender-exported GLB for the web, without touching the .blend:
+//  - welds vertices and simplifies meshes (small max error: visually identical);
+//  - small objects (cups, bottles) are simplified more aggressively;
+//  - compresses geometry with meshopt (the game decompresses on load).
+// Nodes, names, instances, lights and custom properties are preserved.
 //
-// Uso: node tools/optimize-glb.mjs blender/export/boate_raw.glb public/models/boate.glb
+// Usage: node tools/optimize-glb.mjs blender/export/boate_raw.glb public/models/boate.glb
 import { statSync } from 'node:fs';
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
@@ -13,7 +13,7 @@ import { MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier } from 'meshoptimizer
 
 const [src, dst] = process.argv.slice(2);
 if (!src || !dst) {
-  console.error('uso: node tools/optimize-glb.mjs <entrada.glb> <saida.glb>');
+  console.error('usage: node tools/optimize-glb.mjs <input.glb> <output.glb>');
   process.exit(1);
 }
 await Promise.all([MeshoptEncoder.ready, MeshoptDecoder.ready, MeshoptSimplifier.ready]);
@@ -30,10 +30,10 @@ const before = tris();
 
 await doc.transform(dedup(), weld());
 
-// Só simplifica peças densas e orgânicas (tecidos, estofados, plantas, copos e garrafas).
-// Arquitetura, treliças, neon, placas e as peças grandes de curva brilhante (anel,
-// plataforma, banheira) ficam como vieram: nelas a simplificação apaga barras finas ou
-// aparece como ondulação no brilho.
+// Only simplifies dense, organic pieces (fabrics, upholstery, plants, cups and bottles).
+// Architecture, lattices, neon, signs and large glossy-curve pieces (ring,
+// platform, bathtub) stay as-is: on those, simplification erases thin bars or
+// shows as waviness in the gloss.
 const SIMPLIFY = new RegExp(
   '^(KIT_(Cabine_Cortina|Cortina_|Sofa_Curvo|Cama_Redonda|Poltrona|Puff|Almofada|Balcao_Bar|Banqueta|Mesa_|Planta|' +
     'Balde|Copo|Taca|Garrafa|Coqueteleira|Narguile|Cinzeiro|Bandeja|Lanterna|Pendente|Caixa_Som|Corda)' +
@@ -43,7 +43,7 @@ let touched = 0;
 for (const mesh of root.listMeshes()) {
   const name = mesh.getName();
   if (!SIMPLIFY.test(name)) continue;
-  // tamanho da peça (maior dimensão em metros)
+  // piece size (largest dimension in meters)
   let size = 0;
   for (const prim of mesh.listPrimitives()) {
     const pos = prim.getAttribute('POSITION');
@@ -51,13 +51,13 @@ for (const mesh of root.listMeshes()) {
     const max = pos.getMax([0, 0, 0]);
     size = Math.max(size, max[0] - min[0], max[1] - min[1], max[2] - min[2]);
   }
-  // erro é relativo ao tamanho da malha: peça grande = erro de ~2 mm por metro;
-  // objeto pequeno (visto de longe) aguenta bem mais.
+  // error is relative to mesh size: large piece = ~2 mm error per meter;
+  // small object (seen from afar) tolerates much more.
   const small = size < 0.45;
   const options = { simplifier: MeshoptSimplifier, ratio: small ? 0.3 : 0.45, error: small ? 0.02 : 0.0012 };
   for (const prim of mesh.listPrimitives()) {
     const count = prim.getIndices()?.getCount() ?? 0;
-    if (count < 180) continue; // menos de 60 triângulos: não compensa
+    if (count < 180) continue; // fewer than 60 triangles: not worth it
     simplifyPrimitive(prim, options);
     touched++;
   }
@@ -68,6 +68,6 @@ await io.write(dst, doc);
 
 const after = tris();
 const mb = (f) => (statSync(f).size / 1048576).toFixed(2);
-console.log(`malhas únicas: ${root.listMeshes().length}, primitivas simplificadas: ${touched}`);
-console.log(`triângulos nas malhas únicas: ${before} -> ${after} (${Math.round((after / before) * 100)}%)`);
-console.log(`arquivo: ${mb(src)} MB -> ${mb(dst)} MB`);
+console.log(`unique meshes: ${root.listMeshes().length}, simplified primitives: ${touched}`);
+console.log(`triangles in unique meshes: ${before} -> ${after} (${Math.round((after / before) * 100)}%)`);
+console.log(`file: ${mb(src)} MB -> ${mb(dst)} MB`);

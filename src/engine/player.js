@@ -6,7 +6,7 @@ const EYE = 1.62;
 const WALK = 2.5;
 const RUN = 4.4;
 const GRAVITY = -22;
-// agachado: cápsula mais baixa (passa sob coisas baixas), olhos mais baixos, passo lento
+// crouching: shorter capsule (passes under low things), lower eyes, slower pace
 const CROUCH_HEIGHT = 1.12;
 const CROUCH_EYE = 1.0;
 const CROUCH_SPEED = 1.15;
@@ -17,13 +17,13 @@ const _delta = new THREE.Vector3();
 const _new = new THREE.Vector3();
 const _euler = new THREE.Euler(0, 0, 0, 'YXZ');
 
-// Controle em primeira pessoa: teclado + mouse (pointer lock) e toque.
+// First-person controls: keyboard + mouse (pointer lock) and touch.
 export class Player {
   constructor(camera, dom, collision) {
     this.camera = camera;
     this.dom = dom;
     this.collision = collision;
-    this.position = new THREE.Vector3(); // pés
+    this.position = new THREE.Vector3(); // feet
     this.velocity = new THREE.Vector3();
     this.yaw = 0;
     this.pitch = 0;
@@ -33,18 +33,18 @@ export class Player {
     this.stick = { x: 0, y: 0 };
     this.bob = 0;
     this.clock = 0;
-    this.eyeOffset = EYE; // altura dos olhos acima dos pés (baixa dentro da água)
-    this.wading = false; // andando dentro da água
-    this.seat = null; // transição ou permanência sentado (jacuzzi)
+    this.eyeOffset = EYE; // eye height above feet (lower when in water)
+    this.wading = false; // walking in water
+    this.seat = null; // sitting transition or stay (jacuzzi)
     this.crouching = false;
-    this.height = HEIGHT; // altura atual da cápsula (anima entre em pé e agachado)
+    this.height = HEIGHT; // current capsule height (animates between standing and crouching)
     this.onInteract = null;
     this.onQuality = null;
-    this.onBlockedStand = null; // avisado quando não há espaço para levantar
+    this.onBlockedStand = null; // notified when there's no room to stand up
     this._bind();
   }
 
-  // Agacha ou levanta. Levantar só se a cápsula em pé couber (nada logo acima da cabeça).
+  // Crouch or stand. Stand only if the upright capsule fits (nothing right above the head).
   setCrouch(on) {
     if (on === this.crouching) return true;
     if (!on && !this._fits(HEIGHT)) {
@@ -63,7 +63,7 @@ export class Player {
     return Math.abs(_seg.start.x - sx) + Math.abs(_seg.start.y - sy) + Math.abs(_seg.start.z - sz) < 0.01;
   }
 
-  // Leva o jogador até `to` (pés) e o deixa sentado com os olhos em `eye` acima dos pés.
+  // Moves the player to `to` (feet) and seats them with eyes at `eye` above feet.
   sit(to, eye, yawTo) {
     this.crouching = false;
     this.height = HEIGHT;
@@ -74,7 +74,7 @@ export class Player {
     this.keys.clear();
   }
 
-  // Sai do assento até `to` e devolve o controle.
+  // Leaves the seat to `to` and returns control.
   stand(to) {
     this.seat = {
       from: this.position.clone(), to: to.clone(), t: 0, dur: 1.1, arc: 0.55,
@@ -91,14 +91,14 @@ export class Player {
     s.t = Math.min(1, s.t + dt / s.dur);
     const k = s.t * s.t * (3 - 2 * s.t);
     this.position.lerpVectors(s.from, s.to, k);
-    this.position.y += Math.sin(Math.PI * k) * s.arc; // passa por cima da borda
+    this.position.y += Math.sin(Math.PI * k) * s.arc; // arcs over the edge
     this.eyeOffset = s.eyeFrom + (s.eyeTo - s.eyeFrom) * k;
     if (s.yawTo !== null) {
       let d = (s.yawTo - s.yawFrom) % (Math.PI * 2);
       if (d > Math.PI) d -= Math.PI * 2;
       if (d < -Math.PI) d += Math.PI * 2;
       this.yaw = s.yawFrom + d * k;
-      if (s.t >= 1) s.yawTo = null; // depois de sentar, olhar fica livre
+      if (s.t >= 1) s.yawTo = null; // after sitting down, look direction is free
     }
     this.velocity.set(0, 0, 0);
     this._eyeY = this.position.y;
@@ -124,8 +124,8 @@ export class Player {
       this.keys.add(e.code);
       if (!this.enabled) return;
       if (e.code === 'KeyE' && this.onInteract) this.onInteract();
-      if (e.code === 'KeyQ' && this.onQuality) this.onQuality(); // G ficou para dançar
-      // C alterna agachar (Ctrl seria o comum, mas Ctrl+W fecha a aba do navegador)
+      if (e.code === 'KeyQ' && this.onQuality) this.onQuality(); // G is reserved for dance
+      // C toggles crouch (Ctrl would be standard, but Ctrl+W closes the browser tab)
       if (e.code === 'KeyC' && !this.seat) this.setCrouch(!this.crouching);
     });
     addEventListener('keyup', (e) => this.keys.delete(e.code));
@@ -152,7 +152,7 @@ export class Player {
       this._applyCamera(dt);
       return;
     }
-    // dentro da água o jogador afunda um pouco: olhos mais perto da superfície; agachado, mais baixo
+    // in the water the player sinks a bit: eyes closer to the surface; crouching, even lower
     const eyeTarget = this.crouching ? CROUCH_EYE : this.wading ? 1.22 : EYE;
     this.eyeOffset += (eyeTarget - this.eyeOffset) * (1 - Math.exp(-dt * (this.crouching ? 10 : 6)));
     this.height += ((this.crouching ? CROUCH_HEIGHT : HEIGHT) - this.height) * (1 - Math.exp(-dt * 12));
@@ -170,18 +170,18 @@ export class Player {
     const speed = (this.crouching ? CROUCH_SPEED : run ? RUN : WALK) * (this.speedScale ?? 1);
     const sin = Math.sin(this.yaw);
     const cos = Math.cos(this.yaw);
-    // frente = -Z quando yaw = 0
+    // forward = -Z when yaw = 0
     _move.set(side * cos - fwd * sin, 0, -side * sin - fwd * cos).multiplyScalar(speed);
 
-    // aceleração suave no plano
+    // smooth acceleration on the plane
     const blend = 1 - Math.exp(-dt * (len > 0.01 ? 10 : 14));
     this.velocity.x += (_move.x - this.velocity.x) * blend;
     this.velocity.z += (_move.z - this.velocity.z) * blend;
-    // No chão a queda é mínima: o suficiente para ficar colado, pouco o bastante
-    // para a cápsula conseguir subir degraus baixos empurrando contra a quina.
+    // On the ground the fall is minimal: enough to stay grounded, little enough
+    // for the capsule to climb low steps by pushing against the edge.
     this.velocity.y = this.onGround ? GRAVITY * dt : this.velocity.y + GRAVITY * dt;
 
-    // subpassos para não atravessar paredes finas
+    // sub-steps to avoid passing through thin walls
     const dist = this.velocity.length() * dt;
     const steps = Math.min(5, Math.max(1, Math.ceil(dist / (RADIUS * 0.5))));
     const h = dt / steps;
@@ -202,7 +202,7 @@ export class Player {
       }
     }
     this.onGround = grounded;
-    if (this.position.y < -20) this.position.y = 2; // rede de segurança
+    if (this.position.y < -20) this.position.y = 2; // safety net
 
     const planar = Math.hypot(this.velocity.x, this.velocity.z);
     this.bob += dt * planar * 2.6;
@@ -215,7 +215,7 @@ export class Player {
     const bobY = Math.sin(this.bob * 2) * 0.022 * amp;
     const bobX = Math.cos(this.bob) * 0.012 * amp;
     this._eyeY = THREE.MathUtils.lerp(this._eyeY ?? this.position.y, this.position.y, 0.35);
-    // sentado na água: balanço leve, como quem boia
+    // seated in water: gentle sway, like floating
     const float = this.seated ? Math.sin(this.clock * 1.3) * 0.012 : 0;
     this.camera.position.set(this.position.x, this._eyeY + this.eyeOffset + bobY + float, this.position.z);
     _euler.set(this.pitch, this.yaw, bobX * 0.4);
@@ -223,7 +223,7 @@ export class Player {
   }
 }
 
-// Toque: metade esquerda move (joystick), metade direita olha.
+// Touch: left half moves (joystick), right half looks.
 export function bindTouch(player, root, stickEl, knobEl) {
   let moveId = null;
   let lookId = null;

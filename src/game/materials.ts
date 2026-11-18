@@ -1,7 +1,7 @@
 /**
- * Geometria e materiais compartilhados dos personagens (bonecos procedurais do PeekHole).
- * Performance: uma caixa unitária para todas as partes e um material por cor (cache):
- * dezenas de personagens não multiplicam buffers nem programas de shader.
+ * Shared geometry and materials for characters (PeekHole procedural figures).
+ * Performance: one unit box for all parts and one material per color (cache):
+ * dozens of characters don't multiply buffers or shader programs.
  */
 import * as THREE from 'three';
 

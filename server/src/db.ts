@@ -1,8 +1,8 @@
 import pg from 'pg';
 import { config } from './config';
 
-// BIGINT volta como string por padrão; saldos e lamports cabem em Number com folga,
-// mas convertemos explicitamente onde importa.
+// BIGINT returns as string by default; balances and lamports fit in Number with room to spare,
+// but we convert explicitly where it matters.
 export const pool = new pg.Pool({
   connectionString: config.databaseUrl,
   max: 10,
@@ -28,7 +28,7 @@ create table if not exists sessions (
 );
 create index if not exists sessions_user_idx on sessions(user_id);
 
--- índice de derivação HD = users.id; só o endereço público fica no banco
+-- HD derivation index = users.id; only the public address is stored in the database
 create table if not exists deposit_addresses (
   user_id bigint primary key references users(id) on delete cascade,
   address text not null unique,

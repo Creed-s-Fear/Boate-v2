@@ -1,5 +1,5 @@
-// Histograma de coordenadas dos vértices de um material numa região: ajuda a medir
-// molduras e vãos. Uso: node tools/hist-glb.mjs <arquivo.glb> <material> <eixo x|y|z> [xmin xmax]
+// Histogram of vertex coordinates for a material in a region: helps measure
+// frames and gaps. Usage: node tools/hist-glb.mjs <file.glb> <material> <axis x|y|z> [xmin xmax]
 import { readFileSync } from 'node:fs';
 
 const [file, matName, axis, xmin = -Infinity, xmax = Infinity] = process.argv.slice(2);

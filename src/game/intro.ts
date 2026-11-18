@@ -64,7 +64,7 @@ export class IntroDirector {
     else if (t < FADE_OUT[0]) fade = 0;
     else fade = smooth((t - FADE_OUT[0]) / (FADE_OUT[1] - FADE_OUT[0]));
 
-    // --- Posição do jogador ---
+    // --- Player position ---
     let pz: number;
     let pose: Pose = 'idle';
     if (isInside) {
@@ -76,7 +76,7 @@ export class IntroDirector {
       pose = 'walk';
     }
 
-    // --- Câmera ---
+    // --- Camera ---
     let camX = this.sx + 0.3;
     let camY = this.eyeY + 0.5;
     let camZ = pz + 3.5;
@@ -106,7 +106,7 @@ export class IntroDirector {
       fov = mix(55, 65, p);
     }
 
-    // --- Áudio ---
+    // --- Audio ---
     let volume = 0;
     let cutoff = 800;
     if (t > TRANS_OUT[0]) {

@@ -1,17 +1,17 @@
 import * as THREE from 'three';
 
 export interface Interactable {
-  /** Posição no chão (y ignorado). Pode ser referência viva (ex.: posição de um NPC). */
+  /** Position on the floor (y ignored). Can be a live reference (e.g. NPC position). */
   pos: THREE.Vector3;
   radius: number;
-  /** null = não interagível agora (não mostra prompt). */
+  /** null = not interactable right now (no prompt shown). */
   label: () => string | null;
   use: () => void;
 }
 
 const tmp = new THREE.Vector3();
 
-/** Escolhe o interagível mais próximo que está à frente da câmera. */
+/** Picks the nearest interactable in front of the camera. */
 export class Interactions {
   private readonly list: Interactable[] = [];
 

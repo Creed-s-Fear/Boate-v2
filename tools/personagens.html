@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Personagens — inspeção</title>
+  <title>Characters — inspection</title>
   <style>
     body { margin: 0; background: #2a2a30; color: #fff; font: 12px sans-serif; }
     canvas { display: block; }
@@ -10,10 +10,10 @@
   </style>
 </head>
 <body>
-  <div id="s">carregando…</div>
-  <!-- Inspeção dos personagens com esqueleto (só desenvolvimento, não entra no build):
+  <div id="s">loading…</div>
+  <!-- Skeleton character inspection (dev only, not included in the build):
        /tools/personagens.html?pose=walk&t=0.4&yaw=0&zoom=1
-       window.__at(pose, t, yaw, zoom, alvo) reposiciona sem recarregar. -->
+       window.__at(pose, t, yaw, zoom, target) repositions without reloading. -->
   <script type="module">
     import * as THREE from 'three';
     import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -51,7 +51,7 @@
       chars.push({ file, c });
     }
 
-    // ?fonte=Cyber_C_ondulado.glb põe o original (sem redução) à esquerda, para comparar
+    // ?fonte=Cyber_C_ondulado.glb puts the original (unreduced) on the left, for comparison
     const fonte = new URLSearchParams(location.search).get('fonte');
     if (fonte) {
       const g = await loader.loadAsync(`/assets/personagens/fonte/${fonte}`);
@@ -60,7 +60,7 @@
       scene.add(g.scene);
     }
 
-    // estado determinístico: recria a pose avançando passos fixos a partir de t = 0
+    // deterministic state: recreates the pose by advancing fixed steps from t = 0
     window.__at = (pose = 'idle', t = 0, yaw = 0, zoom = 1, target = -99) => {
       for (const { c } of chars) {
         c.t = 0;

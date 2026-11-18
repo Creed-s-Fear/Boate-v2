@@ -1,10 +1,10 @@
 /**
- * Câmera 1ª/3ª pessoa por cima do jogador do boate. O Player (engine/player.js) continua
- * dono do movimento, da colisão 3D e do olhar (yaw/pitch) e posiciona a câmera nos olhos;
- * depois disso esta classe:
- *  - em 3ª pessoa, recua a câmera atrás do ombro e faz um raio contra a colisão (BVH)
- *    para não atravessar paredes, cortinas de vidro ou o teto;
- *  - aplica o efeito do "buzz" (bebida): balanço e variação do campo de visão.
+ * 1st/3rd person camera above the club player. The Player (engine/player.js) still
+ * owns movement, 3D collision and look direction (yaw/pitch) and positions the camera at the eyes;
+ * after that this class:
+ *  - in 3rd person, pulls the camera back behind the shoulder and casts a ray against the collision (BVH)
+ *    to avoid going through walls, glass curtains or the ceiling;
+ *  - applies the "buzz" effect (drink): sway and field-of-view variation.
  */
 import * as THREE from 'three';
 import { clamp } from './utils';
@@ -18,7 +18,7 @@ const _dir = new THREE.Vector3();
 const _right = new THREE.Vector3();
 const _euler = new THREE.Euler(0, 0, 0, 'YXZ');
 
-/** O que esta câmera lê do Player do boate (JS). */
+/** What this camera reads from the club's Player (JS). */
 export interface PlayerView {
   position: THREE.Vector3;
   yaw: number;
@@ -26,7 +26,7 @@ export interface PlayerView {
   eyeOffset: number;
 }
 
-/** Colisão estática do boate (three-mesh-bvh). */
+/** Static collision of the club (three-mesh-bvh). */
 export interface BvhLike {
   raycastFirst(ray: THREE.Ray, side?: THREE.Side): { distance: number } | null;
 }
@@ -49,7 +49,7 @@ export class ViewCam {
     if (this.mode === 'third' && steps) this.distance = clamp(this.distance + steps * 0.35, 1.4, 4.5);
   }
 
-  /** Chamar depois de player.update (que já pôs a câmera nos olhos). */
+  /** Call after player.update (which already placed the camera at the eyes). */
   apply(p: PlayerView, bvh: BvhLike | null, buzz: number, time: number): void {
     const cam = this.camera;
     const fov = this.baseFov + Math.sin(time * 0.6) * 6 * buzz;
@@ -61,10 +61,10 @@ export class ViewCam {
     const sway = Math.sin(time * 1.1) * 0.03 * buzz;
 
     if (this.mode === 'third') {
-      // olhos do personagem (a câmera do Player já está neles, com o balanço do passo)
+      // character's eyes (the Player's camera is already there, with the step sway)
       _head.copy(cam.position);
       const cp = Math.cos(p.pitch);
-      _dir.set(Math.sin(p.yaw) * cp, -Math.sin(p.pitch), Math.cos(p.yaw) * cp); // para trás
+      _dir.set(Math.sin(p.yaw) * cp, -Math.sin(p.pitch), Math.cos(p.yaw) * cp); // backwards
       _right.set(Math.cos(p.yaw), 0, -Math.sin(p.yaw));
       _dir.multiplyScalar(this.distance).addScaledVector(_right, SHOULDER);
       const len = _dir.length();

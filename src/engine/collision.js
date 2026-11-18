@@ -6,8 +6,8 @@ const _box = new THREE.Box3();
 const _triPoint = new THREE.Vector3();
 const _capPoint = new THREE.Vector3();
 
-// Colisão estática do cenário: todas as malhas marcadas viram uma única BVH em
-// espaço de mundo. Portas entram como caixas que ligam e desligam.
+// Static scene collision: all marked meshes become a single world-space BVH.
+// Doors are added as toggleable box blockers.
 export class Collision {
   constructor() {
     this.bvh = null;
@@ -17,12 +17,12 @@ export class Collision {
   setStatic(meshes) {
     if (!meshes.length) return;
     for (const m of meshes) m.updateWorldMatrix(true, false);
-    const geo = mergeMeshes(meshes, { normals: false }); // em mundo, só posições
+    const geo = mergeMeshes(meshes, { normals: false }); // world space, positions only
     this.bvh = new MeshBVH(geo);
     this.triangles = geo.index.count / 3;
   }
 
-  // Caixa alinhada aos eixos, em mundo, que pode ser desligada (porta aberta).
+  // Axis-aligned box in world space that can be toggled off (open door).
   addBlocker(box3) {
     const size = box3.getSize(new THREE.Vector3());
     const center = box3.getCenter(new THREE.Vector3());
@@ -33,7 +33,7 @@ export class Collision {
     return blocker;
   }
 
-  // Empurra a cápsula (segmento + raio, em mundo) para fora da geometria.
+  // Pushes the capsule (segment + radius, world space) out of the geometry.
   resolveCapsule(segment, radius) {
     _box.makeEmpty();
     _box.expandByPoint(segment.start);
