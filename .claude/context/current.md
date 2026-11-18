@@ -28,19 +28,20 @@
 ## Em andamento
 - Jogo do PeekHole no link público desde 17/11, como visitante (dinheiro de mentira); a área de conta fica escondida sem servidor.
 - Escolha do Pedro (17/11): o commit do jogo fica só no `Boate-v2`. O `main` do `boate` não recebe; o `boate` segue servindo o link.
-- Kit da entrada (17/11): 22 peças `ENT_*` em `blender/entrada.blend`, um GLB por peça em `assets/Entrada/`. Ainda fora do jogo e sem commit.
+- Kit da entrada (17/11): 22 peças `ENT_*` em `blender/entrada.blend`, montagem em `public/models/entrada.glb`.
+- Cutscene de entrada (18/11): `Entrance` carrega o GLB, `IntroDirector` anima 9s em 5 fases (fade, caminhada, porta, entra, fade).
+  Portas animadas preservando rotação base do GLB; `world.setOutside()` esconde o nível durante a cena.
 
 ## Próximos 3 passos
-1. Pedro validar o kit da entrada; se aprovar, pôr a fachada na planta e dar regras às peças `ENT_*` em `src/level/kit.js`.
-2. Medir em placa integrada e em celular: com os NPCs são cerca de 355 draw calls e 1,6 milhão de triângulos em "alta".
+1. Medir em placa integrada e em celular: com os NPCs são cerca de 355 draw calls e 1,6 milhão de triângulos em "alta".
+2. Pôr regras de colisão às peças `ENT_*` em `src/level/kit.js` (o kit é só visual por enquanto).
 3. Se as contas forem para o ar: hospedar o `server/`, verificação de idade de verdade e jurídico antes de qualquer mainnet.
 
 ## Riscos
 - O link é público e o conteúdo é adulto: a verificação de idade é só um clique.
 - Depósito em SOL só existe na devnet e só local: nenhum dinheiro real foi ligado.
 - Toque não foi testado em celular; a colisão por caixa foi conferida por caminhada automática, não por alguém jogando.
-- Cores de 5 materiais vieram brancas no GLB e foram escolhidas pela referência: Pedro precisa validar.
-- Kit da entrada conferido por render e por carga no three.js, não dentro do jogo (colisão, bloom e porta que abre ainda não existem).
+- Cutscene testada só no desktop; em celular pode ter desempenho diferente.
 
 ## Última sessão
-- `sessions/2026-11-17-2215-kit-entrada.md` (antes: `2026-11-17-0155-codigo-so-no-v2`, `2026-11-17-0145-link-com-jogo`)
+- `sessions/2026-11-18-cutscene-entrada.md` (antes: `2026-11-17-2215-kit-entrada`)
