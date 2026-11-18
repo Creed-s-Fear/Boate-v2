@@ -1358,7 +1358,6 @@ export class Game {
 
     this.world.setOutside(true);
     e.setVisible(true);
-    e.setDoor(0);
     this.hud.setVisible(false);
     this.hud.setPrompt(null);
     this.char.root.visible = true;
@@ -1375,7 +1374,6 @@ export class Game {
           p.position.set(f.x, 0, f.z);
           p.yaw = f.yaw;
           this.cutscenePose = f.pose;
-          e.setDoor(f.door);
         }
         cam.position.set(f.cam.x, f.cam.y, f.cam.z);
         cam.lookAt(f.look.x, f.look.y, f.look.z);

@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
-const DOOR_CENTER_X = 0.6;
+const DOOR_CENTER_X = 0;
 const OPEN_ANGLE = Math.PI * 0.44;
 
 interface DoorLeaf {

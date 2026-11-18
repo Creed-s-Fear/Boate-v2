@@ -8,7 +8,6 @@ export interface IntroFrame {
   z: number;
   yaw: number;
   pose: Pose;
-  door: number;
   cam: { x: number; y: number; z: number };
   look: { x: number; y: number; z: number };
   fov: number;
@@ -50,7 +49,6 @@ export class IntroDirector {
   sample(t: number): IntroFrame {
     const FADE_IN: [number, number] = [0, 1.5];
     const WALK_TO: [number, number] = [1.0, 5.5];
-    const DOOR: [number, number] = [3.5, 5.5];
     const WALK_IN: [number, number] = [5.5, 7.5];
     const FADE_OUT: [number, number] = [7.0, 8.5];
 
@@ -74,11 +72,6 @@ export class IntroDirector {
     } else {
       pz = this.insideZ;
     }
-
-    // --- Porta ---
-    let door = 0;
-    if (t >= DOOR[0] && t < DOOR[1]) door = smooth((t - DOOR[0]) / (DOOR[1] - DOOR[0]));
-    else if (t >= DOOR[1]) door = 1;
 
     // --- Câmera ---
     let camX = this.sx + 0.3;
@@ -123,7 +116,6 @@ export class IntroDirector {
       z: pz,
       yaw: 0,
       pose,
-      door,
       cam: { x: camX, y: camY, z: camZ },
       look: { x: lookX, y: lookY, z: lookZ },
       fov,
