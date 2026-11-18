@@ -29,8 +29,10 @@
 - Jogo do PeekHole no link público desde 17/11, como visitante (dinheiro de mentira); a área de conta fica escondida sem servidor.
 - Escolha do Pedro (17/11): o commit do jogo fica só no `Boate-v2`. O `main` do `boate` não recebe; o `boate` segue servindo o link.
 - Kit da entrada (17/11): 22 peças `ENT_*` em `blender/entrada.blend`, montagem em `public/models/entrada.glb`.
-- Cutscene de entrada (18/11): `Entrance` carrega o GLB, `IntroDirector` anima 9s em 5 fases (fade, caminhada, porta, entra, fade).
-  Portas animadas preservando rotação base do GLB; `world.setOutside()` esconde o nível durante a cena.
+- Cutscene de entrada (18/11): `Entrance` carrega o GLB, `IntroDirector` anima 9s com transição fade.
+  D001 já aberta no GLB (-78°); sem animação de portas; `DOOR_CENTER_X=0` alinha o jogador com o vão.
+  Transição: fade to black (4.5-5.5s) esconde troca de geometria, fade-in (5.5-6.5s) revela o clube em 1ª pessoa.
+  `world.setOutside()` esconde o nível durante a cena.
 
 ## Próximos 3 passos
 1. Medir em placa integrada e em celular: com os NPCs são cerca de 355 draw calls e 1,6 milhão de triângulos em "alta".
