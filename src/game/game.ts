@@ -132,7 +132,7 @@ const NYX_MODEL = 'tropical.glb';
 const BARTENDER_SPOT = { x: 4.599, z: -1.255 };
 
 const HOSTESS_LINES = {
-  low: ['Oi! Primeira noite no Lótus?', 'Gosto de gente que sabe puxar assunto.', 'Me paga um drink e a gente vê no que dá.'],
+  low: ['Oi! Primeira noite no Jack?', 'Gosto de gente que sabe puxar assunto.', 'Me paga um drink e a gente vê no que dá.'],
   mid: ['Você dança bem, sabia?', 'Tô começando a gostar da sua companhia.', 'Hmm, continua falando...'],
   high: ['Se você reservar a suíte, eu topo te fazer companhia.', 'Acho que a gente combina. Vamos pra um lugar mais reservado?'],
   refuse: ['Calma... ainda nem te conheço direito.', 'Quem sabe mais tarde. Me conquista primeiro.'],
@@ -163,7 +163,7 @@ const PATRON_LINES = [
   'Dizem que a suíte do fundo tem jacuzzi... nunca fui.',
   'Pede o "Olho Mágico" no bar. Confia.',
   'Se alguém disser não, é não. A segurança aqui é rígida.',
-  'Discrição é tudo. O que acontece no Lótus...',
+  'Discrição é tudo. O que acontece no Jack...',
   'Bora pra pista? Aperta G e se solta!',
   'Já viu o holograma da flor de lótus? Hipnotiza.',
 ];
@@ -1475,7 +1475,7 @@ export class Game {
   }
 
   welcome(): void {
-    this.hud.notify(`Bem-vindo(a) ao Lótus Lounge, ${this.state.name}.`, 'good');
+    this.hud.notify(`Bem-vindo(a) ao Jack of Hearts, ${this.state.name}.`, 'good');
     this.hud.notify('Dica: H mostra os controles.');
   }
 }

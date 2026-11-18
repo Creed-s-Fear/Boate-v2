@@ -16,7 +16,7 @@ const run = (cmd, cwd = process.cwd()) => execSync(cmd, { cwd, stdio: ['ignore',
 console.log('gerando o build...');
 run('npm run build');
 
-const dir = mkdtempSync(join(tmpdir(), 'lotus-pages-'));
+const dir = mkdtempSync(join(tmpdir(), 'joh-pages-'));
 try {
   run(`git clone --depth 1 --branch ${BRANCH} ${REPO} "${dir}"`);
 } catch {

@@ -1,4 +1,4 @@
-// Eye life for Lotus Lounge characters with real eyes: blinks and small gaze shifts. Plain three.js, no dependencies.
+// Eye life for Jack of Hearts characters with real eyes: blinks and small gaze shifts. Plain three.js, no dependencies.
 //
 // Needs from the GLB (eyes_build.py makes them):
 //   morph targets  blink_L, blink_R            lids fully closed

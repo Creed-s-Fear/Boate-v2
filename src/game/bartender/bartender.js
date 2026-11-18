@@ -1,4 +1,4 @@
-// Lotus Lounge: loads the female bartender and wires everything she needs to look right in three.js.
+// Jack of Hearts: loads the female bartender and wires everything she needs to look right in three.js.
 //   - the idle clip "Idle_Bartender_Limpando" (10 s loop, wiping the counter)
 //   - eyes.js: blinks and small gaze shifts (morph targets + LeftEye/RightEye bones); also fixes the cornea material
 //   - springs.js: hair physics (7 spring-bone chains with colliders on the body; settings travel inside the GLB)

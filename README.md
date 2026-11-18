@@ -1,4 +1,4 @@
-# Lótus Lounge
+# Jack of Hearts
 
 Ambiente 3D jogável no navegador: uma boate ligada por um corredor de neon e uma porta à sala da jacuzzi.
 Feito com three.js + Vite; o cenário é montado no Blender a partir das peças em `assets/drive`.

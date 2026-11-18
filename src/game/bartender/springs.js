@@ -1,4 +1,4 @@
-// Spring bones for Lotus Lounge characters: hair (later also apron ties) swings with inertia and gravity and stays out of
+// Spring bones for Jack of Hearts characters: hair (later also apron ties) swings with inertia and gravity and stays out of
 // the body. Plain three.js, no dependencies. Verlet on bone tails, after the VRM spring bone: each joint keeps its tail's
 // last two positions; per step the tail moves by its inertia (minus drag), a pull back toward the pose the animation gives
 // (stiffness), and gravity; optionally the lower joints aim along their rest direction as seen from a body bone ("follow":

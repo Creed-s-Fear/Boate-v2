@@ -8,7 +8,7 @@ import { api, ApiError } from '../net/api';
 import { ROOM_DURATION_SEC, priceOf, type ItemId } from './catalog';
 import { ROOM_IDS, type RoomId } from './venue';
 
-const SAVE_KEY = 'lotus.save.v1';
+const SAVE_KEY = 'joh.save.v1';
 const NAME_MAX = 16;
 
 export type RoomStatus = 'free' | 'occupied' | 'mine';

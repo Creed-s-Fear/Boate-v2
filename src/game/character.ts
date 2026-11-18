@@ -42,7 +42,7 @@ export class Character {
     if (look.scale) this.body.scale.setScalar(look.scale);
 
     // As partes são juntadas por grupo animado (corpo, pernas, braços): 5 malhas por personagem
-    // em vez de ~15. No Lótus Lounge, 21 NPCs com uma malha por parte custavam 558 draw calls e
+    // em vez de ~15. No Jack of Hearts, 21 NPCs com uma malha por parte custavam 558 draw calls e
     // +4,3 ms por quadro (medido com gl.finish).
     const groups = new Map<THREE.Object3D, Part[]>();
     const part = (w: number, h: number, d: number, color: number, parent: THREE.Object3D, x: number, y: number, z: number, shirt = false): void => {

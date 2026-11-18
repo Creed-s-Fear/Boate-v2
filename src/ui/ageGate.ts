@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'lotus.age.v1';
+const STORAGE_KEY = 'joh.age.v1';
 
 export class AgeGate {
   private readonly root: HTMLElement;

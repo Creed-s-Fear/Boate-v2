@@ -1,5 +1,5 @@
 /**
- * Dados de jogo do Lótus Lounge (as regras do PeekHole adaptadas às 3 salas do boate).
+ * Dados de jogo do Jack of Hearts (as regras do PeekHole adaptadas às 3 salas do boate).
  * Coordenadas em metros, eixos do glTF/three (Y para cima), as mesmas de blender/layout.json:
  *   salão (club)   x -6..6,     z -12..12   — bar a leste, cabines a oeste, palco ao sul
  *   corredor       x -1..1,     z -16,3..-12
@@ -21,7 +21,7 @@ export interface Zone extends AABB {
 
 export const ZONES: Zone[] = [
   { id: 'corridor', name: 'Corredor', minX: -1.2, maxX: 1.2, minZ: -16.35, maxZ: -12.05 },
-  { id: 'club', name: 'Lótus Lounge', minX: -6.2, maxX: 6.2, minZ: -12.05, maxZ: 12.4 },
+  { id: 'club', name: 'Jack of Hearts', minX: -6.2, maxX: 6.2, minZ: -12.05, maxZ: 12.4 },
   { id: 'spa', name: 'Suíte Jacuzzi', minX: -9.2, maxX: 1, minZ: -26.6, maxZ: -16.35 },
 ];
 
