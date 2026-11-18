@@ -1,14 +1,6 @@
 # Decisões vigentes
 > `AAAA-MM-DD — decisão — porquê`. Substituída vai para `arquivo/decisoes-substituidas.md`.
-
-## Montagem
-- 2026-11-15 — A planta vive em `blender/layout.json`, gerada por `tools/make-layout.mjs` — uma fonte só para Blender e conferência.
-- 2026-11-15 — Montagem no Blender só pelo MCP, com duplicatas ligadas das peças da coleção PECAS — pedido do Pedro; GLB sai com instâncias.
-- 2026-11-15 — Lounge com paredes do kit e teto mais alto, com faixa escura de preenchimento — a cabine de cortina não cabe sob o teto do kit.
-- 2026-11-15 — Sala da jacuzzi girada para a parede da porta (JAC_33) encostar no fim do corredor — "uma porta leva ao quarto".
-- 2026-11-15 — Vão da porta recortado só nas cascas fechadas da parede; porta JAC_38 separada, com dobradiça — booleano na parede inteira falha.
-- 2026-11-15 — Entrada da jacuzzi fica livre de móveis; espreguiçadeiras foram para o centro e a direita — bloqueavam a porta.
-- 2026-11-15 — 5 materiais que vieram brancos receberam tons escuros da referência dentro do Blender — textura procedural não exporta.
+> Montagem, jacuzzi/shaders e correções de 2026-11-15 continuam valendo e estão em `arquivo/decisions-ate-2026-11-15.md`.
 
 ## Jogo
 - 2026-11-15 — three.js + Vite, sem framework — leve e direto para um ambiente navegável.
@@ -22,21 +14,6 @@
 - 2026-11-15 — Holograma refeito em shader (lótus, anéis, faixas, partículas); só a base da peça original fica — a peça era lisa demais.
 - 2026-11-15 — Banheira atravessável com degraus invisíveis e passo lento na água — Pedro quis entrar na jacuzzi.
 - 2026-11-15 — Fio encostado no corpo perde só a velocidade de entrada, escorrega com atrito e contorna o corpo — parado, tremia e ficava preso.
-
-## Jacuzzi e shaders
-- 2026-11-15 — Tecla E é contextual (sair da jacuzzi > porta > entrar na jacuzzi) — pedido do Pedro: uma tecla só para interagir.
-- 2026-11-15 — Na jacuzzi o jogador fica "sentado": posição e altura dos olhos animadas, movimento travado, olhar livre — dá a sensação de imersão.
-- 2026-11-15 — Água é um disco próprio com shader translúcido; a malha de água e a espuma da peça são retiradas ao carregar — a original era lisa.
-- 2026-11-15 — Vapor e água animam só no shader (nenhum cálculo por quadro em JS) — custo fixo e baixo.
-- 2026-11-15 — Detalhe do mapa vem de trechos de shader enxertados nos materiais existentes (`shaderFx.js`), sem objetos novos — "sem pesar".
-- 2026-11-15 — Cortinas de tecido reagem ao jogador no vértice do shader; só a de fios tem simulação por fio — custo proporcional ao efeito.
-- 2026-11-15 — Simplificação do GLB só em lista explícita de peças densas e orgânicas — simplificar tudo apagou treliças finas.
-
-## Correções e detalhe
-- 2026-11-15 — Toda mudança de planta passa por `npm run conferir` antes de ir ao Blender — peças atravessadas escaparam no olho.
-- 2026-11-15 — Aviso da jacuzzi exige estar perto da borda e de frente para ela — aparecia junto dos móveis e de costas.
-- 2026-11-15 — Placas holográficas da parede usam um quad com paralaxe em camadas, mais flor 3D na do lótus — mesmo nível do projetor.
-- 2026-11-15 — Picos de brilho são comprimidos antes do bloom (joelho 1,7) e superfícies lisas têm rugosidade mínima 0,1 — ofuscava.
 
 ## Desempenho
 - 2026-11-15 — Shaders são pedidos todos na carga e compilados em paralelo pelo navegador — compilar no primeiro desenho travava a página.
@@ -95,3 +72,9 @@
 - 2026-11-16 — Correções dos modelos: mão inteira da Cyber B herdava peso de coxa (pedaço solto após o corte → volta para a mão); buracos do corte fechados com a própria borda; cabelo no ombro (acima e para dentro da junta) não segue o braço; raio do braço continua largo (justo soltava a pele interna).
 - 2026-11-16 — Animação procedural com pé no chão: altura do corpo sai do pé mais baixo a cada quadro; pé compensa coxa+canela; passada 5,6 rad/s casada com 1,25 m/s — pé apontava para baixo, afundava na dança e patinava.
 - 2026-11-16 — `/tools/personagens.html` (só no dev) mostra os 5 modelos com luz neutra e pose congelada (`__at(pose, t, yaw, zoom, alvo)`; `?fonte=` põe o original ao lado).
+
+## Kit da entrada (2026-11-17)
+- 2026-11-17 — Fachada feita como kit de peças `ENT_*` num `.blend` próprio, sem tocar no `boate.blend` nem no jogo — Pedro pediu "apenas os assets".
+- 2026-11-17 — Marca Jack of Hearts com textos em inglês; monograma "J ♥ H" com coroa dourada e paleta menta/rosa/lavanda — Pedro pediu explicitamente "Jack of Hearts" e textos em inglês.
+- 2026-11-17 — Toda a arte (cartazes, placas, adesivos, telas) num atlas só, sem transparência; recorte vira geometria — uma textura, e alfa só no vidro.
+- 2026-11-17 — Texturas próprias em arquivo (tijolo gerado por código, atlas renderizado no Blender) — textura procedural chega branca no GLB.

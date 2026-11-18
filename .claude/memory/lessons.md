@@ -1,5 +1,7 @@
 # Lições (armadilhas e soluções)
 
+> As lições de assets e as duas primeiras de jogo (2026-11-15) estão em `arquivo/lessons-ate-2026-11-15.md`.
+
 ## Blender e MCP
 - A trava barra `.unlink(` mesmo sendo `collection.objects.unlink`; importar direto na coleção ativa evita a chamada.
 - Exportador glTF do Blender 5.2: passar `export_loglevel` quebra com KeyError 'loglevel'. Não passar.
@@ -7,18 +9,11 @@
 - Booleano EXACT na parede inteira deixou sobra de geometria: partes abertas (treliças) confundem dentro/fora. Recortar só cascas fechadas.
 - Malha importada de glTF vem com vértices duplicados nas quinas; para achar as "cascas" é preciso agrupar por posição, não por conectividade.
 - Captura da janela do Blender pelo MCP veio preta (janela minimizada); validar pelo GLB no jogo.
-- O Blender precisa ser aberto pelo atalho do Pedro (servidor só na sessão); início automático e acesso online ficam desligados.
+- Abrir o Blender só pelo atalho do Pedro, `C:\gameifba\Tools\Blender\abrir_blender_mcp.ps1` (servidor só na sessão); aberto à mão não conecta.
 - Rodar `blender.exe` direto pelo terminal foge do fluxo de aprovação do Pedro: não fazer.
-
-## Assets
-- Materiais com textura procedural chegam brancos no GLB (j_wall, j_floor, j_marble, marble, floor_wet).
-- As peças não têm textura e compartilham uma biblioteca de materiais KIT_*; unificar duplicatas (.001) depois de importar.
-- Neon original usa força 8 a 12: no jogo isso estoura o bloom; brilho é remapeado por nome em `kit.js`.
-- A parede JAC_33 já traz uma porta falsa embutida (cópia da JAC_38) em x = -4,10.
+- `image.pixels.foreach_set` pede `image.update()` antes de `image.save()`; sem isso a textura gerada por código sai preta.
 
 ## Jogo
-- GLB com meshopt guarda posições como inteiros e embute escala nos nós: converter para float ao carregar e criar colisores em mundo.
-- `pow()` com base negativa em shader gera NaN e o bloom deixa a tela inteira preta: sempre `clamp` antes.
 - Brilho aditivo de muitas camadas sobrepostas (pétalas) estoura em branco: usar intensidade baixa por camada.
 - "Colar no chão" com velocidade alta para baixo impede subir degrau; no chão usar só a gravidade de um passo.
 - Móvel perto da porta bloqueia a entrada: testar caminhada automática (`__game.sim`) depois de cada mudança de planta.

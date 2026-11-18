@@ -4,6 +4,9 @@
 - `assets/drive/Objetos/` — os 104 GLB originais (Kit_Bordel e Jacuzzi); `assets/inventario.json` — medidas e materiais de cada um.
 - `blender/boate.blend` — coleção PECAS (biblioteca LIB_*) e CENARIO (ROOM_club, ROOM_spa, COMUM).
 - `blender/layout.json` — planta gerada; `blender/scripts/` — cópia dos scripts enviados pelo MCP; `blender/export/boate_raw.glb` — GLB bruto.
+- `blender/entrada.blend` — kit da fachada: PECAS_ENTRADA (22 peças `ENT_*`), MONTAGEM (duplicatas ligadas), PREVIA (luzes, câmeras), cena ENT_ARTE (atlas).
+- `blender/scripts/entrada/` (1 a 5, nessa ordem) refaz o kit; `blender/entrada/tex/` — tijolo e atlas; `assets/Entrada/` — um GLB por peça.
+- Peças `ENT_*`: módulo de 2,4 x 3 m, frente em -Y no Blender; porta com origem na dobradiça; placas e cartazes com origem no centro, costas em y = 0.
 - `public/models/boate.glb` + `level.json` — o que o jogo carrega. `vite.config.js` lê o `level.json` e põe o endereço do GLB no index.html.
 - Sem `level.json` ou sem o GLB, o jogo usa o cenário provisório (`src/level/blockout.js`, carregado só nesse caso).
 - `src/engine/` — graphics (bloom, qualidade), player, collision (BVH), merge (junção de malhas), world, wetfloor, water, stringCurtain, hologram.
