@@ -49,28 +49,31 @@ export class IntroDirector {
   sample(t: number): IntroFrame {
     const FADE_IN: [number, number] = [0, 1.5];
     const WALK_TO: [number, number] = [1.0, 5.5];
-    const WALK_IN: [number, number] = [5.5, 7.5];
-    const FADE_OUT: [number, number] = [7.0, 8.5];
+    const TRANS_OUT: [number, number] = [4.5, 5.5];
+    const TRANS_IN: [number, number] = [5.5, 6.5];
+    const FADE_OUT: [number, number] = [8.0, 8.8];
+
+    const isInside = t >= TRANS_OUT[1];
 
     // --- Fade ---
     let fade = 1;
     if (t < FADE_IN[1]) fade = 1 - smooth((t - FADE_IN[0]) / (FADE_IN[1] - FADE_IN[0]));
+    else if (t < TRANS_OUT[0]) fade = 0;
+    else if (t < TRANS_OUT[1]) fade = smooth((t - TRANS_OUT[0]) / (TRANS_OUT[1] - TRANS_OUT[0]));
+    else if (t < TRANS_IN[1]) fade = 1 - smooth((t - TRANS_IN[0]) / (TRANS_IN[1] - TRANS_IN[0]));
     else if (t < FADE_OUT[0]) fade = 0;
     else fade = smooth((t - FADE_OUT[0]) / (FADE_OUT[1] - FADE_OUT[0]));
 
     // --- Posição do jogador ---
     let pz: number;
     let pose: Pose = 'idle';
-    if (t < WALK_TO[0]) {
+    if (isInside) {
+      pz = this.insideZ;
+    } else if (t < WALK_TO[0]) {
       pz = this.startZ;
-    } else if (t < WALK_TO[1]) {
+    } else {
       pz = mix(this.startZ, this.doorZ, smooth((t - WALK_TO[0]) / (WALK_TO[1] - WALK_TO[0])));
       pose = 'walk';
-    } else if (t < WALK_IN[1]) {
-      pz = mix(this.doorZ, this.insideZ, smooth((t - WALK_IN[0]) / (WALK_IN[1] - WALK_IN[0])));
-      pose = 'walk';
-    } else {
-      pz = this.insideZ;
     }
 
     // --- Câmera ---
@@ -82,31 +85,32 @@ export class IntroDirector {
     let lookZ = pz;
     let fov = 65;
 
-    if (t < WALK_TO[0]) {
+    if (isInside) {
+      camX = this.sx;
+      camY = this.eyeY;
+      camZ = this.insideZ;
+      lookZ = this.insideZ - 2;
+      fov = 70;
+    } else if (t < WALK_TO[0]) {
       camX = this.sx + 1.5;
       camY = this.eyeY + 1.2;
       camZ = this.startZ + 4;
       lookZ = this.doorZ;
       fov = 55;
-    } else if (t < WALK_TO[1]) {
+    } else {
       const p = smooth((t - WALK_TO[0]) / (WALK_TO[1] - WALK_TO[0]));
       camX = mix(this.sx + 1.5, this.sx + 0.3, p);
       camY = mix(this.eyeY + 1.2, this.eyeY + 0.5, p);
       camZ = pz + mix(4, 3, p);
       lookZ = mix(this.doorZ, pz, p);
       fov = mix(55, 65, p);
-    } else if (t >= WALK_IN[0]) {
-      const p = smooth((t - WALK_IN[0]) / (WALK_IN[1] - WALK_IN[0]));
-      camZ = pz + mix(3, 1.5, p);
-      lookZ = pz - 0.5;
-      fov = mix(65, 75, p);
     }
 
     // --- Áudio ---
     let volume = 0;
     let cutoff = 800;
-    if (t > WALK_TO[1]) {
-      const p = smooth((t - WALK_TO[1]) / (FADE_OUT[1] - WALK_TO[1]));
+    if (t > TRANS_OUT[0]) {
+      const p = smooth((t - TRANS_OUT[0]) / (FADE_OUT[1] - TRANS_OUT[0]));
       volume = p;
       cutoff = mix(800, 16000, p);
     }
@@ -122,7 +126,7 @@ export class IntroDirector {
       fade,
       volume,
       cutoff,
-      inside: t >= FADE_OUT[1],
+      inside: isInside,
     };
   }
 }
